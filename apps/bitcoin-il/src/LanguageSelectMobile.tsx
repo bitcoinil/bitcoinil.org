@@ -52,7 +52,11 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({}) => {
 
 export default LanguageSelectMobile
 
-const StyledLanguageSelectMobile = styled.div``
+const StyledLanguageSelectMobile = styled.div`
+  .ant-menu {
+    text-align: center;
+  }
+`
 
 {
   /* 

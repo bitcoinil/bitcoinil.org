@@ -51,10 +51,15 @@ export default BurgerMenuMenu
 
 const StyledBurgerMenuMenu = styled.div`
   .ant-menu {
+    &-title-content {
+      text-align: center;
+    }
+
     .ant-menu-submenu-title {
       padding: 0 !important;
       margin: 0;
     }
+
     li,
     .ant-menu-item {
       padding: 0 !important;
