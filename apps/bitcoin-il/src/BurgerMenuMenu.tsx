@@ -4,10 +4,9 @@ import { useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
-import CustomNavLink from './CustomNavLink'
-import { BurgerMenuMenuProps, MainMenuItem } from './Interfaces'
+import { BurgerMenuMenuProps } from './Interfaces'
 import LanguageSelectMobile from './LanguageSelectMobile'
-import { mainMenuItems } from './mainMenuItems'
+import { generateMenuItems } from './mainMenuItems'
 import { isBurgerMenuOpen } from './state/state'
 import ThemeSelectMobile from './ThemeSelectMobile'
 
@@ -38,52 +37,10 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({}) => {
           setOpenKeys([])
           setMenuOpen(false)
         }}
+        selectedKeys={[open]}
         onOpenChange={onOpenChange}
-      >
-        {mainMenuItems.map((item: any) => {
-          if (item.submenu) {
-            return (
-              <Menu.SubMenu
-                key={item.key}
-                title={<p className="collapsable-menu">{item.label}</p>}
-              >
-                {item.submenu.map((subItem: MainMenuItem) => {
-                  return (
-                    <Menu.Item
-                      style={{ background: 'grey' }}
-                      className="grey-submenu-item"
-                      key={subItem.key}
-                    >
-                      <CustomNavLink to={`/${subItem.key}`}>
-                        {subItem.label}
-                      </CustomNavLink>
-                      {/* <NavLink to={`/${subItem.key}`}>{subItem.label}</NavLink> */}
-                    </Menu.Item>
-                  )
-                })}
-              </Menu.SubMenu>
-            )
-          }
-          return (
-            <Menu.Item
-              key={item.key}
-              onClick={() => {
-                setOpen(item.key)
-              }}
-            >
-              <CustomNavLink to={`/${item.key}`}>
-                <p
-                  className={`burger-menu-item ${
-                    open === item.key ? 'burger-selected-menu-item' : ''
-                  }`}
-                >
-                  {item.label}
-                </p>
-              </CustomNavLink>
-            </Menu.Item>
-          )
-        })}
-      </Menu>
+        items={generateMenuItems()}
+      />
       <LanguageSelectMobile />
       <ThemeSelectMobile />
     </StyledBurgerMenuMenu>
