@@ -72,36 +72,3 @@ const StyledAppMenu = styled.div`
     }
   }
 `
-
-// mainMenuItems.map((item: any) => {
-//   if (item.submenu) {
-//     itemsToBe.push(
-//       <Menu.SubMenu
-//         key={item.key}
-//         title={
-//           <p className="collapsable-menu">
-//             {item.label} <img className="menu-arrow" src={Arrow} />
-//           </p>
-//         }
-//       >
-//         {item.submenu.map((subItem: MainMenuItem) => {
-//           return (
-//             <Menu.Item key={subItem.key}>
-//               <CustomNavLink to={`/${subItem.key}`}>
-//                 {subItem.label}
-//               </CustomNavLink>
-//               {/* <NavLink to={`/${subItem.key}`}>{subItem.label}</NavLink> */}
-//             </Menu.Item>
-//           )
-//         })}
-//       </Menu.SubMenu>
-//     )
-//   }
-//   itemsToBe.push(
-//     <Menu.Item key={item.key}>
-//       <CustomNavLink to={`/${item.key}`}></CustomNavLink>
-//       {/* <NavLink to={`/${item.key}`}></NavLink> */}
-//       <p>{item.label}</p>
-//     </Menu.Item>
-//   )
-// })
