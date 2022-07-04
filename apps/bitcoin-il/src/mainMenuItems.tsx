@@ -1,22 +1,53 @@
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import * as React from 'react'
+import { FormattedMessage } from 'react-intl'
+
 import BusinessBody from './BusinessesBody'
+import BuyBody from './BuyBody'
+import CommunityBody from './CommunityBody'
+import CoreBody from './CoreBody'
+import CustomNavLink from './CustomNavLink'
+import EventsBody from './EventsBody'
+import ExchangesBody from './ExchangesBody'
+import FAQBody from './FAQBody'
 import GettingStartedBody from './GettingStartedBody'
 import HowItWorks from './HowItWorks'
 import IndividualsBody from './IndividualsBody'
 import InnovationBody from './InnovationBody'
 import { MainMenuItem } from './Interfaces'
+import ResourcesBody from './ResourcesBody'
 import RoutePage from './RoutePage'
 import SupportBody from './SupportBody'
-import { FormattedMessage } from 'react-intl'
-import ResourcesBody from './ResourcesBody'
-import CommunityBody from './CommunityBody'
 import VocabularyBody from './VocabularyBody'
-import ExchangesBody from './ExchangesBody'
-import EventsBody from './EventsBody'
-import CoreBody from './CoreBody'
 import WhitePaperBody from './WhitePaperBody'
-import BuyBody from './BuyBody'
-import FAQBody from './FAQBody'
+
+export const generateMenuItems = () => {
+  const menuAsAntdItem: ItemType[] = []
+
+  mainMenuItems.forEach((menIt) => {
+    const newSubMenu: ItemType[] = []
+    if (menIt.submenu) {
+      menIt.submenu.forEach((subMenu) => {
+        newSubMenu.push({
+          label: (
+            <CustomNavLink to={`/${subMenu.key}`}>
+              {subMenu.label}
+            </CustomNavLink>
+          ),
+          key: subMenu.key
+        })
+      })
+    }
+
+    menuAsAntdItem.push({
+      label: <CustomNavLink to={`/${menIt.key}`}>{menIt.label}</CustomNavLink>,
+      key: menIt.key,
+      children: newSubMenu
+    })
+  })
+
+  return menuAsAntdItem
+}
 
 export const mainMenuItems: MainMenuItem[] = [
   {
@@ -359,7 +390,7 @@ export const mainMenuItems: MainMenuItem[] = [
             title={
               <FormattedMessage
                 id={`mainMenuItem.vocab.title`}
-                defaultMessage={`"Some Bitcoin words you might hear"`}
+                defaultMessage={`Some Bitcoin words you might hear`}
                 description={`vocab.title`}
               />
             }
