@@ -40,7 +40,7 @@ export const generateMenuItems = () => {
     }
 
     menuAsAntdItem.push({
-      label: <CustomNavLink to={`/${menIt.key}`}>{menIt.label}</CustomNavLink>,
+      label: <React.Fragment>{menIt.label}</React.Fragment>,
       key: menIt.key,
       children: newSubMenu
     })

@@ -1,20 +1,13 @@
 import { Menu, MenuProps } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import * as React from 'react'
 import { useLocation } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
-import { generateMenuItems, mainMenuItems } from './mainMenuItems'
-import { currentlySelectedLanguage } from './state/state'
+import { generateMenuItems } from './mainMenuItems'
 
 export default function HeaderMenu(): JSX.Element {
   const [current, setCurrent] = React.useState('FAQ')
   const location = useLocation()
-  const [renderedMenuItems, setRenderedMenuItems] = React.useState([
-    { label: 'loading', key: 'loading' }
-  ])
-  const selectedLang = useRecoilValue(currentlySelectedLanguage)
 
   const onClick: MenuProps['onClick'] = (e: any) => {
     console.log(e.key)
@@ -25,10 +18,6 @@ export default function HeaderMenu(): JSX.Element {
     const splitLocation = location.pathname.split('/')
     setCurrent(splitLocation[splitLocation.length - 1])
   }, [])
-
-  React.useEffect(() => {
-    console.log('New Current', current)
-  }, [current])
 
   return (
     <StyledAppMenu id="HeaderMenu">
