@@ -1,3 +1,4 @@
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
@@ -18,6 +19,22 @@ export const useTranslations = () => {
     }
   }
 
+  const generateLanguageMenuItems = () => {
+    const childrenToBe: ItemType[] = []
+
+    availableLanguages.forEach((lang) => {
+      childrenToBe.push({ key: lang.name, label: lang.longName })
+    })
+
+    return [
+      {
+        key: 'lang',
+        label: 'Languages',
+        children: childrenToBe
+      }
+    ]
+  }
+
   React.useEffect(() => {
     if (language.language === 'he') setLocale('il')
     setLocale(language.language)
@@ -30,6 +47,7 @@ export const useTranslations = () => {
   return {
     availableLanguages,
     locale,
-    navigateWithLanguageChange
+    navigateWithLanguageChange,
+    generateLanguageMenuItems
   }
 }

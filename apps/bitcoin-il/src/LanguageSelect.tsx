@@ -6,7 +6,6 @@ import styled from 'styled-components'
 
 import { phoneDevices } from './breakpoints'
 import { useTranslations } from './hooks/useTranslations'
-import ico_angle from './img/ico_angle.svg'
 import { LanguageSelectProps, LongNamesForLanguageType } from './Interfaces'
 import { currentlySelectedLanguage } from './state/state'
 
@@ -21,6 +20,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
   const [current, setCurrent] = React.useState('en')
   const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
   const location = useLocation()
+  const { generateLanguageMenuItems } = useTranslations()
 
   React.useEffect(() => {
     availableLanguages.forEach((avLang) => {
@@ -39,7 +39,12 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
 
   return (
     <StyledLanguageSelect id="LanguageSelect">
-      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" />
+      <Menu
+        onClick={onClick}
+        selectedKeys={[current]}
+        mode="horizontal"
+        items={generateLanguageMenuItems()}
+      />
     </StyledLanguageSelect>
   )
 }
@@ -60,7 +65,7 @@ const StyledLanguageSelect = styled.div`
   }
 
   .ant-menu {
-    width: 80px;
+    width: 100px;
     &.ant-menu {
       background: transparent;
       border-bottom: none;

@@ -15,6 +15,7 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({}) => {
   const [current, setCurrent] = React.useState('English')
   const [openKeys, setOpenKeys] = React.useState([])
   const [, setLanguage] = useRecoilState(currentlySelectedLanguage)
+  const { generateLanguageMenuItems } = useTranslations()
 
   const onOpenChange = (keys: any) => {
     setOpenKeys(keys)
@@ -43,8 +44,19 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({}) => {
           setMenuOpen(false)
         }}
         onOpenChange={onOpenChange}
-      >
-        <Menu.SubMenu
+        items={generateLanguageMenuItems()}
+      />
+    </StyledLanguageSelectMobile>
+  )
+}
+
+export default LanguageSelectMobile
+
+const StyledLanguageSelectMobile = styled.div``
+
+{
+  /* 
+<Menu.SubMenu
           key={'lang-submenu'}
           title={<p className="collapsable-menu">Language</p>}
         >
@@ -60,11 +72,5 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({}) => {
             )
           })}
         </Menu.SubMenu>
-      </Menu>
-    </StyledLanguageSelectMobile>
-  )
+      </Menu> */
 }
-
-export default LanguageSelectMobile
-
-const StyledLanguageSelectMobile = styled.div``
