@@ -1,23 +1,53 @@
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import * as React from 'react'
+import { FormattedMessage } from 'react-intl'
+
 import BusinessBody from '../components/BusinessesBody'
+import BuyBody from '../components/BuyBody'
+import CommunityBody from '../components/CommunityBody'
+import CoreBody from '../components/CoreBody'
+import CustomNavLink from '../components/CustomNavLink'
+import EventsBody from '../components/EventsBody'
+import ExchangesBody from '../components/ExchangesBody'
+import FAQBody from '../components/FAQBody'
 import GettingStartedBody from '../components/GettingStartedBody'
 import HowItWorks from '../components/HowItWorks'
 import IndividualsBody from '../components/IndividualsBody'
 import InnovationBody from '../components/InnovationBody'
-import { MainMenuItem } from '../utils/interfaces'
-import RoutePage from '../layout/RoutePage'
-import SupportBody from '../components/SupportBody'
-import { FormattedMessage } from 'react-intl'
 import ResourcesBody from '../components/ResourcesBody'
-import CommunityBody from '../components/CommunityBody'
+import SupportBody from '../components/SupportBody'
 import VocabularyBody from '../components/VocabularyBody'
-import ExchangesBody from '../components/ExchangesBody'
-import EventsBody from '../components/EventsBody'
-import CoreBody from '../components/CoreBody'
 import WhitePaperBody from '../components/WhitePaperBody'
-import BuyBody from '../components/BuyBody'
-import FAQBody from '../components/FAQBody'
+import RoutePage from '../layout/RoutePage'
+import { MainMenuItem } from '../utils/interfaces'
+
+export const generateMenuItems = () => {
+  const menuAsAntdItem: ItemType[] = []
+
+  mainMenuItems.forEach((menIt) => {
+    const newSubMenu: ItemType[] = []
+    if (menIt.submenu) {
+      menIt.submenu.forEach((subMenu) => {
+        newSubMenu.push({
+          label: (
+            <CustomNavLink to={`/${subMenu.key}`}>
+              {subMenu.label}
+            </CustomNavLink>
+          ),
+          key: subMenu.key
+        })
+      })
+    }
+
+    menuAsAntdItem.push({
+      label: <React.Fragment>{menIt.label}</React.Fragment>,
+      key: menIt.key,
+      children: newSubMenu
+    })
+  })
+
+  return menuAsAntdItem
+}
 
 export const mainMenuItems: MainMenuItem[] = [
   {

@@ -2,12 +2,12 @@ import { Menu, MenuProps } from 'antd'
 import * as React from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { useTranslations } from '../hooks/useTranslations'
+
+import { generateMenuItems } from '../routes/mainMenuItems'
 
 export default function HeaderMenu(): JSX.Element {
   const [current, setCurrent] = React.useState('FAQ')
   const location = useLocation()
-  const { generateLanguageMenuItems } = useTranslations()
 
   const onClick: MenuProps['onClick'] = (e: any) => {
     console.log(e.key)
@@ -25,7 +25,7 @@ export default function HeaderMenu(): JSX.Element {
         onClick={onClick}
         selectedKeys={[current]}
         mode="horizontal"
-        items={generateLanguageMenuItems()}
+        items={generateMenuItems()}
       />
     </StyledAppMenu>
   )

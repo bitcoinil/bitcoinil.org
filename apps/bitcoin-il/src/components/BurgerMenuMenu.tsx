@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
+import { generateMenuItems } from '../routes/mainMenuItems'
 import { isBurgerMenuOpen } from '../state/state'
 import { BurgerMenuMenuProps } from '../utils/interfaces'
 import LanguageSelectMobile from './LanguageSelectMobile'
