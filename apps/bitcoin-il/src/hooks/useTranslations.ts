@@ -3,7 +3,7 @@ import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 
-import { AvailableLanguage, Messages } from '../Interfaces'
+import { AvailableLanguage, Messages } from '../utils/interfaces'
 import { currentlySelectedLanguage } from '../state/state'
 
 export const useTranslations = () => {

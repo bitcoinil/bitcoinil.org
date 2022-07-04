@@ -66,7 +66,7 @@ export type CompiledTheme = {
   description: string
   title: string
   version: string
-  fontStylesheet?: string
+  fontStylesheet?: string | string[]
   variants: CompiledVariant[]
 }
 
@@ -78,7 +78,7 @@ export type ThemeConfig = {
   /** Theme description */
   description: string
   /** Theme Font Stylesheet */
-  fontStylesheet?: string
+  fontStylesheet?: string | string[]
   /** Theme version (semver or whatever) */
   version: string
   /** Theme variants */

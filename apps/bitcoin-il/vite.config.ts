@@ -1,6 +1,8 @@
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { defineConfig } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
+import svgr from '@svgr/rollup'
+
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -11,7 +13,7 @@ console.log('Base Path:', [...process.env.BASE_URL?.split('') || []])
 export default defineConfig({
   plugins: [
     reactRefresh(),
-
+    svgr(),
     viteStaticCopy({
       targets: [
         {
