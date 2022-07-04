@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@svgr/rollup": "^6.2.1",
     "@types/react-vertical-timeline-component": "^3.3.3",
     "@types/react-youtube": "^7.10.0",
     "add": "^2.0.6",
