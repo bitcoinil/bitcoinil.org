@@ -39,25 +39,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
 
   return (
     <StyledLanguageSelect id="LanguageSelect">
-      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal">
-        <Menu.SubMenu
-          key={'lang'}
-          title={
-            <p className="collapsable-menu">
-              {longNamesForLanguages[current]}{' '}
-              <img className="language-select-down-arrow" src={ico_angle} />
-            </p>
-          }
-        >
-          {availableLanguages.map((avLang) => {
-            return (
-              <Menu.Item key={avLang.name}>
-                <p>{longNamesForLanguages[avLang.name] || 'English'}</p>
-              </Menu.Item>
-            )
-          })}
-        </Menu.SubMenu>
-      </Menu>
+      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" />
     </StyledLanguageSelect>
   )
 }
@@ -107,3 +89,24 @@ const StyledLanguageSelect = styled.div`
 `
 
 export default LanguageSelect
+
+{
+  /* <Menu.SubMenu
+          key={'lang'}
+          title={
+            <p className="collapsable-menu">
+              {longNamesForLanguages[current]}{' '}
+              <img className="language-select-down-arrow" src={ico_angle} />
+            </p>
+          }
+        >
+          {availableLanguages.map((avLang) => {
+            return (
+              <Menu.Item key={avLang.name}>
+                <p>{longNamesForLanguages[avLang.name] || 'English'}</p>
+              </Menu.Item>
+            )
+          })}
+        </Menu.SubMenu>
+      </Menu> */
+}
