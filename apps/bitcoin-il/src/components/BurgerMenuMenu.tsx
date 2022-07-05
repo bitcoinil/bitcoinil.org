@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
-import { recursiveGenerateMenuItems } from '../routes/mainMenuItems'
+import { generateMenuItems } from '../routes/mainMenuItems'
 import { isBurgerMenuOpen } from '../state/state'
 import { BurgerMenuMenuProps } from '../utils/interfaces'
 import LanguageSelectMobile from './LanguageSelectMobile'
@@ -39,7 +39,7 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({}) => {
         }}
         selectedKeys={[open]}
         onOpenChange={onOpenChange}
-        items={recursiveGenerateMenuItems()}
+        items={generateMenuItems()}
       />
       <LanguageSelectMobile />
       <ThemeSelectMobile />

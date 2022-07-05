@@ -3,25 +3,13 @@ import * as React from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
-import {
-  generateMenuItems,
-  recursiveGenerateMenuItems
-} from '../routes/mainMenuItems'
+import { generateMenuItems } from '../routes/mainMenuItems'
 
 export default function HeaderMenu(): JSX.Element {
-  const [current, setCurrent] = React.useState('')
+  const [current, setCurrent] = React.useState('FAQ')
   const location = useLocation()
 
-  // /////////////////////////////////////////////////////////
-  // Use effect to set the current menu item based on the
-  //      url
-  React.useEffect(() => {
-    console.log(location.pathname.substring(1))
-    setCurrent(location.pathname.substring(1))
-  }, [])
-
   const onClick: MenuProps['onClick'] = (e: any) => {
-    console.log('I a herere, old current is', current)
     console.log(e.key)
     setCurrent(e.key)
   }
