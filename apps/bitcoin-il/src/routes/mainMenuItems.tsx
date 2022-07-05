@@ -45,7 +45,11 @@ export const generateMenuItems = () => {
     }
 
     menuAsAntdItem.push({
-      label: <MenuItem label={menIt.label} />,
+      label: (
+        <CustomNavLink to={`/${menIt.key}`}>
+          <MenuItem label={menIt.label} />
+        </CustomNavLink>
+      ),
       key: menIt.key,
       children: newSubMenu
     })
