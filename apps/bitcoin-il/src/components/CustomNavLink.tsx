@@ -8,12 +8,21 @@ import { currentlySelectedLanguage } from '../state/state'
 
 const CustomNavLink: React.FC<CustomNavLinkProps> = ({ to, children }) => {
   const atomLang = useRecoilValue(currentlySelectedLanguage)
-  //   console.log('👻👻👻', to)
 
   const languageCode = atomLang.language === 'en' ? '' : `/${atomLang.language}`
-  return <NavLink to={`${languageCode}${to}`}>{children}</NavLink>
+  return (
+    <StyledCustomNavLink to={`${languageCode}${to}`}>
+      {children}
+    </StyledCustomNavLink>
+  )
 }
 
 export default CustomNavLink
 
-const StyledCustomNavLink = styled.div``
+const StyledCustomNavLink = styled(NavLink)`
+  color: unset;
+
+  &:hover {
+    color: unset;
+  }
+`

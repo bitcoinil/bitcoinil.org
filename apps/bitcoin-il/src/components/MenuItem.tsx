@@ -16,20 +16,28 @@ const MenuItem: React.FC<MenuItemProps> = ({ label }) => {
 export default MenuItem
 
 const StyledMenuItem = styled.div`
-  transition: all 400ms;
+  transition: all 200ms;
+
+  .active {
+    transform: translateY(-2px);
+    background: #a9d69b;
+  }
+
+  & > .ant-menu-sub {
+    background-color: red;
+  }
 
   &:hover {
-    transition: all 400ms;
+    transition: all 200ms;
     transform: translateY(-2px);
   }
 
   &:hover span {
-    transition: all 400ms;
-    color: #333333;
+    transition: all 200ms;
   }
 
   span {
-    transition: all 400ms;
+    transition: all 200ms;
     cursor: pointer;
   }
 `
