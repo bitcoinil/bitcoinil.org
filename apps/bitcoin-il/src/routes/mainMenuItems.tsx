@@ -14,6 +14,7 @@ import GettingStartedBody from '../components/GettingStartedBody'
 import HowItWorks from '../components/HowItWorks'
 import IndividualsBody from '../components/IndividualsBody'
 import InnovationBody from '../components/InnovationBody'
+import MenuItem from '../components/MenuItem'
 import ResourcesBody from '../components/ResourcesBody'
 import SupportBody from '../components/SupportBody'
 import VocabularyBody from '../components/VocabularyBody'
@@ -30,9 +31,13 @@ export const generateMenuItems = () => {
       menIt.submenu.forEach((subMenu) => {
         newSubMenu.push({
           label: (
-            <CustomNavLink to={`/${subMenu.key}`}>
-              {subMenu.label}
-            </CustomNavLink>
+            <MenuItem
+              label={
+                <CustomNavLink to={`/${subMenu.key}`}>
+                  {subMenu.label}
+                </CustomNavLink>
+              }
+            />
           ),
           key: subMenu.key
         })
@@ -40,7 +45,7 @@ export const generateMenuItems = () => {
     }
 
     menuAsAntdItem.push({
-      label: <React.Fragment>{menIt.label}</React.Fragment>,
+      label: <MenuItem label={menIt.label} />,
       key: menIt.key,
       children: newSubMenu
     })
