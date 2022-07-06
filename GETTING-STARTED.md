@@ -80,4 +80,19 @@ Extract these translations using:
 
 `yarn extract-intl`
 
+## Errors caused by duplicate message IDs
+
+please verify that no errors are found when running `yarn extract-intl`
+
+Example echo of an error-free extraction
+
+```
+yarn run v1.22.19
+$ cd apps/bitcoin-il && yarn extract-intl
+$ formatjs extract "src/**/*.{ts,tsx,js,jsx}" --out-file lang.json
+Done in 1.29s.
+
+```
+
+
 
