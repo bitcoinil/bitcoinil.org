@@ -72,5 +72,12 @@ import { FormattedMessage } from 'react-intl'
 
 There is also a project-wide snipped which will allow to create a new `FormattedMessage` via typing `nfm` and hitting enter
 
+## Generating the translation dictionaries
+
+Once a `Formatted Message` is added to the codebase, it needs to be extracted so that the translations can be written
+
+Extract these translations using:
+
+`yarn extract-intl`
 
 
