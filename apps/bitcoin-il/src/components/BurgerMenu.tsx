@@ -1,14 +1,16 @@
 import * as React from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
-import { isBurgerMenuOpen } from '../state/state'
+import { currentlySelectedLanguage, isBurgerMenuOpen } from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
 import { BurgerMenuProps } from '../utils/interfaces'
 import BurgerMenuMenu from './BurgerMenuMenu'
 
 const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpen)
+
+  const currentLang = useRecoilValue(currentlySelectedLanguage)
 
   const toggleBurger = () => {
     setBurgerOpen(!burgerOpen)
@@ -17,7 +19,9 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   return (
     <BurgerWrap>
       <input
-        className="checkbox"
+        className={`checkbox ${
+          currentLang.language === 'he' ? 'on-left' : 'on-right'
+        }`}
         onChange={toggleBurger}
         type="checkbox"
         checked={burgerOpen}
@@ -55,10 +59,17 @@ const BurgerWrap = styled.div`
       height: 32px;
       width: 32px;
       top: 20px;
-      right: 20px;
       z-index: 5;
       opacity: 0;
       cursor: pointer;
+    }
+
+    .on-left {
+      left: 20px;
+    }
+
+    .on-right {
+      right: 20px;
     }
 
     .hamburger-lines {
