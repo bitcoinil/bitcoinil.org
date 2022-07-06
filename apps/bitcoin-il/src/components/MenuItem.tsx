@@ -17,7 +17,6 @@ const StyledMenuItem = styled.div`
 
   .active {
     transform: translateY(-2px);
-    background: #a9d69b;
   }
 
   & > .ant-menu-sub {
