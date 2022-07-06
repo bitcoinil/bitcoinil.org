@@ -41,10 +41,7 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({}) => {
         mode="inline"
         selectedKeys={[current]}
         openKeys={openKeys}
-        onClick={() => {
-          setOpenKeys([])
-          setMenuOpen(false)
-        }}
+        onClick={onClick}
         onOpenChange={onOpenChange}
         items={generateLanguageMenuItems()}
       />
