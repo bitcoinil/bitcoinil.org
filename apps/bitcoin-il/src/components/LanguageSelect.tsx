@@ -12,7 +12,9 @@ import { LanguageSelectProps } from '../utils/interfaces'
 const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
   const [current, setCurrent] = React.useState('en')
 
-  const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
+  const [languageState, setLanugageState] = useRecoilState(
+    currentlySelectedLanguage
+  )
 
   const intl = useTranslations()
   const { availableLanguages, navigateWithLanguageChange } = intl
@@ -24,14 +26,15 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
     availableLanguages.forEach((avLang) => {
       if (location.pathname.startsWith(`/${avLang.name}`)) {
         setCurrent(avLang.name)
-        setAtomLang({ language: avLang.name })
+        setLanugageState({ language: avLang.name })
       }
     })
   }, [])
 
   const onClick = (e: any) => {
+    if (languageState.language === e.key) return null
     setCurrent(e.key)
-    setAtomLang({ language: e.key })
+    setLanugageState({ language: e.key })
     navigateWithLanguageChange(location.pathname, e.key)
   }
 

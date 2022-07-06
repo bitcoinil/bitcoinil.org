@@ -13,9 +13,8 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({}) => {
   const [current, setCurrent] = React.useState('English')
   const [openKeys, setOpenKeys] = React.useState([])
 
-  const [, setLanguage] = useRecoilState(currentlySelectedLanguage)
+  const [languageState, setLanguage] = useRecoilState(currentlySelectedLanguage)
   const [, setHideBurgerMenu] = useRecoilState(isBurgerMenuOpen)
-  const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
 
   const { navigateWithLanguageChange } = useTranslations()
   const { generateLanguageMenuItems } = useTranslations()
@@ -27,12 +26,12 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({}) => {
   }
 
   const onClick = (e: any) => {
-    setLanguage({ language: e.key })
-    setCurrent(e.key)
-    setAtomLang({ language: e.key })
-    navigateWithLanguageChange(location.pathname, e.key)
     setMenuOpen(false)
     setHideBurgerMenu(false)
+    if (languageState.language === e.key) return null
+    setLanguage({ language: e.key })
+    setCurrent(e.key)
+    navigateWithLanguageChange(location.pathname, e.key)
   }
 
   return (
