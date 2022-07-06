@@ -9,20 +9,22 @@ import { LanguageSelectMobileProps } from '../utils/interfaces'
 import { currentlySelectedLanguage, isBurgerMenuOpen } from '../state/state'
 
 const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({}) => {
-  const [, setHideBurgerMenu] = useRecoilState(isBurgerMenuOpen)
   const [, setMenuOpen] = React.useState(false)
-  const { availableLanguages, navigateWithLanguageChange } = useTranslations()
   const [current, setCurrent] = React.useState('English')
   const [openKeys, setOpenKeys] = React.useState([])
+
   const [, setLanguage] = useRecoilState(currentlySelectedLanguage)
+  const [, setHideBurgerMenu] = useRecoilState(isBurgerMenuOpen)
+  const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
+
+  const { navigateWithLanguageChange } = useTranslations()
   const { generateLanguageMenuItems } = useTranslations()
+
+  const location = useLocation()
 
   const onOpenChange = (keys: any) => {
     setOpenKeys(keys)
   }
-
-  const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
-  const location = useLocation()
 
   const onClick = (e: any) => {
     setLanguage({ language: e.key })
@@ -57,24 +59,3 @@ const StyledLanguageSelectMobile = styled.div`
     text-align: center;
   }
 `
-
-{
-  /* 
-<Menu.SubMenu
-          key={'lang-submenu'}
-          title={<p className="collapsable-menu">Language</p>}
-        >
-          {availableLanguages.map((avLang, i) => {
-            return (
-              <Menu.Item
-                style={{ background: 'grey' }}
-                onClick={onClick}
-                key={`${avLang.name}`}
-              >
-                {avLang.longName}
-              </Menu.Item>
-            )
-          })}
-        </Menu.SubMenu>
-      </Menu> */
-}

@@ -2,45 +2,11 @@ import { Card } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
+import { whitePaperTranslations } from '../data/WhitePaperData'
 
-import { phoneDevices } from '../utils/breakpoints'
 import ico_download from '../img/ico_download.svg'
-import { WhitePaperBodyProps, WhitePaperTranslation } from '../utils/interfaces'
-
-const whitePaperTranslations: WhitePaperTranslation[] = [
-  {
-    link: 'https://bitcoin.org/bitcoin.pdf',
-    language: (
-      <FormattedMessage
-        id={`white-paper.english.label`}
-        defaultMessage={`English (Original)`}
-        description={`english.label`}
-      />
-    )
-  },
-  {
-    link: 'https://bitcoin.org/files/bitcoin-paper/bitcoin_iw.pdf',
-    language: (
-      <FormattedMessage
-        id={`white-paper.hebrew.label`}
-        defaultMessage={`עברית`}
-        description={`hebrew.label`}
-      />
-    ),
-    translatedBy: [
-      {
-        author: (
-          <FormattedMessage
-            id={`white-paper.hebrew.translator0`}
-            defaultMessage={`Meni Rosenfeld`}
-            description={`hebrew.translator0`}
-          />
-        ),
-        link: 'https://twitter.com/MeniRosenfeld'
-      }
-    ]
-  }
-]
+import { phoneDevices } from '../utils/breakpoints'
+import { WhitePaperBodyProps } from '../utils/interfaces'
 
 const WhitePaperBody: React.FC<WhitePaperBodyProps> = ({}) => {
   return (
@@ -116,21 +82,26 @@ const StyledWhitePaperBody = styled.div`
 
   .papers {
     display: flex;
+    margin: 50px 0;
+
     ${phoneDevices} {
       flex-direction: column;
     }
-    margin: 50px 0;
+
     .ant-card {
       padding: 60px;
       height: 200px;
       margin-left: 15px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       ${phoneDevices} {
         margin-bottom: 25px;
         margin-left: 0;
       }
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
       h1 {
         margin: 0;
       }

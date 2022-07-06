@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
-import { CustomNavLinkProps } from '../utils/interfaces'
 import { currentlySelectedLanguage } from '../state/state'
+import { CustomNavLinkProps } from '../utils/interfaces'
 
 const CustomNavLink: React.FC<CustomNavLinkProps> = ({ to, children }) => {
   const atomLang = useRecoilValue(currentlySelectedLanguage)

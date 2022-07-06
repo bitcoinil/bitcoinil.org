@@ -92,7 +92,6 @@ const StyledBurgerMenuMenu = styled.div`
     }
 
     img {
-      /* position: absolute; */
       background-color: maroon;
     }
 

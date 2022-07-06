@@ -7,21 +7,16 @@ import styled from 'styled-components'
 import { useTranslations } from '../hooks/useTranslations'
 import { currentlySelectedLanguage } from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
-import {
-  LanguageSelectProps,
-  LongNamesForLanguageType
-} from '../utils/interfaces'
-
-const longNamesForLanguages: LongNamesForLanguageType = {
-  he: 'עברית',
-  en: 'English'
-}
+import { LanguageSelectProps } from '../utils/interfaces'
 
 const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
+  const [current, setCurrent] = React.useState('en')
+
+  const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
+
   const intl = useTranslations()
   const { availableLanguages, navigateWithLanguageChange } = intl
-  const [current, setCurrent] = React.useState('en')
-  const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
+
   const location = useLocation()
   const { generateLanguageMenuItems } = useTranslations()
 
@@ -97,24 +92,3 @@ const StyledLanguageSelect = styled.div`
 `
 
 export default LanguageSelect
-
-{
-  /* <Menu.SubMenu
-          key={'lang'}
-          title={
-            <p className="collapsable-menu">
-              {longNamesForLanguages[current]}{' '}
-              <img className="language-select-down-arrow" src={ico_angle} />
-            </p>
-          }
-        >
-          {availableLanguages.map((avLang) => {
-            return (
-              <Menu.Item key={avLang.name}>
-                <p>{longNamesForLanguages[avLang.name] || 'English'}</p>
-              </Menu.Item>
-            )
-          })}
-        </Menu.SubMenu>
-      </Menu> */
-}

@@ -1,20 +1,14 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import { QuickOverviewBox } from './QuickOverview'
-import { NavLink } from 'react-router-dom'
+
 import { phoneDevices } from '../utils/breakpoints'
+import { QuickOverviewBoxProps } from '../utils/interfaces'
 import CustomNavLink from './CustomNavLink'
 
-const QuickOverviewBox: React.FC<QuickOverviewBox> = ({
-  index,
-  id,
+const QuickOverviewBox: React.FC<QuickOverviewBoxProps> = ({
   imgSrc,
   titleDefaultMessage,
-  titleDescription,
   subtitleDefaultMessage,
-  subtitleDescription,
-  baseFormattedMessage,
   link
 }) => {
   return (
@@ -22,48 +16,11 @@ const QuickOverviewBox: React.FC<QuickOverviewBox> = ({
       <StyledQuickOverviewBox id="QuickOverviewBox">
         <img src={imgSrc} />
         <div className="box-text">
-          <h4>
-            {/* <FormattedMessage
-              id={`${baseFormattedMessage}.individuals`}
-              defaultMessage={titleDefaultMessage}
-              description={titleDescription}
-            /> */}
-            {titleDefaultMessage}
-          </h4>
-          <p>
-            {/* <FormattedMessage
-              id={`${baseFormattedMessage}.individuals.learnmore`}
-              defaultMessage={subtitleDefaultMessage}
-              description={subtitleDescription}
-            /> */}
-            {subtitleDefaultMessage}
-          </p>
+          <h4>{titleDefaultMessage}</h4>
+          <p>{subtitleDefaultMessage}</p>
         </div>
       </StyledQuickOverviewBox>
     </CustomNavLink>
-    // <NavLink to={link}>
-    //   <StyledQuickOverviewBox id="QuickOverviewBox">
-    //     <img src={imgSrc} />
-    //     <div className="box-text">
-    //       <h4>
-    //         {/* <FormattedMessage
-    //           id={`${baseFormattedMessage}.individuals`}
-    //           defaultMessage={titleDefaultMessage}
-    //           description={titleDescription}
-    //         /> */}
-    //         {titleDefaultMessage}
-    //       </h4>
-    //       <p>
-    //         {/* <FormattedMessage
-    //           id={`${baseFormattedMessage}.individuals.learnmore`}
-    //           defaultMessage={subtitleDefaultMessage}
-    //           description={subtitleDescription}
-    //         /> */}
-    //         {subtitleDefaultMessage}
-    //       </p>
-    //     </div>
-    //   </StyledQuickOverviewBox>
-    // </NavLink>
   )
 }
 

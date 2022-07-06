@@ -185,6 +185,7 @@ export interface TimelineItemProps {
   body: string
   buttonText: string
   buttonOnClick: Function
+  key: string
 }
 
 export interface HowItWorksProps {}
@@ -260,4 +261,8 @@ export interface ExchangeLocation {
 
 export interface CardsDisplayProps {
   cards: BodyCard[]
+}
+
+export interface MenuItemProps {
+  label: JSX.Element
 }

@@ -1,7 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { AlternatingTwoColumnRowProps } from '../utils/interfaces'
+
 import { phoneDevices } from '../utils/breakpoints'
+import { AlternatingTwoColumnRowProps } from '../utils/interfaces'
 
 const AlternatingTwoColumnRow: React.FC<AlternatingTwoColumnRowProps> = ({
   index,

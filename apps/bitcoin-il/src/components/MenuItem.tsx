@@ -1,9 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-
-export interface MenuItemProps {
-  label: JSX.Element
-}
+import { MenuItemProps } from '../utils/interfaces'
 
 const MenuItem: React.FC<MenuItemProps> = ({ label }) => {
   return (

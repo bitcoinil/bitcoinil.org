@@ -2,6 +2,7 @@ import { Card } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
+
 import { BuyBodyProps } from '../utils/interfaces'
 
 const BuyBody: React.FC<BuyBodyProps> = ({}) => {

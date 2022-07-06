@@ -1,6 +1,5 @@
 import * as React from 'react'
-
-import { BodyCard } from '../utils/interfaces'
+import { FormattedMessage } from 'react-intl'
 
 import control from '../img/ico_control.svg'
 import international from '../img/ico_international.svg'
@@ -9,7 +8,7 @@ import multi from '../img/ico_multi.svg'
 import pci from '../img/ico_pci.svg'
 import transparency from '../img/ico_transparency.svg'
 import visib from '../img/ico_visib.svg'
-import { FormattedMessage } from 'react-intl'
+import { BodyCard } from '../utils/interfaces'
 
 export const businessCards: BodyCard[] = [
   {

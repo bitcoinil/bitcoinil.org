@@ -1,13 +1,15 @@
 import { Collapse } from 'antd'
 import * as React from 'react'
+import ReactCountryFlag from 'react-country-flag'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import { phoneDevices, smallDevices } from '../utils/breakpoints'
-import { colors } from '../theme/colors'
-import { exhchanges } from './ExchangesBodyData'
+
+import { exhchanges } from '../data/ExchangesBodyData'
 import ico_badge from '../img/ico_badge.svg'
+import { colors } from '../theme/colors'
+import { flashElement } from '../util/util'
+import { phoneDevices, smallDevices } from '../utils/breakpoints'
 import { ExchangeLocation, ExchangesBodyProps } from '../utils/interfaces'
-import ReactCountryFlag from 'react-country-flag'
 
 const { Panel } = Collapse
 
@@ -44,6 +46,18 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
   const [isBelowZero, setIsBelowZero] = React.useState(false)
   const [isAtEnd, setIsAtEnd] = React.useState(false)
 
+  React.useEffect(() => {
+    window.addEventListener('scroll', scrollCheckMenuInView)
+
+    return () => window.removeEventListener('scroll', scrollCheckMenuInView)
+  })
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', scrollCheckEnderInView)
+
+    return () => window.removeEventListener('scroll', scrollCheckEnderInView)
+  })
+
   const columnsRef = React.createRef<HTMLDivElement>()
   const endRef = React.createRef<HTMLDivElement>()
 
@@ -52,12 +66,6 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
     setIsBelowZero(columnsRef.current?.getBoundingClientRect()?.y <= 0)
   }
 
-  React.useEffect(() => {
-    window.addEventListener('scroll', scrollCheckMenuInView)
-
-    return () => window.removeEventListener('scroll', scrollCheckMenuInView)
-  })
-
   const scrollCheckEnderInView = () => {
     if (!endRef?.current) return
     setIsAtEnd(
@@ -65,34 +73,6 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
     )
   }
 
-  React.useEffect(() => {
-    window.addEventListener('scroll', scrollCheckEnderInView)
-
-    return () => window.removeEventListener('scroll', scrollCheckEnderInView)
-  })
-
-  const flashElement = (el: HTMLElement | null) => {
-    if (!el) return
-
-    const duration = 300
-
-    el.style.opacity = '0.2'
-    window.setTimeout(() => {
-      el.style.opacity = '1'
-    }, duration)
-    window.setTimeout(() => {
-      el.style.opacity = '0.2'
-    }, duration * 2)
-    window.setTimeout(() => {
-      el.style.opacity = '1'
-    }, duration * 3)
-    window.setTimeout(() => {
-      el.style.opacity = '0.2'
-    }, duration * 4)
-    window.setTimeout(() => {
-      el.style.opacity = '1'
-    }, duration * 5)
-  }
   return (
     <StyledExchangesBody id="ExchangesBody">
       <div className="exchanges-warning">

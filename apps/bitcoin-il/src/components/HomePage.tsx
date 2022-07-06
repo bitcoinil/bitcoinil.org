@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
+
 import { phoneDevices } from '../utils/breakpoints'
 import GetStartedWithBitcoin from './GetStartedWithBitcoin'
 import HomepageButtons from './HomepageButtons'

@@ -1,16 +1,19 @@
+import 'react-vertical-timeline-component/style.min.css'
+
 import * as React from 'react'
 import {
   VerticalTimeline,
   VerticalTimelineElement
 } from 'react-vertical-timeline-component'
-import 'react-vertical-timeline-component/style.min.css'
 import styled from 'styled-components'
-import { phoneDevices } from '../utils/breakpoints'
+
 import { colors } from '../theme/colors'
+import { phoneDevices } from '../utils/breakpoints'
 import { TimelineCompProps } from '../utils/interfaces'
 
 const TimelineComp: React.FC<TimelineCompProps> = ({ items }) => {
   if (!items) return null
+
   return (
     <StyledTimelineComp id="TimelineComp">
       <VerticalTimeline>

@@ -3,13 +3,13 @@ import { Card, Divider } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import SiteButton from './BitcoinSiteButton'
+import { coreShortcuts, links, mainBoxes, newsCards } from '../data/CoreData'
+
 import ico_news from '../img/ico_news.svg'
 import { colors } from '../theme/colors'
-
-import { coreShortcuts, links, mainBoxes, newsCards } from './CoreData'
-import { CoreBodyProps } from '../utils/interfaces'
 import { phoneDevices } from '../utils/breakpoints'
+import { CoreBodyProps } from '../utils/interfaces'
+import SiteButton from './BitcoinSiteButton'
 
 const CoreBody: React.FC<CoreBodyProps> = ({}) => {
   return (
@@ -185,6 +185,7 @@ const StyledCoreBody = styled.div`
         }
       }
     }
+
     &-right {
       width: 50vw;
       padding: 50px;
@@ -221,6 +222,7 @@ const StyledCoreBody = styled.div`
           }
         }
       }
+
       .news {
         &-title {
           color: ${colors.accent};

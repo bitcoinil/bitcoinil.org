@@ -1,9 +1,10 @@
+import { CloseCircleOutlined } from '@ant-design/icons'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
-import styled from 'styled-components'
-import PlayBtn from '../img/play-btn.svg'
 import YouTube from 'react-youtube'
-import { CloseCircleOutlined } from '@ant-design/icons'
+import styled from 'styled-components'
+
+import PlayBtn from '../img/play-btn.svg'
 import { phoneDevices } from '../utils/breakpoints'
 
 export default function WhatIsBitcoin(): JSX.Element {
@@ -11,7 +12,6 @@ export default function WhatIsBitcoin(): JSX.Element {
 
   const opts = {
     playerVars: {
-      // https://developers.google.com/youtube/player_parameters
       autoplay: 1
     }
   }
@@ -47,13 +47,14 @@ export default function WhatIsBitcoin(): JSX.Element {
 }
 
 const StyledWhatIsBitcoin = styled.div`
-  ${phoneDevices} {
-    display: none;
-  }
   margin-top: 80px;
   font-size: 16px;
   cursor: pointer;
   transition: all 400ms;
+
+  ${phoneDevices} {
+    display: none;
+  }
 
   img {
     height: 50px;
@@ -80,6 +81,7 @@ const StyledWhatIsBitcoin = styled.div`
       flex-direction: column;
       align-items: end;
     }
+
     opacity: 1;
     display: flex;
     align-items: center;

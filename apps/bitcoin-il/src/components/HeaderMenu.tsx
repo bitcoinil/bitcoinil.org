@@ -9,15 +9,14 @@ export default function HeaderMenu(): JSX.Element {
   const [current, setCurrent] = React.useState('FAQ')
   const location = useLocation()
 
-  const onClick: MenuProps['onClick'] = (e: any) => {
-    console.log(e.key)
-    setCurrent(e.key)
-  }
-
   React.useEffect(() => {
     const splitLocation = location.pathname.split('/')
     setCurrent(splitLocation[splitLocation.length - 1])
   }, [])
+
+  const onClick: MenuProps['onClick'] = (e: any) => {
+    setCurrent(e.key)
+  }
 
   return (
     <StyledAppMenu id="HeaderMenu">

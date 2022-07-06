@@ -1,12 +1,14 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
-import styled from 'styled-components'
-import SiteButton from './BitcoinSiteButton'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+
 import { phoneDevices } from '../utils/breakpoints'
+import SiteButton from './BitcoinSiteButton'
 
 export default function HomepageButtons(): JSX.Element {
   const navigate = useNavigate()
+
   return (
     <StyledHomepageButtons>
       <div className="homepage-buttons">

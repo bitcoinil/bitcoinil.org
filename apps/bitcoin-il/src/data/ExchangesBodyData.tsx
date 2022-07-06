@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
+
 import { ExchangeLocation } from '../utils/interfaces'
 
 export const exhchanges: ExchangeLocation[] = [

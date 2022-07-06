@@ -2,10 +2,11 @@ import { Modal } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import SiteButton from './BitcoinSiteButton'
-import { phoneDevices } from '../utils/breakpoints'
-import { colors } from '../theme/colors'
+
 import CloseButton from '../img/ico_close.svg'
+import { colors } from '../theme/colors'
+import { phoneDevices } from '../utils/breakpoints'
+import SiteButton from './BitcoinSiteButton'
 
 const Support = (): JSX.Element => {
   const [isExtended, setIsExtended] = React.useState(false)
@@ -50,7 +51,6 @@ const Support = (): JSX.Element => {
             </SiteButton>
             {showModal ? (
               <StyledModal
-                id="StyledModal-Supports"
                 title={null}
                 visible={showModal}
                 footer={null}
@@ -126,12 +126,14 @@ const StyledModal = styled(Modal)`
       input {
         padding: 10px;
       }
+
       .two-inputs {
         margin-top: 30px;
         input:nth-child(1) {
           margin-right: 10px;
         }
       }
+
       .single-input {
         margin-top: 10px;
 

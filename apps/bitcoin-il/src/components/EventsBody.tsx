@@ -1,13 +1,15 @@
+import { Divider } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import SiteButton from './BitcoinSiteButton'
+
 import { colors } from '../theme/colors'
-import { Divider } from 'antd'
 import { EventsBodyProps } from '../utils/interfaces'
+import SiteButton from './BitcoinSiteButton'
 
 const EventsBody: React.FC<EventsBodyProps> = ({}) => {
   const [showMoreEvents, setShowMoreEvents] = React.useState(false)
+
   return (
     <StyledEventsBody id="EventsBody">
       <h1>
@@ -71,9 +73,11 @@ const StyledEventsBody = styled.div`
   .more-events {
     overflow: hidden;
   }
+
   .expanded {
     height: auto;
   }
+
   .minimized {
     height: 0;
   }

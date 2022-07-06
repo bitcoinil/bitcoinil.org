@@ -1,6 +1,7 @@
 import { Button } from 'antd'
 import * as React from 'react'
 import styled from 'styled-components'
+
 import { SiteButtonProps } from '../utils/interfaces'
 
 export default function SiteButton({
@@ -14,9 +15,9 @@ export default function SiteButton({
     <StyledButton
       id="SiteButton"
       style={{
-        color: color ? color : '',
-        background: background ? background : '',
-        border: background ? `2px solid ${background}` : ''
+        color: color ? color : 'unset',
+        background: background ? background : 'unset',
+        border: background ? `2px solid ${background}` : 'unset'
       }}
       type={type}
       onClick={() => onClick()}

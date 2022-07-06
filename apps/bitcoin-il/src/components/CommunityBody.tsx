@@ -2,9 +2,9 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import { phoneDevices } from '../utils/breakpoints'
-import CardsDisplay from './CardsDisplay'
-import { communityCards } from './CommunityBodyData'
 import { CommunityBodyProps } from '../utils/interfaces'
+import CardsDisplay from './CardsDisplay'
+import { communityCards } from '../data/CommunityBodyData'
 
 const CommunityBody: React.FC<CommunityBodyProps> = ({}) => {
   return (

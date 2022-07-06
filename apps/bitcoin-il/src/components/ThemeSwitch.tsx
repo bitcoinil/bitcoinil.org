@@ -2,8 +2,9 @@ import { ControlOutlined } from '@ant-design/icons'
 import { Button, Popover, Switch } from 'antd'
 import * as React from 'react'
 import styled from 'styled-components'
-import { ThemeSwitchProps } from '../utils/interfaces'
+
 import { useTheme } from '../theme'
+import { ThemeSwitchProps } from '../utils/interfaces'
 
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
   const [isSystem, setIsSystem] = React.useState(true)

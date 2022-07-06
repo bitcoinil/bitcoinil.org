@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
-import { CoreBox, CoreShortcutBox, Link } from '../utils/interfaces'
+
+import ico_contribute from '../img/ico_contribute.svg'
+import ico_decentralized from '../img/ico_decentralized.svg'
 import ico_features from '../img/ico_features.svg'
 import ico_help from '../img/ico_help.svg'
-import ico_contribute from '../img/ico_contribute.svg'
 import ico_news from '../img/ico_news.svg'
-import ico_rss from '../img/ico_rss.svg'
-import ico_decentralized from '../img/ico_decentralized.svg'
 import ico_no_voting from '../img/ico_no_voting.svg'
+import ico_rss from '../img/ico_rss.svg'
+import { CoreBox, CoreShortcutBox, Link } from '../utils/interfaces'
 
 export const links: Link[] = [
   {

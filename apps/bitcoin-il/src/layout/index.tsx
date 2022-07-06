@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
-import Support from '../components/support'
+import Support from '../components/Support'
 import { currentlySelectedLanguage } from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
 import Footer from './Footer'

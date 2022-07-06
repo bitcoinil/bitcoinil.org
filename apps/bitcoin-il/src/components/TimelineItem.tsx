@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import SiteButton from './BitcoinSiteButton'
+
 import { TimelineItemProps } from '../utils/interfaces'
+import SiteButton from './BitcoinSiteButton'
 
 const TimelineItem: React.FC<TimelineItemProps> = ({
   key,

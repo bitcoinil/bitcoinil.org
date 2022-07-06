@@ -1,18 +1,13 @@
 import * as React from 'react'
-
-// @ts-ignore
-import { ReactComponent as LogoSVG } from '../img/logo.svg'
 import styled from 'styled-components'
 
+import LogoSVG from '../img/logo.svg'
 
-// const Logo = ({ width, height }: { width?: number, height?: number }) => {
 const Logo = (props: any) => {
-  // const Logo = ':)'
-
-  return <StyledLogo {...props} />
+  return <StyledLogo src={LogoSVG} {...props} />
 }
 
-const StyledLogo = styled(LogoSVG)`
+const StyledLogo = styled.img`
   width: 100%;
 `
 

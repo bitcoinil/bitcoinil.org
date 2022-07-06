@@ -2,10 +2,10 @@ import * as React from 'react'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
+import { isBurgerMenuOpen } from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
-import BurgerMenuMenu from './BurgerMenuMenu'
 import { BurgerMenuProps } from '../utils/interfaces'
-import { currentlySelectedLanguage, isBurgerMenuOpen } from '../state/state'
+import BurgerMenuMenu from './BurgerMenuMenu'
 
 const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpen)
@@ -15,13 +15,11 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   }
 
   return (
-    <BurgerWrap onScroll={() => console.log('scrolled')}>
+    <BurgerWrap>
       <input
         className="checkbox"
         onChange={toggleBurger}
         type="checkbox"
-        name=""
-        id=""
         checked={burgerOpen}
       />
       <div className="hamburger-lines">
@@ -50,6 +48,7 @@ const BurgerWrap = styled.div`
 
   ${phoneDevices} {
     display: unset;
+
     .checkbox {
       position: absolute;
       display: block;
@@ -61,6 +60,7 @@ const BurgerWrap = styled.div`
       opacity: 0;
       cursor: pointer;
     }
+
     .hamburger-lines {
       display: block;
       height: 12px;

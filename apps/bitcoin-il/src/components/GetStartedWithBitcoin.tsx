@@ -2,15 +2,15 @@ import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 
-import SiteButton from './BitcoinSiteButton'
-import { phoneDevices } from '../utils/breakpoints'
-import { colors } from '../theme/colors'
-import CustomNavLink from './CustomNavLink'
 import bitcoinImg from '../img/bitcoin-img.svg'
 import instant from '../img/main_ico_instant.svg'
 import lowfee from '../img/main_ico_lowfee.svg'
 import worldwide from '../img/main_ico_worldwide.svg'
+import { colors } from '../theme/colors'
+import { phoneDevices } from '../utils/breakpoints'
 import { GetStartedWithBitcoinProps } from '../utils/interfaces'
+import SiteButton from './BitcoinSiteButton'
+import CustomNavLink from './CustomNavLink'
 
 const GetStartedWithBitcoin: React.FC<GetStartedWithBitcoinProps> = ({}) => {
   return (
@@ -67,9 +67,6 @@ const GetStartedWithBitcoin: React.FC<GetStartedWithBitcoinProps> = ({}) => {
           <CustomNavLink to="/getting-started">
             <SiteButton>Get Started with BitCoin Il</SiteButton>
           </CustomNavLink>
-          {/* <NavLink to="/getting-started">
-            <SiteButton>Get Started with BitCoin Il</SiteButton>
-          </NavLink> */}
         </div>
       </div>
     </StyledGetStartedWithBitcoin>

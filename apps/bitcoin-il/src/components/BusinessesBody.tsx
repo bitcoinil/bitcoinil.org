@@ -1,11 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import { NavLink } from 'react-router-dom'
-import SiteButton from './BitcoinSiteButton'
-import CardsDisplay from './CardsDisplay'
-import { businessCards } from './BusinessesBodyData'
 import { BusinessBodyProps } from '../utils/interfaces'
+import SiteButton from './BitcoinSiteButton'
+import { businessCards } from '../data/BusinessesBodyData'
+import CardsDisplay from './CardsDisplay'
 import CustomNavLink from './CustomNavLink'
 
 const BusinessBody: React.FC<BusinessBodyProps> = ({}) => {
@@ -16,9 +15,6 @@ const BusinessBody: React.FC<BusinessBodyProps> = ({}) => {
         <CustomNavLink to="/getting-started">
           <SiteButton type="primary">Get Started With BitCoin Il</SiteButton>
         </CustomNavLink>
-        {/* <NavLink to="/getting-started">
-          <SiteButton type="primary">Get Started With BitCoin Il</SiteButton>
-        </NavLink> */}
       </div>
     </StyledBusinessBody>
   )
