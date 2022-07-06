@@ -11,14 +11,6 @@ import ThemeSwitch from '../components/ThemeSwitch'
 import Logo from '../components/Logo'
 
 const Header: React.FC<HeaderProps> = ({}) => {
-  React.useEffect(() => {
-    let beer = 99
-    while (beer > -1) {
-      console.log(`${beer} bottles of beer, take one down: ${beer - 1} bottles`)
-      beer -= 1
-    }
-  }, [])
-
   return (
     <StyledHeader className="header">
       <div className="header-left logo">
