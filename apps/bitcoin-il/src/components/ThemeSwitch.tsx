@@ -21,7 +21,7 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
       : actions.setTheme('bitil-theme', 'bitil-light')
   }
 
-  const content = React.useMemo(() => {
+  const toggleSystem = React.useMemo(() => {
     return (
       <Switch
         checked={isSystem}
@@ -61,7 +61,7 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
         />
       )}
       <Popover
-        content={content}
+        content={toggleSystem}
         title="Dark Mode"
         trigger="hover"
         placement="bottomRight"
