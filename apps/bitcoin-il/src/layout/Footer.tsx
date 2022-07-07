@@ -64,7 +64,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
   return (
     <StyledFooter id="Footer">
       <div className="logo">
-        <Logo />
+        <Logo isDark={true} />
       </div>
       <div className="body-wrap">
         <div className="support">{renderSupport()}</div>
