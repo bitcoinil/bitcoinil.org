@@ -10,3 +10,8 @@ export const isBurgerMenuOpen = atom<boolean>({
   key: 'isBurgerMenuOpen',
   default: false
 })
+
+export const isDarkMode = atom<boolean>({
+  key: 'isDarkMode',
+  default: false
+})
