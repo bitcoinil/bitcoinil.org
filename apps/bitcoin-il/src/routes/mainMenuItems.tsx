@@ -27,6 +27,7 @@ export const generateMenuItems = () => {
 
   mainMenuItems.forEach((menIt) => {
     const newSubMenu: ItemType[] = []
+
     if (menIt.submenu) {
       menIt.submenu.forEach((subMenu) => {
         newSubMenu.push({
@@ -44,15 +45,23 @@ export const generateMenuItems = () => {
       })
     }
 
-    menuAsAntdItem.push({
-      label: (
-        <CustomNavLink to={`/${menIt.key}`}>
-          <MenuItem label={menIt.label} />
-        </CustomNavLink>
-      ),
-      key: menIt.key,
-      children: newSubMenu
-    })
+    if (menIt.submenu) {
+      menuAsAntdItem.push({
+        label: <MenuItem label={menIt.label} />,
+        key: menIt.key,
+        children: newSubMenu
+      })
+    } else {
+      menuAsAntdItem.push({
+        label: (
+          <CustomNavLink to={`/${menIt.key}`}>
+            <MenuItem label={menIt.label} />
+          </CustomNavLink>
+        ),
+        key: menIt.key,
+        children: newSubMenu
+      })
+    }
   })
 
   return menuAsAntdItem
@@ -88,8 +97,6 @@ export const mainMenuItems: MainMenuItem[] = [
                 description={`individuals.title`}
               />
             }
-            // "Bitcoin for Individuals"
-            // "Bitcoin is the easiest way to transact at a very low cost."
             subtitle={
               <FormattedMessage
                 id={`mainMenuItem.individuals.subtitle`}
@@ -119,7 +126,6 @@ export const mainMenuItems: MainMenuItem[] = [
                 description={`business.title`}
               />
             }
-            // "Business"
             id="business"
             subtitle={
               <FormattedMessage
