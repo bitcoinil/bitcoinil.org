@@ -13,6 +13,16 @@ const Support: React.FC<SupportProps> = () => {
   const [isExtended, setIsExtended] = React.useState(false)
   const [showModal, setShowModal] = React.useState(false)
 
+  const handleKey = (e: any) => {
+    if (e.key === 'Escape') setIsExtended(false)
+  }
+
+  React.useEffect(() => {
+    window.addEventListener('keyup', handleKey)
+
+    return () => window.removeEventListener('keyup', handleKey)
+  }, [])
+
   return (
     <>
       <StyledSupport
