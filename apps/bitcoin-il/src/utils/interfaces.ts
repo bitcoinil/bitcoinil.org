@@ -266,3 +266,5 @@ export interface CardsDisplayProps {
 export interface MenuItemProps {
   label: JSX.Element
 }
+
+export interface SupportProps {}

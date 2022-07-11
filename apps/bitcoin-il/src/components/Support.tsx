@@ -6,9 +6,10 @@ import styled from 'styled-components'
 import CloseButton from '../img/ico_close.svg'
 import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
+import { SupportProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
 
-const Support = (): JSX.Element => {
+const Support: React.FC<SupportProps> = () => {
   const [isExtended, setIsExtended] = React.useState(false)
   const [showModal, setShowModal] = React.useState(false)
 
@@ -17,7 +18,7 @@ const Support = (): JSX.Element => {
       <StyledSupport
         id="Support"
         onClick={() => {
-          setIsExtended(!isExtended)
+          if (!isExtended) setIsExtended(!isExtended)
         }}
         className={isExtended ? 'extended' : 'minimized'}
       >
@@ -85,6 +86,18 @@ const Support = (): JSX.Element => {
           </>
         )}
       </StyledSupport>
+      <StyledClickOutside
+        onClick={() => {
+          console.log('asdhkjashdkashdkajsdhkajsdhkajshdkajsh')
+          setIsExtended(false)
+        }}
+        className={
+          isExtended
+            ? 'support-click-outside-show'
+            : 'support-click-outside-hide'
+        }
+        id="support-click-outside"
+      />
     </>
   )
 }
@@ -188,4 +201,23 @@ const StyledSupport = styled.div`
     cursor: pointer;
     font-weight: bolder;
   }
+`
+
+const StyledClickOutside = styled.div`
+  &.support-click-outside-show {
+    background: transparent;
+  }
+
+  &.support-click-outside-hide {
+    background: blue;
+    display: none;
+  }
+  background: #cb8e8e;
+  height: 100px;
+  width: 100vw;
+  position: absolute;
+  height: 100%;
+  z-index: 0;
+  max-width: 98vw;
+  overflow: hidden;
 `
