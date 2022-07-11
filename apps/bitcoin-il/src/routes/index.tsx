@@ -53,7 +53,6 @@ const RoutesProvider = () => {
       })}
 
       {availableLanguages.map((lang, i) => {
-        // console.log(lang.name)
         const base = lang.name === 'en' ? '' : lang.name
         return (
           <Route
