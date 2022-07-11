@@ -274,3 +274,7 @@ export interface AppProps {}
 export interface AppWrappersProps {
   children: JSX.Element
 }
+
+export interface AppLayoutProps {
+  children: JSX.Element
+}
