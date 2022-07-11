@@ -30,6 +30,8 @@ export default function HeaderMenu(): JSX.Element {
   )
 }
 
+const transitionSpeed = 100
+
 const StyledAppMenu = styled.div`
   .ant-menu {
     display: flex;
@@ -45,13 +47,13 @@ const StyledAppMenu = styled.div`
       }
 
       .menu-arrow {
-        transition: all 200ms;
+        transition: all ${transitionSpeed}ms;
       }
 
       .collapsable-menu {
-        transition: all 200ms;
+        transition: all ${transitionSpeed}ms;
         &:hover > .menu-arrow {
-          transition: all 200ms;
+          transition: all ${transitionSpeed}ms;
           transform: rotate(180deg);
         }
       }
