@@ -13,7 +13,7 @@ const CardsDisplay: React.FC<CardsDisplayProps> = ({ cards }) => {
           return (
             <Card key={`card-${i}`}>
               <img src={card.img} />
-              <h1>{card.title}</h1>
+              <h1 className="card-title">{card.title}</h1>
               <span>{card.text}</span>
             </Card>
           )
@@ -51,6 +51,10 @@ const StyledCardsDisplay = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      .card-title {
+        text-align: center;
+      }
     }
   }
 `
