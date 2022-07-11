@@ -1,4 +1,5 @@
 import { CloseCircleOutlined } from '@ant-design/icons'
+import disableScroll from 'disable-scroll'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import YouTube from 'react-youtube'
@@ -9,6 +10,25 @@ import { phoneDevices } from '../utils/breakpoints'
 
 export default function WhatIsBitcoin(): JSX.Element {
   const [showModal, setShowModal] = React.useState(false)
+
+  React.useEffect(() => {
+    if (showModal) {
+      window.scrollTo(0, 0)
+      disableScroll.on()
+    } else {
+      disableScroll.off()
+    }
+  }, [showModal])
+
+  const handleKey = (e: any) => {
+    if (e.key === 'Escape') setShowModal(false)
+  }
+
+  React.useEffect(() => {
+    window.addEventListener('keyup', handleKey)
+
+    return () => window.removeEventListener('keyup', handleKey)
+  }, [])
 
   const opts = {
     playerVars: {
