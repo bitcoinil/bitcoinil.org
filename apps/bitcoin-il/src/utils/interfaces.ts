@@ -268,3 +268,9 @@ export interface MenuItemProps {
 }
 
 export interface SupportProps {}
+
+export interface AppProps {}
+
+export interface AppWrappersProps {
+  children: JSX.Element
+}
