@@ -1,22 +1,25 @@
 import * as React from 'react'
+import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
-import { phoneDevices } from '../utils/breakpoints'
 import BurgerMenu from '../components/BurgerMenu'
 import CustomNavLink from '../components/CustomNavLink'
 import HeaderMenu from '../components/HeaderMenu'
-import { HeaderProps } from '../utils/interfaces'
 import LanguageSelect from '../components/LanguageSelect'
-import ThemeSwitch from '../components/ThemeSwitch'
 import Logo from '../components/Logo'
+import ThemeSwitch from '../components/ThemeSwitch'
+import { isDarkMode } from '../state/state'
+import { phoneDevices } from '../utils/breakpoints'
+import { HeaderProps } from '../utils/interfaces'
 
 const Header: React.FC<HeaderProps> = ({}) => {
+  const darkModeState = useRecoilValue(isDarkMode)
+
   return (
     <StyledHeader className="header">
       <div className="header-left logo">
         <CustomNavLink to="/">
-          {/* <img src={logo} /> */}
-          <Logo />
+          <Logo isDark={darkModeState} />
         </CustomNavLink>
       </div>
       <div className="header-middle">

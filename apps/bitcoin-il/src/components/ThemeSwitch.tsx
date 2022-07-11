@@ -9,16 +9,17 @@ import { useTheme } from '../theme'
 import { ThemeSwitchProps } from '../utils/interfaces'
 
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
-  const [isSystem, setIsSystem] = React.useState(true)
+  const [isSystem, setIsSystem] = React.useState(false)
   const [isDark, setIsDark] = useRecoilState(isDarkMode)
 
   const [, actions] = useTheme()
 
   const toggleDarkMode = () => {
     setIsDark(!isDark)
+
     isDark
-      ? actions.setTheme('bitil-theme', 'bitil-dark')
-      : actions.setTheme('bitil-theme', 'bitil-light')
+      ? actions.setTheme('bitil-theme', 'bitil-light')
+      : actions.setTheme('bitil-theme', 'bitil-dark')
   }
 
   const toggleSystem = React.useMemo(() => {
