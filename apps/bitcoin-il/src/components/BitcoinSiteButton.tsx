@@ -15,9 +15,9 @@ export default function SiteButton({
     <StyledButton
       id="SiteButton"
       style={{
-        color: color ? color : 'unset',
-        background: background ? background : 'unset',
-        border: background ? `2px solid ${background}` : 'unset'
+        color: color ? color : '',
+        background: background ? background : '',
+        border: background ? `2px solid ${background}` : ''
       }}
       type={type}
       onClick={() => onClick()}
