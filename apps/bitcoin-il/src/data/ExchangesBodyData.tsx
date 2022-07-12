@@ -1,7 +1,37 @@
 import * as React from 'react'
+import ReactCountryFlag from 'react-country-flag'
 import { FormattedMessage } from 'react-intl'
 
 import { ExchangeLocation } from '../utils/interfaces'
+
+export const renderCitiesList = (ex: ExchangeLocation) => {
+  return ex?.cities?.map((city, i) => {
+    return (
+      <div key={`city-${i}`}>
+        <span className="city-label">
+          {city.countryCode ? (
+            <ReactCountryFlag
+              className="country-flag"
+              countryCode={city.countryCode}
+            />
+          ) : null}
+          {city.city}
+        </span>
+        <ul>
+          {city.exchanges.map((exc, ii) => {
+            return (
+              <span key={`city-exchange-${ii}`}>
+                <a href={exc.link}>
+                  <h4>{exc.name}</h4>
+                </a>
+              </span>
+            )
+          })}
+        </ul>
+      </div>
+    )
+  })
+}
 
 export const exhchanges: ExchangeLocation[] = [
   {

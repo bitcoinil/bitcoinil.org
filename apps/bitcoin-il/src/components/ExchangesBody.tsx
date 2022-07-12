@@ -4,7 +4,7 @@ import ReactCountryFlag from 'react-country-flag'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 
-import { exhchanges } from '../data/ExchangesBodyData'
+import { exhchanges, renderCitiesList } from '../data/ExchangesBodyData'
 import ico_badge from '../img/ico_badge.svg'
 import { colors } from '../theme/colors'
 import { flashElement } from '../util/util'
@@ -12,35 +12,6 @@ import { phoneDevices, smallDevices } from '../utils/breakpoints'
 import { ExchangeLocation, ExchangesBodyProps } from '../utils/interfaces'
 
 const { Panel } = Collapse
-
-const renderCitiesList = (ex: ExchangeLocation) => {
-  return ex?.cities?.map((city, i) => {
-    return (
-      <div key={`city-${i}`}>
-        <span className="city-label">
-          {city.countryCode ? (
-            <ReactCountryFlag
-              className="country-flag"
-              countryCode={city.countryCode}
-            />
-          ) : null}
-          {city.city}
-        </span>
-        <ul>
-          {city.exchanges.map((exc, ii) => {
-            return (
-              <span key={`city-exchange-${ii}`}>
-                <a href={exc.link}>
-                  <h4>{exc.name}</h4>
-                </a>
-              </span>
-            )
-          })}
-        </ul>
-      </div>
-    )
-  })
-}
 
 const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
   const [isBelowZero, setIsBelowZero] = React.useState(false)
