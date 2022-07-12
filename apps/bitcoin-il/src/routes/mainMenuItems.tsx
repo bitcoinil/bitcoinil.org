@@ -386,7 +386,7 @@ export const mainMenuItems: MainMenuItem[] = [
                 description={`documentation.subtitle`}
               />
             }
-            body={<h1>Getting Started Body</h1>}
+            body={<h1>Documentation Is A To Do</h1>}
           />
         )
       },

@@ -36,6 +36,7 @@ const StyledCardsDisplay = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     max-width: 100vw;
+    padding: 100px 0;
   }
 
   .ant-card {
