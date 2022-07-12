@@ -17,8 +17,6 @@ const TimelineComp: React.FC<TimelineCompProps> = ({ items }) => {
   const dark = useRecoilValue(isDarkMode)
   if (!items) return null
 
-  // console.log(dark)
-
   return (
     <StyledTimelineComp id="TimelineComp">
       <VerticalTimeline>
