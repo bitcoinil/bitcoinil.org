@@ -5,14 +5,19 @@ import {
   VerticalTimeline,
   VerticalTimelineElement
 } from 'react-vertical-timeline-component'
+import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
+import { isDarkMode } from '../state/state'
 import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { TimelineCompProps } from '../utils/interfaces'
 
 const TimelineComp: React.FC<TimelineCompProps> = ({ items }) => {
+  const dark = useRecoilValue(isDarkMode)
   if (!items) return null
+
+  // console.log(dark)
 
   return (
     <StyledTimelineComp id="TimelineComp">
@@ -20,6 +25,7 @@ const TimelineComp: React.FC<TimelineCompProps> = ({ items }) => {
         {items.map((item: JSX.Element, i: number) => {
           return (
             <VerticalTimelineElement
+              className={dark ? 'dark' : 'light'}
               icon={<h1 className="icon">{i + 1}</h1>}
               key={i}
             >
@@ -59,6 +65,17 @@ const StyledTimelineComp = styled.div`
 
   .vertical-timeline-element-content {
     box-shadow: none;
-    background: #3d3c3c;
+  }
+
+  .dark {
+    .vertical-timeline-element-content {
+      background: #3d3c3c;
+    }
+  }
+  .light {
+    .vertical-timeline-element-content {
+      background: white;
+      border: 1px solid #a59e9e;
+    }
   }
 `
