@@ -98,7 +98,6 @@ const Support: React.FC<SupportProps> = () => {
       </StyledSupport>
       <StyledClickOutside
         onClick={() => {
-          console.log('asdhkjashdkashdkajsdhkajsdhkajshdkajsh')
           setIsExtended(false)
         }}
         className={
