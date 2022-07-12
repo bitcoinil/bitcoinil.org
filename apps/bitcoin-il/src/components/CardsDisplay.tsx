@@ -53,6 +53,7 @@ const StyledCardsDisplay = styled.div`
       justify-content: center;
 
       .card-title {
+        font-weight: bolder;
         text-align: center;
       }
     }
