@@ -56,6 +56,11 @@ const StyledCardsDisplay = styled.div`
         font-weight: bolder;
         text-align: center;
       }
+      .list-of-links {
+        font-size: 16px;
+        padding: 0;
+        font-weight: bolder;
+      }
     }
   }
 `
