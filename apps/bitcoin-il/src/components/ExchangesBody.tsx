@@ -1,6 +1,5 @@
 import { Collapse } from 'antd'
 import * as React from 'react'
-import ReactCountryFlag from 'react-country-flag'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 
