@@ -114,6 +114,6 @@ const StyledWhitePaperBody = styled.div`
   }
 
   .js-link {
-    color: blue;
+    color: #00b3f0;
   }
 `
