@@ -1,10 +1,12 @@
 import { Collapse } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import { exhchanges, renderCitiesList } from '../data/ExchangesBodyData'
 import ico_badge from '../img/ico_badge.svg'
+import { isDarkMode } from '../state/state'
 import { colors } from '../theme/colors'
 import { flashElement } from '../util/util'
 import { phoneDevices, smallDevices } from '../utils/breakpoints'
@@ -15,6 +17,10 @@ const { Panel } = Collapse
 const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
   const [isBelowZero, setIsBelowZero] = React.useState(false)
   const [isAtEnd, setIsAtEnd] = React.useState(false)
+
+  const dark = useRecoilValue(isDarkMode)
+
+  console.log(dark)
 
   React.useEffect(() => {
     window.addEventListener('scroll', scrollCheckMenuInView)
@@ -45,7 +51,11 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
 
   return (
     <StyledExchangesBody id="ExchangesBody">
-      <div className="exchanges-warning">
+      <div
+        className={`exchanges-warning ${
+          dark ? 'dark-exchanges-warning' : 'light-exchanges-warning'
+        }`}
+      >
         <img src={ico_badge} />
         <FormattedMessage
           id={`exchanges.warning`}
@@ -62,7 +72,12 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
           isBelowZero && !isAtEnd ? 'sticky' : 'unsticky'
         }`}
       >
-        <div className={`exchanges-left `} id="style-5">
+        <div
+          className={`exchanges-left ${
+            dark ? 'dark-exchanges-left' : 'light-exchanges-left'
+          } `}
+          id="style-5"
+        >
           <ul>
             {exhchanges.map((exchange, i) => {
               if (!exchange.cities)
@@ -230,6 +245,14 @@ const StyledExchangesBody = styled.div`
   }
 
   .exchanges-warning {
+    &.dark-exchanges-warning {
+      background: black;
+    }
+
+    &.light-exchanges-warning {
+      background: white;
+      border: 1px solid #989da7;
+    }
     background: black;
     margin: 20px;
     display: flex;
@@ -242,6 +265,12 @@ const StyledExchangesBody = styled.div`
   }
 
   .exchanges-left {
+    &.dark-exchanges-left {
+      background: black;
+    }
+    &.light-exchanges-left {
+      background: white;
+    }
     width: 35vw;
     font-size: 20px;
     border-right: 1px solid #b9b9c350;
