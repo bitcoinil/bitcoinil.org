@@ -62,4 +62,8 @@ const StyledAlternatingTwoColumnRow = styled.div`
   .img-side {
     margin: 0 50px;
   }
+
+  h1 {
+    font-weight: bolder;
+  }
 `
