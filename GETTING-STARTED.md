@@ -184,6 +184,12 @@ The order should be
 
 ---
 
+### Helper functions
+
+Any helper function that occurs outside of the actual TypeScript component must be kept in the `./src/data/ComponentData.tsx
+
+---
+
 ### Data
 
 If a component requires hardcoded data, such as an array of data to be displayed in the component, this data should be exported from a file of the same name as your component in the `./src/data` folder.
