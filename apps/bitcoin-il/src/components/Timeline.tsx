@@ -68,6 +68,7 @@ const StyledTimelineComp = styled.div`
   .dark {
     .vertical-timeline-element-content {
       background: #3d3c3c;
+      border: 1px solid #a59e9e;
     }
   }
   .light {
