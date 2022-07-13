@@ -1,14 +1,14 @@
 import { Collapse } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import { exhchanges, renderCitiesList } from '../data/ExchangesBodyData'
 import ico_badge from '../img/ico_badge.svg'
 import { isDarkMode } from '../state/state'
 import { colors } from '../theme/colors'
-import { flashElement } from '../util/util'
+import { flashElement, scrollToElement } from '../util/util'
 import { phoneDevices, smallDevices } from '../utils/breakpoints'
 import { ExchangeLocation, ExchangesBodyProps } from '../utils/interfaces'
 
@@ -19,8 +19,6 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
   const [isAtEnd, setIsAtEnd] = React.useState(false)
 
   const dark = useRecoilValue(isDarkMode)
-
-  console.log(dark)
 
   React.useEffect(() => {
     window.addEventListener('scroll', scrollCheckMenuInView)
@@ -86,9 +84,7 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
                     key={`exichange-${i}`}
                     className="dict-word-link"
                     onClick={() => {
-                      document
-                        .getElementById(`word-${i}`)
-                        ?.scrollIntoView({ behavior: 'smooth' })
+                      scrollToElement(document.getElementById(`word-${i}`))
                       flashElement(document.getElementById(`word-${i}`))
                     }}
                   >
@@ -106,9 +102,7 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
                   <p
                     className="dict-word-link with-side"
                     onClick={() => {
-                      document
-                        .getElementById(`word-${i}`)
-                        ?.scrollIntoView({ behavior: 'smooth' })
+                      scrollToElement(document.getElementById(`word-${i}`))
                       flashElement(document.getElementById(`word-${i}`))
                     }}
                   >
@@ -120,9 +114,9 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
                         <li
                           className="dict-word-link with-side-border"
                           onClick={() => {
-                            document
-                              .getElementById(`word-${i}`)
-                              ?.scrollIntoView({ behavior: 'smooth' })
+                            scrollToElement(
+                              document.getElementById(`word-${i}`)
+                            )
                             flashElement(document.getElementById(`word-${i}`))
                           }}
                           key={`side-border-${ii}`}

@@ -20,3 +20,9 @@ export const flashElement = (el: HTMLElement | null) => {
     el.style.opacity = '1'
   }, duration * 5)
 }
+
+export const scrollToElement = (el: HTMLElement | null) => {
+  if (!el) return null
+
+  el.scrollIntoView({ behavior: 'smooth' })
+}

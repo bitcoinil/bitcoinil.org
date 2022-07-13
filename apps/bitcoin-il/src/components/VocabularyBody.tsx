@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { terms } from '../data/VocabularyBodyData'
 
 import { colors } from '../theme/colors'
-import { flashElement } from '../util/util'
+import { flashElement, scrollToElement } from '../util/util'
 import { phoneDevices } from '../utils/breakpoints'
 import { VocabularyProps } from '../utils/interfaces'
 
@@ -18,9 +18,7 @@ const Vocabulary: React.FC<VocabularyProps> = ({}) => {
                 <li
                   className="dict-word-link"
                   onClick={() => {
-                    document
-                      .getElementById(`word-${i}`)
-                      ?.scrollIntoView({ behavior: 'smooth' })
+                    scrollToElement(document.getElementById(`word-${i}`))
                     flashElement(document.getElementById(`word-${i}`))
                   }}
                   key={i}

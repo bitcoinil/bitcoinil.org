@@ -3,10 +3,11 @@ import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 
+import { FAQ } from '../data/FAQData'
 import { colors } from '../theme/colors'
+import { flashElement, scrollToElement } from '../util/util'
 import { phoneDevices } from '../utils/breakpoints'
 import { FAQBodyProps } from '../utils/interfaces'
-import { FAQ } from '../data/FAQData'
 
 const FAQBody: React.FC<FAQBodyProps> = ({}) => {
   return (
@@ -15,25 +16,47 @@ const FAQBody: React.FC<FAQBodyProps> = ({}) => {
         <ul>
           {FAQ.map((faq, i) => {
             return (
-              <li key={i}>
+              <li
+                key={i}
+                onClick={() => {
+                  scrollToElement(document.getElementById(faq.key))
+                  flashElement(document.getElementById(faq.key))
+                }}
+              >
                 {faq.categoryHeading}
                 {faq.hasSubHeadings ? (
-                  <ul>
+                  <ol>
                     {faq.subHeadings?.map((subHead, i) => {
-                      return <li key={i}>{subHead.subHeadingTitle}</li>
+                      return (
+                        <p className="imbedded-li" key={i}>
+                          {subHead.subHeadingTitle}
+                        </p>
+                      )
                     })}
-                  </ul>
+                  </ol>
                 ) : null}
               </li>
             )
           })}
+          <li
+            onClick={() => {
+              console.log(document.getElementById('faq-help'))
+              scrollToElement(document.getElementById('faq-help'))
+              flashElement(document.getElementById('faq-help'))
+            }}
+          >
+            Help
+          </li>
         </ul>
       </div>
       <div className="faq-right">
         {FAQ.map((faq, i) => {
           return (
             <React.Fragment key={i}>
-              <h1 className="faq-category-heading faq-accented-header">
+              <h1
+                id={faq.key}
+                className="faq-category-heading faq-accented-header"
+              >
                 {faq.categoryHeading}
               </h1>
               {faq.hasSubHeadings
@@ -52,7 +75,7 @@ const FAQBody: React.FC<FAQBodyProps> = ({}) => {
           )
         })}
         <Divider />
-        <div className="faq-help">
+        <div id="faq-help" className="faq-help">
           <h1 className="faq-help-title faq-accented-header">
             <FormattedMessage
               id={`faq.help-title`}
@@ -113,6 +136,23 @@ const StyledFAQBody = styled.div`
 
       ul {
         list-style: none;
+
+        ol {
+          list-style: none;
+        }
+
+        li {
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.6;
+
+            ol p {
+              opacity: 1;
+              /* background-color: red; */
+            }
+          }
+        }
       }
     }
 
