@@ -122,7 +122,11 @@ const TableOfContentsScrollTracked: React.FC<
         </div>
         {/* LEFT SIDE ABOVE */}
         {/* RIGHT SIDE BELOW */}
-        <div className="toc-scroll-tracked-right">
+        <div
+          className={`toc-scroll-tracked-right ${
+            isBelowZero && !isAtEnd && isAtStart ? 'right-when-is-stuck' : ''
+          }`}
+        >
           {items.map((item, i) => {
             if (!item.subHeadings) {
               // Item without subheadings
@@ -238,5 +242,11 @@ const StyledTableOfContentsScrollTracked = styled.div`
     width: 80vw;
     background-color: red;
     height: 10px;
+  }
+
+  .right-when-is-stuck {
+    margin-left: 29vw;
+    /* position: fixed; */
+    /* right: 0; */
   }
 `
