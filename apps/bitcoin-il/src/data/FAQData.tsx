@@ -44,6 +44,7 @@ export const FAQ: IndividualFAQ[] = [
     hasSubHeadings: true,
     subHeadings: [
       {
+        key: 'is-it-legal',
         subHeadingTitle: (
           <FormattedMessage
             id={`faq.is-legal`}
@@ -77,10 +78,11 @@ export const FAQ: IndividualFAQ[] = [
     hasSubHeadings: true,
     subHeadings: [
       {
+        key: 'something-else',
         subHeadingTitle: (
           <FormattedMessage
             id={`faq.is-legal`}
-            defaultMessage={`Is Bitcoin Legal?`}
+            defaultMessage={`Something else`}
             description={`is-legal`}
           />
         ),
@@ -97,10 +99,11 @@ export const FAQ: IndividualFAQ[] = [
         )
       },
       {
+        key: 'go-habs',
         subHeadingTitle: (
           <FormattedMessage
             id={`faq.is-legal`}
-            defaultMessage={`Is Bitcoin Legal?`}
+            defaultMessage={`Go Habs`}
             description={`is-legal`}
           />
         ),
@@ -117,10 +120,11 @@ export const FAQ: IndividualFAQ[] = [
         )
       },
       {
+        key: 'go-titans',
         subHeadingTitle: (
           <FormattedMessage
             id={`faq.is-legal`}
-            defaultMessage={`Is Bitcoin Legal?`}
+            defaultMessage={`Go Titans!`}
             description={`is-legal`}
           />
         ),
@@ -137,10 +141,11 @@ export const FAQ: IndividualFAQ[] = [
         )
       },
       {
+        key: 'play-tennis',
         subHeadingTitle: (
           <FormattedMessage
             id={`faq.is-legal`}
-            defaultMessage={`Is Bitcoin Legal?`}
+            defaultMessage={`play tennis`}
             description={`is-legal`}
           />
         ),
@@ -157,10 +162,11 @@ export const FAQ: IndividualFAQ[] = [
         )
       },
       {
+        key: 'eat-pizza',
         subHeadingTitle: (
           <FormattedMessage
             id={`faq.is-legal`}
-            defaultMessage={`Is Bitcoin Legal?`}
+            defaultMessage={`eat pizza`}
             description={`is-legal`}
           />
         ),
@@ -177,10 +183,11 @@ export const FAQ: IndividualFAQ[] = [
         )
       },
       {
+        key: 'bkn-99',
         subHeadingTitle: (
           <FormattedMessage
             id={`faq.is-legal`}
-            defaultMessage={`Is Bitcoin Legal?`}
+            defaultMessage={`Brooklyn 99`}
             description={`is-legal`}
           />
         ),
@@ -197,10 +204,11 @@ export const FAQ: IndividualFAQ[] = [
         )
       },
       {
+        key: 'evil dead',
         subHeadingTitle: (
           <FormattedMessage
             id={`faq.is-legal`}
-            defaultMessage={`Is Bitcoin Legal?`}
+            defaultMessage={`Evil Dead`}
             description={`is-legal`}
           />
         ),
@@ -217,10 +225,11 @@ export const FAQ: IndividualFAQ[] = [
         )
       },
       {
+        key: 'steve-mcqueen',
         subHeadingTitle: (
           <FormattedMessage
             id={`faq.is-legal`}
-            defaultMessage={`Is Bitcoin Legal?`}
+            defaultMessage={`Steve McQueen`}
             description={`is-legal`}
           />
         ),

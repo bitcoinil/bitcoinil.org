@@ -3,10 +3,6 @@ import styled from 'styled-components'
 
 import { IndividualFAQ } from '../utils/interfaces'
 
-export interface TOCItem {
-  label: string
-}
-
 export interface TableOfContentsScrollTrackedProps {
   items: IndividualFAQ[]
 }
@@ -17,10 +13,73 @@ const TableOfContentsScrollTracked: React.FC<
   const [isBelowZero, setIsBelowZero] = React.useState(false)
   const [isAtEnd, setIsAtEnd] = React.useState(false)
   const [isAtStart, setisAtStart] = React.useState(false)
+  const [elementsToTrack, setElementsToTrack] = React.useState<
+    (HTMLElement | null)[]
+  >([])
+  const [isError, setIsError] = React.useState(false)
+
+  const columnsRef = React.createRef<HTMLDivElement>()
+  const endRef = React.createRef<HTMLDivElement>()
+  const startRef = React.createRef<HTMLDivElement>()
+
+  const handleScroll = () => {
+    const elsInView: (HTMLElement | null)[] = []
+    // console.log('scroll')
+    // console.log(elementsToTrack)
+    // console.log(elementsToTrack[0])
+    if (elementsToTrack[0]?.getBoundingClientRect) {
+      // console.log(elementsToTrack[0]?.getBoundingClientRect())
+    }
+
+    elementsToTrack.forEach((el) => {
+      // console.log('--------------------------------')
+      // console.log(el)
+      if (elementsToTrack[0]?.getBoundingClientRect().y) {
+        // TS Is telling me that objtec could be undefined, but that's not true
+        // @ts-ignore
+        if (el?.getBoundingClientRect()?.y > 0) {
+          elsInView.push(el)
+        }
+      }
+    })
+
+    console.log(elsInView)
+  }
 
   React.useEffect(() => {
-    console.log(isAtEnd)
-  }, [isAtEnd])
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [elementsToTrack])
+
+  React.useEffect(() => {
+    const elsToTrack: (HTMLElement | null)[] = []
+    const keys: string[] = []
+
+    items.forEach((item) => {
+      // console.log(item.key)
+      if (keys.includes(item.key)) {
+        console.error(`Found duplicate key: ${item.key}`)
+        setIsError(true)
+      }
+      keys.push(item.key)
+      // console.log(document.getElementById(item.key))
+      elsToTrack.push(document.getElementById(item.key))
+      // console.log(item.subHeadings)
+      item.subHeadings?.map((sub) => {
+        // console.log(sub.key)
+        if (keys.includes(sub.key)) {
+          console.error(`Found duplicate key: ${sub.key}`)
+          setIsError(true)
+        }
+        keys.push(sub.key)
+        // console.log(document.getElementById(item.key))
+        elsToTrack.push(document.getElementById(item.key))
+      })
+    })
+    // console.log(keys)
+    // console.log(elsToTrack)
+    setElementsToTrack(elsToTrack)
+  }, [])
 
   React.useEffect(() => {
     window.addEventListener('scroll', scrollCheckMenuInView)
@@ -40,10 +99,6 @@ const TableOfContentsScrollTracked: React.FC<
     return () =>
       window.removeEventListener('scroll', scrollCheckTopHotboxInView)
   })
-
-  const columnsRef = React.createRef<HTMLDivElement>()
-  const endRef = React.createRef<HTMLDivElement>()
-  const startRef = React.createRef<HTMLDivElement>()
 
   const scrollCheckMenuInView = () => {
     if (!columnsRef.current?.getBoundingClientRect().y) return null
@@ -67,8 +122,11 @@ const TableOfContentsScrollTracked: React.FC<
 
   if (!items) return <h1>No Items To Show</h1>
 
+  if (isError) return <h1>You Have Duplicate Keys In Your Items, Fix That</h1>
+
   return (
     <StyledTableOfContentsScrollTracked id="TableOfContentsScrollTracked">
+      {/* <button onClick={() => console.log(rightSideElements)}>LOG ELES</button> */}
       <div className="top-hitbox" ref={startRef} />
       <div className="scroll-track-toc-main">
         <div
@@ -78,7 +136,6 @@ const TableOfContentsScrollTracked: React.FC<
           ref={columnsRef}
         >
           {items.map((item, i) => {
-            //   console.log(item.hasSubHeadings)
             if (!item.subHeadings) {
               // Here are the headings with no submenus
               return (
@@ -97,7 +154,10 @@ const TableOfContentsScrollTracked: React.FC<
               })
 
               return (
-                <div className="toc-scroll-tracked-left-has-subheadings">
+                <div
+                  key={i}
+                  className="toc-scroll-tracked-left-has-subheadings"
+                >
                   <p
                     className="toc-scroll-tracked-left-has-subheadings-heading left-title"
                     key={i}
@@ -132,23 +192,34 @@ const TableOfContentsScrollTracked: React.FC<
               // Item without subheadings
               // console.log(item)
               return (
-                <p className="toc-scroll-tracked-right-item-heading right-title">
+                <p
+                  id={item.key}
+                  key={i}
+                  className="toc-scroll-tracked-right-item-heading right-title"
+                >
                   {item.categoryHeading}
                 </p>
               )
             } else {
               // Item which has subheadings
+              // console.log(rightSideElements)
               return (
-                <React.Fragment>
-                  <p className="toc-scroll-tracked-right-item-heading-has-subheadings right-title">
+                <React.Fragment key={i}>
+                  <p
+                    id={item.key}
+                    className="toc-scroll-tracked-right-item-heading-has-subheadings right-title"
+                  >
                     {item.categoryHeading}
                   </p>
                   <div className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap">
                     {item.subHeadings.map((subItem, i) => {
                       // console.log(subItem)
                       return (
-                        <React.Fragment>
-                          <p className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-title right-title">
+                        <React.Fragment key={i}>
+                          <p
+                            id={item.key}
+                            className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-title right-title"
+                          >
                             {subItem.subHeadingTitle}
                           </p>
                           <p className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-body right-subtitle">
