@@ -128,6 +128,7 @@ export interface IndividualFAQ {
   hasSubHeadings: boolean
   bodyWithoutSubheadings?: { title: JSX.Element; body: JSX.Element }[]
   subHeadings?: { subHeadingTitle: JSX.Element; subHeadingBody: JSX.Element }[]
+  key: string
 }
 
 export interface EventsBodyProps {}
