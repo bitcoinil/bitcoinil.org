@@ -30,7 +30,8 @@ export const FAQ: IndividualFAQ[] = [
           />
         )
       }
-    ]
+    ],
+    key: 'what-is'
   },
   {
     categoryHeading: (
@@ -62,6 +63,180 @@ export const FAQ: IndividualFAQ[] = [
           />
         )
       }
-    ]
+    ],
+    key: 'is-legal'
+  },
+  {
+    categoryHeading: (
+      <FormattedMessage
+        id={`faq.legal`}
+        defaultMessage={`Legal`}
+        description={`legal`}
+      />
+    ),
+    hasSubHeadings: true,
+    subHeadings: [
+      {
+        subHeadingTitle: (
+          <FormattedMessage
+            id={`faq.is-legal`}
+            defaultMessage={`Is Bitcoin Legal?`}
+            description={`is-legal`}
+          />
+        ),
+        subHeadingBody: (
+          <FormattedMessage
+            id={`faq.is-legal.body`}
+            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
+  
+          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
+          
+          `}
+            description={`is-legal.body`}
+          />
+        )
+      },
+      {
+        subHeadingTitle: (
+          <FormattedMessage
+            id={`faq.is-legal`}
+            defaultMessage={`Is Bitcoin Legal?`}
+            description={`is-legal`}
+          />
+        ),
+        subHeadingBody: (
+          <FormattedMessage
+            id={`faq.is-legal.body`}
+            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
+  
+          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
+          
+          `}
+            description={`is-legal.body`}
+          />
+        )
+      },
+      {
+        subHeadingTitle: (
+          <FormattedMessage
+            id={`faq.is-legal`}
+            defaultMessage={`Is Bitcoin Legal?`}
+            description={`is-legal`}
+          />
+        ),
+        subHeadingBody: (
+          <FormattedMessage
+            id={`faq.is-legal.body`}
+            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
+  
+          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
+          
+          `}
+            description={`is-legal.body`}
+          />
+        )
+      },
+      {
+        subHeadingTitle: (
+          <FormattedMessage
+            id={`faq.is-legal`}
+            defaultMessage={`Is Bitcoin Legal?`}
+            description={`is-legal`}
+          />
+        ),
+        subHeadingBody: (
+          <FormattedMessage
+            id={`faq.is-legal.body`}
+            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
+  
+          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
+          
+          `}
+            description={`is-legal.body`}
+          />
+        )
+      },
+      {
+        subHeadingTitle: (
+          <FormattedMessage
+            id={`faq.is-legal`}
+            defaultMessage={`Is Bitcoin Legal?`}
+            description={`is-legal`}
+          />
+        ),
+        subHeadingBody: (
+          <FormattedMessage
+            id={`faq.is-legal.body`}
+            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
+  
+          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
+          
+          `}
+            description={`is-legal.body`}
+          />
+        )
+      },
+      {
+        subHeadingTitle: (
+          <FormattedMessage
+            id={`faq.is-legal`}
+            defaultMessage={`Is Bitcoin Legal?`}
+            description={`is-legal`}
+          />
+        ),
+        subHeadingBody: (
+          <FormattedMessage
+            id={`faq.is-legal.body`}
+            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
+  
+          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
+          
+          `}
+            description={`is-legal.body`}
+          />
+        )
+      },
+      {
+        subHeadingTitle: (
+          <FormattedMessage
+            id={`faq.is-legal`}
+            defaultMessage={`Is Bitcoin Legal?`}
+            description={`is-legal`}
+          />
+        ),
+        subHeadingBody: (
+          <FormattedMessage
+            id={`faq.is-legal.body`}
+            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
+  
+          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
+          
+          `}
+            description={`is-legal.body`}
+          />
+        )
+      },
+      {
+        subHeadingTitle: (
+          <FormattedMessage
+            id={`faq.is-legal`}
+            defaultMessage={`Is Bitcoin Legal?`}
+            description={`is-legal`}
+          />
+        ),
+        subHeadingBody: (
+          <FormattedMessage
+            id={`faq.is-legal.body`}
+            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
+  
+          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
+          
+          `}
+            description={`is-legal.body`}
+          />
+        )
+      }
+    ],
+    key: 'is-legal-two'
   }
 ]
