@@ -83,10 +83,10 @@ const TableOfContentsScrollTracked: React.FC<
               // Here are the headings with no submenus
               return (
                 <p
-                  className="toc-scroll-tracked-left-item-without-subheadings"
+                  className="toc-scroll-tracked-left-item-without-subheadings left-title"
                   key={i}
                 >
-                  <p>{item.categoryHeading}</p>
+                  {item.categoryHeading}
                 </p>
               )
             } else {
@@ -99,7 +99,7 @@ const TableOfContentsScrollTracked: React.FC<
               return (
                 <div className="toc-scroll-tracked-left-has-subheadings">
                   <p
-                    className="toc-scroll-tracked-left-has-subheadings-heading"
+                    className="toc-scroll-tracked-left-has-subheadings-heading left-title"
                     key={i}
                   >
                     {item.categoryHeading}
@@ -108,7 +108,7 @@ const TableOfContentsScrollTracked: React.FC<
                     //   console.log(subItem)
                     return (
                       <p
-                        className="toc-scroll-tracked-left-has-subheadings-heading-title"
+                        className="toc-scroll-tracked-left-has-subheadings-heading-title left-subtitle"
                         key={i}
                       >
                         {subItem.subHeadingTitle}
@@ -132,7 +132,7 @@ const TableOfContentsScrollTracked: React.FC<
               // Item without subheadings
               // console.log(item)
               return (
-                <p className="toc-scroll-tracked-right-item-heading">
+                <p className="toc-scroll-tracked-right-item-heading right-title">
                   {item.categoryHeading}
                 </p>
               )
@@ -140,7 +140,7 @@ const TableOfContentsScrollTracked: React.FC<
               // Item which has subheadings
               return (
                 <React.Fragment>
-                  <p className="toc-scroll-tracked-right-item-heading-has-subheadings">
+                  <p className="toc-scroll-tracked-right-item-heading-has-subheadings right-title">
                     {item.categoryHeading}
                   </p>
                   <div className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap">
@@ -148,10 +148,10 @@ const TableOfContentsScrollTracked: React.FC<
                       // console.log(subItem)
                       return (
                         <React.Fragment>
-                          <p className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-title">
+                          <p className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-title right-title">
                             {subItem.subHeadingTitle}
                           </p>
-                          <p className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-body">
+                          <p className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-body right-subtitle">
                             {subItem.subHeadingBody}
                           </p>
                         </React.Fragment>
@@ -170,6 +170,8 @@ const TableOfContentsScrollTracked: React.FC<
 }
 
 export default TableOfContentsScrollTracked
+
+const titleSize = 18
 
 const StyledTableOfContentsScrollTracked = styled.div`
   display: flex;
@@ -214,6 +216,8 @@ const StyledTableOfContentsScrollTracked = styled.div`
 
         &-heading {
           background: pink;
+          font-size: ${titleSize}px;
+
           &-title {
             background: #17bc56;
           }
@@ -221,6 +225,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
       }
 
       &-item-without-subheadings {
+        font-size: ${titleSize}px;
         background: grey;
       }
     }
@@ -230,6 +235,16 @@ const StyledTableOfContentsScrollTracked = styled.div`
     background: black;
     position: fixed;
     top: 0;
+  }
+
+  .left-title {
+    font-size: ${titleSize}px;
+    margin-left: 10px;
+  }
+
+  .left-subtitle {
+    font-size: ${titleSize - 5}px;
+    margin-left: 20px;
   }
 
   .unstuck {
@@ -246,7 +261,14 @@ const StyledTableOfContentsScrollTracked = styled.div`
 
   .right-when-is-stuck {
     margin-left: 29vw;
-    /* position: fixed; */
-    /* right: 0; */
+  }
+
+  .right-title {
+    font-size: 30px;
+  }
+
+  .right-subtitle {
+    margin-left: 20px;
+    font-size: 20px;
   }
 `
