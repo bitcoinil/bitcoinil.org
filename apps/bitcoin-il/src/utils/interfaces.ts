@@ -127,7 +127,11 @@ export interface IndividualFAQ {
   categoryHeading: JSX.Element
   hasSubHeadings: boolean
   bodyWithoutSubheadings?: { title: JSX.Element; body: JSX.Element }[]
-  subHeadings?: { subHeadingTitle: JSX.Element; subHeadingBody: JSX.Element }[]
+  subHeadings?: {
+    subHeadingTitle: JSX.Element
+    subHeadingBody: JSX.Element
+    key: string
+  }[]
   key: string
 }
 
