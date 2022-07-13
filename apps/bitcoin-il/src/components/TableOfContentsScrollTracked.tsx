@@ -238,6 +238,24 @@ const StyledTableOfContentsScrollTracked = styled.div`
     top: 0;
     overflow-y: auto;
     height: 100vh;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 179, 240, 0.2);
+      border-radius: 200px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      opacity: 1;
+      background: #00b3f0;
+    }
   }
 
   .left-title {
