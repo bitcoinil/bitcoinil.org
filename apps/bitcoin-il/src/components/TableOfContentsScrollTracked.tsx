@@ -210,6 +210,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
     &-left {
       background: #9a9ac7;
       width: 25vw;
+      z-index: 3000;
 
       &-has-subheadings {
         background: maroon;
@@ -235,6 +236,8 @@ const StyledTableOfContentsScrollTracked = styled.div`
     background: black;
     position: fixed;
     top: 0;
+    overflow-y: auto;
+    height: 100vh;
   }
 
   .left-title {
