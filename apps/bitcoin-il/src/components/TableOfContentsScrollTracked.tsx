@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 import { HTMLElementWithID, IndividualFAQ } from '../utils/interfaces'
 
+import ico_angle from '../img/ico_angle_white.svg'
+
 export interface TableOfContentsScrollTrackedProps {
   items: IndividualFAQ[]
 }
@@ -171,25 +173,31 @@ const TableOfContentsScrollTracked: React.FC<
                 >
                   <p
                     className={`toc-scroll-tracked-left-has-subheadings-heading left-title ${
-                      item.key === elInView ? 'blink' : null
+                      item.key === elInView ? 'blink' : ''
                     }`}
                     key={i}
                   >
                     {item.categoryHeading}
+                    <img
+                      src={ico_angle}
+                      className="toc-scroll-tracked-left-has-subheadings-heading-arrow"
+                    />
                   </p>
-                  {item.subHeadings.map((subItem, i) => {
-                    //   console.log(subItem)
-                    return (
-                      <p
-                        className={`toc-scroll-tracked-left-has-subheadings-heading-title left-subtitle ${
-                          subItem.key === elInView ? 'blink' : null
-                        }`}
-                        key={i}
-                      >
-                        {subItem.subHeadingTitle}
-                      </p>
-                    )
-                  })}
+                  <div style={{ background: 'yellow' }}>
+                    {item.subHeadings.map((subItem, i) => {
+                      //   console.log(subItem)
+                      return (
+                        <p
+                          className={`toc-scroll-tracked-left-has-subheadings-heading-title left-subtitle ${
+                            subItem.key === elInView ? 'blink' : ''
+                          }`}
+                          key={i}
+                        >
+                          {subItem.subHeadingTitle}
+                        </p>
+                      )
+                    })}
+                  </div>
                 </div>
               )
             }
@@ -304,6 +312,14 @@ const StyledTableOfContentsScrollTracked = styled.div`
         &-heading {
           background: pink;
           font-size: ${titleSize}px;
+          margin-bottom: 0;
+          display: flex;
+          justify-content: space-between;
+
+          &-arrow {
+            background: red;
+            margin-right: 5px;
+          }
 
           &-title {
             background: #17bc56;
