@@ -5,6 +5,9 @@ import { IndividualFAQ } from '../utils/interfaces'
 
 export const FAQ: IndividualFAQ[] = [
   {
+    isSubmenuItem: false,
+    parentMenuKey: null,
+    isSubmenuParent: false,
     categoryHeading: (
       <FormattedMessage
         id={`faq.general`}

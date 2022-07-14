@@ -126,6 +126,9 @@ export interface FAQBodyProps {}
 export interface IndividualFAQ {
   categoryHeading: JSX.Element
   hasSubHeadings: boolean
+  isSubmenuItem: boolean
+  isSubmenuParent: boolean
+  parentMenuKey: string | null
   bodyWithoutSubheadings?: { title: JSX.Element; body: JSX.Element }[]
   subHeadings?: {
     subHeadingTitle: JSX.Element
