@@ -34,6 +34,16 @@ const TableOfContentsScrollTracked: React.FC<
   React.useEffect(() => {
     console.log('-------------')
     console.log('🍄🍄🍄🍄', { elInView })
+
+    console.log(
+      document.getElementById(elInView)?.classList.contains('submenu-title')
+    )
+
+    if (
+      document.getElementById(elInView)?.classList.contains('submenu-title')
+    ) {
+      addKeyToOpenSubmenus(elInView, true)
+    }
   }, [elInView])
 
   const handleScroll = () => {
@@ -72,7 +82,6 @@ const TableOfContentsScrollTracked: React.FC<
         )
         setIsError(true)
       }
-      keys.push(item.key)
       elsToTrack.push(document.getElementById(item.key))
       item.subHeadings?.map((sub) => {
         if (keys.includes(sub.key)) {
@@ -83,6 +92,7 @@ const TableOfContentsScrollTracked: React.FC<
         elsToTrack.push(document.getElementById(sub.key))
       })
     })
+
     setElementsToTrack(elsToTrack)
   }, [])
 
@@ -114,8 +124,9 @@ const TableOfContentsScrollTracked: React.FC<
     return false
   }
 
-  const addKeyToOpenSubmenus = (key: string) => {
-    setOpenSubmenus([...openSubmenus, key])
+  const addKeyToOpenSubmenus = (key: string, wipe?: boolean) => {
+    if (wipe) setOpenSubmenus([key])
+    else setOpenSubmenus([...openSubmenus, key])
   }
 
   const removeKeyFromOpenSubmenus = (key: string) => {
@@ -157,6 +168,7 @@ const TableOfContentsScrollTracked: React.FC<
   if (isError) return <h1>You Have Duplicate Keys In Your Items, Fix That</h1>
 
   return (
+    // Left Side First
     <StyledTableOfContentsScrollTracked id="TableOfContentsScrollTracked">
       <div className="top-hitbox" ref={startRef} />
       <div className="scroll-track-toc-main">
@@ -172,7 +184,7 @@ const TableOfContentsScrollTracked: React.FC<
               return (
                 <p
                   className={`toc-scroll-tracked-left-item-without-subheadings left-title ${
-                    item.key === elInView ? 'blink' : null
+                    item.key === elInView ? 'blink' : ''
                   }`}
                   key={i}
                 >
@@ -185,7 +197,7 @@ const TableOfContentsScrollTracked: React.FC<
               return (
                 <div
                   key={i}
-                  className="toc-scroll-tracked-left-has-subheadings"
+                  className="toc-scroll-tracked-left-has-subheadings submenu-title"
                 >
                   <p
                     className={`toc-scroll-tracked-left-has-subheadings-heading left-title ${
@@ -234,6 +246,8 @@ const TableOfContentsScrollTracked: React.FC<
         >
           {items.map((item, i) => {
             if (!item.subHeadings) {
+              // no subheadings
+
               return (
                 <p
                   id={item.key}
@@ -245,10 +259,12 @@ const TableOfContentsScrollTracked: React.FC<
               )
             } else {
               return (
+                // has subheadings
+
                 <React.Fragment key={i}>
                   <p
                     id={item.key}
-                    className="toc-scroll-tracked-right-item-heading-has-subheadings right-title"
+                    className="toc-scroll-tracked-right-item-heading-has-subheadings right-title submenu-title"
                   >
                     {item.categoryHeading}
                   </p>
@@ -392,6 +408,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
   .left-title {
     font-size: ${titleSize}px;
     margin-left: 10px;
+    margin-bottom: 0;
   }
 
   .left-subtitle {
