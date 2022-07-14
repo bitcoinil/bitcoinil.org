@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import { IndividualFAQ } from '../utils/interfaces'
+import { HTMLElementWithID, IndividualFAQ } from '../utils/interfaces'
 
 export interface TableOfContentsScrollTrackedProps {
   items: IndividualFAQ[]
@@ -17,13 +17,16 @@ const TableOfContentsScrollTracked: React.FC<
     (HTMLElement | null)[]
   >([])
   const [isError, setIsError] = React.useState(false)
+  const [elInView, setElInView] = React.useState('')
 
   const columnsRef = React.createRef<HTMLDivElement>()
   const endRef = React.createRef<HTMLDivElement>()
   const startRef = React.createRef<HTMLDivElement>()
 
+  console.log(elInView)
+
   const handleScroll = () => {
-    const elsInView: (HTMLElement | null)[] = []
+    const elsInView: (HTMLElementWithID | null)[] = []
     // console.log('scroll')
     // console.log(elementsToTrack)
     // console.log(elementsToTrack[0])
@@ -31,9 +34,9 @@ const TableOfContentsScrollTracked: React.FC<
       // console.log(elementsToTrack[0]?.getBoundingClientRect())
     }
 
-    console.log('🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱')
+    // console.log('🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱')
     elementsToTrack.forEach((el) => {
-      console.log('TRACKING', el)
+      // console.log('TRACKING', el)
       // console.log('--------------------------------')
       // console.log(el)
       if (elementsToTrack[0]?.getBoundingClientRect().y) {
@@ -45,7 +48,8 @@ const TableOfContentsScrollTracked: React.FC<
       }
     })
 
-    console.log(elsInView[0])
+    // console.log('⛰️', elsInView[0]?.id)
+    if (elsInView[0]) setElInView(elsInView[0].id)
   }
 
   React.useEffect(() => {
@@ -140,11 +144,14 @@ const TableOfContentsScrollTracked: React.FC<
           ref={columnsRef}
         >
           {items.map((item, i) => {
+            // console.log(item.key === elInView)
             if (!item.subHeadings) {
               // Here are the headings with no submenus
               return (
                 <p
-                  className="toc-scroll-tracked-left-item-without-subheadings left-title"
+                  className={`toc-scroll-tracked-left-item-without-subheadings left-title ${
+                    item.key === elInView ? 'blink' : null
+                  }`}
                   key={i}
                 >
                   {item.categoryHeading}
@@ -163,7 +170,9 @@ const TableOfContentsScrollTracked: React.FC<
                   className="toc-scroll-tracked-left-has-subheadings"
                 >
                   <p
-                    className="toc-scroll-tracked-left-has-subheadings-heading left-title"
+                    className={`toc-scroll-tracked-left-has-subheadings-heading left-title ${
+                      item.key === elInView ? 'blink' : null
+                    }`}
                     key={i}
                   >
                     {item.categoryHeading}
@@ -172,7 +181,9 @@ const TableOfContentsScrollTracked: React.FC<
                     //   console.log(subItem)
                     return (
                       <p
-                        className="toc-scroll-tracked-left-has-subheadings-heading-title left-subtitle"
+                        className={`toc-scroll-tracked-left-has-subheadings-heading-title left-subtitle ${
+                          subItem.key === elInView ? 'blink' : null
+                        }`}
                         key={i}
                       >
                         {subItem.subHeadingTitle}
@@ -366,5 +377,20 @@ const StyledTableOfContentsScrollTracked = styled.div`
   .right-subtitle {
     margin-left: 20px;
     font-size: 20px;
+  }
+
+  .blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+  }
+  @keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
   }
 `

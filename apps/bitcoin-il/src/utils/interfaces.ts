@@ -135,6 +135,10 @@ export interface IndividualFAQ {
   key: string
 }
 
+export interface HTMLElementWithID extends HTMLElement {
+  id: string
+}
+
 export interface EventsBodyProps {}
 
 export interface CustomNavLinkProps {
