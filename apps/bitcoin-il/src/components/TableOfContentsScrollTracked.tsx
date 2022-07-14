@@ -31,7 +31,9 @@ const TableOfContentsScrollTracked: React.FC<
       // console.log(elementsToTrack[0]?.getBoundingClientRect())
     }
 
+    console.log('🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱')
     elementsToTrack.forEach((el) => {
+      console.log('TRACKING', el)
       // console.log('--------------------------------')
       // console.log(el)
       if (elementsToTrack[0]?.getBoundingClientRect().y) {
@@ -43,7 +45,7 @@ const TableOfContentsScrollTracked: React.FC<
       }
     })
 
-    console.log(elsInView)
+    console.log(elsInView[0])
   }
 
   React.useEffect(() => {
@@ -58,7 +60,9 @@ const TableOfContentsScrollTracked: React.FC<
     items.forEach((item) => {
       // console.log(item.key)
       if (keys.includes(item.key)) {
-        console.error(`Found duplicate key: ${item.key}`)
+        console.error(
+          `TableOfContentsScrollTracked found duplicate key: ${item.key}`
+        )
         setIsError(true)
       }
       keys.push(item.key)
@@ -73,7 +77,7 @@ const TableOfContentsScrollTracked: React.FC<
         }
         keys.push(sub.key)
         // console.log(document.getElementById(item.key))
-        elsToTrack.push(document.getElementById(item.key))
+        elsToTrack.push(document.getElementById(sub.key))
       })
     })
     // console.log(keys)
@@ -217,7 +221,7 @@ const TableOfContentsScrollTracked: React.FC<
                       return (
                         <React.Fragment key={i}>
                           <p
-                            id={item.key}
+                            id={subItem.key}
                             className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-title right-title"
                           >
                             {subItem.subHeadingTitle}
