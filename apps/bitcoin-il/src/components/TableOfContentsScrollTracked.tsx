@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { HTMLElementWithID, IndividualFAQ } from '../utils/interfaces'
 
-import ico_angle from '../img/ico_angle_white.svg'
+import ico_angle from '../img/ico_angle_black.svg'
 
 export interface TableOfContentsScrollTrackedProps {
   items: IndividualFAQ[]
@@ -20,37 +20,39 @@ const TableOfContentsScrollTracked: React.FC<
   >([])
   const [isError, setIsError] = React.useState(false)
   const [elInView, setElInView] = React.useState('')
+  const [openSubmenus, setOpenSubmenus] = React.useState<string[]>([])
 
   const columnsRef = React.createRef<HTMLDivElement>()
   const endRef = React.createRef<HTMLDivElement>()
   const startRef = React.createRef<HTMLDivElement>()
 
-  console.log(elInView)
+  React.useEffect(() => {
+    console.log('-------------')
+    console.log('👻👻👻👻', { openSubmenus })
+  }, [openSubmenus])
+
+  React.useEffect(() => {
+    console.log('-------------')
+    console.log('🍄🍄🍄🍄', { elInView })
+  }, [elInView])
 
   const handleScroll = () => {
     const elsInView: (HTMLElementWithID | null)[] = []
-    // console.log('scroll')
-    // console.log(elementsToTrack)
-    // console.log(elementsToTrack[0])
-    if (elementsToTrack[0]?.getBoundingClientRect) {
-      // console.log(elementsToTrack[0]?.getBoundingClientRect())
-    }
 
-    // console.log('🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱')
     elementsToTrack.forEach((el) => {
-      // console.log('TRACKING', el)
-      // console.log('--------------------------------')
-      // console.log(el)
       if (elementsToTrack[0]?.getBoundingClientRect().y) {
+        // //////////////////////////////////////////////////////////////////////
         // TS Is telling me that objtec could be undefined, but that's not true
         // @ts-ignore
         if (el?.getBoundingClientRect()?.y > 0) {
           elsInView.push(el)
         }
+        //
+        //
+        // //////////////////////////////////////////////////////////////////////
       }
     })
 
-    // console.log('⛰️', elsInView[0]?.id)
     if (elsInView[0]) setElInView(elsInView[0].id)
   }
 
@@ -64,7 +66,6 @@ const TableOfContentsScrollTracked: React.FC<
     const keys: string[] = []
 
     items.forEach((item) => {
-      // console.log(item.key)
       if (keys.includes(item.key)) {
         console.error(
           `TableOfContentsScrollTracked found duplicate key: ${item.key}`
@@ -72,22 +73,16 @@ const TableOfContentsScrollTracked: React.FC<
         setIsError(true)
       }
       keys.push(item.key)
-      // console.log(document.getElementById(item.key))
       elsToTrack.push(document.getElementById(item.key))
-      // console.log(item.subHeadings)
       item.subHeadings?.map((sub) => {
-        // console.log(sub.key)
         if (keys.includes(sub.key)) {
           console.error(`Found duplicate key: ${sub.key}`)
           setIsError(true)
         }
         keys.push(sub.key)
-        // console.log(document.getElementById(item.key))
         elsToTrack.push(document.getElementById(sub.key))
       })
     })
-    // console.log(keys)
-    // console.log(elsToTrack)
     setElementsToTrack(elsToTrack)
   }, [])
 
@@ -110,6 +105,36 @@ const TableOfContentsScrollTracked: React.FC<
       window.removeEventListener('scroll', scrollCheckTopHotboxInView)
   })
 
+  const isSubmenuOpen = (key: string) => {
+    for (let x = 0; x < openSubmenus.length; x++) {
+      if (openSubmenus[x] === key) {
+        return true
+      }
+    }
+    return false
+  }
+
+  const addKeyToOpenSubmenus = (key: string) => {
+    setOpenSubmenus([...openSubmenus, key])
+  }
+
+  const removeKeyFromOpenSubmenus = (key: string) => {
+    const newState: string[] = []
+
+    openSubmenus.forEach((open, i) => {
+      if (open !== key) {
+        newState.push(open)
+      }
+    })
+
+    setOpenSubmenus(newState)
+  }
+
+  const handleOpenSubmenu = (key: string) => {
+    if (openSubmenus.includes(key)) removeKeyFromOpenSubmenus(key)
+    else addKeyToOpenSubmenus(key)
+  }
+
   const scrollCheckMenuInView = () => {
     if (!columnsRef.current?.getBoundingClientRect().y) return null
     setIsBelowZero(columnsRef.current?.getBoundingClientRect()?.y <= 0)
@@ -124,10 +149,7 @@ const TableOfContentsScrollTracked: React.FC<
 
   const scrollCheckTopHotboxInView = () => {
     if (!startRef?.current) return
-    setisAtStart(
-      startRef.current?.getBoundingClientRect().y < 0
-      //   < window.innerHeight - 400
-    )
+    setisAtStart(startRef.current?.getBoundingClientRect().y < 0)
   }
 
   if (!items) return <h1>No Items To Show</h1>
@@ -136,7 +158,6 @@ const TableOfContentsScrollTracked: React.FC<
 
   return (
     <StyledTableOfContentsScrollTracked id="TableOfContentsScrollTracked">
-      {/* <button onClick={() => console.log(rightSideElements)}>LOG ELES</button> */}
       <div className="top-hitbox" ref={startRef} />
       <div className="scroll-track-toc-main">
         <div
@@ -146,7 +167,6 @@ const TableOfContentsScrollTracked: React.FC<
           ref={columnsRef}
         >
           {items.map((item, i) => {
-            // console.log(item.key === elInView)
             if (!item.subHeadings) {
               // Here are the headings with no submenus
               return (
@@ -162,10 +182,6 @@ const TableOfContentsScrollTracked: React.FC<
             } else {
               // Here are the heading with submenus
 
-              item.subHeadings.map((subHead, i) => {
-                //   console.log(subHead)
-              })
-
               return (
                 <div
                   key={i}
@@ -175,6 +191,7 @@ const TableOfContentsScrollTracked: React.FC<
                     className={`toc-scroll-tracked-left-has-subheadings-heading left-title ${
                       item.key === elInView ? 'blink' : ''
                     }`}
+                    onClick={() => handleOpenSubmenu(item.key)}
                     key={i}
                   >
                     {item.categoryHeading}
@@ -183,9 +200,14 @@ const TableOfContentsScrollTracked: React.FC<
                       className="toc-scroll-tracked-left-has-subheadings-heading-arrow"
                     />
                   </p>
-                  <div style={{ background: 'yellow' }}>
+                  <div
+                    className={`toc-scroll-tracked-left-has-subheadings-foldable ${
+                      isSubmenuOpen(item.key)
+                        ? `foldable-open`
+                        : `foldable-closed`
+                    }`}
+                  >
                     {item.subHeadings.map((subItem, i) => {
-                      //   console.log(subItem)
                       return (
                         <p
                           className={`toc-scroll-tracked-left-has-subheadings-heading-title left-subtitle ${
@@ -212,8 +234,6 @@ const TableOfContentsScrollTracked: React.FC<
         >
           {items.map((item, i) => {
             if (!item.subHeadings) {
-              // Item without subheadings
-              // console.log(item)
               return (
                 <p
                   id={item.key}
@@ -224,8 +244,6 @@ const TableOfContentsScrollTracked: React.FC<
                 </p>
               )
             } else {
-              // Item which has subheadings
-              // console.log(rightSideElements)
               return (
                 <React.Fragment key={i}>
                   <p
@@ -236,7 +254,6 @@ const TableOfContentsScrollTracked: React.FC<
                   </p>
                   <div className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap">
                     {item.subHeadings.map((subItem, i) => {
-                      // console.log(subItem)
                       return (
                         <React.Fragment key={i}>
                           <p
@@ -309,15 +326,28 @@ const StyledTableOfContentsScrollTracked = styled.div`
       &-has-subheadings {
         background: maroon;
 
+        &-foldable {
+          background: yellow;
+          /* height: 0; */
+          overflow: hidden;
+          &-open {
+            background: red;
+          }
+
+          &-closed {
+            background: green;
+          }
+        }
+
         &-heading {
           background: pink;
           font-size: ${titleSize}px;
           margin-bottom: 0;
           display: flex;
           justify-content: space-between;
+          cursor: pointer;
 
           &-arrow {
-            background: red;
             margin-right: 5px;
           }
 
@@ -335,7 +365,6 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .stuck {
-    background: black;
     position: fixed;
     top: 0;
     overflow-y: auto;
@@ -397,5 +426,15 @@ const StyledTableOfContentsScrollTracked = styled.div`
 
   .blink {
     border-right: 10px solid red;
+  }
+
+  .foldable-closed {
+    background-color: red;
+    height: 0;
+  }
+
+  .foldable-open {
+    background-color: green;
+    height: auto;
   }
 `
