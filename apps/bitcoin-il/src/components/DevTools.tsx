@@ -12,8 +12,8 @@ export default function DevTools() {
 
 const StyledDevTools = styled.div`
   position: absolute;
-  top: 50vh;
-  right: 0;
+  left: 0;
+  top: 40vh;
   border: 2px solid;
   padding: 25px;
   display: flex;
