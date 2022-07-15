@@ -346,7 +346,6 @@ const StyledTableOfContentsScrollTracked = styled.div`
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
-  width: 60vw;
   margin: auto;
 
   .scroll-track-toc-main {
@@ -357,11 +356,14 @@ const StyledTableOfContentsScrollTracked = styled.div`
     &-right {
       width: 70%;
       margin-left: auto;
+
       &-item-heading {
         &-has-subheadings {
           &-subheadings-wrap {
             display: flex;
             flex-direction: column;
+            margin-right: 17vw;
+            padding-left: 135px;
 
             &-title {
             }
@@ -371,10 +373,10 @@ const StyledTableOfContentsScrollTracked = styled.div`
     }
 
     &-left {
+      width: 300px;
       z-index: 3000;
       border-right: 1px solid grey;
-      width: 300px;
-
+      background-color: yellow;
       &-has-subheadings {
         &-foldable {
           overflow: hidden;
