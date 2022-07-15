@@ -2,7 +2,6 @@ import * as React from 'react'
 import { useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
-import DevTools from '../components/DevTools'
 
 import Support from '../components/Support'
 import { currentlySelectedLanguage } from '../state/state'
@@ -24,7 +23,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     <AppStyleWrap id="app" className={ln.language === 'he' ? 'dir-rtl' : ''}>
       <Support />
       <Header />
-      <DevTools />
+      {/* <DevTools /> */}
       {children}
       <Footer />
     </AppStyleWrap>
