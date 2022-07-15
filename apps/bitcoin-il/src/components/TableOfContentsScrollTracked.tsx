@@ -15,6 +15,7 @@ const TableOfContentsScrollTracked: React.FC<
 > = ({ items }) => {
   const [isBelowZero, setIsBelowZero] = React.useState(false)
   const [isAtEnd, setIsAtEnd] = React.useState(false)
+  console.log(isAtEnd)
   const [isAtStart, setisAtStart] = React.useState(false)
   const [isError, setIsError] = React.useState(false)
   const [elInView, setElInView] = React.useState('')
@@ -180,7 +181,7 @@ const TableOfContentsScrollTracked: React.FC<
   const scrollCheckEnderInView = () => {
     if (!endRef?.current) return
     setIsAtEnd(
-      endRef.current?.getBoundingClientRect().y < window.innerHeight - 400
+      endRef.current?.getBoundingClientRect().y < window.innerHeight - 1000
     )
   }
 
@@ -338,19 +339,28 @@ const TableOfContentsScrollTracked: React.FC<
 
 export default TableOfContentsScrollTracked
 
-const titleSize = 18
-const menuItemHeight = 40
+const leftTitleSize = 19
+const leftSubtitleSize = 16
+const rightTitleSize = 22
+const rightBodySize = 20
+
 const borderSize = 5
 
 const StyledTableOfContentsScrollTracked = styled.div`
+  margin-bottom: 300px;
   .scroll-track-toc-main {
     display: flex;
   }
 
   .toc-scroll-tracked {
     &-right {
-      background: #8686cb;
+      /* background: #8686cb; */
+      padding-left: 50px;
+      padding-right: 15vw;
+      width: 65vw;
+      margin-left: auto;
       &-item-heading {
+        font-size: ${leftTitleSize}px;
         &-has-subheadings {
           &-subheadings-wrap {
             &-title {
@@ -360,8 +370,15 @@ const StyledTableOfContentsScrollTracked = styled.div`
       }
     }
 
+    /* toc-scroll-tracked-left-item-without-subheadings left-title  */
+
     &-left {
-      background: #b58787;
+      padding-top: 20px;
+      border-right: 1px solid grey;
+
+      /* background: #b58787; */
+      padding-left: 15vw;
+      /* padding-right: 5vw; */
       &-has-subheadings {
         &-foldable {
           &-open {
@@ -372,6 +389,9 @@ const StyledTableOfContentsScrollTracked = styled.div`
         }
 
         &-heading {
+          font-size: ${leftTitleSize}px;
+          cursor: pointer;
+
           &-arrow {
           }
 
@@ -381,12 +401,18 @@ const StyledTableOfContentsScrollTracked = styled.div`
       }
 
       &-item-without-subheadings {
+        padding-right: 200px;
+        font-size: ${leftTitleSize}px;
+        cursor: pointer;
       }
     }
   }
 
   .stuck {
-    background-color: green;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+
     &::-webkit-scrollbar {
       width: 8px;
     }
@@ -404,12 +430,17 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .left-title {
+    border-right: ${borderSize}px solid transparent;
     img {
       float: right;
+      margin-right: 5px;
     }
   }
 
   .left-subtitle {
+    font-size: ${leftSubtitleSize}px;
+    cursor: pointer;
+    padding-left: 20px;
   }
 
   .unstuck {
@@ -425,9 +456,11 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .right-title {
+    font-size: ${rightTitleSize}px;
   }
 
   .right-subtitle {
+    font-size: ${rightBodySize}px;
   }
 
   .blink {
