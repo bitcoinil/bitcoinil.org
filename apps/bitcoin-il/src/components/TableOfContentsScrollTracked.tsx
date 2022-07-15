@@ -346,8 +346,10 @@ const StyledTableOfContentsScrollTracked = styled.div`
   .scroll-track-toc-main {
     display: flex;
   }
+
   .toc-scroll-tracked {
     &-right {
+      background: #8686cb;
       &-item-heading {
         &-has-subheadings {
           &-subheadings-wrap {
@@ -359,6 +361,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
     }
 
     &-left {
+      background: #b58787;
       &-has-subheadings {
         &-foldable {
           &-open {
@@ -383,6 +386,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .stuck {
+    background-color: green;
     &::-webkit-scrollbar {
       width: 8px;
     }
@@ -401,6 +405,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
 
   .left-title {
     img {
+      float: right;
     }
   }
 
@@ -430,10 +435,8 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .foldable-closed {
-    height: 0;
   }
 
   .foldable-open {
-    height: auto;
   }
 `
