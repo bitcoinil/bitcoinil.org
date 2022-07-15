@@ -77,6 +77,9 @@ const Footer: React.FC<FooterProps> = ({}) => {
 export default Footer
 
 const StyledFooter = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
   box-sizing: border-box;
   background-color: black;
   color: white;
