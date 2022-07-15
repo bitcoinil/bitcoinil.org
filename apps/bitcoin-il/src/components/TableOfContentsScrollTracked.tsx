@@ -1,21 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import { HTMLElementWithID, IndividualFAQ } from '../utils/interfaces'
-
 import ico_angle from '../img/ico_angle_black.svg'
-
-export interface ElementToTrack {
-  element: HTMLElementWithID
-  hasSubheadings: boolean
-  key: string
-  isSubMenuItem: boolean
-  menuParent?: string
-}
-
-export interface TableOfContentsScrollTrackedProps {
-  items: IndividualFAQ[]
-}
+import {
+  ElementToTrack,
+  FAQSubheading,
+  HTMLElementWithID,
+  IndividualFAQ,
+  TableOfContentsScrollTrackedProps
+} from '../utils/interfaces'
 
 const TableOfContentsScrollTracked: React.FC<
   TableOfContentsScrollTrackedProps
@@ -33,24 +26,24 @@ const TableOfContentsScrollTracked: React.FC<
   const columnRef = React.createRef<HTMLDivElement>()
   const endRef = React.createRef<HTMLDivElement>()
   const startRef = React.createRef<HTMLDivElement>()
-  const rightSideElements = React.useRef<(HTMLParagraphElement | null)[]>([])
-  const leftSideElements = React.useRef<(HTMLParagraphElement | null)[]>([])
+  const rightSideElements = React.useRef<(ElementToTrack | null)[]>([])
+  const leftSideElements = React.useRef<(ElementToTrack | null)[]>([])
 
   React.useEffect(() => {
-    // console.log('-------------')
-    // console.log('👻👻👻👻', { openSubmenus })
-  }, [openSubmenus])
+    // take element in view, find the root menu title, and open it
+    const elInViewData = getLeftSideElementFromStateUsingKey(elInView)
 
-  React.useEffect(() => {
-    // console.log('-------------')
-    // console.log('🍄🍄🍄🍄', { elInView })
-
-    if (
-      document.getElementById(elInView)?.classList.contains('submenu-title')
-    ) {
+    if (elInViewData?.element.classList.contains('submenu-title')) {
       addKeyToOpenSubmenus(elInView, true)
+    } else {
+      if (elInViewData?.menuParent)
+        addKeyToOpenSubmenus(elInViewData?.menuParent, true)
     }
   }, [elInView])
+
+  const getLeftSideElementFromStateUsingKey = (key: string) => {
+    return leftSideElements.current.find((o) => o?.key === key)
+  }
 
   const handleScroll = () => {
     const elsInView: (HTMLElementWithID | null)[] = []
@@ -121,49 +114,35 @@ const TableOfContentsScrollTracked: React.FC<
       window.removeEventListener('scroll', scrollCheckTopHotboxInView)
   })
 
-  React.useEffect(() => {
-    console.log({ rightSideElements, leftSideElements })
-  }, [rightSideElements, leftSideElements])
+  const isRefStored = (ref: ElementToTrack, left: boolean) => {
+    const arrayToCheck = left ? leftSideElements : rightSideElements
+    return !!arrayToCheck.current.find((o) => o?.key === ref.key)
+  }
 
   const handleRef = (
     ref: HTMLParagraphElement | null,
     left: boolean,
-    item: any
+    item: IndividualFAQ | FAQSubheading,
+    menuParent?: string | null
   ) => {
     if (!ref) return null
 
-    // export interface ElementToTrack {
-    //   element: HTMLElementWithID
-    //   hasSubheadings: boolean
-    //   key: string
-    //   isSubMenuItem: boolean
-    //   menuParent?: string
-    // }
-
     const { hasSubHeadings, key } = item
-    console.log(item)
 
     const newElementToTrack: ElementToTrack = {
       element: ref,
       hasSubheadings: hasSubHeadings,
       key,
-      isSubMenuItem: false
+      isSubMenuItem: false,
+      menuParent
     }
+    if (isRefStored(newElementToTrack, left)) return null
 
-    // console.log({ hasSubHeadings })
-    // console.log(rightSideElements.current.push)
     if (left) {
-      if (leftSideElements.current.includes(ref)) return null
-      // console.log(leftSideElements.current.includes(ref))
-      leftSideElements.current.push(ref)
+      leftSideElements.current.push(newElementToTrack)
     } else {
-      if (rightSideElements.current.includes(ref)) return null
-      // console.log(rightSideElements.current.includes(ref))
-
-      rightSideElements.current.push(ref)
+      rightSideElements.current.push(newElementToTrack)
     }
-    // console.log(ref)
-    // console.log(left)
   }
 
   const isSubmenuOpen = (key: string) => {
@@ -221,9 +200,6 @@ const TableOfContentsScrollTracked: React.FC<
   return (
     // Left Side First
     <StyledTableOfContentsScrollTracked id="TableOfContentsScrollTracked">
-      <p style={{ background: 'red' }} id="test-test">
-        Hello
-      </p>
       <div className="top-hitbox" ref={startRef} />
       <div className="scroll-track-toc-main">
         <div
@@ -283,7 +259,7 @@ const TableOfContentsScrollTracked: React.FC<
                           className={`toc-scroll-tracked-left-has-subheadings-heading-title left-subtitle ${
                             subItem.key === elInView ? 'blink' : ''
                           }`}
-                          // ref={(ref) => handleRef(ref, true, subItem)}
+                          ref={(ref) => handleRef(ref, true, subItem, item.key)}
                           key={i}
                         >
                           {subItem.subHeadingTitle}
@@ -312,6 +288,7 @@ const TableOfContentsScrollTracked: React.FC<
                   id={item.key}
                   // @ts-ignore
                   // ref={handleRef}
+                  ref={(ref) => handleRef(ref, false, item)}
                   key={i}
                   className="toc-scroll-tracked-right-item-heading right-title"
                 >
@@ -326,6 +303,7 @@ const TableOfContentsScrollTracked: React.FC<
                   <p
                     id={item.key}
                     // @ts-ignore
+                    ref={(ref) => handleRef(ref, false, item)}
                     // ref={handleRef}
                     className="toc-scroll-tracked-right-item-heading-has-subheadings right-title submenu-title"
                   >
@@ -337,6 +315,9 @@ const TableOfContentsScrollTracked: React.FC<
                         <React.Fragment key={i}>
                           <p
                             id={subItem.key}
+                            ref={(ref) =>
+                              handleRef(ref, false, subItem, item.key)
+                            }
                             // @ts-ignore
                             // ref={handleRef}
                             className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-title right-title"
@@ -377,22 +358,15 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
   .toc-scroll-tracked {
     &-right {
-      background: #c7adad;
       width: 70vw;
 
       &-item-heading {
-        background: #e0e09a;
-
         &-has-subheadings {
-          background: #a9e9a9;
-
           &-subheadings-wrap {
-            background: #c82976;
             display: flex;
             flex-direction: column;
 
             &-title {
-              background: #d6b371;
             }
           }
         }
@@ -400,28 +374,21 @@ const StyledTableOfContentsScrollTracked = styled.div`
     }
 
     &-left {
-      background: #9a9ac7;
       width: 25vw;
       z-index: 3000;
 
       &-has-subheadings {
-        background: maroon;
-
         &-foldable {
-          background: yellow;
           /* height: 0; */
           overflow: hidden;
           &-open {
-            background: red;
           }
 
           &-closed {
-            background: green;
           }
         }
 
         &-heading {
-          background: pink;
           font-size: ${titleSize}px;
           margin-bottom: 0;
           display: flex;
@@ -433,14 +400,12 @@ const StyledTableOfContentsScrollTracked = styled.div`
           }
 
           &-title {
-            background: #17bc56;
           }
         }
       }
 
       &-item-without-subheadings {
         font-size: ${titleSize}px;
-        background: grey;
       }
     }
   }
@@ -456,17 +421,14 @@ const StyledTableOfContentsScrollTracked = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      background: #f1f1f1;
     }
 
     &::-webkit-scrollbar-thumb {
-      background: rgba(0, 179, 240, 0.2);
       border-radius: 200px;
     }
 
     &::-webkit-scrollbar-thumb:hover {
       opacity: 1;
-      background: #00b3f0;
     }
   }
 
@@ -483,13 +445,11 @@ const StyledTableOfContentsScrollTracked = styled.div`
 
   .unstuck {
     position: unset;
-    background: gainsboro;
   }
 
   .end-hitbox,
   .top-hitbox {
     width: 80vw;
-    background-color: red;
     height: 10px;
   }
 
@@ -507,16 +467,14 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .blink {
-    border-right: 10px solid red;
+    border-right: 10px solid #00b3f0;
   }
 
   .foldable-closed {
-    background-color: red;
     height: 0;
   }
 
   .foldable-open {
-    background-color: green;
     height: auto;
   }
 `
