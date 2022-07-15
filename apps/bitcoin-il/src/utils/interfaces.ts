@@ -123,6 +123,34 @@ export interface FooterProps {}
 
 export interface FAQBodyProps {}
 
+export interface FAQSubheading {
+  subHeadingTitle: JSX.Element
+  subHeadingBody: JSX.Element
+  key: string
+  hasSubHeadings: boolean
+}
+
+export interface FAQBodyTwoProps {
+  items: IndividualFAQ[]
+}
+
+export interface ElementToTrack {
+  element: HTMLElementWithID
+  hasSubheadings: boolean
+  key: string
+  isSubMenuItem: boolean
+  menuParent?: string | null
+}
+
+export interface TableOfContentsScrollTrackedProps {
+  items: IndividualFAQ[]
+}
+
+export interface LogoProps {
+  isDark: boolean
+  props?: any
+}
+
 export interface IndividualFAQ {
   categoryHeading: JSX.Element
   hasSubHeadings: boolean
@@ -130,11 +158,7 @@ export interface IndividualFAQ {
   isSubmenuParent: boolean
   parentMenuKey: string | null
   bodyWithoutSubheadings?: { title: JSX.Element; body: JSX.Element }[]
-  subHeadings?: {
-    subHeadingTitle: JSX.Element
-    subHeadingBody: JSX.Element
-    key: string
-  }[]
+  subHeadings?: FAQSubheading[]
   key: string
 }
 
