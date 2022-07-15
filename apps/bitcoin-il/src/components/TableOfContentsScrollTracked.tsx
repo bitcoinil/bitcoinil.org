@@ -26,6 +26,8 @@ const TableOfContentsScrollTracked: React.FC<
   const rightSideElements = React.useRef<(ElementToTrack | null)[]>([])
   const leftSideElements = React.useRef<(ElementToTrack | null)[]>([])
 
+  const isStuck = isBelowZero && !isAtEnd && isAtStart
+
   React.useEffect(() => {
     // take element in view, find the root menu title, and open it
     const elInViewData = getLeftSideElementFromStateUsingKey(elInView)
@@ -197,9 +199,7 @@ const TableOfContentsScrollTracked: React.FC<
       <div className="top-hitbox" ref={startRef} />
       <div className="scroll-track-toc-main">
         <div
-          className={`toc-scroll-tracked-left ${
-            isBelowZero && !isAtEnd && isAtStart ? 'stuck' : 'unstuck'
-          }`}
+          className={`toc-scroll-tracked-left ${isStuck ? 'stuck' : 'unstuck'}`}
           ref={columnRef}
         >
           {items.map((item, i) => {
@@ -270,7 +270,7 @@ const TableOfContentsScrollTracked: React.FC<
         {/* RIGHT SIDE BELOW */}
         <div
           className={`toc-scroll-tracked-right ${
-            isBelowZero && !isAtEnd && isAtStart ? 'right-when-is-stuck' : ''
+            isStuck ? 'right-when-is-stuck' : ''
           }`}
         >
           {items.map((item, i) => {
@@ -344,6 +344,7 @@ const borderSize = 5
 
 const StyledTableOfContentsScrollTracked = styled.div`
   .scroll-track-toc-main {
+    display: flex;
   }
   .toc-scroll-tracked {
     &-right {
