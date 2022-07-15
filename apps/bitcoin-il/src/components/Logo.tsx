@@ -3,11 +3,7 @@ import styled from 'styled-components'
 
 import LogoSVG from '../img/logo.svg'
 import darkLogoSVG from '../img/logo_dark_mode.svg'
-
-export interface LogoProps {
-  isDark: boolean
-  props?: any
-}
+import { LogoProps } from '../utils/interfaces'
 
 const Logo: React.FC<LogoProps> = ({ props, isDark }) => {
   return <StyledLogo src={isDark ? darkLogoSVG : LogoSVG} {...props} />
