@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import ico_angle from '../img/ico_angle_black.svg'
+import { flashElement, scrollToElement } from '../util/util'
 import {
   ElementToTrack,
   FAQSubheading,
@@ -15,7 +16,6 @@ const TableOfContentsScrollTracked: React.FC<
 > = ({ items }) => {
   const [isBelowZero, setIsBelowZero] = React.useState(false)
   const [isAtEnd, setIsAtEnd] = React.useState(false)
-  console.log(isAtEnd)
   const [isAtStart, setisAtStart] = React.useState(false)
   const [isError, setIsError] = React.useState(false)
   const [elInView, setElInView] = React.useState('')
@@ -45,12 +45,16 @@ const TableOfContentsScrollTracked: React.FC<
     return leftSideElements.current.find((o) => o?.key === key)
   }
 
+  const getRightSideElementFromStateUsingKey = (key: string) => {
+    return rightSideElements.current.find((o) => o?.key === key)
+  }
+
   const handleScroll = () => {
     const elsInView: (HTMLElementWithID | null)[] = []
 
     rightSideElements.current.forEach((el) => {
       if (el?.element?.getBoundingClientRect()) {
-        if (el?.element?.getBoundingClientRect()?.y > 0) {
+        if (el?.element?.getBoundingClientRect()?.y > -20) {
           elsInView.push(el.element)
         }
       }
@@ -142,6 +146,15 @@ const TableOfContentsScrollTracked: React.FC<
     }
   }
 
+  const scrollToRightSideElement = (key: string) => {
+    const el = getRightSideElementFromStateUsingKey(key)?.element
+
+    if (!el) return null
+
+    flashElement(el)
+    scrollToElement(el)
+  }
+
   const isSubmenuOpen = (key: string) => {
     for (let x = 0; x < openSubmenus.length; x++) {
       if (openSubmenus[x] === key) {
@@ -209,8 +222,9 @@ const TableOfContentsScrollTracked: React.FC<
               return (
                 <p
                   className={`toc-scroll-tracked-left-item-without-subheadings left-title ${
-                    item.key === elInView ? 'blink' : ''
+                    item.key === elInView ? 'active-toc-item' : ''
                   }`}
+                  onClick={() => scrollToRightSideElement(item.key)}
                   ref={(ref) => handleRef(ref, true, item)}
                   key={i}
                 >
@@ -227,18 +241,23 @@ const TableOfContentsScrollTracked: React.FC<
                 >
                   <p
                     className={`toc-scroll-tracked-left-has-subheadings-heading left-title ${
-                      item.key === elInView ? 'blink' : ''
+                      item.key === elInView ? 'active-toc-item' : ''
                     }`}
                     // @ts-ignore
                     // ref={handleRef}
                     ref={(ref) => handleRef(ref, true, item)}
-                    onClick={() => handleOpenSubmenu(item.key)}
+                    onClick={() => {
+                      handleOpenSubmenu(item.key)
+                      // scrollToRightSideElement(item.key)
+                    }}
                     key={i}
                   >
                     {item.categoryHeading}
                     <img
                       src={ico_angle}
-                      className="toc-scroll-tracked-left-has-subheadings-heading-arrow"
+                      className={`toc-scroll-tracked-left-has-subheadings-heading-arrow ${
+                        openSubmenus.includes(item.key) ? 'open-arrow' : ''
+                      }`}
                     />
                   </p>
                   <div
@@ -252,10 +271,13 @@ const TableOfContentsScrollTracked: React.FC<
                       return (
                         <p
                           className={`toc-scroll-tracked-left-has-subheadings-heading-title left-subtitle ${
-                            subItem.key === elInView ? 'blink' : ''
+                            subItem.key === elInView ? 'active-toc-item' : ''
                           }`}
                           ref={(ref) => handleRef(ref, true, subItem, item.key)}
                           key={i}
+                          onClick={() => {
+                            scrollToRightSideElement(subItem.key)
+                          }}
                         >
                           {subItem.subHeadingTitle}
                         </p>
@@ -432,13 +454,16 @@ const StyledTableOfContentsScrollTracked = styled.div`
   .left-title {
     border-right: ${borderSize}px solid transparent;
     img {
+      transition: all 400ms;
       float: right;
-      margin-right: 5px;
+      margin-right: 15px;
+      padding-top: 10px;
     }
   }
 
   .left-subtitle {
     font-size: ${leftSubtitleSize}px;
+    color: grey;
     cursor: pointer;
     padding-left: 20px;
   }
@@ -457,19 +482,29 @@ const StyledTableOfContentsScrollTracked = styled.div`
 
   .right-title {
     font-size: ${rightTitleSize}px;
+    font-weight: bolder;
   }
 
   .right-subtitle {
     font-size: ${rightBodySize}px;
+    color: grey;
   }
 
-  .blink {
+  .active-toc-item {
     border-right: ${borderSize}px solid #00b3f0;
   }
 
   .foldable-closed {
+    height: 0;
+    overflow: hidden;
   }
 
   .foldable-open {
+    height: unset;
+  }
+
+  .open-arrow {
+    transition: all 400ms;
+    transform: rotate(-90deg);
   }
 `

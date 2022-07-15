@@ -1,4 +1,8 @@
-export const flashElement = (el: HTMLElement | null) => {
+import { HTMLElementWithID } from '../utils/interfaces'
+
+export const flashElement = (
+  el: HTMLElement | HTMLElementWithID | undefined | null
+) => {
   if (!el) return
 
   const duration = 300
@@ -24,5 +28,5 @@ export const flashElement = (el: HTMLElement | null) => {
 export const scrollToElement = (el: HTMLElement | null) => {
   if (!el) return null
 
-  el.scrollIntoView({ behavior: 'smooth' })
+  el.scrollIntoView({ behavior: 'smooth', inline: 'start' })
 }
