@@ -343,28 +343,13 @@ const menuItemHeight = 40
 const borderSize = 5
 
 const StyledTableOfContentsScrollTracked = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-  margin: auto;
-
   .scroll-track-toc-main {
-    display: flex;
-    justify-content: space-between;
   }
   .toc-scroll-tracked {
     &-right {
-      width: 70%;
-      margin-left: auto;
-
       &-item-heading {
         &-has-subheadings {
           &-subheadings-wrap {
-            display: flex;
-            flex-direction: column;
-            margin-right: 17vw;
-            padding-left: 135px;
-
             &-title {
             }
           }
@@ -373,13 +358,8 @@ const StyledTableOfContentsScrollTracked = styled.div`
     }
 
     &-left {
-      width: 300px;
-      z-index: 3000;
-      border-right: 1px solid grey;
-      background-color: yellow;
       &-has-subheadings {
         &-foldable {
-          overflow: hidden;
           &-open {
           }
 
@@ -388,35 +368,20 @@ const StyledTableOfContentsScrollTracked = styled.div`
         }
 
         &-heading {
-          font-size: ${titleSize}px;
-          margin-bottom: 0;
-          display: flex;
-          justify-content: space-between;
-          cursor: pointer;
-
           &-arrow {
-            margin-right: 5px;
           }
 
           &-title {
-            height: ${menuItemHeight}px;
-            margin-bottom: 0;
           }
         }
       }
 
       &-item-without-subheadings {
-        font-size: ${titleSize}px;
       }
     }
   }
 
   .stuck {
-    position: fixed;
-    top: 0;
-    overflow-y: auto;
-    height: 100vh;
-
     &::-webkit-scrollbar {
       width: 8px;
     }
@@ -434,26 +399,14 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .left-title {
-    font-size: ${titleSize}px;
-    font-size: 22px;
-    margin-left: 10px;
-    margin-bottom: 0;
-    height: ${menuItemHeight}px;
-    border-right: ${borderSize}px solid transparent;
-
     img {
-      height: 7px;
-      margin: auto 0;
     }
   }
 
   .left-subtitle {
-    font-size: 18px;
-    margin-left: 20px;
   }
 
   .unstuck {
-    position: unset;
   }
 
   .end-hitbox,
@@ -466,12 +419,9 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .right-title {
-    font-size: 30px;
   }
 
   .right-subtitle {
-    margin-left: 20px;
-    font-size: 20px;
   }
 
   .blink {
