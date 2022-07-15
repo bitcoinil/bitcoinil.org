@@ -16,9 +16,6 @@ const TableOfContentsScrollTracked: React.FC<
   const [isBelowZero, setIsBelowZero] = React.useState(false)
   const [isAtEnd, setIsAtEnd] = React.useState(false)
   const [isAtStart, setisAtStart] = React.useState(false)
-  const [elementsToTrack, setElementsToTrack] = React.useState<
-    (HTMLElement | null)[]
-  >([])
   const [isError, setIsError] = React.useState(false)
   const [elInView, setElInView] = React.useState('')
   const [openSubmenus, setOpenSubmenus] = React.useState<string[]>([])
@@ -48,17 +45,11 @@ const TableOfContentsScrollTracked: React.FC<
   const handleScroll = () => {
     const elsInView: (HTMLElementWithID | null)[] = []
 
-    elementsToTrack.forEach((el) => {
-      if (elementsToTrack[0]?.getBoundingClientRect().y) {
-        // //////////////////////////////////////////////////////////////////////
-        // TS Is telling me that objtec could be undefined, but that's not true
-        // @ts-ignore
-        if (el?.getBoundingClientRect()?.y > 0) {
-          elsInView.push(el)
+    rightSideElements.current.forEach((el) => {
+      if (el?.element?.getBoundingClientRect()) {
+        if (el?.element?.getBoundingClientRect()?.y > 0) {
+          elsInView.push(el.element)
         }
-        //
-        //
-        // //////////////////////////////////////////////////////////////////////
       }
     })
 
@@ -66,12 +57,7 @@ const TableOfContentsScrollTracked: React.FC<
   }
 
   React.useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [elementsToTrack])
-
-  React.useEffect(() => {
-    const elsToTrack: (HTMLElement | null)[] = []
+    // Check for duplicate keys in items
     const keys: string[] = []
 
     items.forEach((item) => {
@@ -80,20 +66,28 @@ const TableOfContentsScrollTracked: React.FC<
           `TableOfContentsScrollTracked found duplicate key: ${item.key}`
         )
         setIsError(true)
+      } else {
+        keys.push(item.key)
       }
-      elsToTrack.push(document.getElementById(item.key))
-      item.subHeadings?.map((sub) => {
-        if (keys.includes(sub.key)) {
-          console.error(`Found duplicate key: ${sub.key}`)
-          setIsError(true)
-        }
-        keys.push(sub.key)
-        elsToTrack.push(document.getElementById(sub.key))
-      })
+      if (item.subHeadings) {
+        item.subHeadings.map((subHeading) => {
+          if (keys.includes(subHeading.key)) {
+            console.error(
+              `TableOfContentsScrollTracked found duplicate key: ${subHeading.key}`
+            )
+            setIsError(true)
+          } else {
+            keys.push(subHeading.key)
+          }
+        })
+      }
     })
+  }, [items])
 
-    setElementsToTrack(elsToTrack)
-  }, [])
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [rightSideElements, leftSideElements])
 
   React.useEffect(() => {
     window.addEventListener('scroll', scrollCheckMenuInView)
@@ -345,12 +339,15 @@ const TableOfContentsScrollTracked: React.FC<
 export default TableOfContentsScrollTracked
 
 const titleSize = 18
+const menuItemHeight = 40
+const borderSize = 5
 
 const StyledTableOfContentsScrollTracked = styled.div`
   display: flex;
   justify-content: space-evenly;
-  padding: 80px 0;
   flex-direction: column;
+  width: 60vw;
+  margin: auto;
 
   .scroll-track-toc-main {
     display: flex;
@@ -358,8 +355,8 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
   .toc-scroll-tracked {
     &-right {
-      width: 70vw;
-
+      width: 70%;
+      margin-left: auto;
       &-item-heading {
         &-has-subheadings {
           &-subheadings-wrap {
@@ -374,12 +371,12 @@ const StyledTableOfContentsScrollTracked = styled.div`
     }
 
     &-left {
-      width: 25vw;
       z-index: 3000;
+      border-right: 1px solid grey;
+      width: 300px;
 
       &-has-subheadings {
         &-foldable {
-          /* height: 0; */
           overflow: hidden;
           &-open {
           }
@@ -400,6 +397,8 @@ const StyledTableOfContentsScrollTracked = styled.div`
           }
 
           &-title {
+            height: ${menuItemHeight}px;
+            margin-bottom: 0;
           }
         }
       }
@@ -434,12 +433,20 @@ const StyledTableOfContentsScrollTracked = styled.div`
 
   .left-title {
     font-size: ${titleSize}px;
+    font-size: 22px;
     margin-left: 10px;
     margin-bottom: 0;
+    height: ${menuItemHeight}px;
+    border-right: ${borderSize}px solid transparent;
+
+    img {
+      height: 7px;
+      margin: auto 0;
+    }
   }
 
   .left-subtitle {
-    font-size: ${titleSize - 5}px;
+    font-size: 18px;
     margin-left: 20px;
   }
 
@@ -454,7 +461,6 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .right-when-is-stuck {
-    margin-left: 29vw;
   }
 
   .right-title {
@@ -467,7 +473,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .blink {
-    border-right: 10px solid #00b3f0;
+    border-right: ${borderSize}px solid #00b3f0;
   }
 
   .foldable-closed {
