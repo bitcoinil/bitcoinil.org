@@ -1,8 +1,11 @@
 import * as React from 'react'
+import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 
 import ico_angle from '../img/ico_angle_black.svg'
+import { colors } from '../theme/colors'
 import { flashElement, scrollToElement } from '../util/util'
+import { TOCBreakPointMobile, TOCBreakPointOne } from '../utils/breakpoints'
 import {
   ElementToTrack,
   FAQSubheading,
@@ -10,6 +13,7 @@ import {
   IndividualFAQ,
   TableOfContentsScrollTrackedProps
 } from '../utils/interfaces'
+import TOCBurgerMenu from './TableOfContentsScrollTrackedBurger'
 
 const TableOfContentsScrollTracked: React.FC<
   TableOfContentsScrollTrackedProps
@@ -24,6 +28,8 @@ const TableOfContentsScrollTracked: React.FC<
   const columnRef = React.createRef<HTMLDivElement>()
   const endRef = React.createRef<HTMLDivElement>()
   const startRef = React.createRef<HTMLDivElement>()
+
+  // const mobileTocRef = React.createRef<HTMLDivElement | null | undefined>()
   const rightSideElements = React.useRef<(ElementToTrack | null)[]>([])
   const leftSideElements = React.useRef<(ElementToTrack | null)[]>([])
 
@@ -95,6 +101,10 @@ const TableOfContentsScrollTracked: React.FC<
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [rightSideElements, leftSideElements])
+
+  // React.useEffect(() => {
+  //   console.log(mobileTocRef)
+  // }, [mobileTocRef])
 
   React.useEffect(() => {
     window.addEventListener('scroll', scrollCheckMenuInView)
@@ -211,6 +221,29 @@ const TableOfContentsScrollTracked: React.FC<
     // Left Side First
     <StyledTableOfContentsScrollTracked id="TableOfContentsScrollTracked">
       <div className="top-hitbox" ref={startRef} />
+      <div
+        className={`mobile-toc ${isStuck ? 'mobile-toc-stuck' : ''}`}
+        // ref={mobileTocRef}
+      >
+        <TOCBurgerMenu
+          elInView={elInView}
+          scrollToRightSideElement={scrollToRightSideElement}
+          handleRef={handleRef}
+          handleOpenSubmenu={handleOpenSubmenu}
+          openSubmenus={openSubmenus}
+          isSubmenuOpen={isSubmenuOpen}
+          items={items}
+          label={
+            <p className="burger-menu-title">
+              <FormattedMessage
+                id={`faq.mobile.burger-menu-title`}
+                defaultMessage={`See All`}
+                description={`mobile.burger-menu-title`}
+              />
+            </p>
+          }
+        />
+      </div>
       <div className="scroll-track-toc-main">
         <div
           className={`toc-scroll-tracked-left ${isStuck ? 'stuck' : 'unstuck'}`}
@@ -307,7 +340,7 @@ const TableOfContentsScrollTracked: React.FC<
                   // ref={handleRef}
                   ref={(ref) => handleRef(ref, false, item)}
                   key={i}
-                  className="toc-scroll-tracked-right-item-heading right-title"
+                  className="toc-scroll-tracked-right-item-heading right-title accented-title"
                 >
                   {item.categoryHeading}
                 </p>
@@ -369,18 +402,47 @@ const rightBodySize = 20
 const borderSize = 5
 
 const StyledTableOfContentsScrollTracked = styled.div`
+  margin-top: 100px;
   margin-bottom: 300px;
+
+  .mobile-toc {
+    background-color: ${colors.accent};
+    color: white;
+    display: none;
+    position: sticky;
+    top: 0;
+    left: 0;
+    align-items: center;
+    padding: 15px 0;
+
+    .burger-menu-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: bolder;
+    }
+
+    ${TOCBreakPointMobile} {
+      display: flex;
+      padding-left: 15px;
+    }
+  }
+
   .scroll-track-toc-main {
     display: flex;
+
+    ${TOCBreakPointMobile} {
+      flex-direction: column;
+    }
   }
 
   .toc-scroll-tracked {
     &-right {
-      /* background: #8686cb; */
+      padding-top: 30px;
       padding-left: 50px;
       padding-right: 15vw;
       width: 65vw;
       margin-left: auto;
+
       &-item-heading {
         font-size: ${leftTitleSize}px;
         &-has-subheadings {
@@ -392,15 +454,10 @@ const StyledTableOfContentsScrollTracked = styled.div`
       }
     }
 
-    /* toc-scroll-tracked-left-item-without-subheadings left-title  */
-
     &-left {
-      padding-top: 20px;
       border-right: 1px solid grey;
-
-      /* background: #b58787; */
       padding-left: 15vw;
-      /* padding-right: 5vw; */
+
       &-has-subheadings {
         &-foldable {
           &-open {
@@ -478,6 +535,9 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .right-when-is-stuck {
+    ${TOCBreakPointOne} {
+      width: 50vw;
+    }
   }
 
   .right-title {
@@ -506,5 +566,28 @@ const StyledTableOfContentsScrollTracked = styled.div`
   .open-arrow {
     transition: all 400ms;
     transform: rotate(-90deg);
+  }
+
+  .accented-title {
+    color: ${colors.accent};
+    font-weight: bolder;
+  }
+
+  ${TOCBreakPointMobile} {
+    .toc-scroll-tracked {
+      &-left {
+        display: none;
+      }
+      &-right {
+        padding: 0;
+        margin: 0;
+        width: 95vw;
+        padding: 50px;
+        margin: auto;
+      }
+      .mobile-toc {
+        background: red;
+      }
+    }
   }
 `
