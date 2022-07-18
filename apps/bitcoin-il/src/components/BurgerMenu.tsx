@@ -57,7 +57,7 @@ const BurgerWrap = styled.div`
       position: absolute;
       display: block;
       height: 32px;
-      width: 32px;
+      width: 100px;
       top: 20px;
       z-index: 5;
       opacity: 0;
@@ -65,11 +65,11 @@ const BurgerWrap = styled.div`
     }
 
     .on-left {
-      left: 20px;
+      left: 0;
     }
 
     .on-right {
-      right: 20px;
+      right: 0;
     }
 
     .hamburger-lines {
