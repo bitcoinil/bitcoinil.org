@@ -1,4 +1,5 @@
 import * as React from 'react'
+
 import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
 
 export interface ClickedMenuItemData {
@@ -126,6 +127,7 @@ export interface FAQBodyProps {}
 export interface tableOfContentSubheading {
   subHeadingTitle: JSX.Element
   subHeadingBody: JSX.Element
+  hasSubheadings: boolean
   key: string
 }
 
@@ -152,7 +154,7 @@ export interface LogoProps {
 
 export interface tableOfContentItem {
   categoryHeading: JSX.Element
-  hasSubHeadings: boolean
+  hasSubheadings: boolean
   bodyWithoutSubheadings?: { body: JSX.Element }[]
   subHeadings?: tableOfContentSubheading[]
   key: string
@@ -309,4 +311,15 @@ export interface AppWrappersProps {
 
 export interface AppLayoutProps {
   children: JSX.Element
+}
+
+export interface TOCBurgerMenuProps {
+  label: JSX.Element
+  items: tableOfContentItem[]
+  elInView: string
+  scrollToRightSideElement: Function
+  handleRef: Function
+  handleOpenSubmenu: Function
+  openSubmenus: string[]
+  isSubmenuOpen: Function
 }

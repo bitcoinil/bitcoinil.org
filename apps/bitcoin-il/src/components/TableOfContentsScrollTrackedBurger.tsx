@@ -3,18 +3,7 @@ import styled from 'styled-components'
 
 import ico_angle from '../img/ico_angle.svg'
 import { phoneDevices } from '../utils/breakpoints'
-import { tableOfContentItem } from '../utils/interfaces'
-
-export interface TOCBurgerMenuProps {
-  label: JSX.Element
-  items: tableOfContentItem[]
-  elInView: string
-  scrollToRightSideElement: Function
-  handleRef: Function
-  handleOpenSubmenu: Function
-  openSubmenus: string[]
-  isSubmenuOpen: Function
-}
+import { TOCBurgerMenuProps } from '../utils/interfaces'
 
 const TOCBurgerMenu: React.FC<TOCBurgerMenuProps> = ({
   label,

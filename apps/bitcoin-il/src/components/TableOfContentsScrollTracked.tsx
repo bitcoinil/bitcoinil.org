@@ -106,10 +106,6 @@ const TableOfContentsScrollTracked: React.FC<
     return () => window.removeEventListener('scroll', handleScroll)
   }, [rightSideElements, leftSideElements])
 
-  // React.useEffect(() => {
-  //   console.log(mobileTocRef)
-  // }, [mobileTocRef])
-
   React.useEffect(() => {
     window.addEventListener('scroll', scrollCheckMenuInView)
 
@@ -142,11 +138,11 @@ const TableOfContentsScrollTracked: React.FC<
   ) => {
     if (!ref) return null
 
-    const { hasSubHeadings, key } = item
+    const { hasSubheadings, key } = item
 
     const newElementToTrack: ElementToTrack = {
       element: ref,
-      hasSubheadings: hasSubHeadings,
+      hasSubheadings: hasSubheadings,
       key,
       isSubMenuItem: false,
       menuParent
