@@ -4,13 +4,13 @@ import { FormattedMessage } from 'react-intl'
 import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
-import { exhchanges, renderCitiesList } from '../data/ExchangesBodyData'
+import { exhchanges } from '../data/ExchangesBodyData'
 import ico_badge from '../img/ico_badge.svg'
 import { isDarkMode } from '../state/state'
 import { colors } from '../theme/colors'
-import { flashElement, scrollToElement } from '../util/util'
 import { phoneDevices, smallDevices } from '../utils/breakpoints'
-import { ExchangeLocation, ExchangesBodyProps } from '../utils/interfaces'
+import { ExchangesBodyProps } from '../utils/interfaces'
+import TableOfContentsScrollTracked from './TableOfContentsScrollTracked'
 
 const { Panel } = Collapse
 
@@ -64,7 +64,8 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
           description={`exhcnages-warning`}
         />
       </div>
-      <div
+      <TableOfContentsScrollTracked items={exhchanges} />
+      {/* <div
         ref={columnsRef}
         className={`exchanges-columns ${
           isBelowZero && !isAtEnd ? 'sticky' : 'unsticky'
@@ -185,7 +186,7 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
 
       <div ref={endRef} className="scroll-end-detect">
         DETECT END OF SCROLLLL
-      </div>
+      </div> */}
     </StyledExchangesBody>
   )
 }
@@ -274,10 +275,6 @@ const StyledExchangesBody = styled.div`
 
   li {
     margin-bottom: 10px;
-  }
-
-  ${phoneDevices} {
-    display: none;
   }
 
   .right {

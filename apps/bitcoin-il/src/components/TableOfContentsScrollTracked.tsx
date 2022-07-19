@@ -12,10 +12,10 @@ import {
 } from '../utils/breakpoints'
 import {
   ElementToTrack,
-  FAQSubheading,
   HTMLElementWithID,
-  IndividualFAQ,
-  TableOfContentsScrollTrackedProps
+  tableOfContentItem,
+  TableOfContentsScrollTrackedProps,
+  tableOfContentSubheading
 } from '../utils/interfaces'
 import TOCBurgerMenu from './TableOfContentsScrollTrackedBurger'
 
@@ -137,7 +137,7 @@ const TableOfContentsScrollTracked: React.FC<
   const handleRef = (
     ref: HTMLParagraphElement | null,
     left: boolean,
-    item: IndividualFAQ | FAQSubheading,
+    item: tableOfContentItem | tableOfContentSubheading,
     menuParent?: string | null
   ) => {
     if (!ref) return null
@@ -339,16 +339,27 @@ const TableOfContentsScrollTracked: React.FC<
               // no subheadings
 
               return (
-                <p
-                  id={item.key}
-                  // @ts-ignore
-                  // ref={handleRef}
-                  ref={(ref) => handleRef(ref, false, item)}
-                  key={i}
-                  className="toc-scroll-tracked-right-item-heading right-title accented-title"
-                >
-                  {item.categoryHeading}
-                </p>
+                <React.Fragment>
+                  <p
+                    id={item.key}
+                    // @ts-ignore
+                    // ref={handleRef}
+                    ref={(ref) => handleRef(ref, false, item)}
+                    key={i}
+                    className="toc-scroll-tracked-right-item-heading right-title accented-title"
+                  >
+                    {item.categoryHeading}
+                  </p>
+                  {item.bodyWithoutSubheadings
+                    ? item.bodyWithoutSubheadings.map((i) => {
+                        return (
+                          <p className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-body right-subtitle">
+                            {i.body}
+                          </p>
+                        )
+                      })
+                    : null}
+                </React.Fragment>
               )
             } else {
               return (
@@ -360,7 +371,7 @@ const TableOfContentsScrollTracked: React.FC<
                     // @ts-ignore
                     ref={(ref) => handleRef(ref, false, item)}
                     // ref={handleRef}
-                    className="toc-scroll-tracked-right-item-heading-has-subheadings right-title submenu-title"
+                    className="accented-title toc-scroll-tracked-right-item-heading-has-subheadings right-title submenu-title"
                   >
                     {item.categoryHeading}
                   </p>
@@ -444,7 +455,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
     &-right {
       padding-top: 30px;
       padding-left: 50px;
-      padding-right: 15vw;
+      padding-right: 5vw;
       width: 65vw;
       margin-left: auto;
 

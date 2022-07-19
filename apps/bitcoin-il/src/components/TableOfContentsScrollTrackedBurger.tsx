@@ -3,11 +3,11 @@ import styled from 'styled-components'
 
 import ico_angle from '../img/ico_angle.svg'
 import { phoneDevices } from '../utils/breakpoints'
-import { IndividualFAQ } from '../utils/interfaces'
+import { tableOfContentItem } from '../utils/interfaces'
 
 export interface TOCBurgerMenuProps {
   label: JSX.Element
-  items: IndividualFAQ[]
+  items: tableOfContentItem[]
   elInView: string
   scrollToRightSideElement: Function
   handleRef: Function

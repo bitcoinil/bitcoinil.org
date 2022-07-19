@@ -1,13 +1,10 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 
-import { IndividualFAQ } from '../utils/interfaces'
+import { tableOfContentItem } from '../utils/interfaces'
 
-export const FAQ: IndividualFAQ[] = [
+export const FAQ: tableOfContentItem[] = [
   {
-    isSubmenuItem: false,
-    parentMenuKey: null,
-    isSubmenuParent: false,
     categoryHeading: (
       <FormattedMessage
         id={`faq.general`}
@@ -18,13 +15,6 @@ export const FAQ: IndividualFAQ[] = [
     hasSubHeadings: false,
     bodyWithoutSubheadings: [
       {
-        title: (
-          <FormattedMessage
-            id={`faq.what-is`}
-            defaultMessage={`What is BitCoin?`}
-            description={`what-is`}
-          />
-        ),
         body: (
           <FormattedMessage
             id={`faq.what-is.body`}

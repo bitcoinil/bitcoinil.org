@@ -123,27 +123,26 @@ export interface FooterProps {}
 
 export interface FAQBodyProps {}
 
-export interface FAQSubheading {
+export interface tableOfContentSubheading {
   subHeadingTitle: JSX.Element
   subHeadingBody: JSX.Element
   key: string
-  hasSubHeadings: boolean
 }
 
 export interface FAQBodyTwoProps {
-  items: IndividualFAQ[]
+  items: tableOfContentItem[]
 }
 
 export interface ElementToTrack {
   element: HTMLElementWithID
   hasSubheadings: boolean
   key: string
-  isSubMenuItem: boolean
+  isSubMenuItem?: boolean
   menuParent?: string | null
 }
 
 export interface TableOfContentsScrollTrackedProps {
-  items: IndividualFAQ[]
+  items: tableOfContentItem[]
 }
 
 export interface LogoProps {
@@ -151,14 +150,11 @@ export interface LogoProps {
   props?: any
 }
 
-export interface IndividualFAQ {
+export interface tableOfContentItem {
   categoryHeading: JSX.Element
   hasSubHeadings: boolean
-  isSubmenuItem: boolean
-  isSubmenuParent: boolean
-  parentMenuKey: string | null
-  bodyWithoutSubheadings?: { title: JSX.Element; body: JSX.Element }[]
-  subHeadings?: FAQSubheading[]
+  bodyWithoutSubheadings?: { body: JSX.Element }[]
+  subHeadings?: tableOfContentSubheading[]
   key: string
 }
 
