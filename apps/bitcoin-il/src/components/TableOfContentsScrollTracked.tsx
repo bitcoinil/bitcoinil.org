@@ -5,7 +5,11 @@ import styled from 'styled-components'
 import ico_angle from '../img/ico_angle_black.svg'
 import { colors } from '../theme/colors'
 import { flashElement, scrollToElement } from '../util/util'
-import { TOCBreakPointMobile, TOCBreakPointOne } from '../utils/breakpoints'
+import {
+  phoneDevices,
+  TOCBreakPointMobile,
+  TOCBreakPointOne
+} from '../utils/breakpoints'
 import {
   ElementToTrack,
   FAQSubheading,
@@ -156,13 +160,14 @@ const TableOfContentsScrollTracked: React.FC<
     }
   }
 
-  const scrollToRightSideElement = (key: string) => {
+  const scrollToRightSideElement = (key: string, paddingTop?: boolean) => {
     const el = getRightSideElementFromStateUsingKey(key)?.element
 
     if (!el) return null
 
     flashElement(el)
     scrollToElement(el)
+    // window.scrollBy({ top: -50 })
   }
 
   const isSubmenuOpen = (key: string) => {
@@ -543,6 +548,10 @@ const StyledTableOfContentsScrollTracked = styled.div`
   .right-title {
     font-size: ${rightTitleSize}px;
     font-weight: bolder;
+
+    ${phoneDevices} {
+      padding-top: 90px;
+    }
   }
 
   .right-subtitle {

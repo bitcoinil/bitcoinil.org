@@ -59,7 +59,10 @@ const TOCBurgerMenu: React.FC<TOCBurgerMenuProps> = ({
                 className={`toc-scroll-tracked-left-item-without-subheadings left-title ${
                   item.key === elInView ? 'active-toc-item' : ''
                 }`}
-                onClick={() => scrollToRightSideElement(item.key)}
+                onClick={() => {
+                  toggleBurger()
+                  scrollToRightSideElement(item.key)
+                }}
                 ref={(ref) => handleRef(ref, true, item)}
                 key={i}
               >
@@ -111,6 +114,7 @@ const TOCBurgerMenu: React.FC<TOCBurgerMenuProps> = ({
                         ref={(ref) => handleRef(ref, true, subItem, item.key)}
                         key={i}
                         onClick={() => {
+                          toggleBurger()
                           scrollToRightSideElement(subItem.key)
                         }}
                       >
