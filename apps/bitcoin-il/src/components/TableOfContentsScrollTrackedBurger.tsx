@@ -246,7 +246,7 @@ const BurgerWrap = styled.div`
       height: 0;
       z-index: 5;
       overflow: hidden;
-      width: 45vw;
+      width: 65vw;
       position: absolute;
       background-color: black;
       color: white;
@@ -255,8 +255,9 @@ const BurgerWrap = styled.div`
       transition: all 400ms;
 
       &.open {
-        transition: all 400ms;
+        transition: height 400ms;
         height: auto;
+        padding: 20px;
       }
     }
 
