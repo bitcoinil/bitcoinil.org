@@ -256,7 +256,7 @@ const BurgerWrap = styled.div`
 
       &.open {
         transition: height 400ms;
-        height: auto;
+        height: 100vh;
         padding: 20px;
       }
     }
@@ -273,5 +273,10 @@ const BurgerWrap = styled.div`
         display: none;
       }
     }
+  }
+
+  .toc-scroll-tracked-left-item-without-subheadings,
+  .left-title {
+    border-bottom: 1px solid grey;
   }
 `
