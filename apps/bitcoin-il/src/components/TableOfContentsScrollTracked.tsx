@@ -335,7 +335,7 @@ const TableOfContentsScrollTracked: React.FC<
               // no subheadings
 
               return (
-                <React.Fragment>
+                <React.Fragment key={i}>
                   <p
                     id={item.key}
                     // @ts-ignore
@@ -347,10 +347,13 @@ const TableOfContentsScrollTracked: React.FC<
                     {item.categoryHeading}
                   </p>
                   {item.bodyWithoutSubheadings
-                    ? item.bodyWithoutSubheadings.map((i) => {
+                    ? item.bodyWithoutSubheadings.map((subItem, ii) => {
                         return (
-                          <p className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-body right-subtitle">
-                            {i.body}
+                          <p
+                            key={ii}
+                            className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-body right-subtitle"
+                          >
+                            {subItem.body}
                           </p>
                         )
                       })
