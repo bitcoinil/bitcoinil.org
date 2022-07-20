@@ -231,73 +231,29 @@
     "defaultMessage": "BitCoin Meetup Groups",
     "description": "link-0"
   },
-  "exchange.menuItem.Canada": {
-    "defaultMessage": "Canada",
-    "description": "Canada"
-  },
-  "exchange.menuItem.USA": {
-    "defaultMessage": "USA",
-    "description": "USA"
-  },
-  "exchange.menuItem.USA.Miami": {
-    "defaultMessage": "Miami",
-    "description": "USA.Miami"
-  },
-  "exchange.menuItem.USA.New-York": {
-    "defaultMessage": "New York",
-    "description": "USA.New York"
-  },
-  "exchange.menuItem.USA.detroit": {
-    "defaultMessage": "Detroit",
-    "description": "USA.detroit"
-  },
-  "exchange.menuItem.USA.texas": {
-    "defaultMessage": "Texas",
-    "description": "USA.texas"
-  },
-  "exchange.menuItem.asia.label": {
+  "exchanges.asia": {
     "defaultMessage": "Asia",
-    "description": "asia.label"
+    "description": "asia"
   },
-  "exchange.menuItem.bahrain": {
-    "defaultMessage": "Bahrain",
-    "description": "bahrain"
+  "exchanges.asia.czech": {
+    "defaultMessage": "🇨🇿 Czech Replublic",
+    "description": "asia.czech"
   },
-  "exchange.menuItem.bahrain.exhange.label": {
-    "defaultMessage": "Some Bahrainian Exchange",
-    "description": "bahrain.exhange.label"
+  "exchanges.asia.france": {
+    "defaultMessage": "🇫🇷 France",
+    "description": "asia.france"
   },
-  "exchange.menuItem.canada.exhange.label": {
-    "defaultMessage": "Toronto",
-    "description": "canada.exhange.label"
+  "exchanges.asia.vietnam": {
+    "defaultMessage": "🇻🇳 Vietnam",
+    "description": "asia.vietnam"
   },
-  "exchange.menuItem.israel": {
-    "defaultMessage": "Israel",
-    "description": "israel"
+  "exchanges.europe": {
+    "defaultMessage": "Europe",
+    "description": "Europe"
   },
-  "exchange.menuItem.israel.exchange": {
-    "defaultMessage": "Some Israeli Exchange",
-    "description": "israel.exchange"
-  },
-  "exchange.menuItem.north-america.label": {
-    "defaultMessage": "North America",
-    "description": "north-america.label"
-  },
-  "exchange.menuItem.p2p.exchange.0.label": {
-    "defaultMessage": "Some Peer To Peer Excahnge",
-    "description": "p2p.exchange.0.label"
-  },
-  "exchange.menuItem.peer2peer": {
-    "defaultMessage": "P2P",
-    "description": "peer2peer"
-  },
-  "exchange.menuItem.someExchange": {
-    "defaultMessage": "Some International Exchange ...",
-    "description": "someExchange"
-  },
-  "exchangeMenuItem.international.label": {
+  "exchanges.international": {
     "defaultMessage": "International",
-    "description": "exchangeMenuItem.international.label"
+    "description": "international"
   },
   "exchanges.warning": {
     "defaultMessage": "Note: Exchanges provide highly varying degrees of safety, security, privacy, and control over your funds and information. Perform your own due diligence and choose a wallet where you will keep your bitcoin before selecting an exchange.",
@@ -335,9 +291,9 @@
     "defaultMessage": "Legal",
     "description": "legal"
   },
-  "faq.what-is": {
-    "defaultMessage": "What is BitCoin?",
-    "description": "what-is"
+  "faq.mobile.burger-menu-title": {
+    "defaultMessage": "See All",
+    "description": "mobile.burger-menu-title"
   },
   "faq.what-is.body": {
     "defaultMessage": "Bitcoin is a consensus network that enables a new payment system and a completely digital money. It is the first decentralized peer-to-peer payment network that is powered by its users with no central authority or middlemen. From a user perspective, Bitcoin is pretty much like cash for the Internet. Bitcoin can also be seen as the most prominent triple entry bookkeeping system in existence.",
