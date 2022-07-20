@@ -240,6 +240,16 @@ const StyledExchangesBody = styled.div`
   }
 
   .exchanges-warning {
+    background: #fff9f3;
+    padding: 60px;
+    border: none;
+    margin: auto;
+    margin-top: 50px;
+    width: 50vw;
+    display: flex;
+    font-size: 16px;
+    color: black;
+
     ${phoneDevices} {
       flex-direction: column;
 
@@ -250,18 +260,12 @@ const StyledExchangesBody = styled.div`
     }
 
     &.dark-exchanges-warning {
-      background: black;
+      background-color: black;
+      color: white;
     }
 
     &.light-exchanges-warning {
-      background: white;
-      border: 1px solid #989da7;
     }
-    background: black;
-    margin: 20px;
-    display: flex;
-    padding: 20px;
-    font-size: 20px;
 
     img {
       margin-right: 30px;

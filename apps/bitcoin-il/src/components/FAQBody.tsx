@@ -24,7 +24,7 @@ const FAQBody: React.FC<FAQBodyProps> = ({}) => {
                 }}
               >
                 {faq.categoryHeading}
-                {faq.hasSubHeadings ? (
+                {faq.hasSubheadings ? (
                   <ol>
                     {faq.subHeadings?.map((subHead, i) => {
                       return (
@@ -59,7 +59,7 @@ const FAQBody: React.FC<FAQBodyProps> = ({}) => {
               >
                 {faq.categoryHeading}
               </h1>
-              {faq.hasSubHeadings
+              {faq.hasSubheadings
                 ? faq.subHeadings?.map((subH, i) => {
                     return (
                       <React.Fragment key={i}>
@@ -168,6 +168,7 @@ const StyledFAQBody = styled.div`
     }
 
     &-category-heading {
+      border: 2px solid red;
     }
 
     &-subheading-title {
