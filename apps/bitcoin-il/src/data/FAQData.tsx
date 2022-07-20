@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl'
 import { tableOfContentItem } from '../utils/interfaces'
 
 export const FAQ: tableOfContentItem[] = [
+  // FAQ With no subheadings:
   {
     categoryHeading: (
       <FormattedMessage
@@ -12,7 +13,7 @@ export const FAQ: tableOfContentItem[] = [
         description={`general`}
       />
     ),
-    hasSubHeadings: false,
+    hasSubheadings: false,
     bodyWithoutSubheadings: [
       {
         body: (
@@ -26,6 +27,7 @@ export const FAQ: tableOfContentItem[] = [
     ],
     key: 'what-is'
   },
+  // FAQ With subheadings:
   {
     categoryHeading: (
       <FormattedMessage
@@ -34,9 +36,10 @@ export const FAQ: tableOfContentItem[] = [
         description={`legal`}
       />
     ),
-    hasSubHeadings: true,
+    hasSubheadings: true,
     subHeadings: [
       {
+        hasSubheadings: false,
         key: 'is-it-legal',
         subHeadingTitle: (
           <FormattedMessage
@@ -59,186 +62,5 @@ export const FAQ: tableOfContentItem[] = [
       }
     ],
     key: 'is-legal'
-  },
-  {
-    categoryHeading: (
-      <FormattedMessage
-        id={`faq.legal`}
-        defaultMessage={`Legal`}
-        description={`legal`}
-      />
-    ),
-    hasSubHeadings: true,
-    subHeadings: [
-      {
-        key: 'something-else',
-        subHeadingTitle: (
-          <FormattedMessage
-            id={`faq.is-legal`}
-            defaultMessage={`Something else`}
-            description={`is-legal`}
-          />
-        ),
-        subHeadingBody: (
-          <FormattedMessage
-            id={`faq.is-legal.body`}
-            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
-  
-          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
-          
-          `}
-            description={`is-legal.body`}
-          />
-        )
-      },
-      {
-        key: 'go-habs',
-        subHeadingTitle: (
-          <FormattedMessage
-            id={`faq.is-legal`}
-            defaultMessage={`Go Habs`}
-            description={`is-legal`}
-          />
-        ),
-        subHeadingBody: (
-          <FormattedMessage
-            id={`faq.is-legal.body`}
-            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
-  
-          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
-          
-          `}
-            description={`is-legal.body`}
-          />
-        )
-      },
-      {
-        key: 'go-titans',
-        subHeadingTitle: (
-          <FormattedMessage
-            id={`faq.is-legal`}
-            defaultMessage={`Go Titans!`}
-            description={`is-legal`}
-          />
-        ),
-        subHeadingBody: (
-          <FormattedMessage
-            id={`faq.is-legal.body`}
-            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
-  
-          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
-          
-          `}
-            description={`is-legal.body`}
-          />
-        )
-      },
-      {
-        key: 'play-tennis',
-        subHeadingTitle: (
-          <FormattedMessage
-            id={`faq.is-legal`}
-            defaultMessage={`play tennis`}
-            description={`is-legal`}
-          />
-        ),
-        subHeadingBody: (
-          <FormattedMessage
-            id={`faq.is-legal.body`}
-            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
-  
-          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
-          
-          `}
-            description={`is-legal.body`}
-          />
-        )
-      },
-      {
-        key: 'eat-pizza',
-        subHeadingTitle: (
-          <FormattedMessage
-            id={`faq.is-legal`}
-            defaultMessage={`eat pizza`}
-            description={`is-legal`}
-          />
-        ),
-        subHeadingBody: (
-          <FormattedMessage
-            id={`faq.is-legal.body`}
-            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
-  
-          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
-          
-          `}
-            description={`is-legal.body`}
-          />
-        )
-      },
-      {
-        key: 'bkn-99',
-        subHeadingTitle: (
-          <FormattedMessage
-            id={`faq.is-legal`}
-            defaultMessage={`Brooklyn 99`}
-            description={`is-legal`}
-          />
-        ),
-        subHeadingBody: (
-          <FormattedMessage
-            id={`faq.is-legal.body`}
-            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
-  
-          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
-          
-          `}
-            description={`is-legal.body`}
-          />
-        )
-      },
-      {
-        key: 'evil dead',
-        subHeadingTitle: (
-          <FormattedMessage
-            id={`faq.is-legal`}
-            defaultMessage={`Evil Dead`}
-            description={`is-legal`}
-          />
-        ),
-        subHeadingBody: (
-          <FormattedMessage
-            id={`faq.is-legal.body`}
-            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
-  
-          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
-          
-          `}
-            description={`is-legal.body`}
-          />
-        )
-      },
-      {
-        key: 'steve-mcqueen',
-        subHeadingTitle: (
-          <FormattedMessage
-            id={`faq.is-legal`}
-            defaultMessage={`Steve McQueen`}
-            description={`is-legal`}
-          />
-        ),
-        subHeadingBody: (
-          <FormattedMessage
-            id={`faq.is-legal.body`}
-            defaultMessage={`To the best of our knowledge, Bitcoin has not been made illegal by legislation in most jurisdictions. However, some jurisdictions (such as Argentina and Russia) severely restrict or ban foreign currencies. Other jurisdictions (such as Thailand) may limit the licensing of certain entities such as Bitcoin exchanges.
-  
-          Regulators from various jurisdictions are taking steps to provide individuals and businesses with rules on how to integrate this new technology with the formal, regulated financial system. For example, the Financial Crimes Enforcement Network (FinCEN), a bureau in the United States Treasury Department, issued non-binding guidance on how it characterizes certain activities involving virtual currencies.
-          
-          `}
-            description={`is-legal.body`}
-          />
-        )
-      }
-    ],
-    key: 'is-legal-two'
   }
 ]
