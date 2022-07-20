@@ -131,9 +131,7 @@ export interface tableOfContentSubheading {
   key: string
 }
 
-export interface FAQBodyTwoProps {
-  items: tableOfContentItem[]
-}
+export interface FAQBodyTwoProps {}
 
 export interface ElementToTrack {
   element: HTMLElementWithID
