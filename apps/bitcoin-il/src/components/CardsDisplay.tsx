@@ -36,18 +36,28 @@ const StyledCardsDisplay = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     max-width: 100vw;
-    padding: 100px 0;
+    padding: 25px 0 0 0;
+    width: 70vw;
+    margin: auto;
+
+    ${phoneDevices} {
+      width: 100vw;
+    }
   }
 
   .ant-card {
     width: 300px;
     margin: 20px;
+    background: transparent;
 
     ${phoneDevices} {
       width: 95vw;
     }
 
     &-body {
+      height: 70vh;
+      padding: 30px;
+      border: 1px solid #dadada;
       display: flex;
       flex-direction: column;
       align-items: center;
