@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { whitePaperTranslations } from '../data/WhitePaperData'
 
 import ico_download from '../img/ico_download.svg'
+import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { WhitePaperBodyProps } from '../utils/interfaces'
 
@@ -67,9 +68,14 @@ export default WhitePaperBody
 
 const StyledWhitePaperBody = styled.div`
   padding: 100px;
+  width: 70vw;
+  text-align: center;
+  margin: auto;
 
   ${phoneDevices} {
     padding: 40px;
+    margin: 0;
+    width: 100vw;
 
     h1 {
       font-size: 15px;
@@ -89,9 +95,11 @@ const StyledWhitePaperBody = styled.div`
     }
 
     .ant-card {
-      padding: 60px;
+      padding: 100px;
       height: 200px;
       margin-left: 15px;
+      background: transparent;
+      border: 1px solid ${colors.borderColor};
 
       display: flex;
       align-items: center;
