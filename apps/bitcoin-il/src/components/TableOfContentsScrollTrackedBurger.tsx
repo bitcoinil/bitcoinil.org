@@ -239,7 +239,7 @@ const BurgerWrap = styled.div`
       position: absolute;
       background-color: black;
       color: white;
-      top: 60px;
+      top: 62px;
       left: 0;
       transition: all 400ms;
 

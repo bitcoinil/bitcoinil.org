@@ -28,8 +28,9 @@ const TableOfContentsScrollTracked: React.FC<
   const [isError, setIsError] = React.useState(false)
   const [elInView, setElInView] = React.useState('')
   const [openSubmenus, setOpenSubmenus] = React.useState<string[]>([])
+  const [leftHandWidth, setLeftHandWidth] = React.useState<number>(0)
 
-  const columnRef = React.createRef<HTMLDivElement>()
+  const leftHandColumnRef = React.createRef<HTMLDivElement>()
   const endRef = React.createRef<HTMLDivElement>()
   const startRef = React.createRef<HTMLDivElement>()
 
@@ -38,6 +39,11 @@ const TableOfContentsScrollTracked: React.FC<
   const leftSideElements = React.useRef<(ElementToTrack | null)[]>([])
 
   const isStuck = isBelowZero && !isAtEnd && isAtStart
+
+  React.useEffect(() => {
+    if (leftHandColumnRef?.current?.clientWidth)
+      setLeftHandWidth(leftHandColumnRef?.current?.clientWidth)
+  }, [leftHandColumnRef.current])
 
   React.useEffect(() => {
     // take element in view, find the root menu title, and open it
@@ -198,8 +204,8 @@ const TableOfContentsScrollTracked: React.FC<
   }
 
   const scrollCheckMenuInView = () => {
-    if (!columnRef.current?.getBoundingClientRect().y) return null
-    setIsBelowZero(columnRef.current?.getBoundingClientRect()?.y <= 0)
+    if (!leftHandColumnRef.current?.getBoundingClientRect().y) return null
+    setIsBelowZero(leftHandColumnRef.current?.getBoundingClientRect()?.y <= 0)
   }
 
   const scrollCheckEnderInView = () => {
@@ -248,7 +254,7 @@ const TableOfContentsScrollTracked: React.FC<
       <div className="scroll-track-toc-main">
         <div
           className={`toc-scroll-tracked-left ${isStuck ? 'stuck' : 'unstuck'}`}
-          ref={columnRef}
+          ref={leftHandColumnRef}
         >
           {items.map((item, i) => {
             if (!item.subHeadings) {
@@ -326,6 +332,9 @@ const TableOfContentsScrollTracked: React.FC<
         {/* LEFT SIDE ABOVE */}
         {/* RIGHT SIDE BELOW */}
         <div
+          style={{
+            marginLeft: `${leftHandWidth}px`
+          }}
           className={`toc-scroll-tracked-right ${
             isStuck ? 'right-when-is-stuck' : ''
           }`}
@@ -456,7 +465,6 @@ const StyledTableOfContentsScrollTracked = styled.div`
       padding-left: 50px;
       padding-right: 5vw;
       width: 65vw;
-      margin-left: auto;
 
       &-item-heading {
         font-size: ${leftTitleSize}px;
@@ -471,7 +479,9 @@ const StyledTableOfContentsScrollTracked = styled.div`
 
     &-left {
       border-right: 1px solid grey;
-      padding-left: 15vw;
+      padding-left: 5vw;
+      position: absolute;
+      min-height: 100vh;
 
       &-has-subheadings {
         &-foldable {
@@ -550,8 +560,11 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .right-when-is-stuck {
+    position: sticky;
+    top: 0;
+
     ${TOCBreakPointOne} {
-      width: 50vw;
+      /* width: 50vw; */
     }
   }
 
@@ -560,7 +573,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
     font-weight: bolder;
 
     ${phoneDevices} {
-      padding-top: 90px;
+      padding-top: 80px;
     }
   }
 
