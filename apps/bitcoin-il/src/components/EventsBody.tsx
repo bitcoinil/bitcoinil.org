@@ -88,5 +88,9 @@ const StyledEventsBody = styled.div`
     align-items: center;
     display: flex;
     width: 100vw;
+
+    &-left {
+      font-size: 18px;
+    }
   }
 `
