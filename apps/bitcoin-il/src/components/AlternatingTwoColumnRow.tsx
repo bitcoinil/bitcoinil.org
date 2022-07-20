@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { colors } from '../theme/colors'
 
 import { phoneDevices } from '../utils/breakpoints'
 import { AlternatingTwoColumnRowProps } from '../utils/interfaces'
@@ -10,7 +11,7 @@ const AlternatingTwoColumnRow: React.FC<AlternatingTwoColumnRowProps> = ({
   titleText,
   bodyText
 }) => {
-  const even = index % 2 === 0
+  const even = index % 2 === 1
 
   return (
     <StyledAlternatingTwoColumnRow
@@ -34,10 +35,21 @@ const StyledAlternatingTwoColumnRow = styled.div`
   display: flex;
   padding: 65px;
   margin-top: 50px;
+  width: 70vw;
+  margin: auto;
+
+  h1 {
+    color: ${colors.accent};
+  }
+
+  p {
+    font-size: 18px;
+  }
 
   ${phoneDevices} {
     flex-direction: column;
     padding: 0;
+    width: 100vw;
 
     img {
       max-width: 75vw;
@@ -57,6 +69,17 @@ const StyledAlternatingTwoColumnRow = styled.div`
 
   .text-side {
     margin: 0 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .text-side,
+  .img-side {
+    ${phoneDevices} {
+      margin: 10px;
+      text-align: center;
+    }
   }
 
   .img-side {
