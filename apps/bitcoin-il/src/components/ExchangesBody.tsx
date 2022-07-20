@@ -240,6 +240,15 @@ const StyledExchangesBody = styled.div`
   }
 
   .exchanges-warning {
+    ${phoneDevices} {
+      flex-direction: column;
+
+      img {
+        height: 100px;
+        margin-bottom: 40px;
+      }
+    }
+
     &.dark-exchanges-warning {
       background: black;
     }
