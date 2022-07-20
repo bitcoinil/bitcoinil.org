@@ -22,7 +22,7 @@ const TOCBurgerMenu: React.FC<TOCBurgerMenuProps> = ({
   }
 
   return (
-    <BurgerWrap>
+    <BurgerWrap id="TOC-Burger-Wrap">
       <input
         className={`checkbox`}
         onChange={toggleBurger}
@@ -131,136 +131,131 @@ export default TOCBurgerMenu
 
 const BurgerWrap = styled.div`
   transition: all 400ms;
-  display: none;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
 
-  ${phoneDevices} {
-    /* display: unset; */
+  .checkbox {
+    position: relative;
+    display: block;
+    height: 32px;
+    width: 32px;
+    left: 20px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .hamburger-lines {
+    display: block;
+    height: 12px;
+    width: 15px;
+    z-index: 2;
     display: flex;
-    align-items: center;
-    padding-right: 10px;
+    flex-direction: column;
+    justify-content: space-between;
 
-    .checkbox {
-      position: relative;
-      display: block;
-      height: 32px;
-      width: 32px;
-      left: 20px;
-      z-index: 5;
-      opacity: 0;
+    &-label {
+      padding-left: 15px;
       cursor: pointer;
     }
+  }
 
-    .hamburger-lines {
-      display: block;
-      height: 12px;
-      width: 15px;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+  .hamburger-lines .line {
+    display: block;
+    height: 2px;
+    width: 100%;
+    border-radius: 10px;
+    background: white;
+  }
 
-      &-label {
-        padding-left: 15px;
-        cursor: pointer;
-      }
-    }
+  .hamburger-lines .line1 {
+    transform-origin: 0% 0%;
+    transition: transform 0.4s ease-in-out;
+  }
 
-    .hamburger-lines .line {
-      display: block;
-      height: 2px;
-      width: 100%;
-      border-radius: 10px;
-      background: white;
-    }
+  .hamburger-lines .line2 {
+    transition: transform 0.2s ease-in-out;
+  }
 
-    .hamburger-lines .line1 {
-      transform-origin: 0% 0%;
-      transition: transform 0.4s ease-in-out;
-    }
+  .hamburger-lines .line3 {
+    transform-origin: 0% 100%;
+    transition: transform 0.4s ease-in-out;
+  }
 
-    .hamburger-lines .line2 {
-      transition: transform 0.2s ease-in-out;
-    }
+  .menu-items {
+    padding-top: 120px;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
+    height: 100vh;
+    width: 100%;
+    transform: translate(-150%);
+    display: flex;
+    flex-direction: column;
+    margin-left: -40px;
+    padding-left: 50px;
+    transition: transform 0.5s ease-in-out;
+    text-align: center;
+  }
 
-    .hamburger-lines .line3 {
-      transform-origin: 0% 100%;
-      transition: transform 0.4s ease-in-out;
-    }
+  .menu-items li {
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
 
-    .menu-items {
-      padding-top: 120px;
-      box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
+  input[type='checkbox']:checked ~ .menu-items {
+    transform: translateX(0);
+  }
+
+  input[type='checkbox']:checked ~ .hamburger-lines .line1 {
+    transform: rotate(45deg);
+  }
+
+  input[type='checkbox']:checked ~ .hamburger-lines .line2 {
+    transform: scaleY(0);
+  }
+
+  input[type='checkbox']:checked ~ .hamburger-lines .line3 {
+    transform: rotate(-45deg);
+  }
+
+  input[type='checkbox']:checked ~ .logo {
+    display: none;
+  }
+
+  .ant-menu {
+    border-right: none;
+  }
+
+  .slide-out {
+    height: 0;
+    z-index: 5;
+    overflow: hidden;
+    width: 65vw;
+    position: absolute;
+    background-color: black;
+    color: white;
+    top: 62px;
+    left: 0;
+    transition: all 400ms;
+
+    &.open {
+      transition: height 400ms;
       height: 100vh;
-      width: 100%;
-      transform: translate(-150%);
-      display: flex;
-      flex-direction: column;
-      margin-left: -40px;
-      padding-left: 50px;
-      transition: transform 0.5s ease-in-out;
-      text-align: center;
+      padding: 20px;
     }
+  }
 
-    .menu-items li {
-      margin-bottom: 1.2rem;
-      font-size: 1.5rem;
-      font-weight: 500;
-    }
+  .on-click-outside {
+    height: 100vh;
+    width: 100vw;
+    transition: e all 400ms;
+    position: absolute;
+    top: 60px;
+    left: 0;
 
-    input[type='checkbox']:checked ~ .menu-items {
-      transform: translateX(0);
-    }
-
-    input[type='checkbox']:checked ~ .hamburger-lines .line1 {
-      transform: rotate(45deg);
-    }
-
-    input[type='checkbox']:checked ~ .hamburger-lines .line2 {
-      transform: scaleY(0);
-    }
-
-    input[type='checkbox']:checked ~ .hamburger-lines .line3 {
-      transform: rotate(-45deg);
-    }
-
-    input[type='checkbox']:checked ~ .logo {
+    &.closed {
       display: none;
-    }
-
-    .ant-menu {
-      border-right: none;
-    }
-
-    .slide-out {
-      height: 0;
-      z-index: 5;
-      overflow: hidden;
-      width: 65vw;
-      position: absolute;
-      background-color: black;
-      color: white;
-      top: 62px;
-      left: 0;
-      transition: all 400ms;
-
-      &.open {
-        transition: height 400ms;
-        height: 100vh;
-        padding: 20px;
-      }
-    }
-
-    .on-click-outside {
-      height: 100vh;
-      width: 100vw;
-      transition: e all 400ms;
-      position: absolute;
-      top: 60px;
-      left: 0;
-
-      &.closed {
-        display: none;
-      }
     }
   }
 
