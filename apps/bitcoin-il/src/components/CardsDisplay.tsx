@@ -30,6 +30,7 @@ const StyledCardsDisplay = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 120px 0;
 
   .body-cards {
     display: flex;
@@ -46,7 +47,7 @@ const StyledCardsDisplay = styled.div`
   }
 
   .ant-card {
-    width: 300px;
+    width: 20vw;
     margin: 20px;
     background: transparent;
 
@@ -61,11 +62,12 @@ const StyledCardsDisplay = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
 
       .card-title {
         font-weight: bolder;
         text-align: center;
+        margin-bottom: 50px;
       }
       .list-of-links {
         font-size: 16px;
