@@ -48,4 +48,15 @@ const StyledGettingStartedBody = styled.div`
     color: ${colors.accent};
     font-weight: bolder;
   }
+
+  .vertical-timeline-element-content {
+    border: none !important;
+    background-color: transparent !important;
+
+    &-arrow {
+      border: none;
+      height: 2px;
+      background: ${colors.accent};
+    }
+  }
 `

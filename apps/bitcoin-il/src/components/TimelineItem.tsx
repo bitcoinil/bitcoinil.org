@@ -37,4 +37,8 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 
 export default TimelineItem
 
-const StyledTimelineItem = styled.div``
+const StyledTimelineItem = styled.div`
+  button {
+    margin-top: 35px;
+  }
+`
