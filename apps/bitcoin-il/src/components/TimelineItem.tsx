@@ -41,4 +41,8 @@ const StyledTimelineItem = styled.div`
   button {
     margin-top: 35px;
   }
+
+  h1 {
+    font-weight: bolder;
+  }
 `
