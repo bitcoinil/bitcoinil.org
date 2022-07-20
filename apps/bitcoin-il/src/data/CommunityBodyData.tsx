@@ -7,6 +7,84 @@ import ico_meetups from '../img/ico_meetups.svg'
 import ico_social from '../img/ico_social.svg'
 import { BodyCard } from '../utils/interfaces'
 
+export interface NonProfitOrg {
+  flag: string
+  country: JSX.Element
+  links: {
+    linkText: JSX.Element
+    linkHref: string
+  }[]
+}
+
+export const NonProfitOrgs: NonProfitOrg[] = [
+  {
+    flag: '🇨🇦',
+    country: (
+      <FormattedMessage
+        id={`community.non-profits.canada`}
+        defaultMessage={`Canada`}
+        description={`non-profits.canada`}
+      />
+    ),
+    links: [
+      {
+        linkText: (
+          <FormattedMessage
+            id={`community.canada.link`}
+            defaultMessage={`Some NFP In Canada`}
+            description={`canada.link`}
+          />
+        ),
+        linkHref: ''
+      }
+    ]
+  },
+  {
+    flag: '🇩🇪',
+    country: (
+      <FormattedMessage
+        id={`community.non-profits.canada`}
+        defaultMessage={`Germany`}
+        description={`non-profits.canada`}
+      />
+    ),
+    links: [
+      {
+        linkText: (
+          <FormattedMessage
+            id={`community.canada.link`}
+            defaultMessage={`Some NFP In Germany`}
+            description={`canada.link`}
+          />
+        ),
+        linkHref: ''
+      }
+    ]
+  },
+  {
+    flag: '👽️',
+    country: (
+      <FormattedMessage
+        id={`community.non-profits.canada`}
+        defaultMessage={`Mars`}
+        description={`non-profits.canada`}
+      />
+    ),
+    links: [
+      {
+        linkText: (
+          <FormattedMessage
+            id={`community.canada.link`}
+            defaultMessage={`Some NFP On Mars`}
+            description={`canada.link`}
+          />
+        ),
+        linkHref: ''
+      }
+    ]
+  }
+]
+
 export const communityCards: BodyCard[] = [
   {
     img: ico_forum,
