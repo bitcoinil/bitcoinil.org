@@ -38,7 +38,6 @@ const StyledCardsDisplay = styled.div`
     justify-content: center;
     max-width: 100vw;
     padding: 25px 0 0 0;
-    width: 70vw;
     margin: auto;
 
     ${phoneDevices} {
@@ -47,7 +46,7 @@ const StyledCardsDisplay = styled.div`
   }
 
   .ant-card {
-    width: 20vw;
+    width: 33vw;
     margin: 20px;
     background: transparent;
 
@@ -56,7 +55,6 @@ const StyledCardsDisplay = styled.div`
     }
 
     &-body {
-      height: 70vh;
       padding: 30px;
       border: 1px solid #dadada;
       display: flex;
