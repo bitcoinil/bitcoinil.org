@@ -46,7 +46,7 @@ const StyledRoutePage = styled.div`
   .page-title {
     background-image: url('${HeroBg}');
     background-size: cover;
-    min-height: 400px;
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: start;
