@@ -58,8 +58,7 @@ export const generateMenuItems = () => {
             <MenuItem label={menIt.label} />
           </CustomNavLink>
         ),
-        key: menIt.key,
-        children: newSubMenu
+        key: menIt.key
       })
     }
   })
