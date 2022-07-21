@@ -28,19 +28,23 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({}) => {
 
   return (
     <StyledBurgerMenuMenu>
-      <Menu
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={[]}
-        mode="inline"
-        openKeys={openKeys}
-        onClick={() => {
-          setOpenKeys([])
-          setMenuOpen(false)
-        }}
-        selectedKeys={[open]}
-        onOpenChange={onOpenChange}
-        items={generateMenuItems()}
-      />
+      {generateMenuItems().map((mainItem) => {
+        console.log(mainItem)
+        return (
+          <div className="main-menu-item">
+            <span className="main-menu-item-label">{mainItem.label}</span>
+            {mainItem.children
+              ? mainItem.children.map((child) => {
+                  return (
+                    <span className="main-menu-item-sub-label">
+                      {child.label}
+                    </span>
+                  )
+                })
+              : null}
+          </div>
+        )
+      })}
       <LanguageSelectMobile />
       <ThemeSelectMobile />
     </StyledBurgerMenuMenu>
@@ -50,88 +54,21 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({}) => {
 export default BurgerMenuMenu
 
 const StyledBurgerMenuMenu = styled.div`
-  .ant-menu {
-    &-title-content {
-      text-align: center;
-    }
+  .main-menu-item {
+    /* background: red; */
 
-    .ant-menu-submenu-title {
-      padding: 0 !important;
-      margin: 0;
-    }
-
-    li,
-    .ant-menu-item {
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-  }
-
-  .grey-submenu-item {
-    background-color: pink;
-  }
-
-  .ant-menu-sub {
-    background-color: red;
-  }
-
-  .ant-menu-item {
-    color: green;
-  }
-
-  .ant-menu,
-  .ant-menu-item-selected {
-    color: white;
-    background-color: black;
-    p {
-      text-align: center;
-    }
-
-    .collapsable-menu {
-      margin: 0;
-    }
-
-    img {
-      background-color: maroon;
-    }
-
-    .ant-menu-item,
-    .ant-menu-item-active,
-    .ant-menu-item-selected,
-    .ant-menu-item-only-child {
-      background: black;
-      color: white;
-      text-align: center;
-      padding: 0;
-    }
-
-    .ant-menu-title-content {
-      width: 100vw;
-    }
-
-    .ant-menu-item,
-    .ant-menu-item-only-child {
-      background: black;
-      a {
-        color: white;
+    &-sub {
+      &-label {
+        div {
+          background: yellow;
+        }
       }
     }
 
-    li {
-      color: white;
+    &-label {
+      div {
+        background: green;
+      }
     }
-
-    .ant-menu-submenu-arrow::before,
-    .ant-menu-submenu-arrow::after {
-      color: white;
-    }
-  }
-
-  .burger-menu-item {
-    margin: 0;
-  }
-
-  .burger-selected-menu-item {
-    color: black;
   }
 `
