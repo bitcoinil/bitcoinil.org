@@ -6,7 +6,6 @@ import styled from 'styled-components'
 
 import { generateMenuItems } from '../routes/mainMenuItems'
 import { isBurgerMenuOpen } from '../state/state'
-import { colors } from '../theme/colors'
 import { BurgerMenuMenuProps } from '../utils/interfaces'
 import LanguageSelectMobile from './LanguageSelectMobile'
 import ThemeSelectMobile from './ThemeSelectMobile'
@@ -61,14 +60,14 @@ const StyledBurgerMenuMenu = styled.div`
     &-sub {
       &-label {
         div {
-          background: ${colors.burgerMenuSubBg};
+          background: yellow;
         }
       }
     }
 
     &-label {
       div {
-        background: ${colors.burgerMenuBg};
+        background: green;
       }
     }
   }
