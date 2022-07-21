@@ -19,7 +19,7 @@ const StyledMenuItem = styled.div`
   ${phoneDevices} {
     height: auto;
     font-size: 18px;
-    padding: 18px 0;
+    margin: 18px 0;
   }
 
   .active {
