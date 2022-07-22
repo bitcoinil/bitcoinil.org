@@ -2,10 +2,13 @@ import * as React from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
+import { mainMenuItems } from '../routes/mainMenuItems'
 import { currentlySelectedLanguage, isBurgerMenuOpen } from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
 import { BurgerMenuProps } from '../utils/interfaces'
 import BurgerMenuMenu from './BurgerMenuMenu'
+import LanguageSelectMobileNew from './LanguageSelectMobileNew'
+import ThemeSelectMobile from './ThemeSelectMobile'
 
 const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpen)
@@ -32,7 +35,9 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
         <span className="line line3"></span>
       </div>
       <div className={`slide-out ${burgerOpen ? 'open' : 'closed'}`}>
-        <BurgerMenuMenu burgerOpen={burgerOpen} />
+        <BurgerMenuMenu items={mainMenuItems} />
+        <LanguageSelectMobileNew />
+        <ThemeSelectMobile />
       </div>
       <div
         className={`on-click-outside ${burgerOpen ? 'open' : 'closed'}`}
