@@ -174,8 +174,10 @@ export interface BuyBodyProps {}
 export interface CommunityBodyProps {}
 
 export interface BurgerMenuMenuProps {
-  burgerOpen: boolean
+  items: MainMenuItem[]
 }
+
+export interface LanguageSelectMobileNewProps {}
 
 export interface LanguageSelectMobileProps {}
 
@@ -322,4 +324,10 @@ export interface TOCBurgerMenuProps {
   handleOpenSubmenu: Function
   openSubmenus: string[]
   isSubmenuOpen: Function
+}
+
+export interface SubmenuRef {
+  ref: HTMLElement
+  size?: number
+  key: string
 }
