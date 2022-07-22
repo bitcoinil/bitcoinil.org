@@ -1,4 +1,3 @@
-import { Collapse } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useRecoilValue } from 'recoil'
@@ -12,40 +11,8 @@ import { phoneDevices, smallDevices } from '../utils/breakpoints'
 import { ExchangesBodyProps } from '../utils/interfaces'
 import TableOfContentsScrollTracked from './TableOfContentsScrollTracked'
 
-const { Panel } = Collapse
-
 const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
-  const [isBelowZero, setIsBelowZero] = React.useState(false)
-  const [isAtEnd, setIsAtEnd] = React.useState(false)
-
   const dark = useRecoilValue(isDarkMode)
-
-  React.useEffect(() => {
-    window.addEventListener('scroll', scrollCheckMenuInView)
-
-    return () => window.removeEventListener('scroll', scrollCheckMenuInView)
-  })
-
-  React.useEffect(() => {
-    window.addEventListener('scroll', scrollCheckEnderInView)
-
-    return () => window.removeEventListener('scroll', scrollCheckEnderInView)
-  })
-
-  const columnsRef = React.createRef<HTMLDivElement>()
-  const endRef = React.createRef<HTMLDivElement>()
-
-  const scrollCheckMenuInView = () => {
-    if (!columnsRef.current?.getBoundingClientRect().y) return null
-    setIsBelowZero(columnsRef.current?.getBoundingClientRect()?.y <= 0)
-  }
-
-  const scrollCheckEnderInView = () => {
-    if (!endRef?.current) return
-    setIsAtEnd(
-      endRef.current?.getBoundingClientRect().y < window.innerHeight - 100
-    )
-  }
 
   return (
     <StyledExchangesBody id="ExchangesBody">
@@ -65,128 +32,6 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
         />
       </div>
       <TableOfContentsScrollTracked items={exhchanges} />
-      {/* <div
-        ref={columnsRef}
-        className={`exchanges-columns ${
-          isBelowZero && !isAtEnd ? 'sticky' : 'unsticky'
-        }`}
-      >
-        <div
-          className={`exchanges-left ${
-            dark ? 'dark-exchanges-left' : 'light-exchanges-left'
-          } `}
-          id="style-5"
-        >
-          <ul>
-            {exhchanges.map((exchange, i) => {
-              if (!exchange.cities)
-                return (
-                  <li
-                    key={`exichange-${i}`}
-                    className="dict-word-link"
-                    onClick={() => {
-                      scrollToElement(document.getElementById(`word-${i}`))
-                      flashElement(document.getElementById(`word-${i}`))
-                    }}
-                  >
-                    {exchange.location}
-                    <ul>
-                      {' '}
-                      {exchange?.exchanges?.map((ex, ii) => {
-                        return <span key={ii}>{ex.name}</span>
-                      })}
-                    </ul>
-                  </li>
-                )
-              return (
-                <div key={`dict-word-${i}`}>
-                  <p
-                    className="dict-word-link with-side"
-                    onClick={() => {
-                      scrollToElement(document.getElementById(`word-${i}`))
-                      flashElement(document.getElementById(`word-${i}`))
-                    }}
-                  >
-                    {exchange.location}
-                  </p>
-                  <ul>
-                    {exchange.cities.map((city, ii) => {
-                      return (
-                        <li
-                          className="dict-word-link with-side-border"
-                          onClick={() => {
-                            scrollToElement(
-                              document.getElementById(`word-${i}`)
-                            )
-                            flashElement(document.getElementById(`word-${i}`))
-                          }}
-                          key={`side-border-${ii}`}
-                        >
-                          <p>{city.city}</p>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </div>
-              )
-            })}
-          </ul>
-        </div>
-        <div className="right">
-          <div className="exchanges-right-mobile">
-            <ul>
-              {exhchanges.map((exchange: ExchangeLocation, i: number) => {
-                return (
-                  <Collapse key={`right-exchanges-${i}`}>
-                    <Panel
-                      key={`right-exchanges-panel-${i}`}
-                      header={exchange.location}
-                    >
-                      <li
-                        key={`right-exchanges-panel-li-${i}`}
-                        id={`word-${i}`}
-                      >
-                        {exchange.location}
-                        {exchange.cities ? renderCitiesList(exchange) : null}
-                      </li>
-                    </Panel>
-                  </Collapse>
-                )
-              })}
-            </ul>
-          </div>
-          <div className="exchanges-right-desktop">
-            {exhchanges.map((exchange: ExchangeLocation, i: number) => {
-              return (
-                <li key={`ex-right-desktop-${i}`} id={`word-${i}`}>
-                  <h1 className="country-label">{exchange.location}</h1>
-                  <div className="cities-wrap">
-                    {exchange.exchanges
-                      ? exchange.exchanges.map((ex, i) => {
-                          return (
-                            <p
-                              className="li-no-border-bottom"
-                              key={`exhcnage-no-city-${i}`}
-                            >
-                              <a href={ex.link}>
-                                <span>{ex.name}</span>
-                              </a>
-                            </p>
-                          )
-                        })
-                      : null}
-                  </div>
-                  {exchange.cities ? renderCitiesList(exchange) : null}
-                </li>
-              )
-            })}
-          </div>
-        </div>
-      </div>
-
-      <div ref={endRef} className="scroll-end-detect">
-        DETECT END OF SCROLLLL
-      </div> */}
     </StyledExchangesBody>
   )
 }
