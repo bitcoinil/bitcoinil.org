@@ -173,7 +173,9 @@ export interface BuyBodyProps {}
 
 export interface CommunityBodyProps {}
 
-export interface BurgerMenuMenuProps {}
+export interface BurgerMenuMenuProps {
+  burgerOpen: boolean
+}
 
 export interface LanguageSelectMobileProps {}
 

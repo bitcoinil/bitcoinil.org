@@ -32,7 +32,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
         <span className="line line3"></span>
       </div>
       <div className={`slide-out ${burgerOpen ? 'open' : 'closed'}`}>
-        <BurgerMenuMenu />
+        <BurgerMenuMenu burgerOpen={burgerOpen} />
       </div>
       <div
         className={`on-click-outside ${burgerOpen ? 'open' : 'closed'}`}
