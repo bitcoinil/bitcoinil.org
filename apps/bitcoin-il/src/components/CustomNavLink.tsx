@@ -10,6 +10,7 @@ const CustomNavLink: React.FC<CustomNavLinkProps> = ({ to, children }) => {
   const atomLang = useRecoilValue(currentlySelectedLanguage)
 
   const languageCode = atomLang.language === 'en' ? '' : `/${atomLang.language}`
+
   return (
     <StyledCustomNavLink to={`${languageCode}${to}`}>
       {children}
