@@ -1,137 +1,176 @@
-import { Menu } from 'antd'
 import * as React from 'react'
-import { useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
-import { generateMenuItems } from '../routes/mainMenuItems'
+import arrow from '../img/ico_angle_white.svg'
 import { isBurgerMenuOpen } from '../state/state'
-import { BurgerMenuMenuProps } from '../utils/interfaces'
-import LanguageSelectMobile from './LanguageSelectMobile'
-import ThemeSelectMobile from './ThemeSelectMobile'
+import { colors } from '../theme/colors'
+import { BurgerMenuMenuProps, SubmenuRef } from '../utils/interfaces'
+import CustomNavLink from './CustomNavLink'
 
-const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ burgerOpen }) => {
-  const [, setMenuOpen] = useRecoilState(isBurgerMenuOpen)
-  const [openKeys, setOpenKeys] = React.useState([])
-  const [open, setOpen] = React.useState('')
-  const location = useLocation()
+const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
+  const [openKeys, setOpenKeys] = React.useState<string[]>([])
+  const [sizesFound, setSizesFound] = React.useState(false)
+  const [submenusReffed, setSubMenusReffed] = React.useState<SubmenuRef[]>([])
 
-  // Tried to fix this, can't do it
-  const onOpenChange = (keys: any) => {
-    setOpenKeys(keys)
+  const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpen)
+
+  const findElementInStateViaKey = (key: string) => {
+    return submenusReffed.findIndex((item) => item.key === key)
+  }
+
+  const handleAddSubmenuRef = (ref: HTMLDivElement | null, key: string) => {
+    if (!ref) return null
+
+    if (findElementInStateViaKey(key) === -1)
+      setSubMenusReffed([...submenusReffed, { ref: ref, key: key }])
   }
 
   React.useEffect(() => {
-    const splitLocation = location.pathname.split('/')
-    setOpen(splitLocation[splitLocation.length - 1])
-  }, [])
+    if (!sizesFound) {
+      const newSizes: SubmenuRef[] = []
+
+      if (!burgerOpen) return
+
+      submenusReffed.forEach((ref) => {
+        newSizes.push({ ...ref, size: ref.ref.clientHeight })
+        ref.ref.style.height = '0'
+      })
+
+      setSizesFound(true)
+      setSubMenusReffed(newSizes)
+    }
+  }, [burgerOpen])
+
+  const handleClickRoute = () => {
+    setBurgerOpen(false)
+  }
+
+  const handleClickMainMenu = (key: string) => {
+    const { size, ref } = submenusReffed[findElementInStateViaKey(key)]
+
+    if (openKeys.includes(key)) {
+      ref.style.height = '0'
+
+      setOpenKeys(
+        openKeys.filter(function (person) {
+          return person !== key
+        })
+      )
+    } else {
+      ref.style.height = `${size}px`
+
+      setOpenKeys([...openKeys, key])
+    }
+  }
 
   return (
     <StyledBurgerMenuMenu>
-      <Menu
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={[]}
-        mode="inline"
-        openKeys={openKeys}
-        onClick={() => {
-          setOpenKeys([])
-          setMenuOpen(false)
-        }}
-        selectedKeys={[open]}
-        onOpenChange={onOpenChange}
-        items={generateMenuItems()}
-      />
-      <LanguageSelectMobile />
-      <ThemeSelectMobile />
+      {items.map((mainItem, i) => {
+        return (
+          <div key={i} className="menu-title">
+            <span
+              onClick={() => {
+                !mainItem.submenu
+                  ? handleClickRoute()
+                  : handleClickMainMenu(mainItem.key)
+              }}
+              className="menu-title-label"
+            >
+              {!mainItem.submenu ? (
+                <CustomNavLink to={mainItem.key}>
+                  <span>
+                    {mainItem.label}
+                    <img className={`arrow hidden-arrow`} src={arrow} />
+                  </span>
+                </CustomNavLink>
+              ) : (
+                <span>
+                  {mainItem.label}
+                  {mainItem.submenu ? (
+                    <img
+                      className={`arrow ${
+                        openKeys.includes(mainItem.key) ? 'open-arrow' : null
+                      }`}
+                      src={arrow}
+                    />
+                  ) : null}
+                </span>
+              )}
+            </span>
+            {mainItem.submenu ? (
+              <div
+                ref={(ref) => handleAddSubmenuRef(ref, mainItem.key)}
+                className={`submenu ${
+                  openKeys.includes(mainItem.key)
+                    ? 'submenu-open'
+                    : 'submenu-closed'
+                }`}
+              >
+                {mainItem.submenu
+                  ? mainItem.submenu.map((subItem, ii) => {
+                      return (
+                        <span
+                          onClick={handleClickRoute}
+                          key={ii}
+                          className="menu-title-submenu-label"
+                        >
+                          <CustomNavLink to={subItem.key}>
+                            {subItem.label}
+                          </CustomNavLink>
+                        </span>
+                      )
+                    })
+                  : null}
+              </div>
+            ) : null}
+          </div>
+        )
+      })}
+      {/* <LanguageSelectMobile /> */}
+      {/* <ThemeSelectMobile /> */}
     </StyledBurgerMenuMenu>
   )
 }
 
-export default BurgerMenuMenu
+export default React.memo(BurgerMenuMenu)
 
 const StyledBurgerMenuMenu = styled.div`
-  .ant-menu {
-    &-title-content {
-      text-align: center;
-    }
+  .menu-title {
+    text-align: center;
+    background-color: ${colors.burgerMenuBg};
+    display: flex;
+    font-size: 18px;
+    flex-direction: column;
 
-    .ant-menu-submenu-title {
-      padding: 0 !important;
-      margin: 0;
-    }
+    &-label {
+      padding: 20px 0;
 
-    li,
-    .ant-menu-item {
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-  }
+      .hidden-arrow {
+        visibility: hidden;
+      }
 
-  .grey-submenu-item {
-    background-color: pink;
-  }
+      .arrow {
+        transition: all 400ms;
+        margin-left: 20px;
+      }
 
-  .ant-menu-sub {
-    background-color: red;
-  }
-
-  .ant-menu-item {
-    color: green;
-  }
-
-  .ant-menu,
-  .ant-menu-item-selected {
-    color: white;
-    background-color: black;
-    p {
-      text-align: center;
-    }
-
-    .collapsable-menu {
-      margin: 0;
-    }
-
-    img {
-      background-color: maroon;
-    }
-
-    .ant-menu-item,
-    .ant-menu-item-active,
-    .ant-menu-item-selected,
-    .ant-menu-item-only-child {
-      background: black;
-      color: white;
-      text-align: center;
-      padding: 0;
-    }
-
-    .ant-menu-title-content {
-      width: 100vw;
-    }
-
-    .ant-menu-item,
-    .ant-menu-item-only-child {
-      background: black;
-      a {
-        color: white;
+      .open-arrow {
+        transition: all 400ms;
+        transform: rotate(-90deg);
       }
     }
 
-    li {
-      color: white;
+    &-submenu-label {
+      padding: 20px 0;
+      background-color: ${colors.burgerMenuSubBg};
     }
 
-    .ant-menu-submenu-arrow::before,
-    .ant-menu-submenu-arrow::after {
-      color: white;
+    .submenu {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: height 400ms;
     }
-  }
-
-  .burger-menu-item {
-    margin: 0;
-  }
-
-  .burger-selected-menu-item {
-    color: black;
   }
 `
