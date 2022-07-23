@@ -177,6 +177,8 @@ export interface BurgerMenuMenuProps {
   items: MainMenuItem[]
 }
 
+export interface ThemeSelectMobileNewProps {}
+
 export interface LanguageSelectMobileNewProps {}
 
 export interface LanguageSelectMobileProps {}
