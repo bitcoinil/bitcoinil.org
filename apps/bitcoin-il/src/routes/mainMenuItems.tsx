@@ -9,7 +9,7 @@ import CoreBody from '../components/CoreBody'
 import CustomNavLink from '../components/CustomNavLink'
 import EventsBody from '../components/EventsBody'
 import ExchangesBody from '../components/ExchangesBody'
-import FAQBodyTwo from '../components/FAQBodyTwo'
+import FAQBody from '../components/FAQBody'
 import GettingStartedBody from '../components/GettingStartedBody'
 import HowItWorks from '../components/HowItWorks'
 import IndividualsBody from '../components/IndividualsBody'
@@ -668,7 +668,7 @@ export const mainMenuItems: MainMenuItem[] = [
             description={`faq.subtitle`}
           />
         }
-        body={<FAQBodyTwo />}
+        body={<FAQBody />}
       />
     )
   }

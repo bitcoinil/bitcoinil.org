@@ -19,8 +19,6 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
 
   React.useEffect(() => {
     if (!slideOutRef.current) return
-    console.log(burgerOpen)
-    console.log(slideOutRef)
     if (burgerOpen) {
       slideOutRef.current.style.height = 'auto'
     } else {

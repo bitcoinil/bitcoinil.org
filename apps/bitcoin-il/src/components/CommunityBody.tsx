@@ -25,7 +25,6 @@ const CommunityBody: React.FC<CommunityBodyProps> = ({}) => {
         </h1>
         <div className="npos-list">
           {NonProfitOrgs.map((npo, i) => {
-            console.log(npo)
             return (
               <div className="npo" key={`npo-${i}`}>
                 <span className="flag">{npo.flag}</span>
