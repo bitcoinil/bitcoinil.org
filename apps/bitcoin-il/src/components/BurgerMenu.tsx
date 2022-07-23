@@ -7,13 +7,26 @@ import { currentlySelectedLanguage, isBurgerMenuOpen } from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
 import { BurgerMenuProps } from '../utils/interfaces'
 import BurgerMenuMenu from './BurgerMenuMenu'
-import LanguageSelectMobileNew from './LanguageSelectMobileNew'
-import ThemeSelectMobile from './ThemeSelectMobile'
+import LanguageSelectMobile from './LanguageSelectMobile'
+import ThemeSelectMobileNew from './ThemeSelectMobileNew'
 
 const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpen)
 
   const currentLang = useRecoilValue(currentlySelectedLanguage)
+
+  const slideOutRef = React.createRef<HTMLDivElement>()
+
+  React.useEffect(() => {
+    if (!slideOutRef.current) return
+    console.log(burgerOpen)
+    console.log(slideOutRef)
+    if (burgerOpen) {
+      slideOutRef.current.style.height = 'auto'
+    } else {
+      slideOutRef.current.style.height = '0'
+    }
+  }, [burgerOpen])
 
   const toggleBurger = () => {
     setBurgerOpen(!burgerOpen)
@@ -34,10 +47,13 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
         <span className="line line2"></span>
         <span className="line line3"></span>
       </div>
-      <div className={`slide-out ${burgerOpen ? 'open' : 'closed'}`}>
+      <div
+        ref={slideOutRef}
+        className={`slide-out ${burgerOpen ? 'open' : 'closed'}`}
+      >
         <BurgerMenuMenu items={mainMenuItems} />
-        <LanguageSelectMobileNew />
-        <ThemeSelectMobile />
+        <LanguageSelectMobile />
+        <ThemeSelectMobileNew />
       </div>
       <div
         className={`on-click-outside ${burgerOpen ? 'open' : 'closed'}`}
@@ -167,7 +183,7 @@ const BurgerWrap = styled.div`
 
       &.open {
         transition: all 400ms;
-        height: auto;
+        height: unset;
       }
     }
 

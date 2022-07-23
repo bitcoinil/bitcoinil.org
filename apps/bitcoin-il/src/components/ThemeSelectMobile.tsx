@@ -1,7 +1,9 @@
+import { Switch } from 'antd'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import ico_angle from '../img/ico_angle_white.svg'
+import { useTheme } from '../theme'
 import { ThemeSelectMobileProps } from '../utils/interfaces'
 import ThemeSwitch from './ThemeSwitch'
 
