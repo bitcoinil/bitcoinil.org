@@ -65,13 +65,13 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
           <LanguageSelectMobile />
           <ThemeSelectMobileNew />
         </div>
+        <div
+          className={`on-click-outside ${burgerOpen ? 'open' : 'closed'}`}
+          onClick={() => {
+            setBurgerOpen(false)
+          }}
+        />
       </div>
-      <div
-        className={`on-click-outside ${burgerOpen ? 'open' : 'closed'}`}
-        onClick={() => {
-          setBurgerOpen(false)
-        }}
-      />
     </BurgerWrap>
   )
 }
@@ -202,18 +202,16 @@ const BurgerWrap = styled.div`
 
       &.open {
         transition: height 400ms;
-        min-height: 5000px;
+        min-height: 1500px;
         background: transparent;
       }
     }
 
     .on-click-outside {
-      height: 100vh;
+      height: 500vh;
       width: 100vw;
       transition: height 400ms;
-      position: absolute;
-      top: 0;
-      left: 0;
+      /* background: red; */
 
       &.closed {
         display: none;
