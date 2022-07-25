@@ -99,7 +99,9 @@ const StyledFooter = styled.div`
   .logo {
     padding: 50px 0;
 
-    color: var(--text-color-inverse);
+    ${phoneDevices} {
+      width: 75vw;
+    }
   }
 
   .body-wrap {
