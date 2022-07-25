@@ -85,10 +85,8 @@ const StyledGettingStartedBody = styled.div`
       font-size: 18px;
       color: grey;
       cursor: pointer;
-      transition: all 400ms;
 
       &:hover {
-        transition: all 400ms;
         opacity: 0.7;
         border-bottom: 2px solid ${colors.accent};
       }

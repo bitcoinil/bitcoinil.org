@@ -14,8 +14,6 @@ const MenuItem: React.FC<MenuItemProps> = ({ label }) => {
 export default MenuItem
 
 const StyledMenuItem = styled.div`
-  transition: all 200ms;
-
   ${phoneDevices} {
     height: auto;
     font-size: 18px;
@@ -31,16 +29,16 @@ const StyledMenuItem = styled.div`
   }
 
   &:hover {
-    transition: all 200ms;
+    transition: transform 200ms;
     transform: translateY(-2px);
   }
 
   &:hover span {
-    transition: all 200ms;
+    transition: transform 200ms;
   }
 
   span {
-    transition: all 200ms;
+    transition: transform 200ms;
     cursor: pointer;
   }
 `

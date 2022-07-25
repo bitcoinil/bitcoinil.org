@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
-import arrow from '../img/ico_angle_white.svg'
-import { isBurgerMenuOpen } from '../state/state'
+import angle_white from '../img/ico_angle_white.svg'
+import angle_black from '../img/ico_angle_black.svg'
+
+import { isBurgerMenuOpenState, isDarkModeState } from '../state/state'
 import { colors } from '../theme/colors'
 import { BurgerMenuMenuProps, SubmenuRef } from '../utils/interfaces'
 import CustomNavLink from './CustomNavLink'
@@ -13,7 +15,9 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
   const [sizesFound, setSizesFound] = React.useState(false)
   const [submenusReffed, setSubMenusReffed] = React.useState<SubmenuRef[]>([])
 
-  const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpen)
+  const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpenState)
+
+  const isDarkMode = useRecoilValue(isDarkModeState)
 
   const findElementInStateViaKey = (key: string) => {
     return submenusReffed.findIndex((item) => item.key === key)
@@ -68,7 +72,12 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
     <StyledBurgerMenuMenu>
       {items.map((mainItem, i) => {
         return (
-          <div key={i} className="menu-title">
+          <div
+            key={i}
+            className={`menu-title ${
+              isDarkMode ? 'dark-menu-menu' : 'light-menu-menu'
+            }`}
+          >
             <span
               onClick={() => {
                 !mainItem.submenu
@@ -81,19 +90,26 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
                 <CustomNavLink to={mainItem.key}>
                   <span>
                     {mainItem.label}
-                    <img className={`arrow hidden-arrow`} src={arrow} />
+                    <img
+                      className={`arrow hidden-arrow ${
+                        isDarkMode ? 'dark-arrow' : ''
+                      }`}
+                      src={angle_white}
+                    />
                   </span>
                 </CustomNavLink>
               ) : (
                 <span>
                   {mainItem.label}
                   {mainItem.submenu ? (
-                    <img
-                      className={`arrow ${
-                        openKeys.includes(mainItem.key) ? 'open-arrow' : null
-                      }`}
-                      src={arrow}
-                    />
+                    <>
+                      <img
+                        className={`arrow ${
+                          openKeys.includes(mainItem.key) ? 'open-arrow' : ''
+                        } `}
+                        src={isDarkMode ? angle_white : angle_black}
+                      />
+                    </>
                   ) : null}
                 </span>
               )}
@@ -138,7 +154,6 @@ export default React.memo(BurgerMenuMenu)
 const StyledBurgerMenuMenu = styled.div`
   .menu-title {
     text-align: center;
-    background-color: ${colors.burgerMenuBg};
     display: flex;
     font-size: 18px;
     flex-direction: column;
@@ -151,12 +166,10 @@ const StyledBurgerMenuMenu = styled.div`
       }
 
       .arrow {
-        transition: all 400ms;
         margin-left: 20px;
       }
 
       .open-arrow {
-        transition: all 400ms;
         transform: rotate(-90deg);
       }
     }
@@ -172,5 +185,18 @@ const StyledBurgerMenuMenu = styled.div`
       overflow: hidden;
       transition: height 400ms;
     }
+  }
+
+  .dark-menu-menu {
+    background-color: ${colors.burgerMenuBg};
+  }
+
+  .light-menu-menu {
+    background-color: ${colors.burgerMenuBgLight};
+    color: black;
+  }
+
+  .dark-arrow {
+    filter: invert(1);
   }
 `

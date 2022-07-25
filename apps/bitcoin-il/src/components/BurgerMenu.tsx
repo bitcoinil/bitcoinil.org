@@ -4,9 +4,9 @@ import styled from 'styled-components'
 
 import { mainMenuItems } from '../routes/mainMenuItems'
 import {
-  currentlySelectedLanguage,
-  isBurgerMenuOpen,
-  isDarkMode
+  currentlySelectedLanguageState,
+  isBurgerMenuOpenState,
+  isDarkModeState
 } from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
 import { BurgerMenuProps } from '../utils/interfaces'
@@ -15,10 +15,10 @@ import LanguageSelectMobile from './LanguageSelectMobile'
 import ThemeSelectMobileNew from './ThemeSelectMobileNew'
 
 const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
-  const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpen)
-  const isInDarkMode = useRecoilValue(isDarkMode)
+  const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpenState)
+  const isInDarkMode = useRecoilValue(isDarkModeState)
 
-  const currentLang = useRecoilValue(currentlySelectedLanguage)
+  const currentLang = useRecoilValue(currentlySelectedLanguageState)
 
   const slideOutRef = React.createRef<HTMLDivElement>()
 
@@ -79,7 +79,6 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
 export default BurgerMenu
 
 const BurgerWrap = styled.div`
-  transition: all 400ms;
   display: none;
 
   ${phoneDevices} {
@@ -195,14 +194,14 @@ const BurgerWrap = styled.div`
       color: white;
       top: 60px;
       left: 0;
-      transition: all 400ms;
+      transition: height 400ms;
 
       &-inner {
         background: black;
       }
 
       &.open {
-        transition: all 400ms;
+        transition: height 400ms;
         min-height: 5000px;
         background: transparent;
       }
@@ -211,7 +210,7 @@ const BurgerWrap = styled.div`
     .on-click-outside {
       height: 100vh;
       width: 100vw;
-      transition: all 400ms;
+      transition: height 400ms;
       position: absolute;
       top: 0;
       left: 0;

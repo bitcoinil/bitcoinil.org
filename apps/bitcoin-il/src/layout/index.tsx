@@ -4,14 +4,14 @@ import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
 import Support from '../components/Support'
-import { currentlySelectedLanguage } from '../state/state'
+import { currentlySelectedLanguageState } from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
 import { AppLayoutProps } from '../utils/interfaces'
 import Footer from './Footer'
 import Header from './Header'
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
-  const [ln] = useRecoilState(currentlySelectedLanguage)
+  const [ln] = useRecoilState(currentlySelectedLanguageState)
 
   const location = useLocation()
 

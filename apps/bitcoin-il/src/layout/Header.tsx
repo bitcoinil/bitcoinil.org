@@ -8,12 +8,12 @@ import HeaderMenu from '../components/HeaderMenu'
 import LanguageSelect from '../components/LanguageSelect'
 import Logo from '../components/Logo'
 import ThemeSwitch from '../components/ThemeSwitch'
-import { isDarkMode } from '../state/state'
+import { isDarkModeState } from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
 import { HeaderProps } from '../utils/interfaces'
 
 const Header: React.FC<HeaderProps> = ({}) => {
-  const darkModeState = useRecoilValue(isDarkMode)
+  const darkModeState = useRecoilValue(isDarkModeState)
 
   return (
     <StyledHeader className="header">
@@ -65,12 +65,12 @@ const StyledHeader = styled.div`
           max-width: 100px;
           margin: 0;
           cursor: pointer;
-          transition: all 200ms;
+          transition: opacity 400ms;
           color: var(--text-color);
 
           &:hover {
             opacity: 0.5;
-            transition: all 200ms;
+            transition: opacity 400ms;
           }
 
           img {

@@ -158,13 +158,13 @@ const StyledCoreBody = styled.div`
           padding: 0;
 
           .ant-card {
-            transition: all 400ms;
+            transition: background-color color 400ms;
             margin-bottom: 10px;
 
             &:hover {
               opacity: 0.5;
 
-              transition: all 400ms;
+              transition: background-color color 400ms;
             }
             &-body {
               display: flex;

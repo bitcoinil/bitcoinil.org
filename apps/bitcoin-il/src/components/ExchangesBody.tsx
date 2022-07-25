@@ -5,14 +5,14 @@ import styled from 'styled-components'
 
 import { exhchanges } from '../data/ExchangesBodyData'
 import ico_badge from '../img/ico_badge.svg'
-import { isDarkMode } from '../state/state'
+import { isDarkModeState } from '../state/state'
 import { colors } from '../theme/colors'
 import { phoneDevices, smallDevices } from '../utils/breakpoints'
 import { ExchangesBodyProps } from '../utils/interfaces'
 import TableOfContentsScrollTracked from './TableOfContentsScrollTracked'
 
 const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
-  const dark = useRecoilValue(isDarkMode)
+  const dark = useRecoilValue(isDarkModeState)
 
   return (
     <StyledExchangesBody id="ExchangesBody">
@@ -172,17 +172,8 @@ const StyledExchangesBody = styled.div`
     }
   }
 
-  .with-side-border {
-    font-size: 16px;
-    transition: all 500ms;
-    &:hover {
-      transition: all 500ms;
-      border-right: 5px solid ${colors.accent};
-    }
-  }
-
   .scroll-end-detect {
-    background: orange;
+    background: transparent;
     z-index: 999999999999;
     width: 95vw;
     visibility: hidden;

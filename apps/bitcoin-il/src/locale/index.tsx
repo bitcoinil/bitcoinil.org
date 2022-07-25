@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { ConfigProvider } from 'antd'
 import { useRecoilState } from 'recoil'
-import { currentlySelectedLanguage } from '../state/state'
+import { currentlySelectedLanguageState } from '../state/state'
 import { IntlProvider } from 'react-intl'
 
 import locales from '@bitil/locales'
@@ -9,8 +9,8 @@ import { useLocation } from 'react-router-dom'
 import { useTranslations } from '../hooks/useTranslations'
 
 const LocaleProvider = ({ children }) => {
-  const [ln, setLn] = useRecoilState(currentlySelectedLanguage)
-  const [atomLang, setAtomLang] = useRecoilState(currentlySelectedLanguage)
+  const [ln, setLn] = useRecoilState(currentlySelectedLanguageState)
+  const [atomLang, setAtomLang] = useRecoilState(currentlySelectedLanguageState)
   const location = useLocation()
 
   const intl = useTranslations()

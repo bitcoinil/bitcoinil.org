@@ -1,17 +1,17 @@
 import { atom } from 'recoil'
 import { LanguageAtomValue } from '../utils/interfaces'
 
-export const currentlySelectedLanguage = atom<LanguageAtomValue>({
+export const currentlySelectedLanguageState = atom<LanguageAtomValue>({
   key: 'currentlySelectedLanguage',
   default: { language: 'en' }
 })
 
-export const isBurgerMenuOpen = atom<boolean>({
+export const isBurgerMenuOpenState = atom<boolean>({
   key: 'isBurgerMenuOpen',
   default: false
 })
 
-export const isDarkMode = atom<boolean>({
+export const isDarkModeState = atom<boolean>({
   key: 'isDarkMode',
   default: false
 })

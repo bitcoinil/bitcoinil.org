@@ -32,6 +32,8 @@ export interface SiteButtonProps {
   children: React.ReactNode
   color?: string
   background?: string
+  opacity?: string
+  transition?: string
 }
 
 export interface TranslationDictionary {

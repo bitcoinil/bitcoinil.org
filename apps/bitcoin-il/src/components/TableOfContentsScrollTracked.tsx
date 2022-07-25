@@ -536,7 +536,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
   .left-title {
     border-right: ${borderSize}px solid transparent;
     img {
-      transition: all 400ms;
+      transition: margin-right padding-top transform float 400ms;
       float: right;
       margin-right: 15px;
       padding-top: 10px;
@@ -596,7 +596,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
   }
 
   .open-arrow {
-    transition: all 400ms;
+    transition: margin-right padding-top transform float 400ms;
     transform: rotate(-90deg);
   }
 

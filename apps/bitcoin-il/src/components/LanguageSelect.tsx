@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
 import { useTranslations } from '../hooks/useTranslations'
-import { currentlySelectedLanguage } from '../state/state'
+import { currentlySelectedLanguageState } from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
 import { LanguageSelectProps } from '../utils/interfaces'
 
@@ -13,7 +13,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
   const [current, setCurrent] = React.useState('en')
 
   const [languageState, setLanugageState] = useRecoilState(
-    currentlySelectedLanguage
+    currentlySelectedLanguageState
   )
 
   const intl = useTranslations()
@@ -57,11 +57,11 @@ const StyledLanguageSelect = styled.div`
 
   .collapsable-menu {
     &:hover .language-select-down-arrow {
-      transition: all 200ms;
+      transition: transform 200ms;
       transform: rotate(180deg);
     }
     .language-select-down-arrow {
-      transition: all 200ms;
+      transition: transform 200ms;
     }
   }
 

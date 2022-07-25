@@ -130,7 +130,7 @@ const TOCBurgerMenu: React.FC<TOCBurgerMenuProps> = ({
 export default TOCBurgerMenu
 
 const BurgerWrap = styled.div`
-  transition: all 400ms;
+  transition: height 400ms;
   display: flex;
   align-items: center;
   padding-right: 10px;
@@ -237,7 +237,7 @@ const BurgerWrap = styled.div`
     color: white;
     top: 62px;
     left: 0;
-    transition: all 400ms;
+    transition: height 400ms;
 
     &.open {
       transition: height 400ms;

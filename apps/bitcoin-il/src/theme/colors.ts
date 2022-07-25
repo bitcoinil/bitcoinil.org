@@ -4,5 +4,7 @@ export const colors = {
   whiteText: '#FFFFFF',
   borderColor: '#DADADA',
   burgerMenuBg: '#13161f',
-  burgerMenuSubBg: '#090c14'
+  burgerMenuSubBg: '#090c14',
+  burgerMenuBgLight: 'white',
+  burgerMenuSubBgLight: 'grey'
 }

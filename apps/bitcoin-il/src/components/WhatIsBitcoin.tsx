@@ -70,7 +70,6 @@ const StyledWhatIsBitcoin = styled.div`
   margin-top: 80px;
   font-size: 16px;
   cursor: pointer;
-  transition: all 400ms;
 
   ${phoneDevices} {
     display: none;

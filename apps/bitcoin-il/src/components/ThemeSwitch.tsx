@@ -3,14 +3,14 @@ import { Button, Popover, Switch } from 'antd'
 import * as React from 'react'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
-import { isDarkMode } from '../state/state'
+import { isDarkModeState } from '../state/state'
 
 import { useTheme } from '../theme'
 import { ThemeSwitchProps } from '../utils/interfaces'
 
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
   const [isSystem, setIsSystem] = React.useState(false)
-  const [isDark, setIsDark] = useRecoilState(isDarkMode)
+  const [isDark, setIsDark] = useRecoilState(isDarkModeState)
 
   const [, actions] = useTheme()
 

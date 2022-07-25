@@ -4,7 +4,10 @@ import styled from 'styled-components'
 import { useTranslations } from '../hooks/useTranslations'
 
 import arrow from '../img/ico_angle_white.svg'
-import { currentlySelectedLanguage, isBurgerMenuOpen } from '../state/state'
+import {
+  currentlySelectedLanguageState,
+  isBurgerMenuOpenState
+} from '../state/state'
 import { colors } from '../theme/colors'
 import {
   AvailableLanguage,
@@ -18,8 +21,8 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileNewProps> = ({}) => {
 
   const submenuRef = React.createRef<HTMLDivElement>()
 
-  const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpen)
-  const [, setLanugageState] = useRecoilState(currentlySelectedLanguage)
+  const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpenState)
+  const [, setLanugageState] = useRecoilState(currentlySelectedLanguageState)
 
   const intl = useTranslations()
   const { availableLanguages, navigateWithLanguageChange } = intl
@@ -106,12 +109,12 @@ const StyledBurgerMenuMenu = styled.div`
       }
 
       .arrow {
-        transition: all 400ms;
+        transition: transform margin-left 400ms;
         margin-left: 20px;
       }
 
       .open-arrow {
-        transition: all 400ms;
+        transition: transform margin-left 400ms;
         transform: rotate(-90deg);
       }
     }

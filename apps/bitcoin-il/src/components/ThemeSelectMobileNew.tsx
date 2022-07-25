@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
 import arrow from '../img/ico_angle_white.svg'
-import { isBurgerMenuOpen, isDarkMode } from '../state/state'
+import { isBurgerMenuOpenState, isDarkModeState } from '../state/state'
 import { useTheme } from '../theme'
 import { colors } from '../theme/colors'
 import { ThemeSelectMobileNewProps } from '../utils/interfaces'
@@ -16,10 +16,11 @@ const ThemeSelectMobileNew: React.FC<ThemeSelectMobileNewProps> = ({}) => {
 
   const submenuRef = React.createRef<HTMLDivElement>()
 
-  const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpen)
-  const [darkMode, setDarkMode] = useRecoilState(isDarkMode)
+  const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpenState)
+  const [darkMode, setDarkMode] = useRecoilState(isDarkModeState)
 
   const [isSystem, setIsSystem] = React.useState(false)
+
   const [, actions] = useTheme()
 
   const toggleDarkMode = () => {
@@ -130,12 +131,12 @@ const StyledBurgerMenuMenu = styled.div`
       }
 
       .arrow {
-        transition: all 400ms;
+        transition: transform 400ms;
         margin-left: 20px;
       }
 
       .open-arrow {
-        transition: all 400ms;
+        transition: transform 400ms;
         transform: rotate(-90deg);
       }
     }

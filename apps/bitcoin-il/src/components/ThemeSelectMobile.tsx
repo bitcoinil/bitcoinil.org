@@ -48,7 +48,6 @@ const StyledThemeSelectMobile = styled.div`
 
   .theme-select-mobile-body {
     background: grey;
-    transition: all 400ms;
   }
 
   .mobile-theme-select-theme-panel {
@@ -67,7 +66,6 @@ const StyledThemeSelectMobile = styled.div`
 
   .open-title {
     color: #00b3f0;
-    animation: flash 400ms;
   }
 
   @keyframes flash {
@@ -90,7 +88,6 @@ const StyledThemeSelectMobile = styled.div`
     right: 18px;
     margin-top: 7px;
     height: 6px;
-    transition: all 400ms;
   }
 
   .arrow-closed {

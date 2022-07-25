@@ -8,13 +8,13 @@ import {
 import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
-import { isDarkMode } from '../state/state'
+import { isDarkModeState } from '../state/state'
 import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { TimelineCompProps } from '../utils/interfaces'
 
 const TimelineComp: React.FC<TimelineCompProps> = ({ items }) => {
-  const dark = useRecoilValue(isDarkMode)
+  const dark = useRecoilValue(isDarkModeState)
   if (!items) return null
 
   return (

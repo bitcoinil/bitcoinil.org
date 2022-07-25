@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 
 import { AvailableLanguage, Messages } from '../utils/interfaces'
-import { currentlySelectedLanguage } from '../state/state'
+import { currentlySelectedLanguageState } from '../state/state'
 
 export const useTranslations = () => {
-  const [language] = useRecoilState(currentlySelectedLanguage)
+  const [language] = useRecoilState(currentlySelectedLanguageState)
   const [locale, setLocale] = React.useState('en')
   const navigate = useNavigate()
 

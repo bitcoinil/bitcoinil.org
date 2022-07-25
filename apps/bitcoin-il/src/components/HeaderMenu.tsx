@@ -47,13 +47,13 @@ const StyledAppMenu = styled.div`
       }
 
       .menu-arrow {
-        transition: all ${transitionSpeed}ms;
+        transition: transform ${transitionSpeed}ms;
       }
 
       .collapsable-menu {
-        transition: all ${transitionSpeed}ms;
+        transition: transform ${transitionSpeed}ms;
         &:hover > .menu-arrow {
-          transition: all ${transitionSpeed}ms;
+          transition: transform ${transitionSpeed}ms;
           transform: rotate(180deg);
         }
       }

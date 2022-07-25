@@ -30,18 +30,20 @@ const Support: React.FC<SupportProps> = () => {
         onClick={() => {
           if (!isExtended) setIsExtended(!isExtended)
         }}
-        className={isExtended ? 'extended' : 'minimized'}
+        className={`${isExtended ? 'extended' : 'minimized'} support-main-wrap`}
       >
         {!isExtended ? (
-          <p>
-            <FormattedMessage
-              id={`support.cta`}
-              defaultMessage={`Bitcoin.Il Needs Your Support`}
-              description={`CTA`}
-            />
-          </p>
+          <div className="support-minimized-wrap">
+            <p>
+              <FormattedMessage
+                id={`support.cta`}
+                defaultMessage={`Bitcoin.Il Needs Your Support`}
+                description={`CTA`}
+              />
+            </p>
+          </div>
         ) : (
-          <>
+          <div className="support-maximized-wrap">
             <span onClick={() => setIsExtended(false)} className="close">
               <img src={CloseButton} />
             </span>
@@ -54,6 +56,8 @@ const Support: React.FC<SupportProps> = () => {
             </p>
 
             <SiteButton
+              opacity={isExtended ? '1' : '0'}
+              transition={`opacity 800ms`}
               onClick={() => {
                 setShowModal(true)
               }}
@@ -93,7 +97,7 @@ const Support: React.FC<SupportProps> = () => {
                 </div>
               </StyledModal>
             ) : null}
-          </>
+          </div>
         )}
       </StyledSupport>
       <StyledClickOutside
@@ -172,7 +176,7 @@ const StyledSupport = styled.div`
     display: none;
   }
 
-  transition: all 300ms;
+  transition: all 800ms;
   font-size: 11.5px;
   display: flex;
   flex-direction: column;
@@ -221,6 +225,15 @@ const StyledClickOutside = styled.div`
     background: blue;
     display: none;
   }
+
+  .support-minimized-wrap {
+    background: blue;
+  }
+
+  .support-maximized-wrap {
+    background: yellow;
+  }
+
   background: #cb8e8e;
   height: 100px;
   width: 100vw;
