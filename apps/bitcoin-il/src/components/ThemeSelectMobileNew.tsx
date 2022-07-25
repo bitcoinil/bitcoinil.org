@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { DarkModeToggle } from 'react-dark-mode-toggle-2'
+import { FormattedMessage } from 'react-intl'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
@@ -22,6 +23,8 @@ const ThemeSelectMobileNew: React.FC<ThemeSelectMobileNewProps> = ({}) => {
   const [isSystem, setIsSystem] = React.useState(false)
 
   const [, actions] = useTheme()
+
+  console.log(darkMode)
 
   const toggleDarkMode = () => {
     darkMode
@@ -76,7 +79,11 @@ const ThemeSelectMobileNew: React.FC<ThemeSelectMobileNewProps> = ({}) => {
             }}
             className="menu-title-submenu-label"
           >
-            Dark Mode
+            <FormattedMessage
+              id={`mobile-theme-select.dark-mode`}
+              defaultMessage={`Dark Mode`}
+              description={`dark-mode`}
+            />
             <DarkModeToggle
               className="theme-toggle"
               onChange={toggleDarkMode}
@@ -84,7 +91,11 @@ const ThemeSelectMobileNew: React.FC<ThemeSelectMobileNewProps> = ({}) => {
               size={100}
             />
             {/* <ToggleSystem /> */}
-            Use System Theme
+            <FormattedMessage
+              id={`mobile-theme-select.use-sys`}
+              defaultMessage={`Use System Theme`}
+              description={`use-sys`}
+            />
             <label className="switch">
               <input
                 type="checkbox"
