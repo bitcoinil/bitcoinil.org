@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { DarkModeToggle } from 'react-dark-mode-toggle-2'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import arrow from '../img/ico_angle_white.svg'
@@ -17,15 +17,13 @@ const ThemeSelectMobileNew: React.FC<ThemeSelectMobileNewProps> = ({}) => {
   const submenuRef = React.createRef<HTMLDivElement>()
 
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpenState)
-  const [darkMode, setDarkMode] = useRecoilState(isDarkModeState)
+  const darkMode = useRecoilValue(isDarkModeState)
 
   const [isSystem, setIsSystem] = React.useState(false)
 
   const [, actions] = useTheme()
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-
     darkMode
       ? actions.setTheme('bitil-theme', 'bitil-light')
       : actions.setTheme('bitil-theme', 'bitil-dark')

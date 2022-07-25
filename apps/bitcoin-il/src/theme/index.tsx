@@ -1,13 +1,15 @@
+import { themes } from '@djitsu/themes'
+import { Button } from 'antd'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
+import { useRecoilState } from 'recoil'
 import styled, { createGlobalStyle } from 'styled-components'
-import { Button } from 'antd'
 
-import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
-import { themes } from '@djitsu/themes'
+import { isDarkModeState } from '../state/state'
 import { ThemeContextValue } from '../utils/interfaces'
 import FaviconHandler from './favicon'
 
+import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
 const { createContext, useContext, useMemo, useState } = React
 
 const showDebugButton = false
@@ -27,6 +29,7 @@ type Props = {
 
 const Theme = ({ children }: Props) => {
   const [selectedTheme, selectedVariant] = ['bitil-theme', '']
+  const [isDarkMode, setIsDarkMode] = useRecoilState(isDarkModeState)
   const [activeState, setActiveState] = useState({
     theme: selectedTheme,
     variant: selectedVariant,
@@ -71,7 +74,14 @@ const Theme = ({ children }: Props) => {
 
   const actions = {
     setTheme: (theme: string, variant?: string) => {
-      setActiveState((v) => ({ ...v, theme, variant: variant || '' }))
+      const fadeTime: number = 600
+      document.body.style.transition = `opacity ${fadeTime}ms`
+      document.body.style.opacity = '0'
+      window.setTimeout(() => {
+        document.body.style.opacity = '1'
+        setIsDarkMode(!isDarkMode)
+        setActiveState((v) => ({ ...v, theme, variant: variant || '' }))
+      }, fadeTime + 500)
     }
   }
 
@@ -148,7 +158,7 @@ const Theme = ({ children }: Props) => {
             <link rel="stylesheet" href={fontHref} />
           ))}
       </Helmet>
-      
+
       <FaviconHandler />
 
       {showDebug ? (
