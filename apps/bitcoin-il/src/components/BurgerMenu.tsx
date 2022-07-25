@@ -3,7 +3,11 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import { mainMenuItems } from '../routes/mainMenuItems'
-import { currentlySelectedLanguage, isBurgerMenuOpen } from '../state/state'
+import {
+  currentlySelectedLanguage,
+  isBurgerMenuOpen,
+  isDarkMode
+} from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
 import { BurgerMenuProps } from '../utils/interfaces'
 import BurgerMenuMenu from './BurgerMenuMenu'
@@ -12,6 +16,7 @@ import ThemeSelectMobileNew from './ThemeSelectMobileNew'
 
 const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpen)
+  const isInDarkMode = useRecoilValue(isDarkMode)
 
   const currentLang = useRecoilValue(currentlySelectedLanguage)
 
@@ -41,9 +46,15 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
         checked={burgerOpen}
       />
       <div className="hamburger-lines">
-        <span className="line line1"></span>
-        <span className="line line2"></span>
-        <span className="line line3"></span>
+        <span
+          className={`line line1 ${isInDarkMode ? 'dark-mode-burger' : ''}`}
+        />
+        <span
+          className={`line line2 ${isInDarkMode ? 'dark-mode-burger' : ''}`}
+        />
+        <span
+          className={`line line3 ${isInDarkMode ? 'dark-mode-burger' : ''}`}
+        />
       </div>
       <div
         ref={slideOutRef}
@@ -101,28 +112,33 @@ const BurgerWrap = styled.div`
       justify-content: space-between;
     }
 
-    .hamburger-lines .line {
-      display: block;
-      height: 2px;
-      width: 100%;
-      border-radius: 10px;
-      background: #0e2431;
-    }
+    .hamburger-lines {
+      .line {
+        display: block;
+        height: 2px;
+        width: 100%;
+        border-radius: 10px;
+        background: #0e2431;
+      }
 
-    .hamburger-lines .line1 {
-      transform-origin: 0% 0%;
-      transition: transform 0.4s ease-in-out;
-    }
+      .dark-mode-burger {
+        background: white;
+      }
 
-    .hamburger-lines .line2 {
-      transition: transform 0.2s ease-in-out;
-    }
+      .line1 {
+        transform-origin: 0% 0%;
+        transition: transform 0.4s ease-in-out;
+      }
 
-    .hamburger-lines .line3 {
-      transform-origin: 0% 100%;
-      transition: transform 0.4s ease-in-out;
-    }
+      .line2 {
+        transition: transform 0.2s ease-in-out;
+      }
 
+      .line3 {
+        transform-origin: 0% 100%;
+        transition: transform 0.4s ease-in-out;
+      }
+    }
     .menu-items {
       padding-top: 120px;
       box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
