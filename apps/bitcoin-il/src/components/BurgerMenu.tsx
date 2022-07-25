@@ -25,9 +25,9 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   React.useEffect(() => {
     if (!slideOutRef.current) return
     if (burgerOpen) {
-      slideOutRef.current.style.height = 'auto'
+      slideOutRef.current.style.minHeight = '5000px'
     } else {
-      slideOutRef.current.style.height = '0'
+      slideOutRef.current.style.minHeight = '0'
     }
   }, [burgerOpen])
 
@@ -60,9 +60,11 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
         ref={slideOutRef}
         className={`slide-out ${burgerOpen ? 'open' : 'closed'}`}
       >
-        <BurgerMenuMenu items={mainMenuItems} />
-        <LanguageSelectMobile />
-        <ThemeSelectMobileNew />
+        <div className="slide-out-inner">
+          <BurgerMenuMenu items={mainMenuItems} />
+          <LanguageSelectMobile />
+          <ThemeSelectMobileNew />
+        </div>
       </div>
       <div
         className={`on-click-outside ${burgerOpen ? 'open' : 'closed'}`}
@@ -184,7 +186,7 @@ const BurgerWrap = styled.div`
     }
 
     .slide-out {
-      height: 1px;
+      height: 0px;
       z-index: 5;
       overflow: hidden;
       width: 100vw;
@@ -195,16 +197,21 @@ const BurgerWrap = styled.div`
       left: 0;
       transition: all 400ms;
 
+      &-inner {
+        background: black;
+      }
+
       &.open {
         transition: all 400ms;
-        height: unset;
+        min-height: 5000px;
+        background: transparent;
       }
     }
 
     .on-click-outside {
       height: 100vh;
       width: 100vw;
-      transition: e all 400ms;
+      transition: all 400ms;
       position: absolute;
       top: 0;
       left: 0;
