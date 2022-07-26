@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import arrow from '../img/ico_angle_white.svg'
-import { isBurgerMenuOpenState } from '../state/state'
+import { isBurgerMenuOpenState, isDarkModeState } from '../state/state'
 import { colors } from '../theme/colors'
 import { ThemeSelectMobileNewProps } from '../utils/interfaces'
 import ThemeSwitch from './ThemeSwitch'
@@ -12,6 +12,7 @@ const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
   const [open, setOpen] = React.useState<boolean>(false)
   const [size, setSize] = React.useState<number>(0)
   const [sizeFOund, setSizeFound] = React.useState<boolean>(false)
+  const isDark = useRecoilValue(isDarkModeState)
 
   const submenuRef = React.createRef<HTMLDivElement>()
 
@@ -42,7 +43,13 @@ const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
   return (
     <StyledBurgerMenuMenu>
       <div className="menu-title" onClick={toggleOpen}>
-        <span className="menu-title-label">
+        <span
+          className={`menu-title-label ${
+            isDark
+              ? 'burgermenu-menu-title-dark'
+              : 'burgermenu-menu-title-light'
+          }`}
+        >
           Theme <img className={`arrow`} src={arrow} />
         </span>
         <div
@@ -183,5 +190,14 @@ const StyledBurgerMenuMenu = styled.div`
     opacity: 0.2;
     cursor: not-allowed;
     pointer-events: none;
+  }
+
+  .burgermenu-menu-title-dark {
+    background: ${colors.burgerMenuBgDark};
+  }
+
+  .burgermenu-menu-title-light {
+    background: ${colors.burgerMenuBgLight};
+    color: black;
   }
 `
