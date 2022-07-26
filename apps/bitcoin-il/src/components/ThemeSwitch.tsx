@@ -1,14 +1,15 @@
-import { ControlOutlined } from '@ant-design/icons'
-import { Button, Popover, Switch } from 'antd'
+import { Divider, Switch } from 'antd'
 import * as React from 'react'
+import { DarkModeToggle } from 'react-dark-mode-toggle-2'
 import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import { isDarkModeState } from '../state/state'
 import { useTheme } from '../theme'
+import { phoneDevices } from '../utils/breakpoints'
 import { ThemeSwitchProps } from '../utils/interfaces'
 
-const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
+const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ isMobile }) => {
   const [isSystem, setIsSystem] = React.useState(false)
   const isDark = useRecoilValue(isDarkModeState)
 
@@ -31,40 +32,87 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
     )
   }, [isSystem])
 
+  const toggleSize = isMobile ? 100 : 50
+
   return (
-    <>
+    <StyledThemeWrap className={isMobile ? 'is-mobile' : ''}>
+      {isMobile ? (
+        <span className="theme-mobile-sub-title">Dark Mode</span>
+      ) : null}
       {isSystem ? (
-        <Button
-          type="text"
-          size="small"
-          onClick={() => {
-            setIsSystem(false)
+        <>
+          <DarkModeToggle
+            onChange={() => {
+              setIsSystem(!isSystem)
+              actions.toggleDarkMode()
+            }}
+            isDarkMode={isDark}
+            size={toggleSize}
+          />
+        </>
+      ) : (
+        <DarkModeToggle
+          onChange={() => {
             actions.toggleDarkMode()
           }}
-        >
-          {isDark ? '☀️' : '🌙'}
-        </Button>
-      ) : (
-        <StyledThemeSwitch
-          id="ThemeSwitch"
-          onChange={() => actions.toggleDarkMode()}
-          checked={isDark}
-          checkedChildren="☀️"
-          unCheckedChildren="🌙"
+          isDarkMode={isDark}
+          size={toggleSize}
         />
       )}
-      <Popover
-        content={toggleSystem}
-        title="Dark Mode"
-        trigger="hover"
-        placement="bottomRight"
+      <span
+        className="system-switch"
+        onClick={() => {
+          if (isSystem) {
+            actions.setTheme('bitil-theme')
+          }
+          setIsSystem(!isSystem)
+        }}
       >
-        <Button type="text" size="small" icon={<ControlOutlined />} />
-      </Popover>
-    </>
+        {isMobile ? (
+          <>
+            <Divider />
+            <span className="theme-mobile-sub-title">
+              Switch to {isSystem ? 'manaual' : 'system'} theme control
+            </span>
+          </>
+        ) : null}
+        <span className="system-icon-font">{isSystem ? '🖖' : '🖥️'}</span>
+      </span>
+    </StyledThemeWrap>
   )
 }
 
 export default ThemeSwitch
 
-const StyledThemeSwitch = styled(Switch)``
+const StyledThemeWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .system-switch {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 12px;
+  }
+
+  ${phoneDevices} {
+    flex-direction: column;
+    padding: 20px 0;
+
+    .anticon {
+      background: grey;
+      margin-left: 50px;
+    }
+
+    .system-switch {
+      display: flex;
+      flex-direction: column;
+
+      .system-icon-font {
+        ${phoneDevices} {
+          font-size: 35px;
+        }
+      }
+    }
+  }
+`

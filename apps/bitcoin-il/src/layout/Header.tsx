@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({}) => {
       </div>
       <div className="header-right">
         <div className="header-right-hide-on-mobile">
-          <ThemeSwitch />
+          <ThemeSwitch isMobile={false} />
           <LanguageSelect />
         </div>
         <BurgerMenu />

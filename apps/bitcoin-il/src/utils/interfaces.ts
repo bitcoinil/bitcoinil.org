@@ -102,7 +102,9 @@ export interface WhitePaperTranslation {
   }[]
 }
 
-export interface ThemeSwitchProps {}
+export interface ThemeSwitchProps {
+  isMobile: boolean
+}
 
 export interface ThemeSelectMobileProps {}
 

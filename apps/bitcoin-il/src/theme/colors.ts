@@ -3,8 +3,8 @@ export const colors = {
   dullAccent: '#FEF4E8',
   whiteText: '#FFFFFF',
   borderColor: '#DADADA',
-  burgerMenuBg: '#13161f',
-  burgerMenuSubBg: '#090c14',
+  burgerMenuBgDark: '#13161f',
+  burgerMenuSubBgDark: '#090c14',
   burgerMenuBgLight: 'white',
   burgerMenuSubBgLight: 'grey'
 }

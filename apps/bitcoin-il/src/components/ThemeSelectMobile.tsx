@@ -1,6 +1,4 @@
 import * as React from 'react'
-import { DarkModeToggle } from 'react-dark-mode-toggle-2'
-import { FormattedMessage } from 'react-intl'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
@@ -8,12 +6,12 @@ import arrow from '../img/ico_angle_white.svg'
 import { isBurgerMenuOpenState } from '../state/state'
 import { colors } from '../theme/colors'
 import { ThemeSelectMobileNewProps } from '../utils/interfaces'
+import ThemeSwitch from './ThemeSwitch'
 
 const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
   const [open, setOpen] = React.useState<boolean>(false)
   const [size, setSize] = React.useState<number>(0)
   const [sizeFOund, setSizeFound] = React.useState<boolean>(false)
-  const [isSystem, setIsSystem] = React.useState<boolean>(false)
 
   const submenuRef = React.createRef<HTMLDivElement>()
 
@@ -51,44 +49,7 @@ const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
           ref={submenuRef}
           className={`submenu ${open ? 'submenu-open' : 'submenu-closed'}`}
         >
-          <span
-            onClick={(e) => {
-              e.stopPropagation()
-              // setDarkMode(!darkMode)
-            }}
-            className="menu-title-submenu-label"
-          >
-            <FormattedMessage
-              id={`mobile-theme-select.dark-mode`}
-              defaultMessage={`Dark Mode`}
-              description={`dark-mode`}
-            />
-            <DarkModeToggle
-              // className={`theme-toggle ${isSystem ? 'disabled' : ''}`}
-              // onChange={!isSystem ? toggleDarkMode : () => {}}
-              onChange={() => {}}
-              isDarkMode={true}
-              size={100}
-            />
-            {/* <ToggleSystem /> */}
-            <FormattedMessage
-              id={`mobile-theme-select.use-sys`}
-              defaultMessage={`Use System Theme`}
-              description={`use-sys`}
-            />
-            <label className="switch">
-              <input
-                type="checkbox"
-                onChange={() => {
-                  setIsSystem(!isSystem)
-                }}
-                checked={isSystem}
-              />
-              <span
-                className={`slider round ${isSystem ? 'is-system' : ''}`}
-              ></span>
-            </label>
-          </span>
+          <ThemeSwitch isMobile={true} />
         </div>
       </div>
     </StyledBurgerMenuMenu>
@@ -100,7 +61,7 @@ export default React.memo(ThemeSelectMobile)
 const StyledBurgerMenuMenu = styled.div`
   .menu-title {
     text-align: center;
-    background-color: ${colors.burgerMenuBg};
+    background-color: ${colors.burgerMenuBgDark};
     display: flex;
     font-size: 18px;
     flex-direction: column;
@@ -129,7 +90,7 @@ const StyledBurgerMenuMenu = styled.div`
 
     &-submenu-label {
       padding: 20px 0;
-      background-color: ${colors.burgerMenuSubBg};
+      background-color: ${colors.burgerMenuSubBgDark};
       display: flex;
       align-items: center;
       justify-content: center;
