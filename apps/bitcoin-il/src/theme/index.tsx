@@ -19,7 +19,7 @@ const BASE_URL = import.meta.env.BASE_URL || '/'
 
 const defaultThemeContext: ThemeContextValue = [
   { themes: [], active: { theme: '', variant: '', isDark: false }, debug: {} },
-  { setTheme: () => {} }
+  { setTheme: () => {}, toggleDarkMode: () => {} }
 ]
 const ThemeContext = createContext(defaultThemeContext)
 
@@ -72,6 +72,25 @@ const Theme = ({ children }: Props) => {
     debug: {}
   }
 
+  const pullThemeInfo = (theme: string, variant?: string) => {
+    const themeIndex = themes.findIndex((item) => item.name === theme)
+    const variantIndex = variant
+      ? themes[themeIndex].variants.findIndex(
+          (item: { name: string }) => item.name === variant
+        )
+      : null
+    return variant
+      ? themes[themeIndex].variants[variantIndex]
+      : themes[themeIndex]
+  }
+
+  React.useEffect(() => {
+    if (isDarkMode === state.active.isDark) {
+      return
+    }
+    setIsDarkMode(state.active.isDark)
+  }, [state, isDarkMode])
+
   const actions = {
     setTheme: (theme: string, variant?: string) => {
       const fadeTime: number = 600
@@ -79,9 +98,18 @@ const Theme = ({ children }: Props) => {
       document.body.style.opacity = '0'
       window.setTimeout(() => {
         document.body.style.opacity = '1'
-        setIsDarkMode(!isDarkMode)
-        setActiveState((v) => ({ ...v, theme, variant: variant || '' }))
+        const newState = {
+          theme,
+          variant: variant ? variant : '',
+          isDark: pullThemeInfo(theme, variant).isDark
+        }
+        setActiveState(newState)
       }, fadeTime + 500)
+    },
+    toggleDarkMode: () => {
+      isDarkMode
+        ? actions.setTheme('bitil-theme', 'bitil-light')
+        : actions.setTheme('bitil-theme', 'bitil-dark')
     }
   }
 

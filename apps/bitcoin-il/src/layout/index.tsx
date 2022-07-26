@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useLocation } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import Support from '../components/Support'
@@ -11,7 +11,7 @@ import Footer from './Footer'
 import Header from './Header'
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
-  const [ln] = useRecoilState(currentlySelectedLanguageState)
+  const ln = useRecoilValue(currentlySelectedLanguageState)
 
   const location = useLocation()
 

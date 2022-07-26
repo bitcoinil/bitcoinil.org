@@ -1,12 +1,11 @@
 import * as React from 'react'
 import { DarkModeToggle } from 'react-dark-mode-toggle-2'
 import { FormattedMessage } from 'react-intl'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
 import arrow from '../img/ico_angle_white.svg'
-import { isBurgerMenuOpenState, isDarkModeState } from '../state/state'
-import { useTheme } from '../theme'
+import { isBurgerMenuOpenState } from '../state/state'
 import { colors } from '../theme/colors'
 import { ThemeSelectMobileNewProps } from '../utils/interfaces'
 
@@ -14,21 +13,11 @@ const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
   const [open, setOpen] = React.useState<boolean>(false)
   const [size, setSize] = React.useState<number>(0)
   const [sizeFOund, setSizeFound] = React.useState<boolean>(false)
+  const [isSystem, setIsSystem] = React.useState<boolean>(false)
 
   const submenuRef = React.createRef<HTMLDivElement>()
 
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpenState)
-  const darkMode = useRecoilValue(isDarkModeState)
-
-  const [isSystem, setIsSystem] = React.useState(false)
-
-  const [, actions] = useTheme()
-
-  const toggleDarkMode = () => {
-    darkMode
-      ? actions.setTheme('bitil-theme', 'bitil-light')
-      : actions.setTheme('bitil-theme', 'bitil-dark')
-  }
 
   const toggleOpen = () => {
     setOpen(!open)
@@ -75,9 +64,10 @@ const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
               description={`dark-mode`}
             />
             <DarkModeToggle
-              className={`theme-toggle ${isSystem ? 'disabled' : ''}`}
-              onChange={!isSystem ? toggleDarkMode : () => {}}
-              isDarkMode={darkMode}
+              // className={`theme-toggle ${isSystem ? 'disabled' : ''}`}
+              // onChange={!isSystem ? toggleDarkMode : () => {}}
+              onChange={() => {}}
+              isDarkMode={true}
               size={100}
             />
             {/* <ToggleSystem /> */}
@@ -91,9 +81,6 @@ const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
                 type="checkbox"
                 onChange={() => {
                   setIsSystem(!isSystem)
-                  if (isSystem) {
-                    actions.setTheme('bitil-theme')
-                  }
                 }}
                 checked={isSystem}
               />

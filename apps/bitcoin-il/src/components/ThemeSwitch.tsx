@@ -14,12 +14,6 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
 
   const [, actions] = useTheme()
 
-  const toggleDarkMode = () => {
-    isDark
-      ? actions.setTheme('bitil-theme', 'bitil-light')
-      : actions.setTheme('bitil-theme', 'bitil-dark')
-  }
-
   const toggleSystem = React.useMemo(() => {
     return (
       <Switch
@@ -45,7 +39,7 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
           size="small"
           onClick={() => {
             setIsSystem(false)
-            toggleDarkMode()
+            actions.toggleDarkMode()
           }}
         >
           {isDark ? '☀️' : '🌙'}
@@ -53,7 +47,7 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
       ) : (
         <StyledThemeSwitch
           id="ThemeSwitch"
-          onChange={toggleDarkMode}
+          onChange={() => actions.toggleDarkMode()}
           checked={isDark}
           checkedChildren="☀️"
           unCheckedChildren="🌙"

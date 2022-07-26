@@ -129,7 +129,11 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
                         <span
                           onClick={handleClickRoute}
                           key={ii}
-                          className="menu-title-submenu-label"
+                          className={`menu-title-submenu-label ${
+                            isDarkMode
+                              ? 'dark-submenu-label'
+                              : 'light-submenu-label'
+                          }`}
                         >
                           <CustomNavLink to={subItem.key}>
                             {subItem.label}
@@ -175,8 +179,10 @@ const StyledBurgerMenuMenu = styled.div`
     }
 
     &-submenu-label {
+      // the label inside the submenu
       padding: 20px 0;
-      background-color: ${colors.burgerMenuSubBg};
+      /* background-color: ${colors.burgerMenuSubBg}; */
+      /* background: blue; */
     }
 
     .submenu {
@@ -194,6 +200,14 @@ const StyledBurgerMenuMenu = styled.div`
   .light-menu-menu {
     background-color: ${colors.burgerMenuBgLight};
     color: black;
+  }
+
+  .dark-submenu-label {
+    background: #00006a;
+  }
+
+  .light-submenu-label {
+    background: #cccca1;
   }
 
   .dark-arrow {

@@ -84,6 +84,7 @@ export interface BoxProps {
 
 export interface ThemeContextActions {
   setTheme: (theme: string, variant?: string) => void
+  toggleDarkMode: Function
 }
 
 export interface LanguageAtomValue {
