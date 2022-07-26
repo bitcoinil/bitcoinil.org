@@ -1,12 +1,13 @@
 import * as React from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
-import { useTranslations } from '../hooks/useTranslations'
 
+import { useTranslations } from '../hooks/useTranslations'
 import arrow from '../img/ico_angle_white.svg'
 import {
   currentlySelectedLanguageState,
-  isBurgerMenuOpenState
+  isBurgerMenuOpenState,
+  isDarkModeState
 } from '../state/state'
 import { colors } from '../theme/colors'
 import {
@@ -18,6 +19,7 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileNewProps> = ({}) => {
   const [open, setOpen] = React.useState<boolean>(false)
   const [size, setSize] = React.useState<number>(0)
   const [sizeFOund, setSizeFound] = React.useState<boolean>(false)
+  const isDark = useRecoilValue(isDarkModeState)
 
   const submenuRef = React.createRef<HTMLDivElement>()
 
@@ -65,7 +67,11 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileNewProps> = ({}) => {
   return (
     <StyledBurgerMenuMenu>
       <div className="menu-title" onClick={toggleOpen}>
-        <span className="menu-title-label">
+        <span
+          className={`menu-title-label ${
+            isDark ? 'dark-mode-title' : 'light-mode-title'
+          }`}
+        >
           Language <img className={`arrow`} src={arrow} />
         </span>
         <div
@@ -96,7 +102,7 @@ export default React.memo(LanguageSelectMobile)
 const StyledBurgerMenuMenu = styled.div`
   .menu-title {
     text-align: center;
-    background-color: ${colors.burgerMenuBg};
+    background-color: ${colors.burgerMenuBgDark};
     display: flex;
     font-size: 18px;
     flex-direction: column;
@@ -121,7 +127,7 @@ const StyledBurgerMenuMenu = styled.div`
 
     &-submenu-label {
       padding: 20px 0;
-      background-color: ${colors.burgerMenuSubBg};
+      background-color: ${colors.burgerMenuSubBgDark};
     }
 
     .submenu {
@@ -130,5 +136,14 @@ const StyledBurgerMenuMenu = styled.div`
       overflow: hidden;
       transition: height 400ms;
     }
+  }
+
+  .dark-mode-title {
+    background: ${colors.burgerMenuBgDark};
+  }
+
+  .light-mode-title {
+    color: black;
+    background: ${colors.burgerMenuBgLight};
   }
 `
