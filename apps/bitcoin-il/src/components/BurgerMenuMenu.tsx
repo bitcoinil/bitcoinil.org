@@ -74,7 +74,7 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
         return (
           <div
             key={i}
-            className={`menu-title ${
+            className={`burger-menu-title ${
               isDarkMode ? 'dark-menu-menu' : 'light-menu-menu'
             }`}
           >
@@ -84,7 +84,7 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
                   ? handleClickRoute()
                   : handleClickMainMenu(mainItem.key)
               }}
-              className="menu-title-label"
+              className="burger-menu-title-label"
             >
               {!mainItem.submenu ? (
                 <CustomNavLink to={mainItem.key}>
@@ -129,7 +129,7 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
                         <span
                           onClick={handleClickRoute}
                           key={ii}
-                          className={`menu-title-submenu-label ${
+                          className={`burger-menu-title-submenu-label ${
                             isDarkMode
                               ? 'dark-submenu-label'
                               : 'light-submenu-label'
@@ -147,8 +147,6 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
           </div>
         )
       })}
-      {/* <LanguageSelectMobile /> */}
-      {/* <ThemeSelectMobile /> */}
     </StyledBurgerMenuMenu>
   )
 }
@@ -156,7 +154,7 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
 export default React.memo(BurgerMenuMenu)
 
 const StyledBurgerMenuMenu = styled.div`
-  .menu-title {
+  .burger-menu-title {
     text-align: center;
     display: flex;
     font-size: 18px;
@@ -181,7 +179,7 @@ const StyledBurgerMenuMenu = styled.div`
     &-submenu-label {
       // the label inside the submenu
       padding: 20px 0;
-      /* background-color: ${colors.burgerMenuSubBg}; */
+      /* background-color: ${colors.burgerMenuSubBgDark}; */
       /* background: blue; */
     }
 
@@ -194,7 +192,7 @@ const StyledBurgerMenuMenu = styled.div`
   }
 
   .dark-menu-menu {
-    background-color: ${colors.burgerMenuBg};
+    background-color: ${colors.burgerMenuBgDark};
   }
 
   .light-menu-menu {
