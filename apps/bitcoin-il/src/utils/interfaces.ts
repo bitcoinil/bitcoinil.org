@@ -25,6 +25,14 @@ export interface AvailableLanguageData {
   name: string
 }
 
+export interface ThemeVariant {
+  css: string
+  isDark: boolean
+  monaco: string
+  name: string
+  title: string
+}
+
 export interface SiteButtonProps {
   onClick?: Function
   type?: any // Any because it's for the AntD component and I can't figure out the type

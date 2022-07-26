@@ -12,7 +12,7 @@ import { phoneDevices } from '../utils/breakpoints'
 import { BurgerMenuProps } from '../utils/interfaces'
 import BurgerMenuMenu from './BurgerMenuMenu'
 import LanguageSelectMobile from './LanguageSelectMobile'
-import ThemeSelectMobileNew from './ThemeSelectMobileNew'
+import ThemeSelectMobile from './ThemeSelectMobile'
 
 const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpenState)
@@ -63,7 +63,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
         <div className="slide-out-inner">
           <BurgerMenuMenu items={mainMenuItems} />
           <LanguageSelectMobile />
-          <ThemeSelectMobileNew />
+          <ThemeSelectMobile />
         </div>
         <div
           className={`on-click-outside ${burgerOpen ? 'open' : 'closed'}`}
