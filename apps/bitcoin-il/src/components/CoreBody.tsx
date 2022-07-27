@@ -1,7 +1,8 @@
 import { AppleOutlined, WindowsOutlined } from '@ant-design/icons'
 import { Card, Divider } from 'antd'
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from './FormattedMessageWithHover'
+
 import styled from 'styled-components'
 import { coreShortcuts, links, mainBoxes, newsCards } from '../data/CoreData'
 

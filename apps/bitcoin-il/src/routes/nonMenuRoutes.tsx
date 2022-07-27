@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
 import ChooseWallet from '../components/ChooseWallet'
+import { FormattedMessage } from '../components/FormattedMessageWithHover'
 import RoutePage from '../layout/RoutePage'
 
 export const nonMenuRoutes = [
@@ -14,12 +14,14 @@ export const nonMenuRoutes = [
           <FormattedMessage
             id="page.choose-wallet.title.menu"
             defaultMessage="Choose Your Wallet"
+            description="Choose Wallet"
           />
         }
         subtitle={
           <FormattedMessage
             id="page.choose-wallet.subtitle"
             defaultMessage="Which Wallet Is For You?"
+            description="Choose Wallet"
           />
         }
         body={<ChooseWallet />}
@@ -36,12 +38,14 @@ export const nonMenuRoutes = [
           <FormattedMessage
             id="page.buy-bitil.title"
             defaultMessage="Buy BitcoinIL"
+            description="Choose Wallet"
           />
         }
         subtitle={
           <FormattedMessage
             id="page.buy-bitil.subtitle"
             defaultMessage="Buy BitcoinIL"
+            description="Choose Wallet"
           />
         }
         body={<h1>Buy Body</h1>}

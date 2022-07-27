@@ -1,7 +1,6 @@
 import { Divider } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from './FormattedMessageWithHover'
-// import { FormattedMessageWithHoverInfoProps as FormattedMessage } from './FormattedMessageWithHover'
 import styled from 'styled-components'
 
 import { colors } from '../theme/colors'

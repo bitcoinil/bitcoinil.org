@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 
 import SiteButton from '../components/BitcoinSiteButton'
@@ -8,6 +7,7 @@ import CustomNavLink from '../components/CustomNavLink'
 import { FooterProps } from '../utils/interfaces'
 import { mainMenuItems } from '../routes/mainMenuItems'
 import Logo from '../components/Logo'
+import { FormattedMessage } from '../components/FormattedMessageWithHover'
 
 const Footer: React.FC<FooterProps> = ({}) => {
   const renderSupport = () => {

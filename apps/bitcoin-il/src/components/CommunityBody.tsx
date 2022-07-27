@@ -6,7 +6,8 @@ import { CommunityBodyProps } from '../utils/interfaces'
 import CardsDisplay from './CardsDisplay'
 import { communityCards, NonProfitOrgs } from '../data/CommunityBodyData'
 import { Divider } from 'antd'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from './FormattedMessageWithHover'
+
 import { colors } from '../theme/colors'
 import CustomNavLink from './CustomNavLink'
 

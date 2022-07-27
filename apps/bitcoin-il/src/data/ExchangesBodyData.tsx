@@ -1,6 +1,6 @@
 import * as React from 'react'
 import ReactCountryFlag from 'react-country-flag'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from '../components/FormattedMessageWithHover'
 
 import { ExchangeLocation, tableOfContentItem } from '../utils/interfaces'
 

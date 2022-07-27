@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from '../components/FormattedMessageWithHover'
 
 import accessibility from '../img/ico_accessibility.svg'
 import automatization from '../img/ico_automatization.svg'

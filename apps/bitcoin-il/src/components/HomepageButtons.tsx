@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from './FormattedMessageWithHover'
+
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 

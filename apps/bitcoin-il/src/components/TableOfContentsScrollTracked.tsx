@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from './FormattedMessageWithHover'
+
 import styled from 'styled-components'
 
 import ico_angle from '../img/ico_angle_black.svg'

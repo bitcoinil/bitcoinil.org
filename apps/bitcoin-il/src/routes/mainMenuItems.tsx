@@ -1,6 +1,6 @@
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from '../components/FormattedMessageWithHover'
 
 import BusinessBody from '../components/BusinessesBody'
 import BuyBody from '../components/BuyBody'

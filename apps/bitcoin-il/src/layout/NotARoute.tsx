@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 import SiteButton from '../components/BitcoinSiteButton'
 import CustomNavLink from '../components/CustomNavLink'

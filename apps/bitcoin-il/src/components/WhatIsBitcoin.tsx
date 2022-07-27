@@ -1,7 +1,8 @@
 import { CloseCircleOutlined } from '@ant-design/icons'
 import disableScroll from 'disable-scroll'
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from './FormattedMessageWithHover'
+
 import YouTube from 'react-youtube'
 import styled from 'styled-components'
 

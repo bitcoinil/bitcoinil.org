@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from '../components/FormattedMessageWithHover'
 
 import ico_contribute from '../img/ico_contribute.svg'
 import ico_decentralized from '../img/ico_decentralized.svg'
