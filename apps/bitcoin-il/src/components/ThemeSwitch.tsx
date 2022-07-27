@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import { isDarkModeState } from '../state/state'
 import { useTheme } from '../theme'
+import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { ThemeSwitchProps } from '../utils/interfaces'
 
@@ -35,7 +36,15 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ isMobile }) => {
   const toggleSize = isMobile ? 100 : 50
 
   return (
-    <StyledThemeWrap className={isMobile ? 'is-mobile' : ''}>
+    <StyledThemeWrap
+      id="StyledThemeWrap"
+      style={{
+        background: isDark
+          ? colors.burgerMenuSubBgDark
+          : colors.burgerMenuSubBgLight,
+        color: isDark ? '' : 'black'
+      }}
+    >
       {isMobile ? (
         <span className="theme-mobile-sub-title">Dark Mode</span>
       ) : null}
@@ -88,6 +97,25 @@ const StyledThemeWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .theme-wrap-inner {
+    background: ${colors.burgerMenuSubBgLight};
+    color: black;
+  }
+
+  .theme-wrap-inner-dark {
+    background: ${colors.burgerMenuSubBgDark};
+    span {
+      color: black;
+    }
+  }
+
+  .mobile-theme-light {
+    background: ${colors.burgerMenuSubBgLight};
+    span {
+      color: black;
+    }
+  }
 
   .system-switch {
     cursor: pointer;

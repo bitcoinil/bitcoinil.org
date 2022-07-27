@@ -4,6 +4,8 @@ import styled from 'styled-components'
 
 import { useTranslations } from '../hooks/useTranslations'
 import arrow from '../img/ico_angle_white.svg'
+import arrow_dark from '../img/ico_angle_black.svg'
+
 import {
   currentlySelectedLanguageState,
   isBurgerMenuOpenState,
@@ -72,11 +74,13 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileNewProps> = ({}) => {
             isDark ? 'dark-mode-title' : 'light-mode-title'
           }`}
         >
-          Language <img className={`arrow`} src={arrow} />
+          Language <img className={`arrow`} src={isDark ? arrow : arrow_dark} />
         </span>
         <div
           ref={submenuRef}
-          className={`submenu ${open ? 'submenu-open' : 'submenu-closed'}`}
+          className={`submenu ${open ? 'submenu-open' : 'submenu-closed'} ${
+            isDark ? 'dark-sub' : 'light-sub'
+          }`}
         >
           {availableLanguages.map((lang, i) => {
             return (
@@ -145,5 +149,18 @@ const StyledBurgerMenuMenu = styled.div`
   .light-mode-title {
     color: black;
     background: ${colors.burgerMenuBgLight};
+  }
+
+  .dark-sub {
+    span {
+      background: ${colors.burgerMenuSubBgDark};
+    }
+  }
+
+  .light-sub {
+    span {
+      background: ${colors.burgerMenuSubBgLight};
+      color: black;
+    }
   }
 `

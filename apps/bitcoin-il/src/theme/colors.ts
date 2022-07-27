@@ -6,5 +6,5 @@ export const colors = {
   burgerMenuBgDark: '#13161f',
   burgerMenuSubBgDark: '#090c14',
   burgerMenuBgLight: 'white',
-  burgerMenuSubBgLight: 'grey'
+  burgerMenuSubBgLight: '#eeeeee'
 }

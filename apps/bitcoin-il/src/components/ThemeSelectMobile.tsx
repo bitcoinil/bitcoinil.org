@@ -3,6 +3,8 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import arrow from '../img/ico_angle_white.svg'
+import arrow_dark from '../img/ico_angle_black.svg'
+
 import { isBurgerMenuOpenState, isDarkModeState } from '../state/state'
 import { colors } from '../theme/colors'
 import { ThemeSelectMobileNewProps } from '../utils/interfaces'
@@ -11,7 +13,7 @@ import ThemeSwitch from './ThemeSwitch'
 const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
   const [open, setOpen] = React.useState<boolean>(false)
   const [size, setSize] = React.useState<number>(0)
-  const [sizeFOund, setSizeFound] = React.useState<boolean>(false)
+  const [sizeFound, setSizeFound] = React.useState<boolean>(false)
   const isDark = useRecoilValue(isDarkModeState)
 
   const submenuRef = React.createRef<HTMLDivElement>()
@@ -25,7 +27,7 @@ const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
   React.useEffect(() => {
     if (!submenuRef.current) return
 
-    if (!open && !sizeFOund) return
+    if (!open && !sizeFound) return
 
     if (open) submenuRef.current.style.height = `${size}px`
     else submenuRef.current.style.height = `0px`
@@ -33,7 +35,7 @@ const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
 
   React.useEffect(() => {
     if (!burgerOpen) return
-    if (sizeFOund) return
+    if (sizeFound) return
     if (!submenuRef.current?.clientHeight) return
     setSize(submenuRef.current?.clientHeight)
     submenuRef.current.style.height = '0'
@@ -50,7 +52,7 @@ const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
               : 'burgermenu-menu-title-light'
           }`}
         >
-          Theme <img className={`arrow`} src={arrow} />
+          Theme <img className={`arrow`} src={isDark ? arrow : arrow_dark} />
         </span>
         <div
           ref={submenuRef}

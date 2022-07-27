@@ -201,11 +201,12 @@ const StyledBurgerMenuMenu = styled.div`
   }
 
   .dark-submenu-label {
-    background: #00006a;
+    background: ${colors.burgerMenuSubBgDark};
   }
 
   .light-submenu-label {
-    background: #cccca1;
+    background: ${colors.burgerMenuSubBgLight};
+    color: black;
   }
 
   .dark-arrow {
