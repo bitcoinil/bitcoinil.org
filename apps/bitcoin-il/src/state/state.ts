@@ -15,3 +15,18 @@ export const isDarkModeState = atom<boolean>({
   key: 'isDarkMode',
   default: false
 })
+
+export const isDevModeVisibleState = atom<boolean>({
+  key: 'isDevModeVisibleState',
+  default: false
+})
+
+export const isThemeDebugVisibleState = atom<boolean>({
+  key: 'isThemeDebugVisibleState',
+  default: false
+})
+
+export const isTooltipShownOnFormattedMessagesHover = atom<boolean>({
+  key: 'isTooltipShownOnFormattedMessagesHover',
+  default: false
+})

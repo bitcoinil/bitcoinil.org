@@ -2,18 +2,15 @@ import { themes } from '@djitsu/themes'
 import { Button } from 'antd'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import styled, { createGlobalStyle } from 'styled-components'
 
-import { isDarkModeState } from '../state/state'
+import { isDarkModeState, isThemeDebugVisibleState } from '../state/state'
 import { ThemeContextValue } from '../utils/interfaces'
 import FaviconHandler from './favicon'
 
 import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
 const { createContext, useContext, useMemo, useState } = React
-
-const showDebugButton = false
-// const showDebugButton = true
 
 const BASE_URL = import.meta.env.BASE_URL || '/'
 
@@ -36,7 +33,7 @@ const Theme = ({ children }: Props) => {
     isDark: false
   })
 
-  const [showDebug, setShowDebug] = React.useState(false)
+  const showDebug = useRecoilValue(isThemeDebugVisibleState)
   const [prefersDark, setPrefersDark] = React.useState(false)
 
   const isPrefersDarkInitial = useMemo(() => {
@@ -216,19 +213,8 @@ const Theme = ({ children }: Props) => {
               Change to Light
             </Button>
           </div>
-          <DebugButtons>
-            <button onClick={() => setShowDebug(false)}>
-              Hide Theme Debug
-            </button>
-          </DebugButtons>
         </>
-      ) : (
-        <DebugButtons>
-          {showDebugButton ? (
-            <button onClick={() => setShowDebug(true)}>Show Theme Debug</button>
-          ) : null}
-        </DebugButtons>
-      )}
+      ) : null}
       {children}
     </ThemeContext.Provider>
   )
