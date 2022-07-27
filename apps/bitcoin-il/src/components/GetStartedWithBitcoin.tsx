@@ -65,7 +65,13 @@ const GetStartedWithBitcoin: React.FC<GetStartedWithBitcoinProps> = ({}) => {
         </div>
         <div className="get-started-body-bottom">
           <CustomNavLink to="/getting-started">
-            <SiteButton>Get Started with BitCoin Il</SiteButton>
+            <SiteButton>
+              <FormattedMessage
+                id={`exchanges.getting-stared-label`}
+                defaultMessage={`Get Started with BitCoin Il`}
+                description={`getting-stared-label`}
+              />
+            </SiteButton>
           </CustomNavLink>
         </div>
       </div>
