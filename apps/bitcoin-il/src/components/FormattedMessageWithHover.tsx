@@ -70,7 +70,7 @@ export const FormattedMessage: React.FC<FormattedMessageWithHoverInfoProps> = ({
 // export default FormattedMessage
 
 const StyledFormattedMessageWithHoverInfo = styled.span`
-  display: flex;
+  display: inline;
   flex-direction: column;
 
   .monospaced {
