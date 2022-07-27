@@ -185,7 +185,7 @@ const BurgerWrap = styled.div`
     }
 
     .slide-out {
-      height: 0px;
+      transform: scaleY(0);
       z-index: 5;
       overflow: hidden;
       width: 100vw;
@@ -194,15 +194,15 @@ const BurgerWrap = styled.div`
       color: white;
       top: 60px;
       left: 0;
-      transition: height 400ms;
+      transition: transform 800ms;
 
       &-inner {
         background: black;
       }
 
       &.open {
-        transition: height 400ms;
-        min-height: 1500px;
+        transition: transform 400ms;
+        transform: scaleY(1);
         background: transparent;
       }
     }
@@ -211,7 +211,6 @@ const BurgerWrap = styled.div`
       height: 500vh;
       width: 100vw;
       transition: height 400ms;
-      /* background: red; */
 
       &.closed {
         display: none;
