@@ -82,6 +82,17 @@ const Theme = ({ children }: Props) => {
   }
 
   React.useEffect(() => {
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      setIsDarkMode(true)
+    } else {
+      setIsDarkMode(false)
+    }
+  }, [])
+
+  React.useEffect(() => {
     if (isDarkMode === state.active.isDark) {
       return
     }
