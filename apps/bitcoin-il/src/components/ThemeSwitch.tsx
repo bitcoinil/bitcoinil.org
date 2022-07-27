@@ -39,9 +39,11 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ isMobile }) => {
     <StyledThemeWrap
       id="StyledThemeWrap"
       style={{
-        background: isDark
-          ? colors.burgerMenuSubBgDark
-          : colors.burgerMenuSubBgLight,
+        background: isMobile
+          ? isDark
+            ? colors.burgerMenuSubBgDark
+            : colors.burgerMenuSubBgLight
+          : 'transparent',
         color: isDark ? '' : 'black'
       }}
     >
