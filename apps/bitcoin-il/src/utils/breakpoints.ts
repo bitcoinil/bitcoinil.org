@@ -1,4 +1,4 @@
-const phoneDevices: string = `@media only screen and (max-width: 600px)`
+const phoneDevices: string = `@media only screen and (max-width: 950px)`
 
 const smallDevices: string = `@media only screen and (min-width: 600px)`
 
