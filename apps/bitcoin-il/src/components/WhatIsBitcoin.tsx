@@ -1,13 +1,12 @@
 import { CloseCircleOutlined } from '@ant-design/icons'
 import disableScroll from 'disable-scroll'
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
 import YouTube from 'react-youtube'
 import styled from 'styled-components'
 
 import PlayBtn from '../img/play-btn.svg'
 import { phoneDevices } from '../utils/breakpoints'
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 export default function WhatIsBitcoin(): JSX.Element {
   const [showModal, setShowModal] = React.useState(false)

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { individualCards } from '../data/IndividualsBodyData'
 
+import { individualCards } from '../data/IndividualsBodyData'
 import { IndividualsBodyProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
 import CardsDisplay from './CardsDisplay'

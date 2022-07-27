@@ -2,7 +2,6 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import ico_angle from '../img/ico_angle.svg'
-import { phoneDevices } from '../utils/breakpoints'
 import { TOCBurgerMenuProps } from '../utils/interfaces'
 
 const TOCBurgerMenu: React.FC<TOCBurgerMenuProps> = ({

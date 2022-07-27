@@ -1,15 +1,14 @@
+import { Divider } from 'antd'
 import * as React from 'react'
 import styled from 'styled-components'
 
+import { communityCards, NonProfitOrgs } from '../data/CommunityBodyData'
+import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { CommunityBodyProps } from '../utils/interfaces'
 import CardsDisplay from './CardsDisplay'
-import { communityCards, NonProfitOrgs } from '../data/CommunityBodyData'
-import { Divider } from 'antd'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
-import { colors } from '../theme/colors'
 import CustomNavLink from './CustomNavLink'
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 const CommunityBody: React.FC<CommunityBodyProps> = ({}) => {
   return (

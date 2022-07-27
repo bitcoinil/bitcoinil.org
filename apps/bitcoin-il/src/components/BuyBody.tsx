@@ -1,9 +1,9 @@
 import { Card } from 'antd'
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
 import styled from 'styled-components'
 
 import { BuyBodyProps } from '../utils/interfaces'
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 const BuyBody: React.FC<BuyBodyProps> = ({}) => {
   return (

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { resourceCards } from '../data/ResourcesBodyData'
 
+import { resourceCards } from '../data/ResourcesBodyData'
 import { phoneDevices } from '../utils/breakpoints'
 import { ResourcesBodyProps } from '../utils/interfaces'
 import CardsDisplay from './CardsDisplay'

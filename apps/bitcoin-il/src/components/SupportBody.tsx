@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { supportCards } from '../data/SupportBodyData'
 
+import { supportCards } from '../data/SupportBodyData'
 import { SupportBodyProps } from '../utils/interfaces'
 import CardsDisplay from './CardsDisplay'
 

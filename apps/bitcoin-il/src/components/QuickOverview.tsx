@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
 import styled from 'styled-components'
-import { boxes } from '../data/QuickOverviewData'
 
+import { boxes } from '../data/QuickOverviewData'
 import OverviewBG from '../img/overview-bg.svg'
 import { phoneDevices } from '../utils/breakpoints'
 import { QuickOverviewBoxProps } from '../utils/interfaces'
+import { FormattedMessage } from './FormattedMessageWithHover'
 import QuickOverviewBox from './QuickOverviewBox'
 
 export default function QuickOverview(): JSX.Element {

@@ -3,9 +3,8 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import { useTranslations } from '../hooks/useTranslations'
-import arrow from '../img/ico_angle_white.svg'
 import arrow_dark from '../img/ico_angle_black.svg'
-
+import arrow from '../img/ico_angle_white.svg'
 import {
   currentlySelectedLanguageState,
   isBurgerMenuOpenState,

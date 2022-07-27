@@ -1,14 +1,13 @@
 import { Card } from 'antd'
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
 import styled from 'styled-components'
-import { whitePaperTranslations } from '../data/WhitePaperData'
 
+import { whitePaperTranslations } from '../data/WhitePaperData'
 import ico_download from '../img/ico_download.svg'
 import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { WhitePaperBodyProps } from '../utils/interfaces'
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 const WhitePaperBody: React.FC<WhitePaperBodyProps> = ({}) => {
   return (

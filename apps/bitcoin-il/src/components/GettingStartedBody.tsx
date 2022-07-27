@@ -1,7 +1,5 @@
 import { Divider } from 'antd'
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
 import styled from 'styled-components'
 
 import {
@@ -12,6 +10,7 @@ import { colors } from '../theme/colors'
 import { flashElement, scrollToElement } from '../util/util'
 import { phoneDevices } from '../utils/breakpoints'
 import { GettingStartedBodyProps } from '../utils/interfaces'
+import { FormattedMessage } from './FormattedMessageWithHover'
 import TimelineComp from './Timeline'
 
 const GettingStartedBody: React.FC<GettingStartedBodyProps> = ({}) => {

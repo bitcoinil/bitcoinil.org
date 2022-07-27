@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
 import styled from 'styled-components'
 
 import bitcoinImg from '../img/bitcoin-img.svg'
@@ -11,6 +10,7 @@ import { phoneDevices } from '../utils/breakpoints'
 import { GetStartedWithBitcoinProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
 import CustomNavLink from './CustomNavLink'
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 const GetStartedWithBitcoin: React.FC<GetStartedWithBitcoinProps> = ({}) => {
   return (

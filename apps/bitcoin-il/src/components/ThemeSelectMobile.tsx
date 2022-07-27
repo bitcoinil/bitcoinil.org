@@ -2,9 +2,8 @@ import * as React from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
-import arrow from '../img/ico_angle_white.svg'
 import arrow_dark from '../img/ico_angle_black.svg'
-
+import arrow from '../img/ico_angle_white.svg'
 import { isBurgerMenuOpenState, isDarkModeState } from '../state/state'
 import { colors } from '../theme/colors'
 import { ThemeSelectMobileNewProps } from '../utils/interfaces'

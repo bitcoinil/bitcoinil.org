@@ -1,16 +1,15 @@
 import { AppleOutlined, WindowsOutlined } from '@ant-design/icons'
 import { Card, Divider } from 'antd'
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
 import styled from 'styled-components'
-import { coreShortcuts, links, mainBoxes, newsCards } from '../data/CoreData'
 
+import { coreShortcuts, links, mainBoxes, newsCards } from '../data/CoreData'
 import ico_news from '../img/ico_news.svg'
 import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { CoreBodyProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 const CoreBody: React.FC<CoreBodyProps> = ({}) => {
   return (

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { innovationCards } from '../data/InnovationData'
 
+import { innovationCards } from '../data/InnovationData'
 import { InnovationBodyProps } from '../utils/interfaces'
 import CardsDisplay from './CardsDisplay'
 

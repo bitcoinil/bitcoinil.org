@@ -1,16 +1,15 @@
 import * as React from 'react'
-// import { FormattedMessage } from './FormattedMessageWithHover'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
 import styled from 'styled-components'
 
 import { phoneDevices } from '../utils/breakpoints'
-// import FormattedMessage from './FormattedMessageWithHover'
+import { FormattedMessage } from './FormattedMessageWithHover'
 import GetStartedWithBitcoin from './GetStartedWithBitcoin'
 import HomepageButtons from './HomepageButtons'
 import QuickOverview from './QuickOverview'
 import WhatIsBitcoin from './WhatIsBitcoin'
 
+// import { FormattedMessage } from './FormattedMessageWithHover'
+// import FormattedMessage from './FormattedMessageWithHover'
 export default function HomePage(): JSX.Element {
   return (
     <StyledHomePage id="HomePage">

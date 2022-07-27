@@ -1,11 +1,11 @@
 import { Divider } from 'antd'
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
 import styled from 'styled-components'
 
 import { colors } from '../theme/colors'
 import { EventsBodyProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 const EventsBody: React.FC<EventsBodyProps> = ({}) => {
   const [showMoreEvents, setShowMoreEvents] = React.useState(false)

@@ -1,7 +1,5 @@
 import { Modal } from 'antd'
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
 import styled from 'styled-components'
 
 import CloseButton from '../img/ico_close.svg'
@@ -9,6 +7,7 @@ import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { SupportProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 const Support: React.FC<SupportProps> = () => {
   const [isExtended, setIsExtended] = React.useState(false)

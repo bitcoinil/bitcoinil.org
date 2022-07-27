@@ -1,6 +1,4 @@
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
 import styled from 'styled-components'
 
 import ico_angle from '../img/ico_angle_black.svg'
@@ -18,6 +16,7 @@ import {
   TableOfContentsScrollTrackedProps,
   tableOfContentSubheading
 } from '../utils/interfaces'
+import { FormattedMessage } from './FormattedMessageWithHover'
 import TOCBurgerMenu from './TableOfContentsScrollTrackedBurger'
 
 const TableOfContentsScrollTracked: React.FC<

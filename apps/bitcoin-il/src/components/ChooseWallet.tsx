@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
 import styled from 'styled-components'
+
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 export default function ChooseWallet(): JSX.Element {
   return (

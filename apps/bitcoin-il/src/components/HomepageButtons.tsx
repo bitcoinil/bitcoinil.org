@@ -1,11 +1,10 @@
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { phoneDevices } from '../utils/breakpoints'
 import SiteButton from './BitcoinSiteButton'
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 export default function HomepageButtons(): JSX.Element {
   const navigate = useNavigate()

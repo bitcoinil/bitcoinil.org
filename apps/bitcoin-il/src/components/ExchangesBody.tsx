@@ -1,6 +1,4 @@
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
-
 import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
@@ -10,6 +8,7 @@ import { isDarkModeState } from '../state/state'
 import { colors } from '../theme/colors'
 import { phoneDevices, smallDevices } from '../utils/breakpoints'
 import { ExchangesBodyProps } from '../utils/interfaces'
+import { FormattedMessage } from './FormattedMessageWithHover'
 import TableOfContentsScrollTracked from './TableOfContentsScrollTracked'
 
 const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {

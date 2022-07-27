@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+import { businessCards } from '../data/BusinessesBodyData'
 import { BusinessBodyProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
-import { businessCards } from '../data/BusinessesBodyData'
 import CardsDisplay from './CardsDisplay'
 import CustomNavLink from './CustomNavLink'
 

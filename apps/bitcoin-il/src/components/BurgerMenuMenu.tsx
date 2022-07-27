@@ -2,9 +2,8 @@ import * as React from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
-import angle_white from '../img/ico_angle_white.svg'
 import angle_black from '../img/ico_angle_black.svg'
-
+import angle_white from '../img/ico_angle_white.svg'
 import { isBurgerMenuOpenState, isDarkModeState } from '../state/state'
 import { colors } from '../theme/colors'
 import { BurgerMenuMenuProps, SubmenuRef } from '../utils/interfaces'
