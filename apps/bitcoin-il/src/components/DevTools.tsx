@@ -110,8 +110,8 @@ const StyledDevTools = styled.div`
   z-index: 9999999999;
   position: fixed;
   left: ${(props) => (props.positions.leftRight === 'left' ? '0' : '')};
-  right: ${(props) => (props.positions.leftRight === 'right' ? '0' : '')};
-  top: ${(props) => (props.positions.topBottom === 'top' ? '0' : '')};
+  right: ${(props) => (props.positions.leftRight === 'right' ? '0' : '0')};
+  top: ${(props) => (props.positions.topBottom === 'top' ? '0' : '0')};
   bottom: ${(props) => (props.positions.topBottom === 'bottom' ? '0' : '')};
 
   ${(props) => (props.isMin ? `height: 45px; overflow: hidden;` : '')};

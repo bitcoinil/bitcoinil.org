@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from './FormattedMessageWithHover'
 import styled from 'styled-components'
 
 import { phoneDevices } from '../utils/breakpoints'
-import FormattedMessageWithHoverInfo from './FormattedMessageWithHover'
+// import FormattedMessage from './FormattedMessageWithHover'
 import GetStartedWithBitcoin from './GetStartedWithBitcoin'
 import HomepageButtons from './HomepageButtons'
 import QuickOverview from './QuickOverview'
@@ -13,11 +13,6 @@ export default function HomePage(): JSX.Element {
   return (
     <StyledHomePage id="HomePage">
       <h1>
-        <FormattedMessageWithHoverInfo
-          id={`page.home.title`}
-          defaultMessage={`Bitcoin Il is an innovative payment network and a new kind of money.`}
-          description={`Homepage Title`}
-        />
         <FormattedMessage
           id={`page.home.title`}
           defaultMessage={`Bitcoin Il is an innovative payment network and a new kind of money.`}

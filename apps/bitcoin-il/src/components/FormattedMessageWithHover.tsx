@@ -1,8 +1,9 @@
-import { notification, Tooltip } from 'antd'
+import { notification } from 'antd'
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
+import * as intl from 'react-intl'
 import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
+
 import { isTooltipShownOnFormattedMessagesHover } from '../state/state'
 
 export interface FormattedMessageWithHoverInfoProps {
@@ -11,9 +12,11 @@ export interface FormattedMessageWithHoverInfoProps {
   description: string
 }
 
-const FormattedMessageWithHoverInfo: React.FC<
-  FormattedMessageWithHoverInfoProps
-> = ({ id, defaultMessage, description }) => {
+export const FormattedMessage: React.FC<FormattedMessageWithHoverInfoProps> = ({
+  id,
+  defaultMessage,
+  description
+}) => {
   const showHoverInfo = useRecoilValue(isTooltipShownOnFormattedMessagesHover)
 
   const showNotification = () => {
@@ -25,7 +28,7 @@ const FormattedMessageWithHoverInfo: React.FC<
   return (
     <StyledFormattedMessageWithHoverInfo id="FormattedMessageWithHoverInfo">
       <div className="body">
-        <FormattedMessage
+        <intl.FormattedMessage
           id={id}
           defaultMessage={defaultMessage}
           description={description}
@@ -64,7 +67,7 @@ const FormattedMessageWithHoverInfo: React.FC<
   )
 }
 
-export default FormattedMessageWithHoverInfo
+// export default FormattedMessage
 
 const StyledFormattedMessageWithHoverInfo = styled.div`
   display: flex;
@@ -87,6 +90,7 @@ const StyledFormattedMessageWithHoverInfo = styled.div`
     z-index: 999999999999999999999;
     position: absolute;
     background: #00b3f0;
+    border: 3px solid black;
   }
 
   .do-not-show {
