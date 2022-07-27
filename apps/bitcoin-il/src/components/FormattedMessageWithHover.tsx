@@ -27,31 +27,31 @@ export const FormattedMessage: React.FC<FormattedMessageWithHoverInfoProps> = ({
 
   return (
     <StyledFormattedMessageWithHoverInfo id="FormattedMessageWithHoverInfo">
-      <div className="body">
+      <span className="body">
         <intl.FormattedMessage
           id={id}
           defaultMessage={defaultMessage}
           description={description}
         />
-        <div className={`popup ${showHoverInfo ? 'info' : 'do-not-show'}`}>
-          <pre>
-            <p
+        <span className={`popup ${showHoverInfo ? 'info' : 'do-not-show'}`}>
+          <span className="monospaced">
+            <span
               onClick={() => {
                 navigator.clipboard.writeText(id)
                 showNotification()
               }}
             >
               id: "{id}"
-            </p>
-            <p
+            </span>
+            <span
               onClick={() => {
                 navigator.clipboard.writeText(defaultMessage)
                 showNotification()
               }}
             >
               defaultMessage: "{defaultMessage}"
-            </p>
-            <p
+            </span>
+            <span
               onClick={() => {
                 navigator.clipboard.writeText(description)
                 showNotification()
@@ -59,28 +59,46 @@ export const FormattedMessage: React.FC<FormattedMessageWithHoverInfoProps> = ({
             >
               {' '}
               description: "{description}"
-            </p>
-          </pre>
-        </div>
-      </div>
+            </span>
+          </span>
+        </span>
+      </span>
     </StyledFormattedMessageWithHoverInfo>
   )
 }
 
 // export default FormattedMessage
 
-const StyledFormattedMessageWithHoverInfo = styled.div`
+const StyledFormattedMessageWithHoverInfo = styled.span`
   display: flex;
   flex-direction: column;
+
+  .monospaced {
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    span {
+      margin-bottom: 20px;
+      cursor: cell;
+    }
+  }
 
   p,
   pre {
     margin: 0;
   }
 
-  pre p:hover {
-    opacity: 0.5;
-    cursor: copy;
+  pre {
+    display: flex;
+    flex-direction: column;
+  }
+
+  pre span {
+    &:hover {
+      opacity: 0.5;
+      cursor: copy;
+    }
   }
 
   .popup {
@@ -91,6 +109,7 @@ const StyledFormattedMessageWithHoverInfo = styled.div`
     position: absolute;
     background: #00b3f0;
     border: 3px solid black;
+    width: 45vw;
   }
 
   .do-not-show {
