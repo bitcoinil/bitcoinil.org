@@ -169,6 +169,9 @@ export interface tableOfContentItem {
   bodyWithoutSubheadings?: { body: JSX.Element }[]
   subHeadings?: tableOfContentSubheading[]
   key: string
+  isSubmenuItem?: boolean
+  isSubmenuParent?: boolean
+  parentMenuKey?: string | null
 }
 
 export interface HTMLElementWithID extends HTMLElement {
@@ -185,6 +188,17 @@ export interface CustomNavLinkProps {
 export interface BuyBodyProps {}
 
 export interface CommunityBodyProps {}
+
+export interface FormattedMessageWithHoverInfoProps {
+  id: string
+  defaultMessage: string
+  description?: string
+}
+export interface StyledDevToolsProps {
+  positions: { leftRight: string; topBottom: string }
+  showingTheme: boolean
+  isMin: boolean
+}
 
 export interface BurgerMenuMenuProps {
   items: MainMenuItem[]
@@ -236,7 +250,7 @@ export interface TimelineItemProps {
   body: string
   buttonText: string
   buttonOnClick: Function
-  key: string
+  key?: string
 }
 
 export interface HowItWorksProps {}

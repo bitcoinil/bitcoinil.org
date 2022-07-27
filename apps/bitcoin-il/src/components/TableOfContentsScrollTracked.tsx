@@ -34,7 +34,6 @@ const TableOfContentsScrollTracked: React.FC<
   const endRef = React.createRef<HTMLDivElement>()
   const startRef = React.createRef<HTMLDivElement>()
 
-  // const mobileTocRef = React.createRef<HTMLDivElement | null | undefined>()
   const rightSideElements = React.useRef<(ElementToTrack | null)[]>([])
   const leftSideElements = React.useRef<(ElementToTrack | null)[]>([])
 
@@ -56,28 +55,6 @@ const TableOfContentsScrollTracked: React.FC<
         addKeyToOpenSubmenus(elInViewData?.menuParent, true)
     }
   }, [elInView])
-
-  const getLeftSideElementFromStateUsingKey = (key: string) => {
-    return leftSideElements.current.find((o) => o?.key === key)
-  }
-
-  const getRightSideElementFromStateUsingKey = (key: string) => {
-    return rightSideElements.current.find((o) => o?.key === key)
-  }
-
-  const handleScroll = () => {
-    const elsInView: (HTMLElementWithID | null)[] = []
-
-    rightSideElements.current.forEach((el) => {
-      if (el?.element?.getBoundingClientRect()) {
-        if (el?.element?.getBoundingClientRect()?.y > -20) {
-          elsInView.push(el.element)
-        }
-      }
-    })
-
-    if (elsInView[0]) setElInView(elsInView[0].id)
-  }
 
   React.useEffect(() => {
     // Check for duplicate keys in items
@@ -130,6 +107,28 @@ const TableOfContentsScrollTracked: React.FC<
     return () =>
       window.removeEventListener('scroll', scrollCheckTopHotboxInView)
   })
+
+  const getLeftSideElementFromStateUsingKey = (key: string) => {
+    return leftSideElements.current.find((o) => o?.key === key)
+  }
+
+  const getRightSideElementFromStateUsingKey = (key: string) => {
+    return rightSideElements.current.find((o) => o?.key === key)
+  }
+
+  const handleScroll = () => {
+    const elsInView: (HTMLElementWithID | null)[] = []
+
+    rightSideElements.current.forEach((el) => {
+      if (el?.element?.getBoundingClientRect()) {
+        if (el?.element?.getBoundingClientRect()?.y > -20) {
+          elsInView.push(el.element)
+        }
+      }
+    })
+
+    if (elsInView[0]) setElInView(elsInView[0].id)
+  }
 
   const isRefStored = (ref: ElementToTrack, left: boolean) => {
     const arrayToCheck = left ? leftSideElements : rightSideElements

@@ -10,6 +10,7 @@ import QuickOverviewBox from './QuickOverviewBox'
 
 export default function QuickOverview(): JSX.Element {
   const baseFormattedMessageId: String = 'page.home.quick-overview'
+
   return (
     <StyledQuickOverview id="QuickOverview">
       <h1>

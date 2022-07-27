@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { FormattedMessage } from '../components/FormattedMessageWithHover'
 
+import { FormattedMessage } from '../components/FormattedMessageWithHover'
 import BlockChain from '../img/blockchain.svg'
 import Mining from '../img/mining.svg'
 import NewUser from '../img/new-user.svg'

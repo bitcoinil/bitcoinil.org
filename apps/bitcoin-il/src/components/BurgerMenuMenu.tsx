@@ -18,17 +18,6 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
 
   const isDarkMode = useRecoilValue(isDarkModeState)
 
-  const findElementInStateViaKey = (key: string) => {
-    return submenusReffed.findIndex((item) => item.key === key)
-  }
-
-  const handleAddSubmenuRef = (ref: HTMLDivElement | null, key: string) => {
-    if (!ref) return null
-
-    if (findElementInStateViaKey(key) === -1)
-      setSubMenusReffed([...submenusReffed, { ref: ref, key: key }])
-  }
-
   React.useEffect(() => {
     if (!sizesFound) {
       const newSizes: SubmenuRef[] = []
@@ -65,6 +54,17 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ items }) => {
 
       setOpenKeys([...openKeys, key])
     }
+  }
+
+  const findElementInStateViaKey = (key: string) => {
+    return submenusReffed.findIndex((item) => item.key === key)
+  }
+
+  const handleAddSubmenuRef = (ref: HTMLDivElement | null, key: string) => {
+    if (!ref) return null
+
+    if (findElementInStateViaKey(key) === -1)
+      setSubMenusReffed([...submenusReffed, { ref: ref, key: key }])
   }
 
   return (

@@ -8,8 +8,6 @@ import HomepageButtons from './HomepageButtons'
 import QuickOverview from './QuickOverview'
 import WhatIsBitcoin from './WhatIsBitcoin'
 
-// import { FormattedMessage } from './FormattedMessageWithHover'
-// import FormattedMessage from './FormattedMessageWithHover'
 export default function HomePage(): JSX.Element {
   return (
     <StyledHomePage id="HomePage">

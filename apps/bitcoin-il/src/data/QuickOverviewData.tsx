@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { FormattedMessage } from '../components/FormattedMessageWithHover'
 
+import { FormattedMessage } from '../components/FormattedMessageWithHover'
 import BusinessImage from '../img/ico_business.svg'
 import DevelopersImage from '../img/ico_developers.svg'
 import IndividualImage from '../img/ico_individuals.svg'

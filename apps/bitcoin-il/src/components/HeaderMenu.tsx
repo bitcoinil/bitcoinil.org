@@ -7,6 +7,7 @@ import { generateMenuItems } from '../routes/mainMenuItems'
 
 export default function HeaderMenu(): JSX.Element {
   const [current, setCurrent] = React.useState('FAQ')
+
   const location = useLocation()
 
   React.useEffect(() => {

@@ -1,4 +1,4 @@
-import { Divider, Switch } from 'antd'
+import { Divider } from 'antd'
 import * as React from 'react'
 import { DarkModeToggle } from 'react-dark-mode-toggle-2'
 import { useRecoilValue } from 'recoil'
@@ -15,23 +15,6 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ isMobile }) => {
   const isDark = useRecoilValue(isDarkModeState)
 
   const [, actions] = useTheme()
-
-  const toggleSystem = React.useMemo(() => {
-    return (
-      <Switch
-        checked={isSystem}
-        checkedChildren="System"
-        unCheckedChildren="Manual"
-        onChange={(v) => {
-          setIsSystem(v)
-          if (v) {
-            actions.setTheme('bitil-theme')
-          }
-        }}
-        defaultChecked
-      />
-    )
-  }, [isSystem])
 
   const toggleSize = isMobile ? 100 : 50
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { FormattedMessage } from '../components/FormattedMessageWithHover'
 
+import { FormattedMessage } from '../components/FormattedMessageWithHover'
 import { tableOfContentItem } from '../utils/interfaces'
 
 export const FAQ: tableOfContentItem[] = [

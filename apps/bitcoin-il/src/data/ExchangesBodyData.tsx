@@ -13,7 +13,7 @@ export const exhchanges: tableOfContentItem[] = [
         description={`international`}
       />
     ),
-    hasSubHeadings: false,
+    hasSubheadings: false,
     isSubmenuItem: false,
     isSubmenuParent: true,
     parentMenuKey: null,
@@ -37,7 +37,7 @@ export const exhchanges: tableOfContentItem[] = [
         description={`asia`}
       />
     ),
-    hasSubHeadings: true,
+    hasSubheadings: true,
     isSubmenuItem: false,
     isSubmenuParent: true,
     parentMenuKey: null,
@@ -56,7 +56,7 @@ export const exhchanges: tableOfContentItem[] = [
           </>
         ),
         key: 'vietnam',
-        hasSubHeadings: false
+        hasSubheadings: false
       }
     ],
     key: 'asia-exchanges'
@@ -69,7 +69,7 @@ export const exhchanges: tableOfContentItem[] = [
         description={`Europe`}
       />
     ),
-    hasSubHeadings: true,
+    hasSubheadings: true,
     isSubmenuItem: false,
     isSubmenuParent: true,
     parentMenuKey: null,
@@ -88,7 +88,7 @@ export const exhchanges: tableOfContentItem[] = [
           </>
         ),
         key: 'czech',
-        hasSubHeadings: false
+        hasSubheadings: false
       },
       {
         subHeadingTitle: (
@@ -104,7 +104,7 @@ export const exhchanges: tableOfContentItem[] = [
           </>
         ),
         key: 'france',
-        hasSubHeadings: false
+        hasSubheadings: false
       }
     ],
     key: 'europe-exchanges'

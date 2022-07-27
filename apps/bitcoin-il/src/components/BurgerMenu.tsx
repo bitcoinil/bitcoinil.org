@@ -16,8 +16,8 @@ import ThemeSelectMobile from './ThemeSelectMobile'
 
 const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpenState)
-  const isInDarkMode = useRecoilValue(isDarkModeState)
 
+  const isInDarkMode = useRecoilValue(isDarkModeState)
   const currentLang = useRecoilValue(currentlySelectedLanguageState)
 
   const slideOutRef = React.createRef<HTMLDivElement>()

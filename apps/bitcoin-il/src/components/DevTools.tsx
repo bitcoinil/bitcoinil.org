@@ -7,33 +7,33 @@ import {
   isThemeDebugVisibleState,
   isTooltipShownOnFormattedMessagesHover
 } from '../state/state'
+import { StyledDevToolsProps } from '../utils/interfaces'
 
 export default function DevTools() {
-  const [isDevTools, setIsDevTools] = useRecoilState(isDevModeVisibleState)
-  const [isThemeDebug, setIsThemeDebug] = useRecoilState(
-    isThemeDebugVisibleState
-  )
-
-  const [isTooltip, setIsTooltip] = useRecoilState(
-    isTooltipShownOnFormattedMessagesHover
-  )
-
   const [isMin, setIsMin] = React.useState(false)
-
   const [positions, setPositions] = React.useState({
     leftRight: '',
     topBottom: ''
   })
+
+  const [, setIsDevTools] = useRecoilState(isDevModeVisibleState)
+  const [isThemeDebug, setIsThemeDebug] = useRecoilState(
+    isThemeDebugVisibleState
+  )
+  const [isTooltip, setIsTooltip] = useRecoilState(
+    isTooltipShownOnFormattedMessagesHover
+  )
+
+  React.useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.ctrlKey && e.altKey && e.key === 'd') {
       setIsThemeDebug(false)
     }
   }
-  React.useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [])
 
   return (
     <StyledDevTools
@@ -107,7 +107,7 @@ export default function DevTools() {
   )
 }
 
-const StyledDevTools = styled.div`
+const StyledDevTools = styled.div<StyledDevToolsProps>`
   z-index: 9999999999;
   position: fixed;
   left: ${(props) => (props.positions.leftRight === 'left' ? '0' : '')};

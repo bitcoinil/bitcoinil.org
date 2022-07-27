@@ -15,9 +15,6 @@ const IndividualsBody: React.FC<IndividualsBodyProps> = ({}) => {
         <CustomNavLink to="/getting-started">
           <SiteButton type="primary">Get Started With BitCoin Il</SiteButton>
         </CustomNavLink>
-        {/* <NavLink to="/getting-started">
-          <SiteButton type="primary">Get Started With BitCoin Il</SiteButton>
-        </NavLink> */}
       </div>
     </StyledIndividualsBody>
   )

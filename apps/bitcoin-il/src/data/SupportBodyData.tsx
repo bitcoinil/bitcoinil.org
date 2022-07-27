@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { FormattedMessage } from '../components/FormattedMessageWithHover'
 
+import { FormattedMessage } from '../components/FormattedMessageWithHover'
 import chat from '../img/ico_chat.svg'
 import develop from '../img/ico_develop.svg'
 import docs from '../img/ico_docs.svg'

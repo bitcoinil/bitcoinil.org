@@ -5,12 +5,7 @@ import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import { isTooltipShownOnFormattedMessagesHover } from '../state/state'
-
-export interface FormattedMessageWithHoverInfoProps {
-  id: string
-  defaultMessage: string
-  description: string
-}
+import { FormattedMessageWithHoverInfoProps } from '../utils/interfaces'
 
 export const FormattedMessage: React.FC<FormattedMessageWithHoverInfoProps> = ({
   id,
@@ -66,8 +61,6 @@ export const FormattedMessage: React.FC<FormattedMessageWithHoverInfoProps> = ({
     </StyledFormattedMessageWithHoverInfo>
   )
 }
-
-// export default FormattedMessage
 
 const StyledFormattedMessageWithHoverInfo = styled.span`
   display: inline;

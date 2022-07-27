@@ -13,6 +13,7 @@ const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
   const [open, setOpen] = React.useState<boolean>(false)
   const [size, setSize] = React.useState<number>(0)
   const [sizeFound, setSizeFound] = React.useState<boolean>(false)
+
   const isDark = useRecoilValue(isDarkModeState)
 
   const submenuRef = React.createRef<HTMLDivElement>()

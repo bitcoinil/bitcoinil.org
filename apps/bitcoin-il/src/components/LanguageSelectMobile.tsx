@@ -30,14 +30,6 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileNewProps> = ({}) => {
   const intl = useTranslations()
   const { availableLanguages, navigateWithLanguageChange } = intl
 
-  const closeBurger = () => {
-    setBurgerOpen(false)
-  }
-
-  const toggleOpen = () => {
-    setOpen(!open)
-  }
-
   React.useEffect(() => {
     if (!submenuRef.current) return
 
@@ -56,6 +48,14 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileNewProps> = ({}) => {
     submenuRef.current.style.height = '0'
     setSizeFound(true)
   }, [burgerOpen])
+
+  const closeBurger = () => {
+    setBurgerOpen(false)
+  }
+
+  const toggleOpen = () => {
+    setOpen(!open)
+  }
 
   const handleChangeLanguage = (lang: AvailableLanguage) => {
     closeBurger()
