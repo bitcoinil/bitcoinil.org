@@ -3,6 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import { colors } from '../theme/colors'
+import { phoneDevices } from '../utils/breakpoints'
 import { EventsBodyProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
 import { FormattedMessage } from './FormattedMessageWithHover'
@@ -91,6 +92,10 @@ const StyledEventsBody = styled.div`
 
     &-left {
       font-size: 18px;
+    }
+
+    ${phoneDevices} {
+      flex-direction: column;
     }
   }
 `

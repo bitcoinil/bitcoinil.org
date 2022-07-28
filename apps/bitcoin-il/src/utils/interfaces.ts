@@ -192,7 +192,7 @@ export interface CommunityBodyProps {}
 export interface FormattedMessageWithHoverInfoProps {
   id: string
   defaultMessage: string
-  description?: string
+  description?: string | undefined
 }
 export interface StyledDevToolsProps {
   positions: { leftRight: string; topBottom: string }

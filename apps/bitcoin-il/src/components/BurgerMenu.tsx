@@ -228,6 +228,7 @@ const BurgerWrap = styled.div`
       left: 0;
       transition: height 1200ms ease-in;
       height: 0px;
+      overflow: scroll;
 
       ${landscapeMobile} {
         transition: height 1000ms ease-in;

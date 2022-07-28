@@ -22,7 +22,7 @@ export const FormattedMessage: React.FC<FormattedMessageWithHoverInfoProps> = ({
 
   return (
     <StyledFormattedMessageWithHoverInfo id="FormattedMessageWithHoverInfo">
-      <span className="body">
+      <span className="formatted-message-with-hover-body">
         <intl.FormattedMessage
           id={id}
           defaultMessage={defaultMessage}
@@ -112,7 +112,7 @@ const StyledFormattedMessageWithHoverInfo = styled.span`
     display: none;
     position: absolute;
   }
-  .body {
+  .formatted-message-with-hover-body {
     &:hover {
       .info {
         display: block;
