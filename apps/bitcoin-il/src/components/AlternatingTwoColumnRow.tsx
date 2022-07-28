@@ -35,7 +35,6 @@ const StyledAlternatingTwoColumnRow = styled.div`
   display: flex;
   padding: 65px;
   margin-top: 50px;
-  width: 70vw;
   margin: auto;
 
   h1 {
@@ -68,7 +67,7 @@ const StyledAlternatingTwoColumnRow = styled.div`
   }
 
   .text-side {
-    margin: 0 50px;
+    margin: 0 5em;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -77,7 +76,7 @@ const StyledAlternatingTwoColumnRow = styled.div`
   .text-side,
   .img-side {
     ${phoneDevices} {
-      margin: 10px;
+      /* margin: 10px; */
       text-align: center;
     }
   }
