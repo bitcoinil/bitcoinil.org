@@ -39,6 +39,8 @@ const TimelineComp: React.FC<TimelineCompProps> = ({ items }) => {
 export default TimelineComp
 
 const StyledTimelineComp = styled.div`
+  overflow: hidden;
+
   .vertical-timeline-element-icon {
     display: flex;
     align-items: center;
