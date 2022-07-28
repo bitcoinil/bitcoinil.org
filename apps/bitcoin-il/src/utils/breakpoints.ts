@@ -12,6 +12,8 @@ const TOCBreakPointOne: string = `@media only screen and (max-width: 1300px)`
 
 const TOCBreakPointMobile: string = `@media only screen and (max-width: 700px)`
 
+const landscapeMobile: string = `@media (orientation: landscape)`
+
 export {
   phoneDevices,
   tabletDevices,
@@ -19,5 +21,6 @@ export {
   extraLargeDevices,
   smallDevices,
   TOCBreakPointOne,
-  TOCBreakPointMobile
+  TOCBreakPointMobile,
+  landscapeMobile
 }

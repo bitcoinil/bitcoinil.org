@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import SiteButton from '../components/BitcoinSiteButton'
-import { phoneDevices } from '../utils/breakpoints'
+import { landscapeMobile, phoneDevices } from '../utils/breakpoints'
 import CustomNavLink from '../components/CustomNavLink'
 import { FooterProps } from '../utils/interfaces'
 import { mainMenuItems } from '../routes/mainMenuItems'
@@ -102,6 +102,10 @@ const StyledFooter = styled.div`
     ${phoneDevices} {
       width: 75vw;
     }
+
+    ${landscapeMobile} {
+      width: 50vw;
+    }
   }
 
   .body-wrap {
@@ -131,6 +135,7 @@ const StyledFooter = styled.div`
 
   .columns-wrap {
     display: flex;
+    margin-bottom: 3em;
 
     ${phoneDevices} {
       flex-direction: column;
@@ -164,7 +169,7 @@ const StyledFooter = styled.div`
             align-items: center;
 
             button {
-              margin-left: 30px;
+              margin-left: 1em;
             }
           }
           &-link {

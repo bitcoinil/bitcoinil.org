@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { boxes } from '../data/QuickOverviewData'
 import OverviewBG from '../img/overview-bg.svg'
-import { phoneDevices } from '../utils/breakpoints'
+import { largeDevices, phoneDevices } from '../utils/breakpoints'
 import { QuickOverviewBoxProps } from '../utils/interfaces'
 import { FormattedMessage } from './FormattedMessageWithHover'
 import QuickOverviewBox from './QuickOverviewBox'
@@ -67,9 +67,14 @@ const StyledQuickOverview = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 
     ${phoneDevices} {
-      flex-direction: column;
+      /* flex-direction: column; */
+    }
+
+    ${largeDevices} {
+      flex-direction: row;
     }
   }
 

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import { phoneDevices } from '../utils/breakpoints'
+import { landscapeMobile, phoneDevices } from '../utils/breakpoints'
 import { QuickOverviewBoxProps } from '../utils/interfaces'
 import CustomNavLink from './CustomNavLink'
 
@@ -39,8 +39,12 @@ const StyledQuickOverviewBox = styled.div`
   padding: 30px;
 
   ${phoneDevices} {
-    width: 80vw;
+    width: 50vw;
     flex-direction: row;
+  }
+
+  ${landscapeMobile} {
+    width: 30vw;
   }
 
   &:hover {
