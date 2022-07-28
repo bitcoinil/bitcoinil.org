@@ -30,7 +30,6 @@ const StyledCardsDisplay = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 120px 0;
 
   .body-cards {
     display: flex;
