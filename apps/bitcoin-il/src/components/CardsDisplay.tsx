@@ -41,26 +41,33 @@ const StyledCardsDisplay = styled.div`
     margin: auto;
 
     ${phoneDevices} {
-      width: 100vw;
     }
   }
 
   .ant-card {
-    width: 33vw;
+    width: 27vw;
     margin: 20px;
     background: transparent;
 
     ${phoneDevices} {
-      width: 50vw;
+      min-width: 300px;
+      margin: auto;
+      margin-bottom: 5em;
     }
 
     &-body {
+      height: 100%;
       padding: 30px;
       border: 1px solid #dadada;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+
+      ${phoneDevices} {
+        max-width: 80vw;
+        margin: auto;
+      }
 
       .card-title {
         font-weight: bolder;
