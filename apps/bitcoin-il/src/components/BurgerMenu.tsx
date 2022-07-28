@@ -9,7 +9,7 @@ import {
   isBurgerMenuOpenState,
   isDarkModeState
 } from '../state/state'
-import { phoneDevices } from '../utils/breakpoints'
+import { landscapeMobile, phoneDevices } from '../utils/breakpoints'
 import { BurgerMenuProps } from '../utils/interfaces'
 import BurgerMenuMenu from './BurgerMenuMenu'
 import LanguageSelectMobile from './LanguageSelectMobile'
@@ -218,7 +218,6 @@ const BurgerWrap = styled.div`
     }
 
     .slide-out {
-      /* transform: scaleY(0); */
       z-index: 5;
       overflow: hidden;
       width: 100vw;
@@ -227,8 +226,7 @@ const BurgerWrap = styled.div`
       color: white;
       top: 60px;
       left: 0;
-      transition: height 1800ms;
-      /* opacity: 0; */
+      transition: height 1800ms ease-in;
       height: 0px;
 
       &-inner {
@@ -237,10 +235,11 @@ const BurgerWrap = styled.div`
       }
 
       &.open {
-        /* opacity: 1; */
         height: 100%;
-        transition: height 1800ms;
-        /* transform: scaleY(1); */
+        ${landscapeMobile} {
+          height: 50000%;
+        }
+        transition: height 1800ms ease-out;
         background: transparent;
       }
     }
@@ -251,7 +250,6 @@ const BurgerWrap = styled.div`
       top: 60px;
       left: 0;
       width: 100vw;
-      /* transition: height 400ms; */
 
       &.closed {
         height: 0;
