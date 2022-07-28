@@ -229,6 +229,10 @@ const BurgerWrap = styled.div`
       transition: height 1800ms ease-in;
       height: 0px;
 
+      ${landscapeMobile} {
+        transition: height 1000ms ease-in;
+      }
+
       &-inner {
         background: black;
         border-bottom: 1px solid black;
@@ -237,9 +241,9 @@ const BurgerWrap = styled.div`
       &.open {
         height: 100%;
         ${landscapeMobile} {
-          height: 50000%;
+          height: 1000%;
         }
-        transition: height 1800ms ease-out;
+        transition: height 1800ms;
         background: transparent;
       }
     }
