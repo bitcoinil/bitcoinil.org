@@ -38,7 +38,7 @@ const TOCBurgerMenu: React.FC<TOCBurgerMenuProps> = ({
           {label}
         </span>
       ) : null}
-      <div className={`slide-out ${burgerOpen ? 'open' : 'closed'}`}>
+      <div className={`TOC-slide-out ${burgerOpen ? 'open' : 'closed'}`}>
         {items.map((item, i) => {
           if (!item.subHeadings) {
             // Here are the headings with no submenus
@@ -226,7 +226,7 @@ const BurgerWrap = styled.div`
     border-right: none;
   }
 
-  .slide-out {
+  .TOC-slide-out {
     height: 0;
     z-index: 5;
     overflow: hidden;
@@ -237,6 +237,7 @@ const BurgerWrap = styled.div`
     top: 62px;
     left: 0;
     transition: height 400ms;
+    overflow: scroll;
 
     &.open {
       transition: height 400ms;

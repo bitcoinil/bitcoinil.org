@@ -90,9 +90,9 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
       </div>
       <div
         ref={slideOutRef}
-        className={`slide-out ${burgerOpen ? 'open' : 'closed'}`}
+        className={`burger-slide-out ${burgerOpen ? 'open' : 'closed'}`}
       >
-        <div className="slide-out-inner">
+        <div className="burger-slide-out-inner">
           <BurgerMenuMenu items={mainMenuItems} />
           <LanguageSelectMobile />
           <ThemeSelectMobile />
@@ -217,7 +217,7 @@ const BurgerWrap = styled.div`
       border-right: none;
     }
 
-    .slide-out {
+    .burger-slide-out {
       z-index: 5;
       overflow: hidden;
       width: 100vw;
