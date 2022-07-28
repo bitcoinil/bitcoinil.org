@@ -226,7 +226,7 @@ const BurgerWrap = styled.div`
       color: white;
       top: 60px;
       left: 0;
-      transition: height 1800ms ease-in;
+      transition: height 1200ms ease-in;
       height: 0px;
 
       ${landscapeMobile} {
