@@ -62,8 +62,4 @@ const AppStyleWrap = styled.div`
   font-family: 'Titillium Web', sans-serif;
   font-weight: bolder;
   letter-spacing: 0.4px;
-
-  ${phoneDevices} {
-    width: 100vw;
-  }
 `
