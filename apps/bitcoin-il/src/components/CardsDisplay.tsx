@@ -51,7 +51,7 @@ const StyledCardsDisplay = styled.div`
     background: transparent;
 
     ${phoneDevices} {
-      width: 95vw;
+      width: 50vw;
     }
 
     &-body {
