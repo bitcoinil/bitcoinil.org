@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { whitePaperTranslations } from '../data/WhitePaperData'
 import ico_download from '../img/ico_download.svg'
 import { colors } from '../theme/colors'
-import { phoneDevices } from '../utils/breakpoints'
+import { landscapeMobile, phoneDevices } from '../utils/breakpoints'
 import { WhitePaperBodyProps } from '../utils/interfaces'
 import { FormattedMessage } from './FormattedMessageWithHover'
 
@@ -68,7 +68,6 @@ export default WhitePaperBody
 
 const StyledWhitePaperBody = styled.div`
   padding: 100px;
-  width: 70vw;
   text-align: center;
   margin: auto;
 
@@ -89,18 +88,25 @@ const StyledWhitePaperBody = styled.div`
   .papers {
     display: flex;
     margin: 50px 0;
+    align-items: center;
+    justify-content: center;
 
     ${phoneDevices} {
       flex-direction: column;
     }
 
+    ${landscapeMobile} {
+      flex-direction: row;
+    }
+
     .ant-card {
       padding: 100px;
       height: 200px;
+      width: 300px;
+      max-width: 70vw;
       margin-left: 15px;
       background: transparent;
       border: 1px solid ${colors.borderColor};
-
       display: flex;
       align-items: center;
       justify-content: center;
@@ -108,6 +114,10 @@ const StyledWhitePaperBody = styled.div`
       ${phoneDevices} {
         margin-bottom: 25px;
         margin-left: 0;
+      }
+
+      ${landscapeMobile} {
+        margin: 0 20px;
       }
 
       h1 {
