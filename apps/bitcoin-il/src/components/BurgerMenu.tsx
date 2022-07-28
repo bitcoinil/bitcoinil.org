@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useLocation } from 'react-router-dom'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
@@ -15,6 +16,8 @@ import LanguageSelectMobile from './LanguageSelectMobile'
 import ThemeSelectMobile from './ThemeSelectMobile'
 
 const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
+  const [bodyHeight, setBodyHeight] = React.useState(0)
+
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpenState)
 
   const isInDarkMode = useRecoilValue(isDarkModeState)
@@ -22,14 +25,43 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
 
   const slideOutRef = React.createRef<HTMLDivElement>()
 
+  const location = useLocation()
+  console.log(location)
+
+  const rootRef = document.getElementById('root')
+
   React.useEffect(() => {
-    if (!slideOutRef.current) return
-    if (burgerOpen) {
-      slideOutRef.current.style.minHeight = '5000px'
-    } else {
-      slideOutRef.current.style.minHeight = '0'
-    }
-  }, [burgerOpen])
+    if (rootRef && rootRef.clientHeight) setBodyHeight(rootRef.clientHeight)
+    // console.log(rootRef?.clientHeight)
+  }, [location])
+
+  // const body = document.body,
+  //   html = document.documentElement
+  // React.useEffect(() => {
+  //   const height = Math.max(
+  //     body.scrollHeight,
+  //     body.offsetHeight,
+  //     html.clientHeight,
+  //     html.scrollHeight,
+  //     html.offsetHeight
+  //   )
+
+  //   console.log(height)
+
+  //   setBodyHeight(height)
+  //   //   if (!slideOutRef.current) return
+  //   //   if (burgerOpen) {
+  //   //     slideOutRef.current.style.minHeight = '5000px'
+  //   //   } else {
+  //   //     slideOutRef.current.style.minHeight = '0'
+  //   //   }
+  // }, [
+  //   body.scrollHeight,
+  //   body.offsetHeight,
+  //   html.clientHeight,
+  //   html.scrollHeight,
+  //   html.offsetHeight
+  // ])
 
   const toggleBurger = () => {
     setBurgerOpen(!burgerOpen)
@@ -65,13 +97,14 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
           <LanguageSelectMobile />
           <ThemeSelectMobile />
         </div>
-        <div
-          className={`on-click-outside ${burgerOpen ? 'open' : 'closed'}`}
-          onClick={() => {
-            setBurgerOpen(false)
-          }}
-        />
       </div>
+      <div
+        style={{ height: `${bodyHeight + 60}px` }}
+        className={`on-click-outside ${burgerOpen ? 'open' : 'closed'}`}
+        onClick={() => {
+          setBurgerOpen(false)
+        }}
+      />
     </BurgerWrap>
   )
 }
@@ -185,34 +218,43 @@ const BurgerWrap = styled.div`
     }
 
     .slide-out {
-      transform: scaleY(0);
+      /* transform: scaleY(0); */
       z-index: 5;
       overflow: hidden;
       width: 100vw;
       position: absolute;
-      background-color: black;
+      background-color: transparent;
       color: white;
       top: 60px;
       left: 0;
-      transition: transform 800ms;
+      transition: height 1800ms;
+      /* opacity: 0; */
+      height: 0px;
 
       &-inner {
         background: black;
+        border-bottom: 1px solid black;
       }
 
       &.open {
-        transition: transform 400ms;
-        transform: scaleY(1);
+        /* opacity: 1; */
+        height: 100%;
+        transition: height 1800ms;
+        /* transform: scaleY(1); */
         background: transparent;
       }
     }
 
     .on-click-outside {
-      height: 500vh;
+      position: absolute;
+      background: transparent;
+      top: 60px;
+      left: 0;
       width: 100vw;
-      transition: height 400ms;
+      /* transition: height 400ms; */
 
       &.closed {
+        height: 0;
         display: none;
       }
     }
