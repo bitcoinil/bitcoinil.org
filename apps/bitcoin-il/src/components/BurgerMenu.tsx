@@ -81,6 +81,10 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
 
 export default BurgerMenu
 
+const landscapeClosingDuration = `1200ms`
+const portraitOpeningDuration = `8000ms`
+const portraitClosingDuration = `10000ms`
+
 const BurgerWrap = styled.div`
   display: none;
 
@@ -196,12 +200,12 @@ const BurgerWrap = styled.div`
       color: white;
       top: 60px;
       left: 0;
-      transition: height 1200ms ease-in;
+      transition: height ${portraitClosingDuration}; // CLSOING SPEED
       height: 0px;
       overflow: scroll;
 
       ${landscapeMobile} {
-        transition: height 1000ms ease-in;
+        transition: height ${landscapeClosingDuration};
       }
 
       &-inner {
@@ -214,7 +218,7 @@ const BurgerWrap = styled.div`
         ${landscapeMobile} {
           height: 1000%;
         }
-        transition: height 1800ms;
+        transition: height ${portraitOpeningDuration};
         background: transparent;
       }
     }
