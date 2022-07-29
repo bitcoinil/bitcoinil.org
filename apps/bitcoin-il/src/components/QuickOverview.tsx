@@ -61,6 +61,10 @@ const StyledQuickOverview = styled.div`
   max-width: 100vw;
 
   h1 {
+    ${phoneDevices} {
+      margin-top: 50px;
+    }
+
     color: white;
   }
 
