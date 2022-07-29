@@ -75,7 +75,6 @@ const StyledQuickOverview = styled.div`
     flex-wrap: wrap;
 
     ${phoneDevices} {
-      /* flex-direction: column; */
     }
 
     ${largeDevices} {
