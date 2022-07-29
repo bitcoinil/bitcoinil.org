@@ -26,42 +26,12 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   const slideOutRef = React.createRef<HTMLDivElement>()
 
   const location = useLocation()
-  console.log(location)
 
   const rootRef = document.getElementById('root')
 
   React.useEffect(() => {
     if (rootRef && rootRef.clientHeight) setBodyHeight(rootRef.clientHeight)
-    // console.log(rootRef?.clientHeight)
   }, [location])
-
-  // const body = document.body,
-  //   html = document.documentElement
-  // React.useEffect(() => {
-  //   const height = Math.max(
-  //     body.scrollHeight,
-  //     body.offsetHeight,
-  //     html.clientHeight,
-  //     html.scrollHeight,
-  //     html.offsetHeight
-  //   )
-
-  //   console.log(height)
-
-  //   setBodyHeight(height)
-  //   //   if (!slideOutRef.current) return
-  //   //   if (burgerOpen) {
-  //   //     slideOutRef.current.style.minHeight = '5000px'
-  //   //   } else {
-  //   //     slideOutRef.current.style.minHeight = '0'
-  //   //   }
-  // }, [
-  //   body.scrollHeight,
-  //   body.offsetHeight,
-  //   html.clientHeight,
-  //   html.scrollHeight,
-  //   html.offsetHeight
-  // ])
 
   const toggleBurger = () => {
     setBurgerOpen(!burgerOpen)
