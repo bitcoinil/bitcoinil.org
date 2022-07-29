@@ -20,7 +20,7 @@ export default function QuickOverview(): JSX.Element {
           description={`QuickOverview`}
         />
       </h1>
-      <div className="boxes">
+      <div className="quick-overview-boxes">
         {boxes.map((boxInfo: QuickOverviewBoxProps, i: number) => {
           const {
             imgSrc,
@@ -53,17 +53,18 @@ export default function QuickOverview(): JSX.Element {
 }
 
 const StyledQuickOverview = styled.div`
-  /* background-color: grey; */
   margin-top: 50px;
+  box-sizing: border-box;
   padding: 300px 0 60px 0;
   background: url(${OverviewBG}) top no-repeat;
   background-size: cover;
+  max-width: 100vw;
 
   h1 {
     color: white;
   }
 
-  .boxes {
+  .quick-overview-boxes {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -77,6 +78,4 @@ const StyledQuickOverview = styled.div`
       flex-direction: row;
     }
   }
-
-  width: 100vw;
 `
