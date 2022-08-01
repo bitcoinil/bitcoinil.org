@@ -114,6 +114,7 @@ const StyledWhitePaperBody = styled.div`
       ${phoneDevices} {
         margin-bottom: 25px;
         margin-left: 0;
+        padding: 0;
       }
 
       ${landscapeMobile} {
