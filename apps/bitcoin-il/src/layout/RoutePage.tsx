@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import HeroBg from '../img/hero-bg.svg'
+import { phoneDevices } from '../utils/breakpoints'
 import { RoutePageProps } from '../utils/interfaces'
 
 export default function RoutePage({
@@ -67,6 +68,10 @@ const StyledRoutePage = styled.div`
       max-width: 65vw;
       font-weight: bold;
       font-size: 22px;
+
+      ${phoneDevices} {
+        max-width: 90vw;
+      }
     }
 
     .trans-bel {
