@@ -41,6 +41,12 @@ export default TimelineComp
 const StyledTimelineComp = styled.div`
   overflow: hidden;
 
+  .vertical-timeline-element {
+    ${phoneDevices} {
+      width: 82vw;
+    }
+  }
+
   .vertical-timeline-element-icon {
     display: flex;
     align-items: center;
