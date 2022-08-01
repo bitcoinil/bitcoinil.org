@@ -24,6 +24,7 @@ const TableOfContentsScrollTracked: React.FC<
 > = ({ items }) => {
   const [isBelowZero, setIsBelowZero] = React.useState(false)
   const [isAtEnd, setIsAtEnd] = React.useState(false)
+  const [isAtEndMobile, setIsAtEndMobile] = React.useState(false)
   const [isAtStart, setisAtStart] = React.useState(false)
   const [isError, setIsError] = React.useState(false)
   const [elInView, setElInView] = React.useState('')
@@ -37,12 +38,16 @@ const TableOfContentsScrollTracked: React.FC<
   const rightSideElements = React.useRef<(ElementToTrack | null)[]>([])
   const leftSideElements = React.useRef<(ElementToTrack | null)[]>([])
 
-  const isStuck = isBelowZero && !isAtEnd && isAtStart
+  const isStuck = isBelowZero && !isAtEnd && isAtStart && !isAtEndMobile
 
   React.useEffect(() => {
     if (leftHandColumnRef?.current?.clientWidth)
       setLeftHandWidth(leftHandColumnRef?.current?.clientWidth)
   }, [leftHandColumnRef.current])
+
+  React.useEffect(() => {
+    console.log('❌', isAtEndMobile)
+  }, [isAtEndMobile])
 
   React.useEffect(() => {
     // take element in view, find the root menu title, and open it
@@ -209,6 +214,11 @@ const TableOfContentsScrollTracked: React.FC<
 
   const scrollCheckEnderInView = () => {
     if (!endRef?.current) return
+
+    setIsAtEndMobile(
+      endRef.current.getBoundingClientRect().y < window.innerHeight
+    )
+
     setIsAtEnd(
       endRef.current?.getBoundingClientRect().y < window.innerHeight - 1000
     )
@@ -252,7 +262,9 @@ const TableOfContentsScrollTracked: React.FC<
       </div>
       <div className="scroll-track-toc-main">
         <div
-          className={`toc-scroll-tracked-left ${isStuck ? 'stuck' : 'unstuck'}`}
+          className={`toc-scroll-tracked-left ${
+            isStuck ? 'stuck' : 'unstuck'
+          } ${isAtEndMobile ? 'hide-left-on-mobile-end' : ''}`}
           ref={leftHandColumnRef}
         >
           {items.map((item, i) => {
@@ -350,7 +362,7 @@ const TableOfContentsScrollTracked: React.FC<
                     // ref={handleRef}
                     ref={(ref) => handleRef(ref, false, item)}
                     key={i}
-                    className="toc-scroll-tracked-right-item-heading right-title accented-title"
+                    className={`toc-scroll-tracked-right-item-heading right-title accented-title`}
                   >
                     {item.categoryHeading}
                   </p>
@@ -426,7 +438,10 @@ const borderSize = 5
 
 const StyledTableOfContentsScrollTracked = styled.div`
   margin-top: 100px;
-  margin-bottom: 300px;
+
+  ${phoneDevices} {
+    margin-bottom: 65px;
+  }
 
   .mobile-toc {
     background-color: ${colors.accent};
@@ -515,6 +530,7 @@ const StyledTableOfContentsScrollTracked = styled.div`
     position: fixed;
     top: 0;
     height: 100vh;
+    overflow: scroll;
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -556,6 +572,14 @@ const StyledTableOfContentsScrollTracked = styled.div`
   .top-hitbox {
     width: 80vw;
     height: 10px;
+  }
+
+  .end-hitbox {
+    margin-top: 250px;
+
+    ${TOCBreakPointMobile} {
+      margin-top: 0;
+    }
   }
 
   .right-when-is-stuck {
