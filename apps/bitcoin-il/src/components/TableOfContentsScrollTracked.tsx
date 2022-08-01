@@ -7,6 +7,7 @@ import { flashElement, scrollToElement } from '../util/util'
 import {
   phoneDevices,
   TOCBreakPointMobile,
+  TOCBreakPointMobileHeight,
   TOCBreakPointOne
 } from '../utils/breakpoints'
 import {
@@ -166,7 +167,7 @@ const TableOfContentsScrollTracked: React.FC<
     }
   }
 
-  const scrollToRightSideElement = (key: string, paddingTop?: boolean) => {
+  const scrollToRightSideElement = (key: string) => {
     const el = getRightSideElementFromStateUsingKey(key)?.element
 
     if (!el) return null
@@ -463,6 +464,10 @@ const StyledTableOfContentsScrollTracked = styled.div`
       display: flex;
       padding-left: 15px;
     }
+
+    ${TOCBreakPointMobileHeight} {
+      display: flex;
+    }
   }
 
   .scroll-track-toc-main {
@@ -470,6 +475,11 @@ const StyledTableOfContentsScrollTracked = styled.div`
 
     ${TOCBreakPointMobile} {
       flex-direction: column;
+      
+      .toc-scroll-tracked-right {
+        width: 90vw;
+
+      }
     }
   }
 
@@ -628,6 +638,13 @@ const StyledTableOfContentsScrollTracked = styled.div`
     font-weight: bolder;
   }
 
+  ${TOCBreakPointMobileHeight} {
+    .toc-scroll-tracked {
+      &-left {
+        display: none;
+      }
+  }
+  
   ${TOCBreakPointMobile} {
     .toc-scroll-tracked {
       &-left {
