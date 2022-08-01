@@ -97,6 +97,7 @@ const StyledExchangesBody = styled.div`
 
     ${phoneDevices} {
       flex-direction: column;
+      width: 90vw;
 
       img {
         height: 100px;
