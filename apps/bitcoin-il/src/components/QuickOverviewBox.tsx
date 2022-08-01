@@ -39,7 +39,7 @@ const StyledQuickOverviewBox = styled.div`
   padding: 30px;
 
   ${phoneDevices} {
-    width: 50vw;
+    width: 90vw;
     flex-direction: row;
   }
 
