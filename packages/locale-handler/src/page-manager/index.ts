@@ -38,7 +38,7 @@ type BlockHandler = {
   create: () => Promise<any>
   read: (pageSize?: number, readAll?: Boolean) => Promise<any>
   write: (key: string, value: any) => Promise<void>
-  get: (key?: string) => Promise<any>
+  get: (key?: string, read?: () => Promise<any>) => Promise<any>
   listen: (callback: (data: any) => void) => void
 }
 
@@ -47,7 +47,8 @@ type BlockHandlers = {
     parentBlockId: string,
     name: string,
     cacheObject: Record<string, any>,
-    properties?: Record<string, any>
+    properties?: Record<string, any>,
+    wetProperties?: Record<string, any>
   ) => BlockHandler
 }
 
@@ -86,12 +87,21 @@ class PageManager {
     const response = await client.search({
       query: pageName,
       sort: {
-        direction: 'ascending',
+        direction: 'descending',
         timestamp: 'last_edited_time'
       }
     })
 
-    return response.results[0]?.id
+    const ourPage = response.results.find((page: any) => {
+      const title = page.properties.title.title.reduce(
+        (acc: string, { plain_text }: { plain_text: string }) =>
+          acc + plain_text,
+        ''
+      )
+      return title === pageName
+    })
+
+    return ourPage?.id
   }
 
   constructor(pageId: string, client: Client) {
@@ -103,7 +113,7 @@ class PageManager {
 
   public async getOption(optionName: string) {
     // @ts-ignore
-    return this.blocks.configuration?.get(optionName)
+    return await this.blocks.configuration?.get(optionName)
   }
 
   public async setOption(optionName: string, value: any) {
@@ -111,7 +121,11 @@ class PageManager {
     return this.blocks.configuration?.set(optionName, value)
   }
 
-  public async getDatabase(dbName: string, properties: Record<string, any>) {
+  public async getDatabase(
+    dbName: string,
+    properties: Record<string, any>,
+    wetProperties: Record<string, any>
+  ) {
     // // @ts-ignore
     // let dbId = this.blocks.databases?.get(dbName)
     this.cache.containers[`database-${dbName}`] = {
@@ -122,7 +136,8 @@ class PageManager {
       this.pageId,
       dbName,
       cache,
-      properties
+      properties,
+      wetProperties
     )
 
     // @ts-ignore
@@ -164,38 +179,45 @@ class PageManager {
     const children = await this.getBlock(this.pageId)
     const conf = this.blocksConfiguration
     // Iterate all `this.block` entries to initialize and load the blocks
-    const nextBlocks = await Promise.all(
-      Object.entries(conf).map(async ([blockName, options]) => {
-        this.cache.containers[blockName] = {
-          ...(this.cache.containers[blockName] || {})
-        }
-        const cache = this.cache.containers[blockName]
-        const blockType = options.type
-        const handler = this.blockHandler[blockType]
-        const actions = handler(this.pageId, blockName, cache)
+    const nextBlocks = {}
 
-        let block = actions.find(children)
-        if (!block) {
-          block = await actions.create()
-        }
+    await Object.entries(conf).reduce(
+      async (p, [blockName, options]) =>
+        p.then(async () => {
+          this.cache.containers[blockName] = {
+            ...(this.cache.containers[blockName] || {})
+          }
+          const cache = this.cache.containers[blockName]
+          const blockType = options.type
+          const handler = this.blockHandler[blockType]
+          const actions = handler(this.pageId, blockName, cache)
 
-        const [results, conf] = await actions.read()
-        const blockApp = {
-          ...options,
-          id: block.id,
-          get: actions.get,
-          set: actions.write,
-          keys: () => Object.keys(cache.values)
-        } as ABlock
+          let block = actions.find(children)
 
-        return [blockName, blockApp]
-      })
+          if (!block) {
+            block = await actions.create()
+          }
+
+          const [results, conf] = await actions.read()
+          const blockApp = {
+            ...options,
+            id: block.id,
+            get: (key?: string) => actions.get(key, () => actions.read()),
+            set: actions.write,
+            keys: () => Object.keys(cache.values)
+          } as ABlock
+
+          // @ts-ignore
+          nextBlocks[blockName] = blockApp
+        }),
+      Promise.resolve()
     )
 
-    this.blocks = nextBlocks.reduce(
-      (acc, [blockName, block]) => ({ ...acc, [blockName as string]: block }),
-      {}
-    )
+    this.blocks = nextBlocks
+    // this.blocks = nextBlocks.reduce(
+    //   (acc, [blockName, block]) => ({ ...acc, [blockName as string]: block }),
+    //   {}
+    // )
   }
 
   private blocksConfiguration = {
@@ -204,10 +226,10 @@ class PageManager {
     },
     databases: {
       type: 'toggle-block'
-    },
-    general: {
-      type: 'toggle-block'
     }
+    // general: {
+    //   type: "toggle-block",
+    // },
   } as const
 
   private blocks = {}
@@ -241,21 +263,33 @@ class PageManager {
       read: async () => {
         const blockId = cacheObject.blockId
         const children = await this.getBlock(blockId)
-        const [results, config] = this.parseToggleBlock(children)
+        const [results, config] = await this.parseToggleBlock(children)
 
         // store in local cache
-        results.forEach(({ key, value, blockId }: Record<string, string>) => {
-          cacheObject.ids = { ...(cacheObject.ids || {}), [key]: blockId }
-          cacheObject.values = {
-            ...(cacheObject.values || {}),
-            [key]: PageManager.parseValue(value)
-          }
-        })
+        // @ts-ignore
+        await results.reduce(
+          (
+            p: Promise<any>,
+            { key, value, block, blockId, ...rest }: Record<string, any>
+          ) =>
+            p.then(async () => {
+              cacheObject.ids = { ...(cacheObject.ids || {}), [key]: blockId }
+              cacheObject.values = {
+                ...(cacheObject.values || {}),
+                [key]: value
+                  ? PageManager.parseValue(value)
+                  : rest['truncated-value']
+                  ? await this.loadBlockValue(block.id)
+                  : null
+              }
+            }),
+          Promise.resolve()
+        )
 
         return [results, config]
       },
       write: async (key: string, value: any) => {
-        const blockId = cacheObject.ids[key]
+        const blockId = cacheObject.ids?.[key]
 
         if (!blockId) {
           const result = await this.writeNewToggleValue(
@@ -273,23 +307,51 @@ class PageManager {
           [key]: value
         }
       },
-      get: (key?: string) => {
+      get: async (key?: string, read?: any) => {
+        // console.log('🩸 GET KEY', `[${key}]`)
+        // console.log('🩸 cacheObject', cacheObject)
+        // key && console.log('🩸 cacheObject.values[key]', `[${key}]`, cacheObject.values?.[key])
         if (!key) return cacheObject.values
-        return cacheObject.values[key]
+        if (cacheObject.values?.[key]) return cacheObject.values[key]
+
+        read && (await read?.())
+        // key && console.log('🩸 after loading cache cacheObject.values[key]', `[${key}]`, cacheObject.values?.[key])
+
+        return cacheObject.values?.[key]
       }
     }),
+
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // 88888888ba,                                     88
+    // 88      `"8b                 ,d                 88
+    // 88        `8b                88                 88
+    // 88         88  ,adPPYYba,  MM88MMM  ,adPPYYba,  88,dPPYba,   ,adPPYYba,  ,adPPYba,   ,adPPYba,
+    // 88         88  ""     `Y8    88     ""     `Y8  88P'    "8a  ""     `Y8  I8[    ""  a8P_____88
+    // 88         8P  ,adPPPPP88    88     ,adPPPPP88  88       d8  ,adPPPPP88   `"Y8ba,   8PP"""""""
+    // 88      .a8P   88,    ,88    88,    88,    ,88  88b,   ,a8"  88,    ,88  aa    ]8I  "8b,   ,aa
+    // 88888888Y"'    `"8bbdP"Y8    "Y888  `"8bbdP"Y8  8Y"Ybbd8"'   `"8bbdP"Y8  `"YbbdP"'   `"Ybbd8"'
+    //
+    //
+
     // @ts-ignore
     database: (
       parentBlockId: string,
       dbName: string,
       cacheObject: Record<string, any>,
-      dbProperties: Record<string, any>
+      dbProperties: Record<string, any>,
+      wetDbProperties: Record<string, any>
     ) => ({
       find: async () => {
         if (cacheObject.db) return cacheObject.dbHandler
 
         // @ts-ignore
-        const dbId = this.blocks.databases.get(dbName)
+        const dbId = await this.blocks.databases.get(dbName)
 
         if (!dbId) return null
 
@@ -372,7 +434,7 @@ class PageManager {
       },
       write: async (key: string, data: any) => {
         const [indexName, indexProperty] = Object.entries(dbProperties).find(
-          ([dbName, prop]) => prop.type === 'title'
+          ([dbPropName, prop]) => prop.type === 'title'
         ) as any
 
         // Find row ID
@@ -404,7 +466,8 @@ class PageManager {
 
             const properties = PageManager.dataToProperties(
               preProperties,
-              dbProperties
+              dbProperties,
+              wetDbProperties
             )
 
             const updateObject = {
@@ -413,14 +476,14 @@ class PageManager {
             }
 
             await this.client.pages.update(updateObject)
-
-            return response.results[0].id
           }
+          return response.results[0].id
         } else {
           const properties = PageManager.dataToPropertiesWithKey(
             key,
             data,
-            dbProperties
+            dbProperties,
+            wetDbProperties
           )
 
           const response = await this.client.pages.create({
@@ -469,8 +532,9 @@ class PageManager {
               } catch (e) {
                 console.log('🏓', e)
               }
-          } catch (e) {
-            console.log('🪀', e)
+          } catch (e: any) {
+            if (e.code === 'ENOENT') return null
+            else console.log('🪀', e)
           }
         }
 
@@ -484,20 +548,21 @@ class PageManager {
           const live = await readFromDatabase()
 
           const file = await readFromFile()
-          // @ts-ignore
-          console.log(
-            'Checking',
-            dbName,
-            '\nChanged:',
-            // @ts-ignore
-            live?.last_edited_time !== file?.last_edited_time,
-            '\nLive:',
-            // @ts-ignore
-            live?.last_edited_time,
-            '\nFile:',
-            // @ts-ignore
-            file?.last_edited_time,
-          )
+          // // @ts-ignore
+          // console.log(
+          //   'Checking',
+          //   dbName,
+          //   '\nChanged:',
+          //   // @ts-ignore
+          //   live?.last_edited_time !== file?.last_edited_time,
+          //   '\nLive:',
+          //   // @ts-ignore
+          //   live?.last_edited_time,
+          //   '\nFile:',
+          //   // @ts-ignore
+          //   file?.last_edited_time
+          // )
+
           if (live) {
             // @ts-ignore
             if (live.last_edited_time !== file?.last_edited_time) {
@@ -515,13 +580,17 @@ class PageManager {
   }
 
   private findToggleBlock(name: string, children: ListBlockChildrenResponse) {
+    // @ts-ignore
+    // console.log("🐇🐕 Finding the toggles:", children.results[0].toggle);
     return (
       children?.results?.length > 0 &&
       children.results.find(
         (block: any) =>
           block.type === 'toggle' &&
-          block.toggle.rich_text?.[0]?.plain_text ===
-            `${PageManager.BLOCK_PREFIX}${name}`
+          (block.toggle.rich_text?.[0]?.plain_text ===
+            `${PageManager.BLOCK_PREFIX}${name}` ||
+            block.toggle.text?.[0]?.plain_text ===
+              `${PageManager.BLOCK_PREFIX}${name}`)
       )
     )
   }
@@ -556,7 +625,10 @@ class PageManager {
   }
 
   private async writeToggleBlock(blockId: string, name: string, data: any) {
-    const response = await this.client.blocks.children.append({
+    const childs = PageManager.dataToToggleChildren(data) as any
+    const longPut = childs.length > 99
+
+    const appendObject = {
       block_id: blockId,
       children: [
         {
@@ -572,11 +644,21 @@ class PageManager {
               }
             ],
             color: 'default',
-            children: PageManager.dataToToggleChildren(data) as any
+            children: longPut ? childs.slice(0, 99) : childs
           }
         }
       ]
-    })
+    }
+
+    // @ts-ignore
+    const response = await this.client.blocks.children.append(appendObject)
+
+    if (longPut) {
+      await this.client.blocks.children.append({
+        block_id: blockId,
+        children: childs.slice(99)
+      })
+    }
     return response.results[0]
   }
 
@@ -586,6 +668,9 @@ class PageManager {
     data: any,
     linkUrl = ''
   ) {
+    const childs = PageManager.getValueChildren(data) as any
+    const longPut = childs.length > 99
+
     const response = await this.client.blocks.children.append({
       block_id: blockId,
       children: [
@@ -594,11 +679,18 @@ class PageManager {
           toggle: {
             rich_text: PageManager.getKeyValueRichText(key, data) as any,
             color: 'gray',
-            children: PageManager.getValueChildren(data) as any
+            children: longPut ? childs.slice(0, 99) : childs
           }
         }
       ]
     })
+
+    if (longPut) {
+      await this.client.blocks.children.append({
+        block_id: blockId,
+        children: childs.slice(99)
+      })
+    }
     return response.results[0]
   }
 
@@ -656,22 +748,24 @@ class PageManager {
     return myDb
   }
 
-  private parseToggleBlock(items: ListBlockChildrenResponse) {
+  private async parseToggleBlock(items: ListBlockChildrenResponse) {
     const results = items.results
       .filter(
         (block: any) =>
           block.type === 'toggle' &&
-          block.toggle.rich_text?.[0]?.plain_text ===
-            PageManager.KEY_VALUE_PREFIX
+          (block.toggle.rich_text?.[0]?.plain_text ===
+            PageManager.KEY_VALUE_PREFIX ||
+            block.toggle.text?.[0]?.plain_text === PageManager.KEY_VALUE_PREFIX)
       )
       .map((block: any) =>
-        block.toggle.rich_text
+        block.toggle[block.toggle.rich_text ? 'rich_text' : 'text']
           .map((text: any) => [
             text.href.match(/^https:\/\/notion.settings.config\/(.*)\/$/)?.[1],
             text.plain_text
           ])
           .filter(
-            ([itemType]: string[]) => ['key', 'value'].indexOf(itemType) >= 0
+            ([itemType]: string[]) =>
+              ['key', 'value', 'truncated-value'].indexOf(itemType) >= 0
           )
           .reduce(
             (acc: any, [key, value]: string[]) => ({
@@ -679,20 +773,74 @@ class PageManager {
               [key]: value
             }),
             {
+              block,
               blockId: block.id
             }
           )
       )
 
-    const configed = results.reduce(
-      (acc: any, setting: Record<string, string>) => ({
-        ...acc,
-        [setting.key]: PageManager.parseValue(setting.value)
-      }),
-      {}
+    const configed = {}
+
+    await results.reduce(
+      async (p, setting: Record<string, string>) =>
+        p.then(async () => {
+          // @ts-ignore
+          configed[setting.key] = setting.value
+            ? PageManager.parseValue(setting.value)
+            : setting['truncated-value']
+            ? // @ts-ignore
+              await this.loadBlockValue(setting.block.id)
+            : ''
+        }),
+      Promise.resolve()
     )
 
     return [results, configed]
+  }
+
+  private async loadBlockValue(blockId: string) {
+    // console.log("🍄🪺 LOADING BLOCK VALUE:", blockId);
+
+    let result
+    let cursor
+    let collected = ''
+
+    while (true) {
+      result = await this.client.blocks.children.list({
+        block_id: blockId,
+        page_size: 100,
+        ...(cursor ? { cursor } : {})
+      })
+
+      // @ts-ignore
+      const texts = result.results
+        .find((block: any) => block.type === 'code')
+        // @ts-ignore
+        ?.code?.text?.map((text: any) => text.plain_text)
+        .join('')
+      collected = collected + texts
+      if (result.has_more) {
+        cursor = result.next_cursor
+        continue
+      } else break
+    }
+
+    // console.log("🍄🪺 Texts:", texts);
+    try {
+      const value = JSON.parse(collected)
+      // console.log("🍄🪺 LOADED VALUE:", blockId, value);
+      return value
+    } catch (e) {
+      console.log('🍄🪺 ERROR VALUE:', blockId, e)
+      return null
+    }
+
+    // try {
+    //   const result = JSON.parse(value);
+    //   return result;
+    // } catch (error) {
+    //   return null;
+    // }
   }
 
   static dataToToggleChildren(data: any) {
@@ -745,10 +893,18 @@ class PageManager {
       {
         type: 'text',
         text: {
-          content: value,
-          link: {
-            url: 'https://notion.settings.config/value/'
-          }
+          content: value.length < 256 ? value : value.substring(0, 56) + '...',
+          ...(value.length < 256
+            ? {
+                link: {
+                  url: 'https://notion.settings.config/value/'
+                }
+              }
+            : {
+                link: {
+                  url: 'https://notion.settings.config/truncated-value/'
+                }
+              })
         },
         annotations: {
           code: true,
@@ -759,27 +915,26 @@ class PageManager {
   }
 
   static getValueChildren(data: any) {
-    const formattedValue = JSON.stringify(data, null, 2)
+    const formattedValue = JSON.stringify(data)
+
+    const chunks = formattedValue.match(/.{1,1501}/g)
+    if (!chunks) return false
 
     return [
       {
         object: 'block',
-        type: 'paragraph',
-        paragraph: {
-          rich_text: [
-            {
-              type: 'text',
-              text: {
-                content: formattedValue,
-                link: {
-                  url: 'https://notion.settings.config/formatted-value/'
-                }
-              },
-              annotations: {
-                code: true
+        type: 'code',
+        code: {
+          rich_text: chunks.map((line: string) => ({
+            type: 'text',
+            text: {
+              content: line,
+              link: {
+                url: 'https://notion.settings.config/formatted-value/'
               }
             }
-          ]
+          })),
+          language: 'json'
         }
       }
     ]
@@ -797,7 +952,8 @@ class PageManager {
   static dataToPropertiesWithKey(
     key: string,
     data: any,
-    dbProperties: Record<string, any>
+    dbProperties: Record<string, any>,
+    wetProperties: Record<string, any>
   ) {
     const [indexName] =
       Object.entries(dbProperties).find(([, prop]) => prop.type === 'title') ||
@@ -810,12 +966,17 @@ class PageManager {
         [indexName]: key,
         ...data
       },
-      dbProperties
+      dbProperties,
+      wetProperties
     )
     return properties
   }
 
-  static dataToProperties(data: any, dbProperties: Record<string, any>) {
+  static dataToProperties(
+    data: any,
+    dbProperties: Record<string, any>,
+    wetProperties: Record<string, any>
+  ) {
     const properties = Object.entries({
       ...data
     })
@@ -823,7 +984,11 @@ class PageManager {
         const [dbName, prop] =
           Object.entries(dbProperties).find(
             ([dbName, property]) => dbName === nkey
-          ) || ([] as any)
+          ) ||
+          Object.entries(wetProperties).find(
+            ([localName, prop]) => localName === nkey
+          ) ||
+          ([] as any)
 
         if (prop.type === 'title') {
           return {
@@ -855,6 +1020,13 @@ class PageManager {
           return {
             [dbName]: {
               [prop.type]: Number(value)
+            }
+          }
+        }
+        if (prop.type === 'relation') {
+          return {
+            [dbName]: {
+              [prop.type]: (value as string[]).map((id) => ({ id }))
             }
           }
         }
