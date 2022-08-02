@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({}) => {
   const handleClickHeader = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    if (e.altKey && e.ctrlKey) {
+    if (e.altKey || e.metaKey) {
       setIsDevModeVisible(!isDevModeVisible)
     }
   }
