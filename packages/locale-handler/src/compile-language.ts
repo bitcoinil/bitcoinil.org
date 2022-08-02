@@ -174,6 +174,7 @@ const useLive = async () => {
                 `${saveDir}/${lang}.wet.json`,
                 JSON.stringify(deck, null, 2)
               )
+              verbose && console.log('🗂 Saved', lang)
             }
           }
           verbose &&

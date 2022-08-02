@@ -13,7 +13,7 @@
     "Xdev": "tsc -w",
     "dev": "concurrently \"tsc -w\" \"yarn dev-compile-language --listen --load-cached\"",
     "dev-compile-language": "nodemon -w src -e less,json,yaml --exec \"yarn compile-language\"",
-    "compile-language": "node ../locale-handler/dist/index.js compile ./src/lib --base $PWD --clean=false dotenv_config_debug=true --compile-language --verbose",
+    "compile-language": "node ../locale-handler/dist/index.js compile ./src/lib --base $PWD --clean=false dotenv_config_debug=true --compile-language --verbose --save",
 
     "locales": "node ../locale-handler/dist/locale-handler.js compile ./src/lib --base $PWD --clean=false dotenv_config_debug=true",
 
