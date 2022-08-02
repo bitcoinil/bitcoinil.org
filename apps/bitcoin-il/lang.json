@@ -83,6 +83,10 @@
     "defaultMessage": "BitcoinTalk Forum",
     "description": "Description"
   },
+  "community.canada.link": {
+    "defaultMessage": "Some NFP In Canada",
+    "description": "canada.link"
+  },
   "community.conferences.text": {
     "defaultMessage": "Bitcoin Conferences And Events",
     "description": "Description"
@@ -90,6 +94,10 @@
   "community.facebook.text": {
     "defaultMessage": "Facebook - MUST ADD PROPER ADDRESS",
     "description": "Description"
+  },
+  "community.germany.link": {
+    "defaultMessage": "Some NFP In Germany",
+    "description": "germany.link"
   },
   "community.hash-bitcoin": {
     "defaultMessage": "#bitcoin (General Bitcoin-related)",
@@ -115,6 +123,10 @@
     "defaultMessage": "IRC Channel #bitcoin-core-dev",
     "description": "Description"
   },
+  "community.mars.link": {
+    "defaultMessage": "Some NFP On Mars",
+    "description": "mars.link"
+  },
   "community.me.text": {
     "defaultMessage": "Bitcoin Meetup Groups",
     "description": "Description"
@@ -126,6 +138,18 @@
   "community.meetups-wiki.text": {
     "defaultMessage": "Bitcoin Meetups On The Wiki",
     "description": "Description"
+  },
+  "community.non-profits.canada": {
+    "defaultMessage": "Canada",
+    "description": "non-profits.canada"
+  },
+  "community.non-profits.germany": {
+    "defaultMessage": "Germany",
+    "description": "non-profits.germany"
+  },
+  "community.non-profits.mars": {
+    "defaultMessage": "Mars",
+    "description": "non-profits.mars"
   },
   "community.on-libera.text": {
     "defaultMessage": "on Libera",
@@ -142,6 +166,18 @@
   "community.twitter.text": {
     "defaultMessage": "Twitter - MUST ADD PROPER ADDRESS",
     "description": "Description"
+  },
+  "community.visit": {
+    "defaultMessage": "Visit the",
+    "description": "visit"
+  },
+  "community.visit.link": {
+    "defaultMessage": "Community portal",
+    "description": "visit.link"
+  },
+  "community.visit.post-link": {
+    "defaultMessage": "on the wiki.",
+    "description": "visit.post-link"
   },
   "communityCards.conversation.title": {
     "defaultMessage": "IRC Chat",
@@ -251,9 +287,17 @@
     "defaultMessage": "Europe",
     "description": "Europe"
   },
+  "exchanges.getting-stared-label": {
+    "defaultMessage": "Get Started with BitCoin Il",
+    "description": "getting-stared-label"
+  },
   "exchanges.international": {
     "defaultMessage": "International",
     "description": "international"
+  },
+  "exchanges.non-profit.title": {
+    "defaultMessage": "Non-profit Organizations",
+    "description": "non-profit.title"
   },
   "exchanges.warning": {
     "defaultMessage": "Note: Exchanges provide highly varying degrees of safety, security, privacy, and control over your funds and information. Perform your own due diligence and choose a wallet where you will keep your bitcoin before selecting an exchange.",
@@ -262,22 +306,6 @@
   "faq.general": {
     "defaultMessage": "General",
     "description": "general"
-  },
-  "faq.help-like-help": {
-    "defaultMessage": "I'd like to learn more. Where can I get help?",
-    "description": "help-like-help"
-  },
-  "faq.help-subtitle-info-here": {
-    "defaultMessage": "here",
-    "description": "help-subtitle-info-here"
-  },
-  "faq.help-title": {
-    "defaultMessage": "Help",
-    "description": "help-title"
-  },
-  "faq.help-wiki": {
-    "defaultMessage": "You can find more information",
-    "description": "help-wiki"
   },
   "faq.is-legal": {
     "defaultMessage": "Is Bitcoin Legal?",
@@ -748,20 +776,24 @@
     "description": "white-paper"
   },
   "page.buy-bitil.subtitle": {
-    "defaultMessage": "Buy BitcoinIL"
+    "defaultMessage": "Buy BitcoinIL",
+    "description": "Choose Wallet"
   },
   "page.buy-bitil.title": {
-    "defaultMessage": "Buy BitcoinIL"
+    "defaultMessage": "Buy BitcoinIL",
+    "description": "Choose Wallet"
   },
   "page.choose-wallet.subtitle": {
-    "defaultMessage": "Which Wallet Is For You?"
+    "defaultMessage": "Which Wallet Is For You?",
+    "description": "Choose Wallet"
   },
   "page.choose-wallet.title": {
     "defaultMessage": "Choose Your Wallet",
     "description": "Homepage Title"
   },
   "page.choose-wallet.title.menu": {
-    "defaultMessage": "Choose Your Wallet"
+    "defaultMessage": "Choose Your Wallet",
+    "description": "Choose Wallet"
   },
   "page.footer.support": {
     "defaultMessage": "Support BitCoin Il",
@@ -1188,6 +1220,38 @@
   },
   "vocabulary.Wallet.word": {
     "defaultMessage": "Wallet"
+  },
+  "walletChoices.BitCoinIlCore.id": {
+    "defaultMessage": "BitCoin IL Core",
+    "description": "id"
+  },
+  "walletchoice.'CiliaWallet'": {
+    "defaultMessage": "Cilia Wallet",
+    "description": "'Cilia Wallet'"
+  },
+  "walletchoice.AppStore": {
+    "defaultMessage": "AppStore",
+    "description": "AppStore"
+  },
+  "walletchoice.BitilWallet Android": {
+    "defaultMessage": "BitilWallet Android",
+    "description": "BitilWallet Android"
+  },
+  "walletchoice.BitilWalletiPhone": {
+    "defaultMessage": "BitilWallet iPhone",
+    "description": "BitilWallet iPhone"
+  },
+  "walletchoice.GitHubRepo": {
+    "defaultMessage": "GitHub Repo",
+    "description": "GitHubRepo"
+  },
+  "walletchoice.releases": {
+    "defaultMessage": "Releases",
+    "description": "releases"
+  },
+  "walletchoice.web": {
+    "defaultMessage": "Website",
+    "description": "web"
   },
   "white-paper.do-you-want-translate": {
     "defaultMessage": "Do you want to translate the paper into your language? Visit the Bitcoin white paper repository on GitHub for instructions and open an issue if you have any questions.",
