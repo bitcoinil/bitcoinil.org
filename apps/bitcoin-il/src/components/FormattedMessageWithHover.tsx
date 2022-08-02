@@ -31,29 +31,33 @@ export const FormattedMessage: React.FC<FormattedMessageWithHoverInfoProps> = ({
         <span className={`popup ${showHoverInfo ? 'info' : 'do-not-show'}`}>
           <span className="monospaced">
             <span
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation()
                 navigator.clipboard.writeText(id)
                 showNotification()
               }}
             >
-              id: "{id}"
+              id: "{id}" 📋️
             </span>
             <span
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation()
                 navigator.clipboard.writeText(defaultMessage)
                 showNotification()
               }}
             >
-              defaultMessage: "{defaultMessage}"
+              defaultMessage: "{defaultMessage}" 📋️
             </span>
             <span
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation()
+                if (!description) return
                 navigator.clipboard.writeText(description)
                 showNotification()
               }}
             >
               {' '}
-              description: "{description}"
+              description: "{description}" 📋️
             </span>
           </span>
         </span>
