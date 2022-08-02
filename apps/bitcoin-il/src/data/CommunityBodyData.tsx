@@ -43,18 +43,18 @@ export const NonProfitOrgs: NonProfitOrg[] = [
     flag: '🇩🇪',
     country: (
       <FormattedMessage
-        id={`community.non-profits.canada`}
+        id={`community.non-profits.germany`}
         defaultMessage={`Germany`}
-        description={`non-profits.canada`}
+        description={`non-profits.germany`}
       />
     ),
     links: [
       {
         linkText: (
           <FormattedMessage
-            id={`community.canada.link`}
+            id={`community.germany.link`}
             defaultMessage={`Some NFP In Germany`}
-            description={`canada.link`}
+            description={`germany.link`}
           />
         ),
         linkHref: ''
@@ -65,18 +65,18 @@ export const NonProfitOrgs: NonProfitOrg[] = [
     flag: '👽️',
     country: (
       <FormattedMessage
-        id={`community.non-profits.canada`}
+        id={`community.non-profits.mars`}
         defaultMessage={`Mars`}
-        description={`non-profits.canada`}
+        description={`non-profits.mars`}
       />
     ),
     links: [
       {
         linkText: (
           <FormattedMessage
-            id={`community.canada.link`}
+            id={`community.mars.link`}
             defaultMessage={`Some NFP On Mars`}
-            description={`canada.link`}
+            description={`mars.link`}
           />
         ),
         linkHref: ''
