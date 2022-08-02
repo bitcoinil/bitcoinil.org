@@ -5,6 +5,9 @@ import { useTranslations } from '../hooks/useTranslations'
 import { mainMenuItems } from './mainMenuItems'
 import { nonMenuRoutes } from './nonMenuRoutes'
 import NotARoute from '../layout/NotARoute'
+import RoutePage from '../layout/RoutePage'
+import { FormattedMessage } from '../components/FormattedMessageWithHover'
+import ChooseWallet from '../components/ChooseWallet'
 
 const RoutesProvider = () => {
   const intl = useTranslations()
@@ -40,8 +43,8 @@ const RoutesProvider = () => {
 
       {availableLanguages.map((lang, ii) => {
         const langCode = lang.name === 'en' ? '' : `${lang}/`
-
         nonMenuRoutes.map((route) => {
+          console.log(route.path)
           return (
             <Route
               key={route.key}
@@ -62,6 +65,29 @@ const RoutesProvider = () => {
           />
         )
       })}
+      <Route
+        path="choose-wallet"
+        element={
+          <RoutePage
+            id="choose-wallet"
+            title={
+              <FormattedMessage
+                id="page.choose-wallet.title.menu"
+                defaultMessage="Choose Your Wallet"
+                description="Choose Wallet"
+              />
+            }
+            subtitle={
+              <FormattedMessage
+                id="page.choose-wallet.subtitle"
+                defaultMessage="Which Wallet Is For You?"
+                description="Choose Wallet"
+              />
+            }
+            body={<ChooseWallet />}
+          />
+        }
+      />
       <Route path="*" element={<NotARoute />} />
     </Routes>
   )

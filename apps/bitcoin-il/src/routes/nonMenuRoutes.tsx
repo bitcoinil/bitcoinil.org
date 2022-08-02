@@ -5,11 +5,11 @@ import RoutePage from '../layout/RoutePage'
 
 export const nonMenuRoutes = [
   {
-    key: 'choose-your-wallet',
-    path: 'choose-your-wallet',
+    key: 'choose-wallet',
+    path: 'choose-wallet',
     element: (
       <RoutePage
-        id="choose-your-wallet"
+        id="choose-wallet"
         title={
           <FormattedMessage
             id="page.choose-wallet.title.menu"
