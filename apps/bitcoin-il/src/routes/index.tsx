@@ -44,7 +44,6 @@ const RoutesProvider = () => {
       {availableLanguages.map((lang, ii) => {
         const langCode = lang.name === 'en' ? '' : `${lang}/`
         nonMenuRoutes.map((route) => {
-          console.log(route.path)
           return (
             <Route
               key={route.key}
