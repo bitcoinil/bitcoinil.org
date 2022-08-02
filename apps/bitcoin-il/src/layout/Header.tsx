@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import BurgerMenu from '../components/BurgerMenu'
@@ -8,15 +8,27 @@ import HeaderMenu from '../components/HeaderMenu'
 import LanguageSelect from '../components/LanguageSelect'
 import Logo from '../components/Logo'
 import ThemeSwitch from '../components/ThemeSwitch'
-import { isDarkModeState } from '../state/state'
+import { isDarkModeState, isDevModeVisibleState } from '../state/state'
 import { phoneDevices } from '../utils/breakpoints'
 import { HeaderProps } from '../utils/interfaces'
 
 const Header: React.FC<HeaderProps> = ({}) => {
   const darkModeState = useRecoilValue(isDarkModeState)
 
+  const [isDevModeVisible, setIsDevModeVisible] = useRecoilState(
+    isDevModeVisibleState
+  )
+
+  const handleClickHeader = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    if (e.altKey && e.ctrlKey) {
+      setIsDevModeVisible(!isDevModeVisible)
+    }
+  }
+
   return (
-    <StyledHeader className="header">
+    <StyledHeader className="header" onClick={(e) => handleClickHeader(e)}>
       <div className="header-left logo">
         <CustomNavLink to="/">
           <Logo isDark={darkModeState} />
