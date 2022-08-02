@@ -47,10 +47,6 @@ const TableOfContentsScrollTracked: React.FC<
   }, [leftHandColumnRef.current])
 
   React.useEffect(() => {
-    console.log('❌', isAtEndMobile)
-  }, [isAtEndMobile])
-
-  React.useEffect(() => {
     // take element in view, find the root menu title, and open it
     const elInViewData = getLeftSideElementFromStateUsingKey(elInView)
 
