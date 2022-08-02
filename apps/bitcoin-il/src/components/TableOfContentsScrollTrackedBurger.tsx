@@ -58,7 +58,7 @@ const TOCBurgerMenu: React.FC<TOCBurgerMenuProps> = ({
               </p>
             )
           } else {
-            // Here are the heading with submenus
+            // Here are the headings with submenus
 
             return (
               <div
@@ -122,6 +122,7 @@ const TOCBurgerMenu: React.FC<TOCBurgerMenuProps> = ({
           setBurgerOpen(false)
         }}
       />
+      {/* <div className="TOC-Burger-End-Hitbox" /> */}
     </BurgerWrap>
   )
 }
@@ -237,12 +238,15 @@ const BurgerWrap = styled.div`
     top: 62px;
     left: 0;
     transition: height 400ms;
-    overflow: scroll;
+    transition: padding 400ms;
+    padding: 0 20px 0 20px;
 
     &.open {
-      transition: height 400ms;
-      height: 100vh;
+      overflow: scroll;
       padding: 20px;
+      transition: height 400ms;
+      transition: padding 400ms;
+      height: 100vh;
     }
   }
 
@@ -262,5 +266,11 @@ const BurgerWrap = styled.div`
   .toc-scroll-tracked-left-item-without-subheadings,
   .left-title {
     border-bottom: 1px solid grey;
+  }
+
+  .TOC-Burger-End-Hitbox {
+    background: red;
+    height: 20px;
+    width: 85vw;
   }
 `
