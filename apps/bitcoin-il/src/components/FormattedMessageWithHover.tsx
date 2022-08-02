@@ -12,6 +12,8 @@ export const FormattedMessage: React.FC<FormattedMessageWithHoverInfoProps> = ({
   defaultMessage,
   description
 }) => {
+  const [isForcedOpen, setIsForcedOpen] = React.useState(false)
+
   const showHoverInfo = useRecoilValue(isTooltipShownOnFormattedMessagesHover)
 
   const showNotification = () => {
@@ -21,14 +23,34 @@ export const FormattedMessage: React.FC<FormattedMessageWithHoverInfoProps> = ({
   }
 
   return (
-    <StyledFormattedMessageWithHoverInfo id="FormattedMessageWithHoverInfo">
+    <StyledFormattedMessageWithHoverInfo
+      id="FormattedMessageWithHoverInfo"
+      onMouseEnter={(e) => {
+        if (e.shiftKey && showHoverInfo) {
+          setIsForcedOpen(true)
+        }
+      }}
+    >
       <span className="formatted-message-with-hover-body">
         <intl.FormattedMessage
           id={id}
           defaultMessage={defaultMessage}
           description={description}
         />
-        <span className={`popup ${showHoverInfo ? 'info' : 'do-not-show'}`}>
+        <span
+          className={`popup ${showHoverInfo ? 'info' : 'do-not-show'} ${
+            isForcedOpen ? 'forced-open' : ''
+          }`}
+        >
+          <span
+            className="close-if-forced"
+            onClick={(e) => {
+              e.stopPropagation()
+              setIsForcedOpen(false)
+            }}
+          >
+            {isForcedOpen ? '🔒️' : ''}
+          </span>
           <span className="monospaced">
             <span
               onClick={(e) => {
@@ -112,15 +134,27 @@ const StyledFormattedMessageWithHoverInfo = styled.span`
   .do-not-show {
     display: none;
   }
+
   .info {
     display: none;
     position: absolute;
   }
+
   .formatted-message-with-hover-body {
     &:hover {
       .info {
         display: block;
       }
     }
+  }
+
+  .forced-open {
+    display: block;
+  }
+
+  .close-if-forced {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
   }
 `
