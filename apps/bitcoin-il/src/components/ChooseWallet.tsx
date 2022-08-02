@@ -17,7 +17,6 @@ export default function ChooseWallet(): JSX.Element {
       </h1>
       <div className="wallet-choices-wrap">
         {walletChoices.map((walletC, i) => {
-          console.log(walletC)
           return (
             <Card key={`wallet-choice-${i}`}>
               <h1 className="wallet-choice-card-title">{walletC.name}</h1>
