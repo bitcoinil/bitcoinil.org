@@ -471,10 +471,9 @@ const StyledTableOfContentsScrollTracked = styled.div`
 
     ${TOCBreakPointMobile} {
       flex-direction: column;
-      
+
       .toc-scroll-tracked-right {
         width: 90vw;
-
       }
     }
   }
@@ -639,22 +638,23 @@ const StyledTableOfContentsScrollTracked = styled.div`
       &-left {
         display: none;
       }
-  }
-  
-  ${TOCBreakPointMobile} {
-    .toc-scroll-tracked {
-      &-left {
-        display: none;
-      }
-      &-right {
-        padding: 0;
-        margin: 0;
-        width: 95vw;
-        padding: 50px;
-        margin: auto;
-      }
-      .mobile-toc {
-        background: red;
+    }
+
+    ${TOCBreakPointMobile} {
+      .toc-scroll-tracked {
+        &-left {
+          display: none;
+        }
+        &-right {
+          padding: 0;
+          margin: 0;
+          width: 95vw;
+          padding: 50px;
+          margin: auto;
+        }
+        .mobile-toc {
+          background: red;
+        }
       }
     }
   }
