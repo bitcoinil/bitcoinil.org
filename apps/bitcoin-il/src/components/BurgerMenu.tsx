@@ -212,7 +212,6 @@ const BurgerWrap = styled.div`
 
       &-inner {
         background: black;
-        border-bottom: 1px solid black;
       }
 
       &.open {

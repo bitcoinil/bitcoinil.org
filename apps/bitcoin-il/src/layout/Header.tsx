@@ -48,7 +48,6 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   padding-left: 20px;
   padding-right: 20px;
-  border-bottom: 1px solid;
 
   #app.dir-rtl & {
     flex-direction: row-reverse;
