@@ -16,6 +16,8 @@ import Footer from './Footer'
 import Header from './Header'
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
+  const [keyEvent, setKeyEvent] = React.useState<KeyboardEvent | null>(null)
+  const [counters, setCounter] = React.useState({ ctrl: 0, meta: 0 })
   const ln = useRecoilValue(currentlySelectedLanguageState)
   const [isDevModeVisible, setIsDevModeVisible] = useRecoilState(
     isDevModeVisibleState
@@ -26,19 +28,47 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
   const location = useLocation()
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    // console.log(e)
+  const handleKeyDown = React.useCallback((e: KeyboardEvent) => {
+    // console.log('The E:', e)
+    // console.log('The E.metKey, E.ctrlKey:', e.metaKey, e.ctrlKey)
+    // console.log('The Coutners:', counters)
     if (e.ctrlKey && e.altKey && e.key === 'd') {
       setIsDevModeVisible(!isDevModeVisible)
     }
     if (e.ctrlKey && e.altKey && e.key === 'h') {
       setHoverInfo(true)
     }
-  }
+
+    if (e.metaKey) {
+      if (counters.meta < 3) {
+        setCounter({ ...counters, meta: counters.meta + 1 })
+        console.log('META:', 3 - (counters.meta + 1), 'more...')
+      } else {
+        setCounter({ ...counters, meta: 0, ctrl: 0 })
+      }
+    }
+    if (e.ctrlKey && counters.meta >= 2) {
+      if (counters.ctrl < 2) {
+        setCounter({ ...counters, ctrl: counters.ctrl + 1 })
+        console.log('CTRL:', 3 - (counters.ctrl + 1), 'more...')
+      } else {
+        setHoverInfo(v => !v)
+        setCounter({ ...counters, meta: 0, ctrl: 0 })
+      }
+    }
+
+  }, [counters])
 
   React.useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    keyEvent && handleKeyDown(keyEvent)
+  }, [keyEvent])
+
+  React.useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      setKeyEvent(e)
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
   }, [])
 
   React.useEffect(() => {
