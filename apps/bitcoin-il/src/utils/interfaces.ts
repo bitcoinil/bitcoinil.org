@@ -246,9 +246,9 @@ export interface TimelineCompProps {
 export interface GettingStartedBodyProps {}
 
 export interface TimelineItemProps {
-  title: string
-  body: string
-  buttonText: string
+  title: JSX.Element
+  body: JSX.Element
+  buttonText: JSX.Element
   buttonOnClick: Function
   key?: string
 }

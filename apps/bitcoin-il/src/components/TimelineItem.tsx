@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 import { TimelineItemProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
-import { FormattedMessage } from './FormattedMessageWithHover'
 
 const TimelineItem: React.FC<TimelineItemProps> = ({
   key,
@@ -14,20 +13,8 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 }) => {
   return (
     <StyledTimelineItem id="TimelineItem">
-      <h1>
-        <FormattedMessage
-          id={`timeline.item.${key}.title`}
-          defaultMessage={title}
-          description={`TimelineItem Title`}
-        />
-      </h1>
-      <p>
-        <FormattedMessage
-          id={`timeline.item.${key}.body`}
-          defaultMessage={body}
-          description={`timelineItem Body`}
-        />
-      </p>
+      <h1>{title}</h1>
+      <p>{body}</p>
       <SiteButton type="primary" onClick={buttonOnClick}>
         {buttonText}
       </SiteButton>
