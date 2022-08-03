@@ -112,20 +112,21 @@ const StyledFooter = styled.div`
     display: flex;
     width: 90vw;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 
     #app.dir-rtl & {
-      /* flex-direction: row-reverse; */
       direction: rtl;
     }
     ${phoneDevices} {
-      flex-direction: column;
     }
   }
 
   .support {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
+
   .columns-wrap,
   .support {
     ${phoneDevices} {
@@ -136,9 +137,11 @@ const StyledFooter = styled.div`
   .columns-wrap {
     display: flex;
     margin-bottom: 3em;
+    flex-wrap: wrap;
 
     ${phoneDevices} {
-      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
   }
 
