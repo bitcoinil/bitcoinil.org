@@ -14,14 +14,14 @@ export const howToAcceptTimelineItems: JSX.Element[] = [
     }
     body={
       <FormattedMessage
-        id={`howToAccept.inform.body`}
+        id={`howToAccept.habits.body`}
         defaultMessage={`Bitcoin does not require merchants to change their habits. However, Bitcoin is different than what you know and use every day. Before you start using Bitcoin, there are a few things that you need to know in order to use it securely and avoid common pitfalls.`}
         description={`habits`}
       />
     }
     buttonText={
       <FormattedMessage
-        id={`howToAccept.button.readmore`}
+        id={`howToAccept.button.readmore-3`}
         defaultMessage={`Read more`}
         description={`button.readmore`}
       />
@@ -73,7 +73,7 @@ export const howToAcceptTimelineItems: JSX.Element[] = [
     }
     buttonText={
       <FormattedMessage
-        id={`howToAccept.button.readmore`}
+        id={`howToAccept.button.readmore-4`}
         defaultMessage={`Read More`}
         description={`button.`}
       />

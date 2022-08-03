@@ -351,6 +351,98 @@
     "defaultMessage": "What Is Bitcoin?",
     "description": "What Is Bitcoin?"
   },
+  "howToAccept.button.buy": {
+    "defaultMessage": "Buy BitCoin IL",
+    "description": "button."
+  },
+  "howToAccept.button.choose": {
+    "defaultMessage": "Choose your wallet",
+    "description": "button."
+  },
+  "howToAccept.button.find-sercives": {
+    "defaultMessage": "Find merchant services",
+    "description": "button.find-services"
+  },
+  "howToAccept.button.read-more": {
+    "defaultMessage": "Read More",
+    "description": "button."
+  },
+  "howToAccept.button.readmore-2": {
+    "defaultMessage": "Read More",
+    "description": "button."
+  },
+  "howToAccept.button.readmore-3": {
+    "defaultMessage": "Read more",
+    "description": "button.readmore"
+  },
+  "howToAccept.button.readmore-4": {
+    "defaultMessage": "Read More",
+    "description": "button."
+  },
+  "howToAccept.button.submit": {
+    "defaultMessage": "Submit your message",
+    "description": "button."
+  },
+  "howToAccept.choose": {
+    "defaultMessage": "Choose your wallet",
+    "description": "choose"
+  },
+  "howToAccept.choose.body": {
+    "defaultMessage": "Free bitcoin wallets are available for all major operating systems and devices to serve a variety of your needs. For example, you can install an app on your mobile device for everyday use or you can have a wallet only for online payments on your computer. In any case, choosing a wallet is easy and can be done in minutes.",
+    "description": "choose.body"
+  },
+  "howToAccept.get": {
+    "defaultMessage": "Get BitCoin Il",
+    "description": "get"
+  },
+  "howToAccept.get.body": {
+    "defaultMessage": "You can get Bitcoin by accepting it as a payment for goods and services. There are also several ways you can buy Bitcoin.",
+    "description": "get.body"
+  },
+  "howToAccept.habits.body": {
+    "defaultMessage": "Bitcoin does not require merchants to change their habits. However, Bitcoin is different than what you know and use every day. Before you start using Bitcoin, there are a few things that you need to know in order to use it securely and avoid common pitfalls.",
+    "description": "habits"
+  },
+  "howToAccept.inform": {
+    "defaultMessage": "Inform yourself",
+    "description": "inform"
+  },
+  "howToAccept.inform.body": {
+    "defaultMessage": "Bitcoin is different than what you know and use every day. Before you start using Bitcoin, there are a few things that you need to know in order to use it securely and avoid common pitfalls.",
+    "description": "inform.body"
+  },
+  "howToAccept.processing": {
+    "defaultMessage": "Processing payments",
+    "description": "processing"
+  },
+  "howToAccept.processing.body": {
+    "defaultMessage": "You can process payments and invoices by yourself or you can use merchant services and deposit money in your local currency or bitcoins. Most point of sales businesses use a tablet or a mobile phone to let customers pay with their mobile phones.",
+    "description": "processing.body"
+  },
+  "howToAccept.spend": {
+    "defaultMessage": "Spend Bitcoin",
+    "description": "spend"
+  },
+  "howToAccept.spend.body": {
+    "defaultMessage": "There are a growing number of services and merchants accepting Bitcoin all over the world. Use Bitcoin to pay them and rate your experience to help them gain more visibility.",
+    "description": "spend.body"
+  },
+  "howToAccept.taxes": {
+    "defaultMessage": "Accounting and Taxes",
+    "description": "taxes"
+  },
+  "howToAccept.taxes.body": {
+    "defaultMessage": "\"Merchants often deposit and display prices in their local currency. In other cases, Bitcoin works similarly to a foreign currency. To get appropriate guidance regarding tax compliance for your own jurisdiction, you should contact a qualified accountant.\"",
+    "description": "taxes.body"
+  },
+  "howToAccept.visibility": {
+    "defaultMessage": "Gaining Visibility",
+    "description": "visibility"
+  },
+  "howToAccept.visibility.body": {
+    "defaultMessage": "\"There is a growing number of users searching for ways to spend their bitcoins. You can submit your business in online directories to help them easily find you. You can also display the Bitcoin logo on your website or your brick and mortar business.\"",
+    "description": "visibility.body"
+  },
   "howitworks-balances-subtitle": {
     "defaultMessage": "The block chain is a shared public ledger on which the entire Bitcoin network relies. All confirmed transactions are included in the block chain. It allows Bitcoin wallets to calculate their spendable balance so that new transactions can be verified thereby ensuring they're actually owned by the spender. The integrity and the chronological order of the block chain are enforced with cryptography.",
     "description": "howitworks-balances-title"
