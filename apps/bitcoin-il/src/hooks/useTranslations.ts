@@ -35,8 +35,6 @@ export const useTranslations = () => {
     ]
   }
 
-  //  secret_nBhuVu0q1gkAlUqEjHjIYfUMMTiBsozjCiRYpIravHM
-
   React.useEffect(() => {
     if (language.language === 'he') setLocale('il')
     setLocale(language.language)
