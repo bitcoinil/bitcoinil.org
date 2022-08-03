@@ -42,6 +42,7 @@ const StyledHomePage = styled.div`
     ${phoneDevices} {
       font-size: 32px;
       margin: 100px 0 20px 0;
+      padding: 0 70px;
     }
 
     font-size: 51px;
