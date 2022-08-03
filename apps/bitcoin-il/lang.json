@@ -1,4 +1,8 @@
 {
+  "GettingStarted.howToUse": {
+    "defaultMessage": "How To Use BitCoin IL",
+    "description": "id"
+  },
   "box.business.subtext": {
     "defaultMessage": "Learn More",
     "description": "box.business.subtext"
@@ -334,6 +338,10 @@
   "footer.support-message": {
     "defaultMessage": "TODO: BITCOIN LINK FOR DONATIONS",
     "description": "BITCOIN LINK FOR DONATIONS"
+  },
+  "gettingStarted.howToAccept": {
+    "defaultMessage": "How to Accept Bitcoin Il",
+    "description": "howToAccept"
   },
   "homepage.buy-bitcoin": {
     "defaultMessage": "Buy Bitcoin",

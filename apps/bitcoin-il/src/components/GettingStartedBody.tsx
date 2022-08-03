@@ -27,7 +27,11 @@ const GettingStartedBody: React.FC<GettingStartedBodyProps> = ({}) => {
           }}
           className="getting-started-fly-to-option"
         >
-          How To Use Bitcoin Il
+          <FormattedMessage
+            id={`GettingStarted.howToUse`}
+            defaultMessage={`How To Use BitCoin IL`}
+            description={`id`}
+          />
         </p>
         <p
           onClick={() => {
@@ -36,7 +40,11 @@ const GettingStartedBody: React.FC<GettingStartedBodyProps> = ({}) => {
           }}
           className="getting-started-fly-to-option"
         >
-          How to Accept Bitcoin Il
+          <FormattedMessage
+            id={`gettingStarted.howToAccept`}
+            defaultMessage={`How to Accept Bitcoin Il`}
+            description={`howToAccept`}
+          />
         </p>
       </div>
       <h1 ref={howToUseRef} className="getting-started-title">
