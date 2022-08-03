@@ -56,6 +56,9 @@ export default function HomepageButtons(): JSX.Element {
 const StyledHomepageButtons = styled.div`
   .homepage-buttons {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 
     .ant-btn {
       width: 285px;
@@ -64,15 +67,7 @@ const StyledHomepageButtons = styled.div`
     }
 
     button {
-      margin-right: 10px;
-    }
-
-    ${phoneDevices} {
-      flex-direction: column;
-
-      button {
-        margin-bottom: 10px;
-      }
+      margin: 0 10px 10px 0;
     }
   }
 `
