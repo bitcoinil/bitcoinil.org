@@ -57,9 +57,10 @@ const StyledLanguageSelect = styled.div`
   }
 
   .ant-menu-submenu-title {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     background-image: url(${ico_globe});
+    background-size: cover;
   }
 
   .collapsable-menu {
