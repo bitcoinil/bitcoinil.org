@@ -38,27 +38,24 @@ const outputDir = args['--output'] || tsconfig?.config?.compilerOptions?.outDir
 
 const saveDir = args['--save-dir'] || './cached'
 
-console.log('😎😎😎 PROCESS.ENV', process.env)
-
 const init = async () => {
   const cachedLoader = () =>
     useLive().catch(async (ee) => {
-      verbose && console.log('🩱 LIVE CAUGHT CAUGHT CAUGHT', ee)
-      verbose && console.log('🩱 Error Message:', ee.message)
-      verbose && console.log('🩱 Error Code:', ee.code)
+      if(ee.message !== 'Missing notion token and page name')
+        verbose && console.log('🩱 Error:', ee.message)
       if (ee.code === 'notionhq_client_request_timeout') await cachedLoader()
       else await useCached()
     })
-  const liveLoader = () => useLive().catch(async (ee) => {
-    verbose && console.log('🟣 CAUGHT USE LIVE WITHOUT CACHED', ee)
-    verbose && console.log('🟣 Error Message:', ee.message)
-    verbose && console.log('🟣 Error Code:', ee.code)
-    if (ee.code === 'notionhq_client_request_timeout') await liveLoader()
-  })
+  const liveLoader = () =>
+    useLive().catch(async (ee) => {
+      verbose && console.log('🟣 CAUGHT USE LIVE WITHOUT CACHED', ee)
+      verbose && console.log('🟣 Error Message:', ee.message)
+      verbose && console.log('🟣 Error Code:', ee.code)
+      if (ee.code === 'notionhq_client_request_timeout') await liveLoader()
+    })
 
-  if (!loadCached)
-    await liveLoader()
-  else await useCached().then(cachedLoader)
+  if (!loadCached) await liveLoader()
+  else await cachedLoader()
 }
 
 const useCached = async () => {
@@ -84,19 +81,18 @@ const useLive = async () => {
   verbose && console.log('📄 Initializing on page:', pageName)
   verbose && console.time('init')
 
-  if (!pageName) {
-    console.log(
+  if (!notionToken || !pageName) {
+    if (!notionToken && !pageName) { throw new Error('Missing notion token and page name')}
+    !pageName && console.log(
       'ℹ️ Please provide a page name with --page or set the environment variable NOTION_PAGE'
       // 'Pass in page name via cli (e.g. `$ locale-handler --page my-page-name`) or as a env variable named `NOTION_PAGE`'
     )
-    throw new Error('Page name is required')
-  }
-  if (!notionToken) {
-    console.log(
+    !notionToken && console.log(
       'ℹ️ Please provide a Notion token with --token or set the environment variable NOTION_TOKEN'
       // 'Pass in page name via cli (e.g. `$ locale-handler --page my-page-name`) or as a env variable named `NOTION_PAGE`'
     )
-    throw new Error('Notion token is required')
+    if (!notionToken) throw new Error('Notion token is required')
+    if (!pageName) throw new Error('Page name is required')
   }
   if (!outputDir) {
     console.log(
@@ -104,6 +100,7 @@ const useLive = async () => {
     )
     throw new Error('Output directory is required')
   }
+  verbose && console.log('📄 Initializing on page:', pageName)
 
   // Initializing a client
   const client = new Client({
@@ -149,7 +146,7 @@ const useLive = async () => {
         }
       }, {})
 
-      const merged = _.merge(acc, deks)
+      const merged = _.merge(acc, deks) as any
 
       return merged
 

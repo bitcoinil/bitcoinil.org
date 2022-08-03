@@ -1,6 +1,8 @@
 import arg from 'arg'
 import 'dotenv/config'
 import { Client } from '@notionhq/client'
+import fs from 'fs/promises'
+import path from 'path'
 
 import PageManager from './page-manager'
 import { databases as schema } from './language-handler'
@@ -15,6 +17,7 @@ const args = arg(
     '--limit': Number,
     '--no-write': Boolean,
     '--no-extract': Boolean,
+    '--no-cache-fill': Boolean,
     '--verbose': Boolean
   },
   { permissive: true }
@@ -26,7 +29,10 @@ const init = async () => {
   const verbose = args['--verbose']
   const noWrite = args['--no-write']
   const noExtract = args['--no-extract']
+  const noCacheFill = args['--no-cache-fill']
   const allowToPost = true
+
+  const cachedDir = './cached'
 
   if (!pageName) {
     console.log(
@@ -47,6 +53,8 @@ const init = async () => {
   const client = new Client({
     auth: notionToken
   })
+
+  const caches = {} as Record<string, any>
 
   verbose && console.log('📄 Initializing on page:', pageName)
   verbose && console.time('init')
@@ -72,6 +80,27 @@ const init = async () => {
     )
     verbose && console.timeLog('init', 'Language extracted')
     verbose && console.log('🗂 Language ready')
+  }
+
+  if (!noCacheFill) {
+    // Load cached languages
+    const langs = ['en', 'he']
+
+    const result = await langs.reduce(
+      (p, lang) =>
+        p.then(async (acc) => {
+          const filename = path.join(cachedDir, '/', `${lang}.wet.json`)
+          const fileData = await fs.readFile(filename, 'utf8')
+          const parsedData = (fileData && JSON.parse(fileData)) || {}
+
+          return {
+            ...acc,
+            [lang]: parsedData
+          }
+        }),
+      Promise.resolve({})
+    )
+    caches.langs = result
   }
 
   if (!noWrite) {
@@ -104,10 +133,43 @@ const init = async () => {
                       )
                     : defaultMessage,
                   ...(description ? { Description: description } : {})
-                  // English: defaultMessage
                 })
-
+                // const setRes = 'fake'
                 setRes && verbose && console.log('Set res:', key, '-', setRes)
+
+                const langs = { en: 'English', he: 'Hebrew' }
+
+                const updates = await Object.entries(langs).reduce(
+                  (p, [lang, dbName]) =>
+                    p.then(async (acc) => {
+                      const cached = caches.langs[lang]?.[key]
+                      if (cached) {
+                        const createRes = await database.set(
+                          `${lang}-language`,
+                          cached,
+                          {}
+                        )
+                        // const createRes = 'fake'
+                        await database.set('language', key, {
+                          [dbName]: [createRes]
+                        })
+                        caches.hits = {
+                          ...(caches.hits || {}),
+                          [lang]: [...((caches.hits || {})[lang] || []), key]
+                        }
+                        return {
+                          ...acc,
+                          [lang]: 'created'
+                        }
+                      }
+                      return {
+                        ...acc
+                      }
+                    }),
+                  Promise.resolve({})
+                )
+                verbose && console.log('Updates:', key, '-', updates)
+
                 verbose &&
                   console.timeLog(
                     'init',
@@ -118,6 +180,59 @@ const init = async () => {
             p,
           Promise.resolve()
         )
+        verbose && console.timeLog('init', 'Language loaded into notion')
+
+        const missed = Object.entries(caches.langs)
+          .map(([lang, cached]: [string, any]) => {
+            const keys = Object.keys(cached)
+            const misses = keys.filter(
+              (key) => (caches.hits[lang] || []).indexOf(key) === -1
+            )
+            return [lang, misses]
+          })
+          .reduce(
+            (acc, [lang, misses]: any) => ({ ...acc, [lang]: misses }),
+            {}
+          )
+        const langs = { en: 'English', he: 'Hebrew' } as Record<string, any>
+
+        const missedUpdates = await Object.entries(missed).reduce(
+          (p, [lang, misses]) =>
+            p.then(async (acc) => {
+              const dbName = langs[lang]
+              const reses = await (misses as string[]).reduce(
+                (sp, missingKey) =>
+                  sp.then(async (sacc) => {
+                    const langValue = caches.langs[lang][missingKey]
+                    const setRes = await database.set('language', missingKey, {
+                      ...(lang === 'en' ? { Default: langValue } : {})
+                      // ...(description ? { Description: description } : {})
+                    })
+
+                    const createRes = await database.set(
+                      `${lang}-language`,
+                      langValue,
+                      {}
+                    )
+
+                    await database.set('language', missingKey, {
+                      [dbName]: [createRes]
+                    })
+
+                    return {
+                      ...sacc,
+                      [missingKey]: 'updated'
+                    }
+                  }),
+                Promise.resolve({})
+              )
+              return {}
+            }),
+          Promise.resolve({})
+        )
+
+        verbose && console.timeLog('init', 'Missed items filled')
+        verbose && console.log('🗂 Language write complete')
       } catch (e) {
         console.error('📄 Error filling in database', e)
       }

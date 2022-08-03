@@ -83,7 +83,7 @@ class NotionDatabaseHandler {
 
     const [dry, wet] = this.handleSchemaProperties(databaseSchema.properties)
 
-    const handle = await this.page.getDatabase(databaseName, dry)
+    const handle = await this.page.getDatabase(databaseName, dry, wet)
 
     this.cache.databases[databaseName] = {
       handle,
