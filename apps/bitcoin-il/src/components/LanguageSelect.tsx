@@ -61,6 +61,12 @@ const StyledLanguageSelect = styled.div`
     width: 25px;
     background-image: url(${ico_globe});
     background-size: cover;
+    padding-left: 25px;
+    display: flex;
+    align-items: center;
+    span {
+      padding-left: 30px;
+    }
   }
 
   .collapsable-menu {
