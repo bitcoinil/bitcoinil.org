@@ -1139,6 +1139,10 @@
     "defaultMessage": "BitCoin Wiki",
     "description": "Description"
   },
+  "support.MakeaDonation": {
+    "defaultMessage": "Make a Donation",
+    "description": "id"
+  },
   "support.chat": {
     "defaultMessage": "Meet the communities",
     "description": "chat"

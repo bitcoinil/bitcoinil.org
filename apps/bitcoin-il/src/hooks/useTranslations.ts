@@ -29,11 +29,13 @@ export const useTranslations = () => {
     return [
       {
         key: 'lang',
-        label: '', // blank to show globe icon
+        label: 'Languages',
         children: childrenToBe
       }
     ]
   }
+
+  //  secret_nBhuVu0q1gkAlUqEjHjIYfUMMTiBsozjCiRYpIravHM
 
   React.useEffect(() => {
     if (language.language === 'he') setLocale('il')
