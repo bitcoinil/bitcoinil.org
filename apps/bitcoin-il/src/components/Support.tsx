@@ -62,7 +62,13 @@ const Support: React.FC<SupportProps> = () => {
                 setShowModal(true)
               }}
             >
-              <p>Make a Donation</p>
+              <p>
+                <FormattedMessage
+                  id={`support.MakeaDonation`}
+                  defaultMessage={`Make a Donation`}
+                  description={`id`}
+                />
+              </p>
             </SiteButton>
             {showModal ? (
               <StyledModal
