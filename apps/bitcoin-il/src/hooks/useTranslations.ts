@@ -29,7 +29,7 @@ export const useTranslations = () => {
     return [
       {
         key: 'lang',
-        label: 'Languages',
+        label: '', // blank to show globe icon
         children: childrenToBe
       }
     ]

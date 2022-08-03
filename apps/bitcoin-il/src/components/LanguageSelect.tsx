@@ -3,6 +3,7 @@ import * as React from 'react'
 import { useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
+import ico_globe from '../img/ico_globe.png'
 
 import { useTranslations } from '../hooks/useTranslations'
 import { currentlySelectedLanguageState } from '../state/state'
@@ -53,6 +54,12 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
 const StyledLanguageSelect = styled.div`
   ${phoneDevices} {
     display: none;
+  }
+
+  .ant-menu-submenu-title {
+    height: 30px;
+    width: 30px;
+    background-image: url(${ico_globe});
   }
 
   .collapsable-menu {
