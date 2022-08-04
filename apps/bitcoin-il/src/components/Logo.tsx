@@ -7,9 +7,12 @@ const Logo: React.FC<LogoProps> = ({ props, isDark }) => {
   const [size, setSize] = React.useState(500)
 
   React.useEffect(() => {
+    if (window.innerWidth < 500) setSize(window.innerWidth - 40)
+
     const resizeHandler = () => {
       if (window.innerWidth < 500) setSize(window.innerWidth - 40)
     }
+
     window.addEventListener('resize', resizeHandler)
 
     return () => window.removeEventListener('resize', resizeHandler)
