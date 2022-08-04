@@ -56,7 +56,7 @@ const StyledRoutePage = styled.div`
     padding: 50px 0;
 
     h1 {
-      margin-top: 25px;
+      margin: 25px 20px 0 20px;
       color: white;
       text-align: center;
       font-size: 40px;
