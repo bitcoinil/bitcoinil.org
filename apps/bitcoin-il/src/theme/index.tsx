@@ -10,6 +10,7 @@ import { ThemeContextValue } from '../utils/interfaces'
 import FaviconHandler from './favicon'
 
 import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
+import { useFade } from '../hooks/useFade'
 const { createContext, useContext, useMemo, useState } = React
 
 const BASE_URL = import.meta.env.BASE_URL || '/'
@@ -35,6 +36,8 @@ const Theme = ({ children }: Props) => {
 
   const showDebug = useRecoilValue(isThemeDebugVisibleState)
   const [prefersDark, setPrefersDark] = React.useState(false)
+
+  const { disappearReappearHTMLElement: disappearReappear } = useFade()
 
   const isPrefersDarkInitial = useMemo(() => {
     if (
@@ -102,17 +105,14 @@ const Theme = ({ children }: Props) => {
   const actions = {
     setTheme: (theme: string, variant?: string) => {
       const fadeTime: number = 600
-      document.body.style.transition = `opacity ${fadeTime}ms`
-      document.body.style.opacity = '0'
-      window.setTimeout(() => {
-        document.body.style.opacity = '1'
+      disappearReappear(document.body, fadeTime, () => {
         const newState = {
           theme,
           variant: variant ? variant : '',
           isDark: pullThemeInfo(theme, variant).isDark
         }
         setActiveState(newState)
-      }, fadeTime + 500)
+      })
     },
     toggleDarkMode: () => {
       isDarkMode
