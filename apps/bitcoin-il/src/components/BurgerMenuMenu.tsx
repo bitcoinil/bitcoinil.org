@@ -211,4 +211,8 @@ const StyledBurgerMenuMenu = styled.div`
   .dark-arrow {
     filter: invert(1);
   }
+
+  .burger-menu-title-label {
+    cursor: pointer;
+  }
 `
