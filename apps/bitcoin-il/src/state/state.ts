@@ -11,6 +11,11 @@ export const isBurgerMenuOpenState = atom<boolean>({
   default: false
 })
 
+export const showSystemThemeSwitch = atom<boolean>({
+  key: 'showSystemThemeSwitch',
+  default: false
+})
+
 export const isDarkModeState = atom<boolean>({
   key: 'isDarkMode',
   default: false
