@@ -42,7 +42,7 @@ const Support: React.FC<SupportProps> = () => {
       <StyledSupport
         id="Support"
         onClick={() => {
-          toggleExtended()
+          if (!showModal) toggleExtended()
         }}
         className={`${isExtended ? 'extended' : 'minimized'} support-main-wrap`}
       >
@@ -68,28 +68,34 @@ const Support: React.FC<SupportProps> = () => {
                 description={`Homepage Title`}
               />
             </p>
-
-            <SiteButton
-              opacity={isExtended ? '1' : '0'}
-              transition={`opacity 800ms`}
-              onClick={() => {
+            <span
+              onClick={(e) => {
+                e.stopPropagation()
                 setShowModal(true)
               }}
             >
-              <p>
-                <FormattedMessage
-                  id={`support.MakeaDonation`}
-                  defaultMessage={`Make a Donation`}
-                  description={`id`}
-                />
-              </p>
-            </SiteButton>
+              <SiteButton
+                opacity={isExtended ? '1' : '0'}
+                transition={`opacity 800ms`}
+              >
+                <p>
+                  <FormattedMessage
+                    id={`support.MakeaDonation`}
+                    defaultMessage={`Make a Donation`}
+                    description={`id`}
+                  />
+                </p>
+              </SiteButton>
+            </span>
             {showModal ? (
               <SupportStyledModal
                 title={null}
                 visible={showModal}
                 footer={null}
-                onCancel={() => toggleExtended(false)}
+                onCancel={() => {
+                  console.log('🌐')
+                  toggleExtended(false)
+                }}
               >
                 <h1 className="modal-title">Donate to Bitcoin Il</h1>
                 <div className="buttons-container">
@@ -138,7 +144,9 @@ const Support: React.FC<SupportProps> = () => {
         )}
       </StyledSupport>
       <StyledClickOutside
-        onClick={() => toggleExtended(false)}
+        onClick={() => {
+          toggleExtended(false)
+        }}
         className={
           isExtended
             ? 'support-click-outside-show'
@@ -186,6 +194,8 @@ const StyledSupport = styled.div`
 
   .margin-bottom {
     margin-bottom: 45px;
+    width: 70vw;
+    text-align: center;
   }
 
   .close {
