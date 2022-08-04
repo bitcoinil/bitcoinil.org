@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
+import type { CompiledTheme } from '@djitsu/themes'
 
 export interface ClickedMenuItemData {
   key: string
@@ -204,7 +204,7 @@ export interface BurgerMenuMenuProps {
   items: MainMenuItem[]
 }
 
-export interface ThemeSelectMobileNewProps {}
+export interface ThemeSwitchMobileProps {}
 
 export interface LanguageSelectMobileNewProps {}
 

@@ -13,7 +13,7 @@ import { landscapeMobile, phoneDevices } from '../utils/breakpoints'
 import { BurgerMenuProps } from '../utils/interfaces'
 import BurgerMenuMenu from './BurgerMenuMenu'
 import LanguageSelectMobile from './LanguageSelectMobile'
-import ThemeSelectMobile from './ThemeSelectMobile'
+import ThemeSwitchMobile from './ThemeSwitchMobile'
 
 const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   const [bodyHeight, setBodyHeight] = React.useState(0)
@@ -65,7 +65,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
         <div className="burger-slide-out-inner">
           <BurgerMenuMenu items={mainMenuItems} />
           <LanguageSelectMobile />
-          <ThemeSelectMobile />
+          <ThemeSwitchMobile />
         </div>
       </div>
       <div

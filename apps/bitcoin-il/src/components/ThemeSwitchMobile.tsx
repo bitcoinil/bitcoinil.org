@@ -6,10 +6,10 @@ import arrow_dark from '../img/ico_angle_black.svg'
 import arrow from '../img/ico_angle_white.svg'
 import { isBurgerMenuOpenState, isDarkModeState } from '../state/state'
 import { colors } from '../theme/colors'
-import { ThemeSelectMobileNewProps } from '../utils/interfaces'
+import { ThemeSwitchMobileProps } from '../utils/interfaces'
 import ThemeSwitch from './ThemeSwitch'
 
-const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
+const ThemeSwitchMobile: React.FC<ThemeSwitchMobileProps> = ({}) => {
   const [open, setOpen] = React.useState<boolean>(false)
   const [size, setSize] = React.useState<number>(0)
   const [sizeFound, setSizeFound] = React.useState<boolean>(false)
@@ -65,7 +65,7 @@ const ThemeSelectMobile: React.FC<ThemeSelectMobileNewProps> = ({}) => {
   )
 }
 
-export default React.memo(ThemeSelectMobile)
+export default React.memo(ThemeSwitchMobile)
 
 const StyledBurgerMenuMenu = styled.div`
   .menu-title {
