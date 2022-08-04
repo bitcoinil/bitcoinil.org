@@ -105,7 +105,7 @@ const Theme = ({ children }: Props) => {
   const actions = {
     setTheme: (theme: string, variant?: string) => {
       const fadeTime: number = 600
-      disappearReappear(document.body, fadeTime, () => {
+      disappearReappear(document.body, fadeTime, fadeTime, () => {
         const newState = {
           theme,
           variant: variant ? variant : '',

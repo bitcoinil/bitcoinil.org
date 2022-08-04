@@ -4,13 +4,14 @@ import { DarkModeToggle } from 'react-dark-mode-toggle-2'
 import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
-import { isDarkModeState } from '../state/state'
+import { isDarkModeState, showSystemThemeSwitch } from '../state/state'
 import { useTheme } from '../theme'
 import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { ThemeSwitchProps } from '../utils/interfaces'
 
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ isMobile }) => {
+  const isShowSystem = useRecoilValue(showSystemThemeSwitch)
   const [isSystem, setIsSystem] = React.useState(false)
   const isDark = useRecoilValue(isDarkModeState)
 
@@ -63,14 +64,20 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ isMobile }) => {
         }}
       >
         {isMobile ? (
-          <>
-            <Divider />
-            <span className="theme-mobile-sub-title">
-              Switch to {isSystem ? 'manaual' : 'system'} theme control
-            </span>
-          </>
+          <React.Fragment>
+            {isShowSystem ? (
+              <React.Fragment>
+                <Divider />
+                <span className="theme-mobile-sub-title">
+                  Switch to {isSystem ? 'manaual' : 'system'} theme control
+                </span>
+              </React.Fragment>
+            ) : null}
+          </React.Fragment>
         ) : null}
-        <span className="system-icon-font">{isSystem ? '🖖' : '🖥️'}</span>
+        {isShowSystem ? (
+          <span className="system-icon-font">{isSystem ? '🖖' : '🖥️'}</span>
+        ) : null}
       </span>
     </StyledThemeWrap>
   )
