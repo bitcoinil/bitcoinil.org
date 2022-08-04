@@ -5,7 +5,6 @@ import { LogoProps } from '../utils/interfaces'
 
 const Logo: React.FC<LogoProps> = ({ props, isDark }) => {
   const [size, setSize] = React.useState(500)
-  console.log(window.innerWidth - 40)
 
   React.useEffect(() => {
     const resizeHandler = () => {
