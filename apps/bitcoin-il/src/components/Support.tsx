@@ -1,8 +1,8 @@
 import { Modal } from 'antd'
 import * as React from 'react'
 import styled from 'styled-components'
-import { useFade } from '../hooks/useFade'
 
+import { useFade } from '../hooks/useFade'
 import CloseButton from '../img/ico_close.svg'
 import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
@@ -13,8 +13,8 @@ import { FormattedMessage } from './FormattedMessageWithHover'
 const Support: React.FC<SupportProps> = () => {
   const [isExtended, setIsExtended] = React.useState(false)
   const [showModal, setShowModal] = React.useState(false)
-
   const [chosenAmount, setChosenAmount] = React.useState(0)
+  const [chosenCurrency, setChosenCurrency] = React.useState('btc')
 
   const styledSupportRef = React.createRef<any>()
 
@@ -101,20 +101,76 @@ const Support: React.FC<SupportProps> = () => {
               >
                 <h1 className="modal-title">Donate to Bitcoin Il</h1>
                 <div className="buttons-container">
-                  <SiteButton>
+                  <SiteButton
+                    type={
+                      chosenCurrency === 'usd' && chosenAmount === 1
+                        ? 'primary'
+                        : ''
+                    }
+                    onClick={() => {
+                      setChosenAmount(1)
+                      setChosenCurrency('usd')
+                    }}
+                  >
                     <p className="button-top">$1.00</p>
                   </SiteButton>
-                  <SiteButton>
+                  <SiteButton
+                    type={
+                      chosenCurrency === 'usd' && chosenAmount === 5
+                        ? 'primary'
+                        : ''
+                    }
+                    onClick={() => {
+                      setChosenAmount(5)
+                      setChosenCurrency('usd')
+                    }}
+                  >
                     <p className="button-top">$5.00</p>
                   </SiteButton>
-                  <SiteButton>
+                  <SiteButton
+                    type={
+                      chosenCurrency === 'usd' && chosenAmount === 10
+                        ? 'primary'
+                        : ''
+                    }
+                    onClick={() => {
+                      setChosenAmount(10)
+                      setChosenCurrency('usd')
+                    }}
+                  >
                     <p className="button-top">$10.00</p>
                   </SiteButton>
                 </div>
                 <div className="input-container">
                   <div className="two-inputs">
-                    <input placeholder="Or custom amount? (BTC)" />
-                    <input placeholder="Or custom amount (USD)" />
+                    <div className="custom-amount-wrap">
+                      <p>USD</p>
+                      <input
+                        value={chosenCurrency === 'usd' ? chosenAmount : 0}
+                        type="number"
+                        min={0}
+                        placeholder="Or custom amount? (BTC)"
+                        onChange={(e) => {
+                          setChosenCurrency('usd')
+                          console.log(parseInt(e.target.value))
+                          setChosenAmount(parseInt(e.target.value))
+                        }}
+                      />
+                    </div>
+                    <div className="custom-amount-wrap">
+                      <p>BTC</p>
+                      <input
+                        value={chosenCurrency === 'btc' ? chosenAmount : 0}
+                        placeholder="Or custom amount (USD)"
+                        min="0"
+                        step={1}
+                        type="number"
+                        onChange={(e) => {
+                          setChosenCurrency('btc')
+                          setChosenAmount(parseInt(e.target.value))
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="qr-trio-wrap">
@@ -123,7 +179,7 @@ const Support: React.FC<SupportProps> = () => {
                     <span className="qr-trio-wrap-wallet-address">
                       bc346729623789123913
                     </span>
-                    <span className="qr-trio-wrap-qr">QR</span>
+                    <span className="qr-trio-wrap-qr"></span>
                   </div>
                   <div className="qr-trio-wrap-btc-and-bitil">
                     <span className="qr-trio-wrap-logo">LOGO</span>
@@ -331,6 +387,18 @@ const SupportStyledModal = styled(Modal)`
           width: 100%;
         }
       }
+    }
+  }
+
+  .custom-amount-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 360px;
+    margin-bottom: 10px;
+
+    p {
+      margin: 0 10px 0 0;
     }
   }
 `
