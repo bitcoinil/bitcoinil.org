@@ -58,7 +58,7 @@ const StyledQuickOverview = styled.div`
   padding: 300px 0 60px 0;
   background: url(${OverviewBG}) top no-repeat;
   background-size: cover;
-  max-width: 100vw;
+  width: 100%;
 
   h1 {
     ${phoneDevices} {
