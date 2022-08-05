@@ -7,6 +7,8 @@ export const useFade = () => {
     fadeIn: number,
     onFinish?: Function
   ) => {
+    // console.log('What is the disappear, reappear el?', el)
+    if (!el) return null
     el.style.transition = `opacity ${fadeOut}ms`
     el.style.opacity = '0'
     window.setTimeout(() => {

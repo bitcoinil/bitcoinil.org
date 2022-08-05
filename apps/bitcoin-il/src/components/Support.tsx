@@ -5,7 +5,7 @@ import { useQRCode } from 'react-qrcode'
 
 import ico_bitil from '../img/ico_bitl.jpg'
 import ico_btc from '../img/ico_btc.jpg'
-import ico_bitil_btc from '../img/ico_half_half.png'
+import ico_bitil_btc from '../img/ico_half_half.jpg'
 
 import { useFade } from '../hooks/useFade'
 import CloseButton from '../img/ico_close.svg'
@@ -31,10 +31,17 @@ const Support: React.FC<SupportProps> = () => {
   const { disappearReappearHTMLElement } = useFade()
 
   React.useEffect(() => {
+    const handleKey = (e: any) => {
+      if (e.key === 'Escape') {
+        disappearReappearHTMLElement(styledSupportRef.current, 150, 0)
+        setIsExtended(false)
+      }
+    }
+
     window.addEventListener('keyup', handleKey)
 
     return () => window.removeEventListener('keyup', handleKey)
-  }, [])
+  }, [styledSupportRef.current])
 
   const toggleExtended = (setTo?: boolean) => {
     if (setTo) {
@@ -43,10 +50,6 @@ const Support: React.FC<SupportProps> = () => {
     }
     setIsExtended(!isExtended)
     disappearReappearHTMLElement(styledSupportRef.current, 0, 150)
-  }
-
-  const handleKey = (e: any) => {
-    if (e.key === 'Escape') toggleExtended(false)
   }
 
   return (
@@ -216,7 +219,6 @@ const Support: React.FC<SupportProps> = () => {
                       >
                         Coming Soon
                       </div>
-                      {/* <img src="https://knilt.arcc.albany.edu/images/9/99/To-do.jpg" /> */}
                     </span>
                   </div>
                   <div className="qr-trio-wrap-bitil">
@@ -240,7 +242,6 @@ const Support: React.FC<SupportProps> = () => {
                       >
                         Coming Soon
                       </div>
-                      {/* <img src="https://knilt.arcc.albany.edu/images/9/99/To-do.jpg" /> */}
                     </span>
                   </div>
                 </div>
