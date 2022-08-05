@@ -5,7 +5,7 @@ import { useQRCode } from 'react-qrcode'
 
 import ico_bitil from '../img/ico_bitl.jpg'
 import ico_btc from '../img/ico_btc.jpg'
-import ico_bitil_btc from '../img/ico_half_half.jpg'
+import ico_bitil_btc from '../img/ico_half_half.png'
 
 import { useFade } from '../hooks/useFade'
 import CloseButton from '../img/ico_close.svg'
@@ -105,8 +105,8 @@ const Support: React.FC<SupportProps> = () => {
                 visible={showModal}
                 footer={null}
                 onCancel={() => {
-                  console.log('🌐')
-                  toggleExtended(false)
+                  setShowModal(false)
+                  // toggleExtended(false)
                 }}
               >
                 <h1 className="modal-title">Donate to Bitcoin Il</h1>
@@ -202,7 +202,22 @@ const Support: React.FC<SupportProps> = () => {
                     <span className="qr-trio-wrap-wallet-address">
                       bc346729623789123913
                     </span>
-                    <span className="qr-trio-wrap-qr">QR</span>
+                    <span className="qr-trio-wrap-qr">
+                      <div
+                        style={{
+                          height: '148px',
+                          width: '148px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '28px',
+                          textAlign: 'center'
+                        }}
+                      >
+                        Coming Soon
+                      </div>
+                      {/* <img src="https://knilt.arcc.albany.edu/images/9/99/To-do.jpg" /> */}
+                    </span>
                   </div>
                   <div className="qr-trio-wrap-bitil">
                     <span className="qr-trio-wrap-logo">
@@ -211,7 +226,22 @@ const Support: React.FC<SupportProps> = () => {
                     <span className="qr-trio-wrap-wallet-address">
                       bc346729623789123913
                     </span>
-                    <span className="qr-trio-wrap-qr">QR</span>
+                    <span className="qr-trio-wrap-qr">
+                      <div
+                        style={{
+                          height: '148px',
+                          width: '148px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '28px',
+                          textAlign: 'center'
+                        }}
+                      >
+                        Coming Soon
+                      </div>
+                      {/* <img src="https://knilt.arcc.albany.edu/images/9/99/To-do.jpg" /> */}
+                    </span>
                   </div>
                 </div>
               </SupportStyledModal>
@@ -343,6 +373,16 @@ const SupportStyledModal = styled(Modal)`
 
       span {
         margin-bottom: 10px;
+      }
+
+      &-qr {
+        div {
+          background: blue;
+        }
+
+        img {
+          opacity: 0.3;
+        }
       }
     }
 
