@@ -1,6 +1,11 @@
 import { Modal } from 'antd'
 import * as React from 'react'
 import styled from 'styled-components'
+import { useQRCode } from 'react-qrcode'
+
+import ico_bitil from '../img/ico_bitl.jpg'
+import ico_btc from '../img/ico_btc.jpg'
+import ico_bitil_btc from '../img/ico_half_half.jpg'
 
 import { useFade } from '../hooks/useFade'
 import CloseButton from '../img/ico_close.svg'
@@ -15,6 +20,11 @@ const Support: React.FC<SupportProps> = () => {
   const [showModal, setShowModal] = React.useState(false)
   const [chosenAmount, setChosenAmount] = React.useState(0)
   const [chosenCurrency, setChosenCurrency] = React.useState('btc')
+
+  const fakeBitCoinAdd = 'abxasdghj317127386187236'
+
+  const value = `bitcoin:${fakeBitCoinAdd}?amount=${chosenAmount}`
+  const dataUrl = useQRCode(value)
 
   const styledSupportRef = React.createRef<any>()
 
@@ -175,21 +185,29 @@ const Support: React.FC<SupportProps> = () => {
                 </div>
                 <div className="qr-trio-wrap">
                   <div className="qr-trio-wrap-btc">
-                    <span className="qr-trio-wrap-logo">LOGO</span>
+                    <span className="qr-trio-wrap-logo">
+                      <img className="crypto-logo" src={ico_btc} />
+                    </span>
                     <span className="qr-trio-wrap-wallet-address">
                       bc346729623789123913
                     </span>
-                    <span className="qr-trio-wrap-qr"></span>
+                    <span className="qr-trio-wrap-qr">
+                      <img src={dataUrl} />
+                    </span>
                   </div>
                   <div className="qr-trio-wrap-btc-and-bitil">
-                    <span className="qr-trio-wrap-logo">LOGO</span>
+                    <span className="qr-trio-wrap-logo">
+                      <img className="crypto-logo" src={ico_bitil_btc} />
+                    </span>
                     <span className="qr-trio-wrap-wallet-address">
                       bc346729623789123913
                     </span>
                     <span className="qr-trio-wrap-qr">QR</span>
                   </div>
                   <div className="qr-trio-wrap-bitil">
-                    <span className="qr-trio-wrap-logo">LOGO</span>
+                    <span className="qr-trio-wrap-logo">
+                      <img className="crypto-logo" src={ico_bitil} />
+                    </span>
                     <span className="qr-trio-wrap-wallet-address">
                       bc346729623789123913
                     </span>
@@ -329,13 +347,10 @@ const SupportStyledModal = styled(Modal)`
     }
 
     &-btc-and-bitil {
-      background: red;
     }
     &-btc {
-      background: green;
     }
     &-bitil {
-      background: yellow;
     }
   }
   .ant-modal-body {
@@ -400,5 +415,10 @@ const SupportStyledModal = styled(Modal)`
     p {
       margin: 0 10px 0 0;
     }
+  }
+
+  .crypto-logo {
+    height: 100px;
+    width: 100px;
   }
 `
