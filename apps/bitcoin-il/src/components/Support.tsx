@@ -14,6 +14,8 @@ const Support: React.FC<SupportProps> = () => {
   const [isExtended, setIsExtended] = React.useState(false)
   const [showModal, setShowModal] = React.useState(false)
 
+  const [chosenAmount, setChosenAmount] = React.useState(0)
+
   const styledSupportRef = React.createRef<any>()
 
   const { disappearReappearHTMLElement } = useFade()
