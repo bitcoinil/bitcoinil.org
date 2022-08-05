@@ -13,10 +13,13 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@svgr/rollup": "^6.2.1",
+    "@types/bip21": "^1.1.31",
+    "@types/node": "^18.6.4",
     "@types/react-vertical-timeline-component": "^3.3.3",
     "@types/react-youtube": "^7.10.0",
     "add": "^2.0.6",
     "antd": "^4.21.2",
+    "bip21": "^2.0.3",
     "disable-scroll": "^0.6.0",
     "dotenv": "^16.0.1",
     "react": "^17.0.2",
