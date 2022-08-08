@@ -20,7 +20,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
 
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpenState)
 
-  const isInDarkMode = useRecoilValue(isDarkModeState)
+  const isDarkMode = useRecoilValue(isDarkModeState)
   const currentLang = useRecoilValue(currentlySelectedLanguageState)
 
   const slideOutRef = React.createRef<HTMLDivElement>()
@@ -49,13 +49,13 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
       />
       <div className="hamburger-lines">
         <span
-          className={`line line1 ${isInDarkMode ? 'dark-mode-burger' : ''}`}
+          className={`line line1 ${isDarkMode ? 'dark-mode-burger' : ''}`}
         />
         <span
-          className={`line line2 ${isInDarkMode ? 'dark-mode-burger' : ''}`}
+          className={`line line2 ${isDarkMode ? 'dark-mode-burger' : ''}`}
         />
         <span
-          className={`line line3 ${isInDarkMode ? 'dark-mode-burger' : ''}`}
+          className={`line line3 ${isDarkMode ? 'dark-mode-burger' : ''}`}
         />
       </div>
       <div
