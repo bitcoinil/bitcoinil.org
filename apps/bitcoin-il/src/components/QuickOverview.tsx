@@ -97,6 +97,7 @@ const StyledQuickOverview = styled.div`
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    margin-top: 220px;
 
     ${phoneDevices} {
     }

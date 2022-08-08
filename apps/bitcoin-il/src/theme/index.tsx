@@ -89,8 +89,12 @@ const Theme = ({ children }: Props) => {
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches
     ) {
+      // console.log('🌑 User Prefers Dark Mode')
       setIsDarkMode(true)
+      actions.setTheme('bitil-theme', 'bitil-light')
     } else {
+      // console.log('🌞 User Prefers Light Mode')
+      actions.setTheme('bitil-theme', 'bitil-dark')
       setIsDarkMode(false)
     }
   }, [])
@@ -104,6 +108,14 @@ const Theme = ({ children }: Props) => {
 
   const actions = {
     setTheme: (theme: string, variant?: string) => {
+      const newState = {
+        theme,
+        variant: variant ? variant : '',
+        isDark: pullThemeInfo(theme, variant).isDark
+      }
+      setActiveState(newState)
+    },
+    setThemeWithFade: (theme: string, variant?: string) => {
       const fadeTime: number = 600
       disappearReappear(document.body, fadeTime, fadeTime, () => {
         const newState = {
@@ -116,8 +128,8 @@ const Theme = ({ children }: Props) => {
     },
     toggleDarkMode: () => {
       isDarkMode
-        ? actions.setTheme('bitil-theme', 'bitil-light')
-        : actions.setTheme('bitil-theme', 'bitil-dark')
+        ? actions.setThemeWithFade('bitil-theme', 'bitil-light')
+        : actions.setThemeWithFade('bitil-theme', 'bitil-dark')
     }
   }
 
@@ -211,14 +223,14 @@ const Theme = ({ children }: Props) => {
             <pre>{JSON.stringify(themes, null, 2)}</pre>
             <Button
               onClick={() => {
-                actions.setTheme('bitil-theme', 'bitil-dark')
+                actions.setThemeWithFade('bitil-theme', 'bitil-dark')
               }}
             >
               Change to Dark
             </Button>
             <Button
               onClick={() => {
-                actions.setTheme('bitil-theme', 'bitil-light')
+                actions.setThemeWithFade('bitil-theme', 'bitil-light')
               }}
             >
               Change to Light

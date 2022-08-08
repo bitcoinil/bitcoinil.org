@@ -63,7 +63,7 @@ const StyledQuickOverviewBox = styled.div<StyledQuickOverviewBoxProps>`
     flex-direction: column;
 
     h4 {
-      color: white;
+      color: ${(props) => (props.isDarkMode ? 'white' : 'black')};
       font-weight: bolder;
     }
 
