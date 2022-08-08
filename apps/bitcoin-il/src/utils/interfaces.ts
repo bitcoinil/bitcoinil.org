@@ -120,6 +120,7 @@ export interface QuickOverviewBoxProps {
   subtitleDescription: string
   baseFormattedMessage?: String
   link: string
+  isDarkMode?: boolean
 }
 
 export interface NotARouteProps {}
