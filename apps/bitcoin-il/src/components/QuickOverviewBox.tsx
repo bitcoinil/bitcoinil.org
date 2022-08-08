@@ -9,11 +9,12 @@ const QuickOverviewBox: React.FC<QuickOverviewBoxProps> = ({
   imgSrc,
   titleDefaultMessage,
   subtitleDefaultMessage,
-  link
+  link,
+  isDarkMode
 }) => {
   return (
     <CustomNavLink to={link}>
-      <StyledQuickOverviewBox id="QuickOverviewBox">
+      <StyledQuickOverviewBox isDarkMode={isDarkMode} id="QuickOverviewBox">
         <img src={imgSrc} />
         <div className="box-text">
           <h4>{titleDefaultMessage}</h4>
@@ -26,12 +27,18 @@ const QuickOverviewBox: React.FC<QuickOverviewBoxProps> = ({
 
 export default QuickOverviewBox
 
-const StyledQuickOverviewBox = styled.div`
+export interface StyledQuickOverviewBoxProps {
+  isDarkMode: boolean | undefined
+}
+
+const StyledQuickOverviewBox = styled.div<StyledQuickOverviewBoxProps>`
   margin-top: 15px;
   display: flex;
   flex-direction: column;
-  background-color: black;
-  color: white;
+
+  background-color: ${(props) => (!props.isDarkMode ? 'white' : 'black')};
+  color: ${(props) => (!props.isDarkMode ? 'black' : 'white')};
+  border: ${(props) => (props.isDarkMode ? '' : '1px solid grey')};
   margin: 20px;
   width: 20vw;
   align-items: center;
