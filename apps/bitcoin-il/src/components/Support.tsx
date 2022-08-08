@@ -165,7 +165,6 @@ const Support: React.FC<SupportProps> = () => {
                         placeholder="Or custom amount? (BTC)"
                         onChange={(e) => {
                           setChosenCurrency('usd')
-                          console.log(parseInt(e.target.value))
                           setChosenAmount(parseInt(e.target.value))
                         }}
                       />
