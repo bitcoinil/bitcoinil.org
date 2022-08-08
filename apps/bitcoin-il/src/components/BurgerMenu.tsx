@@ -81,8 +81,6 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
 
 export default BurgerMenu
 
-// const mainClosingDuration = `1000ms`
-
 const landscapeClosingDuration = `1000ms`
 const portraitOpeningDuration = `850ms`
 const portraitClosingDuration = `500ms`

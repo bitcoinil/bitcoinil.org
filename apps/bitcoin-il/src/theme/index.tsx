@@ -89,12 +89,10 @@ const Theme = ({ children }: Props) => {
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches
     ) {
-      // console.log('🌑 User Prefers Dark Mode')
       setIsDarkMode(true)
-      actions.setTheme('bitil-theme', 'bitil-light')
+      actions.setThemeWithFade('bitil-theme', 'bitil-dark', 300)
     } else {
-      // console.log('🌞 User Prefers Light Mode')
-      actions.setTheme('bitil-theme', 'bitil-dark')
+      actions.setThemeWithFade('bitil-theme', 'bitil-light', 300)
       setIsDarkMode(false)
     }
   }, [])
@@ -115,8 +113,12 @@ const Theme = ({ children }: Props) => {
       }
       setActiveState(newState)
     },
-    setThemeWithFade: (theme: string, variant?: string) => {
-      const fadeTime: number = 600
+
+    setThemeWithFade: (
+      theme: string,
+      variant?: string,
+      fadeTime: number = 600
+    ) => {
       disappearReappear(document.body, fadeTime, fadeTime, () => {
         const newState = {
           theme,
@@ -126,6 +128,7 @@ const Theme = ({ children }: Props) => {
         setActiveState(newState)
       })
     },
+
     toggleDarkMode: () => {
       isDarkMode
         ? actions.setThemeWithFade('bitil-theme', 'bitil-light')
