@@ -20,7 +20,7 @@ export default function QuickOverview(): JSX.Element {
   return (
     <StyledQuickOverview id="QuickOverview">
       <div
-        className={`${
+        className={`quick-overview ${
           isDarkMode ? 'quick-overview-dark' : 'quick-overview-light'
         }`}
       >
@@ -31,7 +31,11 @@ export default function QuickOverview(): JSX.Element {
             description={`QuickOverview`}
           />
         </h1>
-        <div className="quick-overview-boxes">
+        <div
+          className={`quick-overview-boxes ${
+            isDarkMode ? 'qob-dark' : 'qob-light'
+          }`}
+        >
           {boxes.map((boxInfo: QuickOverviewBoxProps, i: number) => {
             const {
               imgSrc,
@@ -68,10 +72,13 @@ export default function QuickOverview(): JSX.Element {
 const StyledQuickOverview = styled.div`
   margin-top: 50px;
   box-sizing: border-box;
-  padding: 300px 0 60px 0;
-  /* background: url(${OverviewBG}) top no-repeat; */
+  padding: 100px 0 60px 0;
   background-size: cover;
   width: 100%;
+
+  .quick-overview {
+    padding-top: 300px;
+  }
 
   .quick-overview-dark {
     background: url(${OverviewBG}) top no-repeat;
@@ -97,7 +104,7 @@ const StyledQuickOverview = styled.div`
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    margin-top: 220px;
+    padding-bottom: 100px;
 
     ${phoneDevices} {
     }
@@ -105,5 +112,12 @@ const StyledQuickOverview = styled.div`
     ${largeDevices} {
       flex-direction: row;
     }
+  }
+
+  .qob-dark {
+    background: #13141f;
+  }
+  .qob-light {
+    background: #c6d0df;
   }
 `
