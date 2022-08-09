@@ -1,8 +1,8 @@
 import { Card } from 'antd'
 import * as React from 'react'
 import styled from 'styled-components'
-import { walletChoices } from '../data/ChooseWalletData'
 
+import { walletChoices } from '../data/ChooseWalletData'
 import { FormattedMessage } from './FormattedMessageWithHover'
 
 export default function ChooseWallet(): JSX.Element {

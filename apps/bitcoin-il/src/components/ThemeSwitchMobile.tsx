@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import arrow_dark from '../img/ico_angle_black.svg'
@@ -18,7 +18,7 @@ const ThemeSwitchMobile: React.FC<ThemeSwitchMobileProps> = ({}) => {
 
   const submenuRef = React.createRef<HTMLDivElement>()
 
-  const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpenState)
+  const burgerOpen = useRecoilValue(isBurgerMenuOpenState)
 
   const toggleOpen = () => {
     setOpen(!open)

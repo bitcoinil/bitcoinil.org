@@ -16,6 +16,11 @@ export const showSystemThemeSwitch = atom<boolean>({
   default: false
 })
 
+export const bitCoinAddress = atom<string>({
+  key: 'bitCoinAddress',
+  default: 'IDKWHATTHEADDRESSIS'
+})
+
 export const isDarkModeState = atom<boolean>({
   key: 'isDarkMode',
   default: false

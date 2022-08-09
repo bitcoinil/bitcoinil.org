@@ -205,6 +205,10 @@ export interface BurgerMenuMenuProps {
   items: MainMenuItem[]
 }
 
+export interface StyledQuickOverviewBoxProps {
+  isDarkMode: boolean | undefined
+}
+
 export interface ThemeSwitchMobileProps {}
 
 export interface LanguageSelectMobileNewProps {}

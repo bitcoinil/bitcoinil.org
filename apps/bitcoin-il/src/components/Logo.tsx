@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+// @ts-ignore
 import { ReactComponent as LogoSVG } from '../img/logo.svg'
 import { LogoProps } from '../utils/interfaces'
 

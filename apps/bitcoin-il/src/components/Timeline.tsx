@@ -14,8 +14,9 @@ import { phoneDevices } from '../utils/breakpoints'
 import { TimelineCompProps } from '../utils/interfaces'
 
 const TimelineComp: React.FC<TimelineCompProps> = ({ items }) => {
-  const dark = useRecoilValue(isDarkModeState)
   if (!items) return null
+
+  const dark = useRecoilValue(isDarkModeState)
 
   return (
     <StyledTimelineComp id="TimelineComp">

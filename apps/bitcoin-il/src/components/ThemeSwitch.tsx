@@ -12,7 +12,9 @@ import { ThemeSwitchProps } from '../utils/interfaces'
 
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ isMobile }) => {
   const isShowSystem = useRecoilValue(showSystemThemeSwitch)
+
   const [isSystem, setIsSystem] = React.useState(false)
+
   const isDark = useRecoilValue(isDarkModeState)
 
   const [, actions] = useTheme()

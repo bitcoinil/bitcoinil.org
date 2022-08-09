@@ -2,7 +2,10 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import { landscapeMobile, phoneDevices } from '../utils/breakpoints'
-import { QuickOverviewBoxProps } from '../utils/interfaces'
+import {
+  QuickOverviewBoxProps,
+  StyledQuickOverviewBoxProps
+} from '../utils/interfaces'
 import CustomNavLink from './CustomNavLink'
 
 const QuickOverviewBox: React.FC<QuickOverviewBoxProps> = ({
@@ -27,15 +30,11 @@ const QuickOverviewBox: React.FC<QuickOverviewBoxProps> = ({
 
 export default QuickOverviewBox
 
-export interface StyledQuickOverviewBoxProps {
-  isDarkMode: boolean | undefined
-}
-
 const StyledQuickOverviewBox = styled.div<StyledQuickOverviewBoxProps>`
   margin-top: 15px;
   display: flex;
   flex-direction: column;
-
+  max-width: 250px;
   background-color: ${(props) => (!props.isDarkMode ? 'white' : 'black')};
   color: ${(props) => (!props.isDarkMode ? 'black' : 'white')};
   border: ${(props) => (props.isDarkMode ? '' : '1px solid grey')};

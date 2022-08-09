@@ -234,10 +234,7 @@ const TableOfContentsScrollTracked: React.FC<
     // Left Side First
     <StyledTableOfContentsScrollTracked id="TableOfContentsScrollTracked">
       <div className="top-hitbox" ref={startRef} />
-      <div
-        className={`mobile-toc ${isStuck ? 'mobile-toc-stuck' : ''}`}
-        // ref={mobileTocRef}
-      >
+      <div className={`mobile-toc ${isStuck ? 'mobile-toc-stuck' : ''}`}>
         <TOCBurgerMenu
           elInView={elInView}
           scrollToRightSideElement={scrollToRightSideElement}
@@ -355,8 +352,6 @@ const TableOfContentsScrollTracked: React.FC<
                 <React.Fragment key={i}>
                   <p
                     id={item.key}
-                    // @ts-ignore
-                    // ref={handleRef}
                     ref={(ref) => handleRef(ref, false, item)}
                     key={i}
                     className={`toc-scroll-tracked-right-item-heading right-title accented-title`}
@@ -384,9 +379,7 @@ const TableOfContentsScrollTracked: React.FC<
                 <React.Fragment key={i}>
                   <p
                     id={item.key}
-                    // @ts-ignore
                     ref={(ref) => handleRef(ref, false, item)}
-                    // ref={handleRef}
                     className="accented-title toc-scroll-tracked-right-item-heading-has-subheadings right-title submenu-title"
                   >
                     {item.categoryHeading}
@@ -400,8 +393,6 @@ const TableOfContentsScrollTracked: React.FC<
                             ref={(ref) =>
                               handleRef(ref, false, subItem, item.key)
                             }
-                            // @ts-ignore
-                            // ref={handleRef}
                             className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-title right-title"
                           >
                             {subItem.subHeadingTitle}
@@ -592,7 +583,6 @@ const StyledTableOfContentsScrollTracked = styled.div`
     top: 0;
 
     ${TOCBreakPointOne} {
-      /* width: 50vw; */
     }
   }
 

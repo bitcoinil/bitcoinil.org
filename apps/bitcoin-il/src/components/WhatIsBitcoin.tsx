@@ -56,7 +56,8 @@ export default function WhatIsBitcoin(): JSX.Element {
         >
           <div className="youtube-player">
             <CloseCircleOutlined />
-            {/* I am not sure why this giving an error on TS. The types are installed */}
+            {/* I am not sure why this giving an error on TS. The types are */}
+            {/* installed  */}
             {/* @ts-ignore */}
             <YouTube opts={opts} videoId="Gc2en3nHxA4" />
           </div>

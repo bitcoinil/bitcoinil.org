@@ -5,7 +5,7 @@ import { TimelineItemProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
 
 const TimelineItem: React.FC<TimelineItemProps> = ({
-  key,
+  // key,
   title,
   body,
   buttonText,

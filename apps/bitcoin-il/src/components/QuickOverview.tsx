@@ -72,7 +72,7 @@ export default function QuickOverview(): JSX.Element {
 const StyledQuickOverview = styled.div`
   margin-top: 50px;
   box-sizing: border-box;
-  padding: 100px 0 60px 0;
+  padding: 0 0 60px 0;
   background-size: cover;
   width: 100%;
 
@@ -104,7 +104,7 @@ const StyledQuickOverview = styled.div`
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    padding-bottom: 100px;
+    padding-bottom: 60px;
 
     ${phoneDevices} {
     }

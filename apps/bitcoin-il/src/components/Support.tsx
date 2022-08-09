@@ -1,14 +1,15 @@
 import { Modal } from 'antd'
 import * as React from 'react'
-import styled from 'styled-components'
 import { useQRCode } from 'react-qrcode'
-
-import ico_bitil from '../img/ico_bitl.jpg'
-import ico_btc from '../img/ico_btc.jpg'
-import ico_bitil_btc from '../img/ico_half_half.jpg'
+import { useRecoilValue } from 'recoil'
+import styled from 'styled-components'
 
 import { useFade } from '../hooks/useFade'
+import ico_bitil from '../img/ico_bitl.jpg'
+import ico_btc from '../img/ico_btc.jpg'
 import CloseButton from '../img/ico_close.svg'
+import ico_bitil_btc from '../img/ico_half_half.jpg'
+import { bitCoinAddress } from '../state/state'
 import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { SupportProps } from '../utils/interfaces'
@@ -21,9 +22,9 @@ const Support: React.FC<SupportProps> = () => {
   const [chosenAmount, setChosenAmount] = React.useState(0)
   const [chosenCurrency, setChosenCurrency] = React.useState('btc')
 
-  const fakeBitCoinAdd = 'abxasdghj317127386187236'
+  const ourBitCoinAddress = useRecoilValue(bitCoinAddress)
 
-  const value = `bitcoin:${fakeBitCoinAdd}?amount=${chosenAmount}`
+  const value = `bitcoin:${ourBitCoinAddress}?amount=${chosenAmount}`
   const dataUrl = useQRCode(value)
 
   const styledSupportRef = React.createRef<any>()
