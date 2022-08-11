@@ -399,6 +399,10 @@ class PageManager {
               {
                 property: indexName,
                 direction: 'ascending'
+              },
+              {
+                property: 'LastUpdate',
+                direction: 'descending'
               }
             ],
             ...(cursor ? { start_cursor: cursor } : {})
