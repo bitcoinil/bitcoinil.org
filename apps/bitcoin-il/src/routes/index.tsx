@@ -87,6 +87,29 @@ const RoutesProvider = () => {
           />
         }
       />
+      <Route
+        path="you-should-know"
+        element={
+          <RoutePage
+            id="you-should-know"
+            title={
+              <FormattedMessage
+                id="page.you-should-know.title.menu"
+                defaultMessage="Some things you need to know"
+                description="You oughtta know!"
+              />
+            }
+            subtitle={
+              <FormattedMessage
+                id="page.you-should-know.subtitle"
+                defaultMessage="If you're getting started with Bitcoin, there are a few things you should know. Bitcoin lets you exchange money and transact in a different way than you normally do. As such, you should take time to inform yourself before using Bitcoin for any serious transaction. Bitcoin should be treated with the same care as your regular wallet, or even more in some cases!"
+                description="You oughtta know subtitle"
+              />
+            }
+            body={<>You Need To Know Body Here</>}
+          />
+        }
+      />
       <Route path="*" element={<NotARoute />} />
     </Routes>
   )
