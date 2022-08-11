@@ -6,9 +6,9 @@ import Mining from '../img/mining.svg'
 import NewUser from '../img/new-user.svg'
 import Paper from '../img/paper.svg'
 import PrivateKeys from '../img/private-keys.svg'
-import { HowItWorksItem } from '../utils/interfaces'
+import { AlertnatingTwoColumnRowItemProps } from '../utils/interfaces'
 
-export const howItWorksItems: HowItWorksItem[] = [
+export const howItWorksItems: AlertnatingTwoColumnRowItemProps[] = [
   {
     index: 0,
     imgSrc: NewUser,

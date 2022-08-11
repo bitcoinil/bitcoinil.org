@@ -125,7 +125,7 @@ export interface QuickOverviewBoxProps {
 
 export interface NotARouteProps {}
 
-export interface HowItWorksItem {
+export interface AlertnatingTwoColumnRowItemProps {
   index: number
   imgSrc: string
   titleText: JSX.Element
@@ -184,6 +184,7 @@ export interface EventsBodyProps {}
 export interface CustomNavLinkProps {
   to: string
   children?: React.ReactNode
+  style?: any
 }
 
 export interface BuyBodyProps {}
@@ -263,7 +264,8 @@ export interface HowItWorksProps {}
 
 export interface AlternatingTwoColumnRowProps {
   index: number
-  imgSrc: string
+  imgSrc?: string | null
+  sideElement?: JSX.Element | null
   titleText: JSX.Element
   bodyText: JSX.Element
 }

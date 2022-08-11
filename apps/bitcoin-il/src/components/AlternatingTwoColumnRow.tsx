@@ -9,17 +9,19 @@ const AlternatingTwoColumnRow: React.FC<AlternatingTwoColumnRowProps> = ({
   index,
   imgSrc,
   titleText,
-  bodyText
+  bodyText,
+  sideElement
 }) => {
   const even = index % 2 === 1
-
+  console.log(sideElement)
   return (
     <StyledAlternatingTwoColumnRow
       className={`${even ? 'even' : 'odd'}`}
       id="AlternatingTwoColumnRow"
     >
       <div className="img-side">
-        <img src={imgSrc} />
+        {imgSrc ? <img src={imgSrc} /> : null}
+        {sideElement ? sideElement : null}
       </div>
       <div className="text-side">
         <h1>{titleText}</h1>
@@ -83,6 +85,31 @@ const StyledAlternatingTwoColumnRow = styled.div`
 
   .img-side {
     margin: 0 50px;
+
+    table {
+      width: 475px;
+      font-size: 14px;
+
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+
+      tr:nth-of-type(even) {
+        background: #f9f9f9;
+      }
+
+      tr:nth-child(1) {
+        th {
+          font-size: 16px;
+        }
+      }
+
+      th {
+        font-weight: bolder;
+      }
+    }
   }
 
   h1 {

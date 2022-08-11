@@ -6,13 +6,17 @@ import styled from 'styled-components'
 import { currentlySelectedLanguageState } from '../state/state'
 import { CustomNavLinkProps } from '../utils/interfaces'
 
-const CustomNavLink: React.FC<CustomNavLinkProps> = ({ to, children }) => {
+const CustomNavLink: React.FC<CustomNavLinkProps> = ({
+  to,
+  children,
+  style
+}) => {
   const atomLang = useRecoilValue(currentlySelectedLanguageState)
 
   const languageCode = atomLang.language === 'en' ? '' : `/${atomLang.language}`
 
   return (
-    <StyledCustomNavLink to={`${languageCode}${to}`}>
+    <StyledCustomNavLink style={style} to={`${languageCode}${to}`}>
       {children}
     </StyledCustomNavLink>
   )
