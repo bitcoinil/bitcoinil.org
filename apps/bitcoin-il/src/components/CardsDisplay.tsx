@@ -55,6 +55,11 @@ const StyledCardsDisplay = styled.div`
       margin-bottom: 5em;
     }
 
+    img {
+      height: 50px;
+      margin-bottom: 10px;
+    }
+
     &-body {
       height: 100%;
       padding: 30px;
