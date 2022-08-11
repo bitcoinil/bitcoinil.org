@@ -254,7 +254,8 @@ export interface TimelineItemProps {
   title: JSX.Element
   body: JSX.Element
   buttonText: JSX.Element
-  buttonOnClick: Function
+  buttonOnClick?: Function
+  navigateTo?: string
   key?: string
 }
 

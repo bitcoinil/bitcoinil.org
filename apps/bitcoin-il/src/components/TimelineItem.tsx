@@ -3,21 +3,29 @@ import styled from 'styled-components'
 
 import { TimelineItemProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
+import CustomNavLink from './CustomNavLink'
 
 const TimelineItem: React.FC<TimelineItemProps> = ({
   // key,
   title,
   body,
   buttonText,
-  buttonOnClick
+  buttonOnClick,
+  navigateTo
 }) => {
   return (
     <StyledTimelineItem id="TimelineItem">
       <h1>{title}</h1>
       <p>{body}</p>
-      <SiteButton type="primary" onClick={buttonOnClick}>
-        {buttonText}
-      </SiteButton>
+      {navigateTo ? (
+        <CustomNavLink to={navigateTo}>
+          <SiteButton type="primary">{buttonText}</SiteButton>
+        </CustomNavLink>
+      ) : (
+        <SiteButton type="primary" onClick={buttonOnClick}>
+          {buttonText}
+        </SiteButton>
+      )}
     </StyledTimelineItem>
   )
 }
