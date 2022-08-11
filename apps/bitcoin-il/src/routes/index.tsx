@@ -65,7 +65,7 @@ const RoutesProvider = () => {
         )
       })}
       <Route
-        path="choose-wallet"
+        path="choose-your-wallet"
         element={
           <RoutePage
             id="choose-wallet"

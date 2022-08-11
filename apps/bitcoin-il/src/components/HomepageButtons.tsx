@@ -25,7 +25,7 @@ export default function HomepageButtons(): JSX.Element {
         </SiteButton>
         <SiteButton
           onClick={() => {
-            navigate('/choose-wallet')
+            navigate('/choose-your-wallet')
           }}
           type="default"
         >
