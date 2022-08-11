@@ -8,6 +8,7 @@ import NotARoute from '../layout/NotARoute'
 import RoutePage from '../layout/RoutePage'
 import { FormattedMessage } from '../components/FormattedMessageWithHover'
 import ChooseWallet from '../components/ChooseWallet'
+import YouShouldKnow from '../components/YouShouldKnow'
 
 const RoutesProvider = () => {
   const intl = useTranslations()
@@ -106,7 +107,7 @@ const RoutesProvider = () => {
                 description="You oughtta know subtitle"
               />
             }
-            body={<>You Need To Know Body Here</>}
+            body={<YouShouldKnow />}
           />
         }
       />
