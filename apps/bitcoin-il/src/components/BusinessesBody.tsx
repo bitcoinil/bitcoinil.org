@@ -6,6 +6,7 @@ import { BusinessBodyProps } from '../utils/interfaces'
 import SiteButton from './BitcoinSiteButton'
 import CardsDisplay from './CardsDisplay'
 import CustomNavLink from './CustomNavLink'
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 const BusinessBody: React.FC<BusinessBodyProps> = ({}) => {
   return (
@@ -13,7 +14,13 @@ const BusinessBody: React.FC<BusinessBodyProps> = ({}) => {
       <CardsDisplay cards={businessCards} />
       <div className="individuals-button">
         <CustomNavLink to="/getting-started">
-          <SiteButton type="primary">Get Started With BitCoin Il</SiteButton>
+          <SiteButton type="primary">
+            <FormattedMessage
+              id={`businesses.get-started-button`}
+              defaultMessage={`Get Started With BitCoin Il`}
+              description={`get-started-button`}
+            />
+          </SiteButton>
         </CustomNavLink>
       </div>
     </StyledBusinessBody>
