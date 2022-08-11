@@ -13,7 +13,7 @@ import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { TimelineCompProps } from '../utils/interfaces'
 
-const TimelineComp: React.FC<TimelineCompProps> = ({ items }) => {
+const Timeline: React.FC<TimelineCompProps> = ({ items }) => {
   if (!items) return null
 
   const dark = useRecoilValue(isDarkModeState)
@@ -37,7 +37,7 @@ const TimelineComp: React.FC<TimelineCompProps> = ({ items }) => {
   )
 }
 
-export default TimelineComp
+export default Timeline
 
 const StyledTimelineComp = styled.div`
   overflow: hidden;
