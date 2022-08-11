@@ -100,14 +100,16 @@ class NotionDatabaseHandler {
     // console.log('💥🌪🌧 HYDRATING!', dbname, values)
     const db = this.cache.databases[dbname]
     // console.log('💥🌪🌧 HYDRATING Db.props!', dbname, db.props)
+    // console.log('💥🌪🌧 HYDRATING Db.props.wet!', dbname, db.props.wet)
 
     const result = await Object.entries(db.props.wet).reduce(
       (p, [propName, prop]) =>
         p.then(async (acc) => {
           const ref = values[propName]
           if (ref) {
+            const page_id = ref.split(', ')[0] // silly fix to always get the first ID only
             const page = await this.page.client.pages.retrieve({
-              page_id: ref
+              page_id
             })
 
             if (page) {
