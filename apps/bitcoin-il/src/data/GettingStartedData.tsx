@@ -197,6 +197,6 @@ export const howToUseTimelineItems: JSX.Element[] = [
         description={`button.`}
       />
     }
-    navigateTo={`spend-bitcoin`}
+    navigateTo={`/spend-bitcoin-il`}
   />
 ]
