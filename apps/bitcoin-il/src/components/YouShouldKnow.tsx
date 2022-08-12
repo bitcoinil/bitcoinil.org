@@ -1,19 +1,16 @@
 import * as React from 'react'
-import { FormattedMessage } from './FormattedMessageWithHover'
 import styled from 'styled-components'
-import AlternatingTwoColumnRow from './AlternatingTwoColumnRow'
-import { AlternatingTwoColumnRowProps } from '../utils/interfaces'
 
-import ico_secure from '../img/ico_secure.svg'
-import ico_price from '../img/ico_prices.svg'
-import ico_payments from '../img/ico_payments.svg'
 import ico_notanon from '../img/ico_not-anon.svg'
+import ico_payments from '../img/ico_payments.svg'
+import ico_price from '../img/ico_prices.svg'
+import ico_secure from '../img/ico_secure.svg'
+import ico_experimental from '../img/ico_experimental.svg'
+import ico_taxes from '../img/ico_taxes.svg'
+import { AlternatingTwoColumnRowProps } from '../utils/interfaces'
+import AlternatingTwoColumnRow from './AlternatingTwoColumnRow'
 import CustomNavLink from './CustomNavLink'
-// import ico_secure from '../img/ico_secure.svg'
-// import ico_secure from '../img/ico_secure.svg'
-// import ico_secure from '../img/ico_secure.svg'
-// import ico_secure from '../img/ico_secure.svg'
-// import ico_secure from '../img/ico_secure.svg'
+import { FormattedMessage } from './FormattedMessageWithHover'
 
 export interface YouShouldKnowProps {}
 
@@ -158,59 +155,40 @@ export const youShouldKnowItems: AlternatingTwoColumnRowProps[] = [
   },
   {
     index: 3,
-    imgSrc: ico_price,
+    imgSrc: ico_experimental,
     titleText: (
       <FormattedMessage
         id={`exchanges.id`}
-        defaultMessage={`BitCoin Il Price Is Volatile`}
+        defaultMessage={`Bitcoin is still experimental`}
         description={`id`}
       />
     ),
     bodyText: (
       <FormattedMessage
         id={`exchanges.id`}
-        defaultMessage={`The price of a bitcoin can unpredictably increase or decrease over a short period of time due to its young economy, novel nature, and sometimes illiquid markets. Consequently, keeping your savings with Bitcoin is not recommended at this point. Bitcoin should be seen like a high risk asset, and you should never store money that you cannot afford to lose with Bitcoin. If you receive payments with Bitcoin, many service providers can convert them to your local currency.`}
+        defaultMessage={`Bitcoin is an experimental new currency that is in active development. Each improvement makes Bitcoin more appealing but also reveals new challenges as Bitcoin adoption grows. During these growing pains you might encounter increased fees, slower confirmations, or even more severe issues. Be prepared for problems and consult a technical expert before making any major investments, but keep in mind that nobody can predict Bitcoin's future.`}
         description={`id`}
       />
     )
   },
   {
     index: 4,
-    imgSrc: ico_price,
+    imgSrc: ico_taxes,
     titleText: (
       <FormattedMessage
         id={`exchanges.id`}
-        defaultMessage={`BitCoin Il Price Is Volatile`}
+        defaultMessage={`Government taxes and regulations`}
         description={`id`}
       />
     ),
     bodyText: (
       <FormattedMessage
         id={`exchanges.id`}
-        defaultMessage={`The price of a bitcoin can unpredictably increase or decrease over a short period of time due to its young economy, novel nature, and sometimes illiquid markets. Consequently, keeping your savings with Bitcoin is not recommended at this point. Bitcoin should be seen like a high risk asset, and you should never store money that you cannot afford to lose with Bitcoin. If you receive payments with Bitcoin, many service providers can convert them to your local currency.`}
-        description={`id`}
-      />
-    )
-  },
-  {
-    index: 5,
-    imgSrc: ico_price,
-    titleText: (
-      <FormattedMessage
-        id={`exchanges.id`}
-        defaultMessage={`BitCoin Il Price Is Volatile`}
-        description={`id`}
-      />
-    ),
-    bodyText: (
-      <FormattedMessage
-        id={`exchanges.id`}
-        defaultMessage={`The price of a bitcoin can unpredictably increase or decrease over a short period of time due to its young economy, novel nature, and sometimes illiquid markets. Consequently, keeping your savings with Bitcoin is not recommended at this point. Bitcoin should be seen like a high risk asset, and you should never store money that you cannot afford to lose with Bitcoin. If you receive payments with Bitcoin, many service providers can convert them to your local currency.`}
+        defaultMessage={`Bitcoin is not an official currency. That said, most jurisdictions still require you to pay income, sales, payroll, and capital gains taxes on anything that has value, including bitcoins. It is your responsibility to ensure that you adhere to tax and other legal or regulatory mandates issued by your government and/or local municipalities.`}
         description={`id`}
       />
     )
   }
-  // Bitcoin price is volatile
 ]
 
 const YouShouldKnow: React.FC<YouShouldKnowProps> = ({}) => {
