@@ -124,7 +124,7 @@ const RoutesProvider = () => {
                 description="Spend title"
               />
             }
-            subtitle={<></>}
+            subtitle={null}
             body={<SpendBitil />}
           />
         }
