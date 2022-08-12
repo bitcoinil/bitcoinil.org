@@ -360,12 +360,13 @@ const TableOfContentsScrollTracked: React.FC<
                   </p>
                   {item.bodyWithoutSubheadings
                     ? item.bodyWithoutSubheadings.map((subItem, ii) => {
+                        const Body = subItem.body
                         return (
                           <p
                             key={ii}
                             className="toc-scroll-tracked-right-item-heading-has-subheadings-subheadings-wrap-body right-subtitle"
                           >
-                            {subItem.body}
+                            <Body />
                           </p>
                         )
                       })

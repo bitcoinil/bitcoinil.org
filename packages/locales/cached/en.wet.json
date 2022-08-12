@@ -1,4 +1,10 @@
 {
+  "btcil-exchange.p2p.btcil.label": "Bitcoin Israeli on Telegram",
+  "btcil-exchange.p2p.btcil.url": "https://t.me/btcil",
+  "btcil-exchange.p2p.cantina.label": "Bitcoin Israel Cantina Market",
+  "btcil-exchange.p2p.cantina.url": "https://t.me/BTCIL_CantinaMarket",
+  "btcil-exchange.p2p.telegram.label": "BTCiL Exchange on Telegram",
+  "btcil-exchange.p2p.telegram.url": "https://t.me/BTCilExchange",
   "businessCard.control.text": "Any business that accepts credit cards or PayPal knows the problem of payments that are later reversed. Chargeback frauds result in limited market reach and increased prices, which in turn penalizes customers. Bitcoin Israel payments are irreversible and secure, meaning that the cost of fraud is no longer pushed onto the shoulders of the merchants.",
   "businessCard.international.text": "Sending Bitcoin Israel across borders is as easy as sending them across the street. There are no banks to make you wait three business days, no extra fees for making an international transfer, and no special limitations on the minimum or maximum amount you can send.",
   "businessCard.lowfee.text": "There is no fee to receive Bitcoin Israel, and many wallets let you control how large a fee to pay when spending. Most wallets have reasonable default fees, and higher fees can encourage faster confirmation of your transactions. Fees are unrelated to the amount transferred, so it's possible to send 100,000 Bitcoin Israel for the same fee it costs to send 1 Bitcoin Israel.",
