@@ -1,0 +1,14 @@
+{
+	"Move Text To Formatted Message": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "mtfm",
+		"body": [
+			"<FormattedMessage",
+			"id={`you-should-know.table.$1`}",
+			"defaultMessage={`$TM_SELECTED_TEXT`}",
+			"description={`youshouldknow.desc`}",
+			"/>",
+		],
+		"description": "Log output to console"
+	}
+}
