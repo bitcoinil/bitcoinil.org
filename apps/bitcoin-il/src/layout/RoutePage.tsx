@@ -19,7 +19,11 @@ export default function RoutePage({
 
   return (
     <StyledRoutePage isDark={isDark} id="RoutePage">
-      <div className={`page-title ${isDark ? 'dark-mode-routepage' : ''}`}>
+      <div
+        className={`page-title ${isDark ? 'dark-mode-routepage' : ''} ${
+          !subtitle ? 'page-title-no-subtitle' : ''
+        }`}
+      >
         <h1 className="routepage-title">
           <br />
           {title}
@@ -82,13 +86,17 @@ const StyledRoutePage = styled.div<StyledRoutePageProps>`
     }
   }
 
+  .page-title-no-subtitle {
+    min-height: 360px;
+  }
+
   .dark-mode-routepage {
     background-image: url('${HeroBg}');
     .routepage-title {
       color: unset;
     }
 
-    .routepage-subtitle {
+    .routepage-no-subtitle {
       color: unset;
     }
   }
