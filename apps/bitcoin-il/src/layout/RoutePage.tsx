@@ -87,7 +87,7 @@ const StyledRoutePage = styled.div<StyledRoutePageProps>`
   }
 
   .page-title-no-subtitle {
-    min-height: 360px;
+    min-height: 400px;
   }
 
   .dark-mode-routepage {
