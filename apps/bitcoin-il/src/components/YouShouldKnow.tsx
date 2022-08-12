@@ -275,4 +275,7 @@ const YouShouldKnow: React.FC<YouShouldKnowProps> = ({}) => {
 
 export default YouShouldKnow
 
-const StyledYouShouldKnow = styled.div``
+const StyledYouShouldKnow = styled.div`
+  width: 90vw;
+  margin: auto;
+`
