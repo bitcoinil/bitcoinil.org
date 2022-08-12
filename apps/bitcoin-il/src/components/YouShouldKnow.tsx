@@ -93,11 +93,27 @@ export const youShouldKnowItems: AlternatingTwoColumnRowProps[] = [
       <table>
         <tbody>
           <tr>
-            <th>Confirmations</th>
-            <th>Lightweight wallets</th>
+            <th>
+              <FormattedMessage
+                id={`you-should-know.table.confirm`}
+                defaultMessage={`Confirmations`}
+                description={`youshouldknow.desc`}
+              />
+            </th>
+            <th>
+              <FormattedMessage
+                id={`you-should-know.table.light-wallets`}
+                defaultMessage={`Lightweight wallets`}
+                description={`youshouldknow.desc`}
+              />
+            </th>
             <th>
               <CustomNavLink style={{ color: '#00b3f0' }} to={`/core`}>
-                BitCoin Core
+                <FormattedMessage
+                  id={`you-should-know.table.`}
+                  defaultMessage={`BitCoin Core`}
+                  description={`youshouldknow.desc`}
+                />
               </CustomNavLink>
             </th>
           </tr>
@@ -105,34 +121,81 @@ export const youShouldKnowItems: AlternatingTwoColumnRowProps[] = [
           <tr>
             <td>0</td>
             <td style={{ color: 'red' }} colSpan={2}>
-              Only safe if you trust the person paying you
+              <FormattedMessage
+                id={`you-should-know.table.trust`}
+                defaultMessage={`Only safe if you trust the person paying you`}
+                description={`youshouldknow.desc`}
+              />
             </td>
           </tr>
 
           <tr>
             <td>1</td>
-            <td>Somewhat reliable</td>
-            <td>Mostly reliable</td>
+            <td>
+              <FormattedMessage
+                id={`you-should-know.table.somewhat-reliable`}
+                defaultMessage={`Somewhat reliable`}
+                description={`youshouldknow.desc`}
+              />
+            </td>
+            <td>
+              <FormattedMessage
+                id={`you-should-know.table.mostly-reliable`}
+                defaultMessage={`Mostly reliable`}
+                description={`youshouldknow.desc`}
+              />
+            </td>
           </tr>
 
           <tr>
             <td>3</td>
-            <td>Mostly reliable</td>
-            <td>Highly reliable</td>
+            <td>
+              <FormattedMessage
+                id={`you-should-know.table.mostly-reliable`}
+                defaultMessage={`Mostly reliable`}
+                description={`youshouldknow.desc`}
+              />
+            </td>
+            <td>
+              <FormattedMessage
+                id={`you-should-know.table.highly-reliable`}
+                defaultMessage={`Highly reliable`}
+                description={`youshouldknow.desc`}
+              />
+            </td>
           </tr>
 
           <tr>
             <td>6</td>
             <td colSpan={2}>
-              Minimum recommendation for high-value bitcoin transfers
+              <FormattedMessage
+                id={`you-should-know.table.min-rec`}
+                defaultMessage={`Minimum recommendation for high-value bitcoin transfers`}
+                description={`youshouldknow.desc`}
+              />
             </td>
           </tr>
 
           <tr>
             <td>30</td>
             <td colSpan={2}>
-              Recommendation during <a href="/en/alerts">emergencies</a> to
-              allow human intervention
+              <FormattedMessage
+                id={`you-should-know.table.rec-during.pre-link`}
+                defaultMessage={`Recommendation during `}
+                description={`youshouldknow.desc`}
+              />
+              <a href="/en/alerts">
+                <FormattedMessage
+                  id={`you-should-know.table.rec-during.link-text`}
+                  defaultMessage={`emergencies`}
+                  description={`youshouldknow.desc`}
+                />
+              </a>
+              <FormattedMessage
+                id={`you-should-know.table.rec-during.post-link`}
+                defaultMessage={`to allow human intervention`}
+                description={`youshouldknow.desc`}
+              />
             </td>
           </tr>
         </tbody>

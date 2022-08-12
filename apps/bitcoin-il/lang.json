@@ -1436,6 +1436,50 @@
     "defaultMessage": "Like in real life, your wallet must be secured. Bitcoin makes it possible to transfer value anywhere in a very easy way and it allows you to be in control of your money. Such great features also come with great security concerns. At the same time, Bitcoin can provide very high levels of security if used correctly. Always remember that it is your responsibility to adopt good practices in order to protect your money. Read more about securing your wallet.",
     "description": "id"
   },
+  "you-should-know.table.": {
+    "defaultMessage": "BitCoin Core",
+    "description": "youshouldknow.desc"
+  },
+  "you-should-know.table.confirm": {
+    "defaultMessage": "Confirmations",
+    "description": "youshouldknow.desc"
+  },
+  "you-should-know.table.highly-reliable": {
+    "defaultMessage": "Highly reliable",
+    "description": "youshouldknow.desc"
+  },
+  "you-should-know.table.light-wallets": {
+    "defaultMessage": "Lightweight wallets",
+    "description": "youshouldknow.desc"
+  },
+  "you-should-know.table.min-rec": {
+    "defaultMessage": "Minimum recommendation for high-value bitcoin transfers",
+    "description": "youshouldknow.desc"
+  },
+  "you-should-know.table.mostly-reliable": {
+    "defaultMessage": "Mostly reliable",
+    "description": "youshouldknow.desc"
+  },
+  "you-should-know.table.rec-during.link-text": {
+    "defaultMessage": "emergencies",
+    "description": "youshouldknow.desc"
+  },
+  "you-should-know.table.rec-during.post-link": {
+    "defaultMessage": "to allow human intervention",
+    "description": "youshouldknow.desc"
+  },
+  "you-should-know.table.rec-during.pre-link": {
+    "defaultMessage": "Recommendation during",
+    "description": "youshouldknow.desc"
+  },
+  "you-should-know.table.somewhat-reliable": {
+    "defaultMessage": "Somewhat reliable",
+    "description": "youshouldknow.desc"
+  },
+  "you-should-know.table.trust": {
+    "defaultMessage": "Only safe if you trust the person paying you",
+    "description": "youshouldknow.desc"
+  },
   "you-should-know.taxes": {
     "defaultMessage": "Government taxes and regulations",
     "description": "id"
