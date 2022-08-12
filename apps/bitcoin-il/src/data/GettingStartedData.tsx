@@ -26,9 +26,7 @@ export const howToAcceptTimelineItems: JSX.Element[] = [
         description={`button.readmore`}
       />
     }
-    buttonOnClick={() => {
-      console.log('to do')
-    }}
+    navigateTo={`/you-should-know`}
   />,
   <TimelineItem
     title={
@@ -52,9 +50,7 @@ export const howToAcceptTimelineItems: JSX.Element[] = [
         description={`button.find-services`}
       />
     }
-    buttonOnClick={() => {
-      console.log('to do')
-    }}
+    buttonOnClick={() => alert('How To Accept Bitil Wiki is a To Do')}
   />,
   <TimelineItem
     title={
@@ -78,9 +74,7 @@ export const howToAcceptTimelineItems: JSX.Element[] = [
         description={`button.`}
       />
     }
-    buttonOnClick={() => {
-      console.log('to do')
-    }}
+    buttonOnClick={() => alert('Merchant Wiki is A ToDo')}
   />,
   <TimelineItem
     title={
@@ -104,9 +98,7 @@ export const howToAcceptTimelineItems: JSX.Element[] = [
         description={`button.`}
       />
     }
-    buttonOnClick={() => {
-      console.log('to do')
-    }}
+    navigateTo={`spend-bitil`}
   />
 ]
 
@@ -133,9 +125,7 @@ export const howToUseTimelineItems: JSX.Element[] = [
         description={`button.`}
       />
     }
-    buttonOnClick={() => {
-      console.log('to do')
-    }}
+    navigateTo={`/you-should-know`}
   />,
   <TimelineItem
     title={
@@ -159,9 +149,7 @@ export const howToUseTimelineItems: JSX.Element[] = [
         description={`button.`}
       />
     }
-    buttonOnClick={() => {
-      console.log('to do')
-    }}
+    navigateTo={`/choose-your-wallet`}
   />,
   <TimelineItem
     title={
@@ -185,9 +173,7 @@ export const howToUseTimelineItems: JSX.Element[] = [
         description={`button.`}
       />
     }
-    buttonOnClick={() => {
-      console.log('to do')
-    }}
+    navigateTo={`/buy`}
   />,
   <TimelineItem
     title={
@@ -211,8 +197,6 @@ export const howToUseTimelineItems: JSX.Element[] = [
         description={`button.`}
       />
     }
-    buttonOnClick={() => {
-      console.log('to do')
-    }}
+    navigateTo={`spend-bitcoin`}
   />
 ]

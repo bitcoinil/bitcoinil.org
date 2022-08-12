@@ -11,7 +11,7 @@ import { flashElement, scrollToElement } from '../util/util'
 import { phoneDevices } from '../utils/breakpoints'
 import { GettingStartedBodyProps } from '../utils/interfaces'
 import { FormattedMessage } from './FormattedMessageWithHover'
-import TimelineComp from './Timeline'
+import Timeline from './Timeline'
 
 const GettingStartedBody: React.FC<GettingStartedBodyProps> = ({}) => {
   const howToUseRef = React.createRef<HTMLHeadingElement>()
@@ -54,7 +54,7 @@ const GettingStartedBody: React.FC<GettingStartedBodyProps> = ({}) => {
           description={`How To Start`}
         />
       </h1>
-      <TimelineComp items={howToUseTimelineItems} />
+      <Timeline items={howToUseTimelineItems} />
       <Divider />
       <h1 ref={acceptRef} className="getting-started-title">
         <FormattedMessage
@@ -63,7 +63,7 @@ const GettingStartedBody: React.FC<GettingStartedBodyProps> = ({}) => {
           description={`How To Accept`}
         />
       </h1>
-      <TimelineComp items={howToAcceptTimelineItems} />
+      <Timeline items={howToAcceptTimelineItems} />
     </StyledGettingStartedBody>
   )
 }
