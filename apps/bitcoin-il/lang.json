@@ -938,6 +938,10 @@
     "defaultMessage": "Bitcoin Il is an innovative payment network and a new kind of money.",
     "description": "Homepage Title"
   },
+  "page.spend.title.menu": {
+    "defaultMessage": "Spend BitCoin il",
+    "description": "Spend title"
+  },
   "page.you-should-know.subtitle": {
     "defaultMessage": "If you're getting started with Bitcoin, there are a few things you should know. Bitcoin lets you exchange money and transact in a different way than you normally do. As such, you should take time to inform yourself before using Bitcoin for any serious transaction. Bitcoin should be treated with the same care as your regular wallet, or even more in some cases!",
     "description": "You oughtta know subtitle"
@@ -1153,6 +1157,34 @@
   "resources.wiki.text": {
     "defaultMessage": "BitCoin Wiki",
     "description": "Description"
+  },
+  "spendCards.find-local.subtitle": {
+    "defaultMessage": "There are also many local businesses, like cafes and restaurants, that accept Bitcoin. You can use Coinmap.org to browse thousands of businesses across the globe."
+  },
+  "spendCards.find-local.title": {
+    "defaultMessage": "Find local businesses",
+    "description": "individuals card mobile title"
+  },
+  "spendCards.find.subtitle": {
+    "defaultMessage": "One common use for Bitcoin is making purchases online. There are hundreds of online shops and retailers that accept Bitcoin. Using a search engine like Spendabit you can search through millions of products, all available for purchase with bitcoins."
+  },
+  "spendCards.find.title": {
+    "defaultMessage": "Find Products for Sale Online",
+    "description": "individuals card mobile title"
+  },
+  "spendCards.global-local.subtitle": {
+    "defaultMessage": "BitcoinWide.com is a global, open and free platform to search businesses, organizations or individuals who accept Bitcoin and other Cryptocurrency."
+  },
+  "spendCards.global-local.title": {
+    "defaultMessage": "Global local and online business search",
+    "description": "individuals card mobile title"
+  },
+  "spendCards.navigate.subtitle": {
+    "defaultMessage": "You can also find many businesses listed in online directories."
+  },
+  "spendCards.navigate.title": {
+    "defaultMessage": "Navigate a business directory",
+    "description": "individuals card mobile title"
   },
   "support.MakeaDonation": {
     "defaultMessage": "Make a Donation",
