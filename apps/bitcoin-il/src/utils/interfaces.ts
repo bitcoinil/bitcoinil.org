@@ -187,6 +187,8 @@ export interface CustomNavLinkProps {
   style?: any
 }
 
+export interface YouShouldKnowProps {}
+
 export interface BuyBodyProps {}
 
 export interface CommunityBodyProps {}
