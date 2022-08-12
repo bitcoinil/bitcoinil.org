@@ -167,7 +167,7 @@ export interface LogoProps {
 export interface tableOfContentItem {
   categoryHeading: JSX.Element
   hasSubheadings: boolean
-  bodyWithoutSubheadings?: { body: JSX.Element }[]
+  bodyWithoutSubheadings?: { body: Function }[]
   subHeadings?: tableOfContentSubheading[]
   key: string
   isSubmenuItem?: boolean
