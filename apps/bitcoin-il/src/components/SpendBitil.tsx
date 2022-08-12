@@ -1,12 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-export interface SpendBitilProps {}
+import { spendCards } from '../data/SpendBitilData'
+import { SpendBitilProps } from '../utils/interfaces'
+import CardsDisplay from './CardsDisplay'
 
 const SpendBitil: React.FC<SpendBitilProps> = ({}) => {
   return (
     <StyledSpendBitil id="SpendBitil">
-      <h1>SpendBitil</h1>
+      <CardsDisplay cards={spendCards} />
     </StyledSpendBitil>
   )
 }

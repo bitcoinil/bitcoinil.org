@@ -19,6 +19,8 @@ export interface RoutePageProps {
   id: string
 }
 
+export interface SpendBitilProps {}
+
 export interface AvailableLanguageData {
   icon: string | JSX.Element
   locale: string
