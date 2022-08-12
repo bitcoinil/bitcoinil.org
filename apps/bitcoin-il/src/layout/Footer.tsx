@@ -50,9 +50,6 @@ const Footer: React.FC<FooterProps> = ({}) => {
                 <CustomNavLink key={ii} to={`/${subMenuItem.key}`}>
                   <li className="submenu-item">{subMenuItem.label}</li>
                 </CustomNavLink>
-                // <NavLink key={ii} to={`/${subMenuItem.key}`}>
-                //   <li className="submenu-item">{subMenuItem.label}</li>
-                // </NavLink>
               )
             })}
           </ul>
@@ -67,7 +64,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
         <Logo isDark={true} />
       </div>
       <div className="body-wrap">
-        <div className="support">{renderSupport()}</div>
+        {/* <div className="support">{renderSupport()}</div> */}
         <div className="columns-wrap">{renderColumns()}</div>
       </div>
     </StyledFooter>
