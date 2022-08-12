@@ -137,7 +137,7 @@ const StyledFooter = styled.div`
     flex-wrap: wrap;
 
     ${phoneDevices} {
-      align-items: center;
+      align-items: baseline;
       justify-content: center;
     }
   }
