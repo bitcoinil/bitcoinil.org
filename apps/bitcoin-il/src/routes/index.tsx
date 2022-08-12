@@ -9,6 +9,7 @@ import RoutePage from '../layout/RoutePage'
 import { FormattedMessage } from '../components/FormattedMessageWithHover'
 import ChooseWallet from '../components/ChooseWallet'
 import YouShouldKnow from '../components/YouShouldKnow'
+import SpendBitil from '../components/SpendBitil'
 
 const RoutesProvider = () => {
   const intl = useTranslations()
@@ -108,6 +109,23 @@ const RoutesProvider = () => {
               />
             }
             body={<YouShouldKnow />}
+          />
+        }
+      />
+      <Route
+        path="spend-bitcoin-il"
+        element={
+          <RoutePage
+            id="spend"
+            title={
+              <FormattedMessage
+                id="page.spend.title.menu"
+                defaultMessage="Spend BitCoin il"
+                description="Spend title"
+              />
+            }
+            subtitle={<></>}
+            body={<SpendBitil />}
           />
         }
       />
