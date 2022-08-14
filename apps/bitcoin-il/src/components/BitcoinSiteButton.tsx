@@ -8,7 +8,7 @@ import { SiteButtonProps } from '../utils/interfaces'
 function LinkFromProps(props: {
   makeATag: any
   children: any
-  buttonLinkId: string
+  buttonLinkId?: string
 }) {
   const intl = useIntl()
   if (!props.makeATag) {

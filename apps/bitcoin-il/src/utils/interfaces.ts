@@ -44,6 +44,8 @@ export interface SiteButtonProps {
   background?: string
   opacity?: string
   transition?: string
+  buttonLinkWrapUrl?: string
+  buttonLinkId?: string
 }
 
 export interface TranslationDictionary {
@@ -262,6 +264,7 @@ export interface TimelineItemProps {
   buttonOnClick?: Function
   navigateTo?: string
   key?: string
+  buttonLinkWrapUrl?: string
 }
 
 export interface HowItWorksProps {}

@@ -50,7 +50,7 @@ export const howToAcceptTimelineItems: JSX.Element[] = [
         description={`button.find-services`}
       />
     }
-    buttonOnClick={() => alert('How To Accept Bitil Wiki is a To Do')}
+    buttonLinkWrapUrl={`https://en.bitcoin.it/wiki/How_to_accept_Bitcoin,_for_small_businesses#Merchant_Services`}
   />,
   <TimelineItem
     title={
@@ -74,7 +74,9 @@ export const howToAcceptTimelineItems: JSX.Element[] = [
         description={`button.`}
       />
     }
-    buttonOnClick={() => alert('Merchant Wiki is A ToDo')}
+    buttonOnClick={() =>
+      (window.location.href = 'https://en.bitcoin.it/wiki/Tax_compliance')
+    }
   />,
   <TimelineItem
     title={
