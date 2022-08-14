@@ -81,7 +81,10 @@ export default function ChooseWallet(): JSX.Element {
 
   const actions = {
     website: { icon: <HomeOutlined />, text: 'Website' } as Record<string, any>,
-    windows: { icon: <WindowsOutlined />, text: 'Windows' } as Record<string, any>,
+    windows: { icon: <WindowsOutlined />, text: 'Windows' } as Record<
+      string,
+      any
+    >,
     osx: { icon: <AppleFilled />, text: 'OSX' } as Record<string, any>,
     linux: { icon: <AppstoreOutlined />, text: 'Linux' } as Record<string, any>,
     appstore: { icon: <AppleOutlined />, text: 'iOS' } as Record<string, any>,
@@ -96,10 +99,10 @@ export default function ChooseWallet(): JSX.Element {
     releases: { icon: <RocketOutlined />, text: 'Releases' } as Record<
       string,
       any
-    >
-  }
+    >,
+    telegram: { text: 'Telegram' }
+  } as Record<string, any>
 
-  console.log('Walelts:', wallets)
   return (
     <StyledChooseYourWallet id="ChooseWallet">
       <h1 className="wallet-choices-title">
@@ -139,89 +142,30 @@ export default function ChooseWallet(): JSX.Element {
             >
               <Card.Meta
                 avatar={
-                  wallet.links.logo ? <Avatar shape="square" size="large"  src={wallet.links.logo} /> : null
+                  wallet.links.logo ? (
+                    <Avatar
+                      shape="square"
+                      size="large"
+                      src={wallet.links.logo}
+                    />
+                  ) : null
                 }
                 title={wallet.name}
                 description={wallet.description}
               />
-              <div className='community'>
-                {Object.entries(wallet.community).filter(([, v]) => !!v).map(([key, value]) => (
-                  <a href={value as string} key={key}>
-                    <FormattedMessage id={`page.choose-wallet.community.${key}`} defaultMessage='sup' />
-                  </a>
-                ))}
+              <div className="community">
+                {Object.entries(wallet.community)
+                  .filter(([, v]) => !!v)
+                  .map(([key, value]) => (
+                    <a href={value as string} key={key}>
+                      {actions[key].text}
+                    </a>
+                  ))}
               </div>
             </WalletChoiceCard>
           ))}
         </div>
       }
-      {/* <div className="wallet-choices-wrap">
-        {wallets.map((walletId, i) => {
-          return (
-            <Card key={`wallet-choice-${walletId}`}>
-              <h1 className="wallet-choice-card-title">
-                <FormattedMessage
-                  id={`wallets.${walletId}.name`}
-                  defaultMessage={`wallets.${walletId}.name`}
-                />
-              </h1>
-              <p>
-                <a
-                  href={intl.formatMessage({
-                    id: `wallets.${walletId}.releases.url`,
-                    defaultMessage: `wallets.${walletId}.releases.url`
-                  })}
-                >
-                  <FormattedMessage
-                    id={`wallets.${walletId}.releases.label`}
-                    defaultMessage={`wallets.${walletId}.releases.label`}
-                    description={`releases`}
-                  />
-                </a>
-              </p>
-              <p>
-                <a
-                  href={intl.formatMessage({
-                    id: `wallets.${walletId}.website.url`,
-                    defaultMessage: `wallets.${walletId}.website.url`
-                  })}
-                >
-                  <FormattedMessage
-                    id={`wallets.${walletId}.website.label`}
-                    defaultMessage={`wallets.${walletId}.website.label`}
-                    description={`website`}
-                  />
-                </a>
-              </p>
-              <p>
-                <a
-                  href={intl.formatMessage({
-                    id: `wallets.${walletId}.repo.url`,
-                    defaultMessage: `wallets.${walletId}.repo.url`
-                  })}
-                >
-                  <FormattedMessage
-                    id={`wallets.${walletId}.repo.label`}
-                    defaultMessage={`wallets.${walletId}.repo.label`}
-                    description={`GitHubRepo`}
-                  />
-                </a>
-              </p>
-              {walletC.appstoreLink ? (
-                <p>
-                  <a href={walletC.appstoreLink}>
-                    <FormattedMessage
-                      id={`walletchoice.AppStore`}
-                      defaultMessage={`AppStore`}
-                      description={`AppStore`}
-                    />
-                  </a>
-                </p>
-              ) : null}
-            </Card>
-          )
-        })}
-      </div> */}
     </StyledChooseYourWallet>
   )
 }
@@ -230,17 +174,30 @@ const WalletChoiceCard = styled(Card)`
   background: red;
   &.ant-card {
     display: grid;
-    grid-template-areas:
-      "cover content content"
-      "cover content content"
-      "cover actions actions";
+    @media screen and (max-width: 390px) {
+      grid-template-areas:
+        'cover cover cover'
+        'content content content'
+        'actions actions actions';
+    }
+    @media screen and (min-width: 390px) {
+      grid-template-areas:
+        'cover content content'
+        'cover content content'
+        'actions actions actions';
+    }
 
+    @media screen and (min-width: 996px) {
+      grid-template-areas:
+        'cover content content'
+        'cover content content'
+        'cover actions actions';
+    }
     grid-template-columns: 160px 1fr 1fr;
     grid-template-rows: 1fr 1fr min-content;
     grid-column-gap: 12px;
-
-    background: var(--body-background);
     padding: 24px 12px;
+    background: var(--body-background);
 
     > .ant-card-cover {
       grid-area: cover;
@@ -296,18 +253,21 @@ const StyledChooseYourWallet = styled.div`
     /* justify-content: space-evenly; */
     /* flex-wrap: wrap; */
     flex-direction: column;
-    padding: 0 180px;
 
+    @media screen and (max-width: 390px) {
+      padding: 0 3vw;
+      row-gap: 12px;
+    }
+    @media screen and (min-width: 390px) {
+      padding: 0 8vw;
+      row-gap: 30px;
+    }
+    @media screen and (min-width: 996px) {
+      padding: 0 180px;
+      row-gap: 30px;
+    }
     .ant-card {
-      margin: 30px;
       width: 100%;
-      &-body {
-        padding: 30px;
-
-        p {
-          font-size: 15px;
-        }
-      }
     }
   }
 `
