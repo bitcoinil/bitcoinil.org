@@ -326,6 +326,15 @@ export interface Exchange {
   link: string
 }
 
+export interface WalletChoice {
+  nameAsElement: JSX.Element
+  id: string
+  gitHubRepo: string
+  releases: string
+  appstoreLink?: string
+  websiteLink: string
+}
+
 export interface ExchangeCountry {
   city: JSX.Element
   exchanges: Exchange[]

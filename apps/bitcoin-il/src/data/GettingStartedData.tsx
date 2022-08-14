@@ -74,9 +74,7 @@ export const howToAcceptTimelineItems: JSX.Element[] = [
         description={`button.`}
       />
     }
-    buttonOnClick={() =>
-      (window.location.href = 'https://en.bitcoin.it/wiki/Tax_compliance')
-    }
+    buttonLinkWrapUrl={`https://en.bitcoin.it/wiki/Tax_compliance`}
   />,
   <TimelineItem
     title={
@@ -100,7 +98,7 @@ export const howToAcceptTimelineItems: JSX.Element[] = [
         description={`button.`}
       />
     }
-    navigateTo={`spend-bitil`}
+    navigateTo={`/spend-bitil`}
   />
 ]
 
@@ -199,6 +197,6 @@ export const howToUseTimelineItems: JSX.Element[] = [
         description={`button.`}
       />
     }
-    navigateTo={`/spend-bitcoin-il`}
+    navigateTo={`/spend-bitil`}
   />
 ]

@@ -113,10 +113,10 @@ const RoutesProvider = () => {
         }
       />
       <Route
-        path="spend-bitcoin-il"
+        path="spend-bitil"
         element={
           <RoutePage
-            id="spend"
+            id="spend-bitil"
             title={
               <FormattedMessage
                 id="page.spend.title.menu"

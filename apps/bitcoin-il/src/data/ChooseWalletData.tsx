@@ -1,30 +1,24 @@
 import * as React from 'react'
 import { FormattedMessage } from '../components/FormattedMessageWithHover'
-
-interface WalletChoice {
-  name: JSX.Element
-  gitHubRepo: string
-  releases: string
-  appstoreLink?: string
-  websiteLink: string
-}
+import { WalletChoice } from '../utils/interfaces'
 
 export const walletChoices: WalletChoice[] = [
   {
-    name: (
+    nameAsElement: (
       <FormattedMessage
         id={`walletChoices.BitCoinIlCore.id`}
         defaultMessage={`BitCoin IL Core`}
         description={`id`}
       />
     ),
+    id: 'bitil-core',
     gitHubRepo: '',
     releases: 'http://www.google.com',
     appstoreLink: '',
     websiteLink: ''
   },
   {
-    name: (
+    nameAsElement: (
       <FormattedMessage
         id={`walletchoice.BitilWalletiPhone`}
         defaultMessage={`BitilWallet iPhone`}
@@ -34,10 +28,11 @@ export const walletChoices: WalletChoice[] = [
     gitHubRepo: '',
     releases: 'http://www.google.com',
     appstoreLink: '',
-    websiteLink: ''
+    websiteLink: '',
+    id: 'BitilWallet-iPhone'
   },
   {
-    name: (
+    nameAsElement: (
       <FormattedMessage
         id={`walletchoice.BitilWallet Android`}
         defaultMessage={`BitilWallet Android`}
@@ -47,10 +42,11 @@ export const walletChoices: WalletChoice[] = [
     gitHubRepo: '',
     releases: 'http://www.google.com',
     appstoreLink: '',
-    websiteLink: ''
+    websiteLink: '',
+    id: 'Bitil-wallet-Android,'
   },
   {
-    name: (
+    nameAsElement: (
       <FormattedMessage
         id={`walletchoice.'CiliaWallet'`}
         defaultMessage={`Cilia Wallet`}
@@ -60,6 +56,7 @@ export const walletChoices: WalletChoice[] = [
     gitHubRepo: '',
     releases: 'http://www.google.com',
     appstoreLink: '',
-    websiteLink: ''
+    websiteLink: '',
+    id: 'Cilia-Wallet'
   }
 ]

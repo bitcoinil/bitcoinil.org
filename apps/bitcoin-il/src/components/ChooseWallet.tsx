@@ -1,11 +1,14 @@
 import { Card } from 'antd'
 import * as React from 'react'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import { walletChoices } from '../data/ChooseWalletData'
 import { FormattedMessage } from './FormattedMessageWithHover'
 
 export default function ChooseWallet(): JSX.Element {
+  const intl = useIntl()
+
   return (
     <StyledChooseYourWallet id="ChooseWallet">
       <h1 className="wallet-choices-title">
@@ -19,11 +22,18 @@ export default function ChooseWallet(): JSX.Element {
         {walletChoices.map((walletC, i) => {
           return (
             <Card key={`wallet-choice-${i}`}>
-              <h1 className="wallet-choice-card-title">{walletC.name}</h1>
+              <h1 className="wallet-choice-card-title">
+                {walletC.nameAsElement}
+              </h1>
               <p>
-                <a href={walletC.releases}>
+                <a
+                  href={intl.formatMessage({
+                    id: `${walletC.id}.url`,
+                    defaultMessage: `walletC.releases`
+                  })}
+                >
                   <FormattedMessage
-                    id={`walletchoice.releases`}
+                    id={`${walletC.id}.releases`}
                     defaultMessage={`Releases`}
                     description={`releases`}
                   />
