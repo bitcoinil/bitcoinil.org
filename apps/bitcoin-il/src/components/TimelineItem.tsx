@@ -11,7 +11,8 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
   body,
   buttonText,
   buttonOnClick,
-  navigateTo
+  navigateTo,
+  buttonLinkWrapUrl
 }) => {
   return (
     <StyledTimelineItem id="TimelineItem">
@@ -22,7 +23,11 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
           <SiteButton type="primary">{buttonText}</SiteButton>
         </CustomNavLink>
       ) : (
-        <SiteButton type="primary" onClick={buttonOnClick}>
+        <SiteButton
+          buttonLinkWrapUrl={buttonLinkWrapUrl}
+          type="primary"
+          onClick={buttonOnClick}
+        >
           {buttonText}
         </SiteButton>
       )}
