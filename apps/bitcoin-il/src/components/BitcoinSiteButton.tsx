@@ -5,27 +5,8 @@ import styled from 'styled-components'
 
 import { SiteButtonProps } from '../utils/interfaces'
 
-function LinkFromProps(props: {
-  makeATag: any
-  children: any
-  buttonLinkId?: string
-}) {
-  const intl = useIntl()
-  if (!props.makeATag) {
-    return props.children
-  }
-
-  return (
-    <a
-      href={intl.formatMessage({
-        id: `${props.buttonLinkId}.url`,
-        defaultMessage: `${props.makeATag}`
-      })}
-    >
-      {props.children}
-    </a>
-  )
-}
+// /////////////////////
+// Main Function
 
 export default function SiteButton({
   onClick = () => {},
@@ -36,7 +17,8 @@ export default function SiteButton({
   buttonLinkWrapUrl,
   buttonLinkId
 }: SiteButtonProps) {
-  console.log(buttonLinkWrapUrl, onClick)
+  console.log(buttonLinkWrapUrl, buttonLinkId)
+
   return (
     <StyledButton
       id="SiteButton"
@@ -52,6 +34,32 @@ export default function SiteButton({
         {children}
       </LinkFromProps>
     </StyledButton>
+  )
+}
+
+// ////////////////////////////
+//
+//   Helper Function
+function LinkFromProps(props: {
+  makeATag: any
+  children: any
+  buttonLinkId?: string
+}) {
+  const intl = useIntl()
+
+  if (!props.makeATag) {
+    return props.children
+  }
+
+  return (
+    <a
+      href={intl.formatMessage({
+        id: `${props.buttonLinkId}.url`,
+        defaultMessage: `${props.makeATag}`
+      })}
+    >
+      {props.children}
+    </a>
   )
 }
 
