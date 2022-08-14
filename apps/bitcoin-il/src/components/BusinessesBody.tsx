@@ -14,7 +14,11 @@ const BusinessBody: React.FC<BusinessBodyProps> = ({}) => {
       <CardsDisplay cards={businessCards} />
       <div className="individuals-button">
         <CustomNavLink to="/getting-started">
-          <SiteButton type="primary">
+          <SiteButton
+            buttonLinkWrapUrl={`https://www.FooFighters.com`}
+            buttonLinkId={`Foo Fighters`}
+            type="primary"
+          >
             <FormattedMessage
               id={`businesses.get-started-button`}
               defaultMessage={`Get Started With BitCoin Il`}
