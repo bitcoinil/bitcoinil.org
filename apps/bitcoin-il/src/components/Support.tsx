@@ -1,7 +1,7 @@
 import { Modal } from 'antd'
 import * as React from 'react'
+import { useIntl } from 'react-intl'
 import { useQRCode } from 'react-qrcode'
-import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 
 import { useFade } from '../hooks/useFade'
@@ -9,7 +9,6 @@ import ico_bitil from '../img/ico_bitl.jpg'
 import ico_btc from '../img/ico_btc.jpg'
 import CloseButton from '../img/ico_close.svg'
 import ico_bitil_btc from '../img/ico_half_half.jpg'
-import { bitCoinAddress } from '../state/state'
 import { colors } from '../theme/colors'
 import { phoneDevices } from '../utils/breakpoints'
 import { SupportProps } from '../utils/interfaces'
@@ -21,11 +20,31 @@ const Support: React.FC<SupportProps> = () => {
   const [showModal, setShowModal] = React.useState(false)
   const [chosenAmount, setChosenAmount] = React.useState(0)
   const [chosenCurrency, setChosenCurrency] = React.useState('btc')
+  const intl = useIntl()
 
-  const ourBitCoinAddress = useRecoilValue(bitCoinAddress)
+  const bitcoinAddress = intl.formatMessage({
+    id: `donations.address.btc`,
+    defaultMessage: `bc1q...123...safd`
+  })
+  const bitcoinQRString = useQRCode(
+    `bitcoin:${bitcoinAddress}?amount=${chosenAmount}`
+  )
 
-  const value = `bitcoin:${ourBitCoinAddress}?amount=${chosenAmount}`
-  const dataUrl = useQRCode(value)
+  const btcilAddress = intl.formatMessage({
+    id: `donations.address.btcil`,
+    defaultMessage: `il1q...123...safd`
+  })
+  const btcilQRString = useQRCode(
+    `bitcoinil:${btcilAddress}?amount=${chosenAmount}`
+  )
+
+  const bothAddress = intl.formatMessage({
+    id: `donations.address.both`,
+    defaultMessage: `il1q...123...safd`
+  })
+  const bothQRString = useQRCode(
+    `bitcoinil:${bothAddress}?amount=${chosenAmount}`
+  )
 
   const styledSupportRef = React.createRef<any>()
 
@@ -195,7 +214,7 @@ const Support: React.FC<SupportProps> = () => {
                       bc346729623789123913
                     </span>
                     <span className="qr-trio-wrap-qr">
-                      <img src={dataUrl} />
+                      <img src={bitcoinQRString} />
                     </span>
                   </div>
                   <div className="qr-trio-wrap-btc-and-bitil">
@@ -217,7 +236,7 @@ const Support: React.FC<SupportProps> = () => {
                           textAlign: 'center'
                         }}
                       >
-                        Coming Soon
+                        <img src={bothQRString} />
                       </div>
                     </span>
                   </div>
@@ -240,7 +259,7 @@ const Support: React.FC<SupportProps> = () => {
                           textAlign: 'center'
                         }}
                       >
-                        Coming Soon
+                        <img src={btcilQRString} />
                       </div>
                     </span>
                   </div>
