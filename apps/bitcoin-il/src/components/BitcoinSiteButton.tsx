@@ -17,8 +17,6 @@ export default function SiteButton({
   buttonLinkWrapUrl,
   buttonLinkId
 }: SiteButtonProps) {
-  console.log(buttonLinkWrapUrl, buttonLinkId)
-
   return (
     <StyledButton
       id="SiteButton"
