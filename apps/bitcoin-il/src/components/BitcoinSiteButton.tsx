@@ -1,16 +1,42 @@
 import { Button } from 'antd'
 import * as React from 'react'
+import { useIntl } from 'react-intl'
 import styled from 'styled-components'
 
 import { SiteButtonProps } from '../utils/interfaces'
+
+function LinkFromProps(props: {
+  makeATag: any
+  children: any
+  buttonLinkId: string
+}) {
+  const intl = useIntl()
+  if (!props.makeATag) {
+    return props.children
+  }
+
+  return (
+    <a
+      href={intl.formatMessage({
+        id: `${props.buttonLinkId}.url`,
+        defaultMessage: `${props.makeATag}`
+      })}
+    >
+      {props.children}
+    </a>
+  )
+}
 
 export default function SiteButton({
   onClick = () => {},
   children,
   type = 'default',
   background,
-  color
+  color,
+  buttonLinkWrapUrl,
+  buttonLinkId
 }: SiteButtonProps) {
+  console.log(buttonLinkWrapUrl, onClick)
   return (
     <StyledButton
       id="SiteButton"
@@ -20,9 +46,11 @@ export default function SiteButton({
         border: background ? `2px solid ${background}` : ''
       }}
       type={type}
-      onClick={() => onClick()}
+      onClick={!buttonLinkWrapUrl ? () => onClick() : undefined}
     >
-      {children}
+      <LinkFromProps buttonLinkId={buttonLinkId} makeATag={buttonLinkWrapUrl}>
+        {children}
+      </LinkFromProps>
     </StyledButton>
   )
 }
