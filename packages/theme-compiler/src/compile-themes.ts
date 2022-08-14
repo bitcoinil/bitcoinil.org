@@ -20,9 +20,8 @@ import type {
 } from './types'
 import { ThemeSourceType } from './types'
 import extractVSCodeToCSSVars from './utils/vscode-to-css-vars'
-import extractVSCodeToLessVars from './utils/vscode-to-less-vars'
+import extractVSCodeToLessVars2 from './utils/vscode-to-less-vars2'
 import VSCodeToMonaco from './utils/vscode-to-monaco'
-
 
 const compileThemes = async (
   themes: string[],
@@ -148,7 +147,7 @@ const prepareLessVars: PrepareLessVars = (theme) => ({
   ...theme,
   variants: theme.variants.map((variant) => ({
     ...variant,
-    getLessVars: () => variant.getData().then(extractVSCodeToLessVars)
+    getLessVars: () => variant.getData().then(extractVSCodeToLessVars2)
   }))
 })
 
@@ -185,10 +184,12 @@ const makeAntdTheme: MakeAntdTheme = async (variant, theme) => {
   try {
     const lessVars = await variant.getLessVars()
 
-    rendered = await less.render(lessSource, {
-      ...lessOptions,
-      ...{ modifyVars: lessVars }
-    })
+    rendered = await less.render(
+      `// LESS VARS\n${lessVars}\n// LESS SOURCE\n${lessSource}`,
+      {
+        ...lessOptions
+      }
+    )
   } catch (error) {
     console.warn(error)
     throw new Error('Unable to compile less file')
@@ -241,7 +242,15 @@ const makeThemesConfig: MakeThemesConfig = async (themes, outputFile) => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     dv: require('../package.json').dv,
     themes: themes.map(
-      ({ name, title, description, version, variants, paths, fontStylesheet }) =>
+      ({
+        name,
+        title,
+        description,
+        version,
+        variants,
+        paths,
+        fontStylesheet
+      }) =>
         ({
           base: paths.dir,
           fontStylesheet,
