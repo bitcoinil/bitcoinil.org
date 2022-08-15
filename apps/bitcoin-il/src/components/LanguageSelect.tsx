@@ -64,8 +64,14 @@ const StyledLanguageSelect = styled.div`
     padding-left: 25px;
     display: flex;
     align-items: center;
+
     span {
       padding-left: 30px;
+    }
+
+    #app.dir-rtl & span {
+      padding-left: 0;
+      padding-right: 30px;
     }
   }
 
