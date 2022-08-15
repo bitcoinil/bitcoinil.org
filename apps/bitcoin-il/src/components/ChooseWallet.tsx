@@ -19,7 +19,7 @@ import { FormattedMessage } from './FormattedMessageWithHover'
 
 export default function ChooseWallet(): JSX.Element {
   const intl = useIntl()
-  console.log('Intl:', intl.messages)
+  // console.log('Intl:', intl.messages)
 
   const walletProperties = [
     'name',
