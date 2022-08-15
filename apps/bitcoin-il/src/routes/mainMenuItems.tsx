@@ -21,6 +21,7 @@ import VocabularyBody from '../components/VocabularyBody'
 import WhitePaperBody from '../components/WhitePaperBody'
 import RoutePage from '../layout/RoutePage'
 import { MainMenuItem } from '../utils/interfaces'
+import ChooseWallet from '../components/ChooseWallet'
 
 export const generateMenuItems = () => {
   const menuAsAntdItem: ItemType[] = []
@@ -477,6 +478,30 @@ export const mainMenuItems: MainMenuItem[] = [
               />
             }
             body={<CoreBody />}
+          />
+        )
+      },
+      {
+        label: (
+          <FormattedMessage
+            id={`mainMenu.wallets.label`}
+            defaultMessage={`Wallets`}
+            description={`mainMenu.wallets.label`}
+          />
+        ),
+        key: 'wallets',
+        element: (
+          <RoutePage
+            id="wallets"
+            title={
+              <FormattedMessage
+                id={`mainMenuItem.wallets.title`}
+                defaultMessage={`Choose Your Wallet`}
+                description={`wallets.title`}
+              />
+            }
+            subtitle={<></>}
+            body={<ChooseWallet />}
           />
         )
       }
