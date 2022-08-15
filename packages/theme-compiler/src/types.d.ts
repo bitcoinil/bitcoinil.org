@@ -119,7 +119,7 @@ export interface ProcessedVariant extends ThemeVariant {
   /** Get CSS variables */
   getCSSVars: () => Promise<string>
   /** Get Less variables object */
-  getLessVars: () => Promise<Record<string, string>>
+  getLessVars: () => Promise<string>
   filename: string
 }
 
@@ -150,6 +150,10 @@ export type ExtractVSCodeToCSSVars = (source: IVSCodeTheme) => string
 export type ExtractVSCodeToLessVars = (
   source: IVSCodeTheme
 ) => Record<string, string>
+
+export type ExtractVSCodeToLessVars2 = (
+  source: IVSCodeTheme
+) => string
 
 /**
  * Make theme for djitsu from processed theme
