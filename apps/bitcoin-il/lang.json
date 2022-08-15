@@ -1,4 +1,11 @@
 {
+  "3et7tk": {
+    "defaultMessage": "walletC.releases"
+  },
+  "GRrEYG": {
+    "defaultMessage": "Releases",
+    "description": "releases"
+  },
   "GettingStarted.howToUse": {
     "defaultMessage": "How To Use BitCoin IL",
     "description": "id"
@@ -273,6 +280,15 @@
   "core.shortcuts.shared-agreement": {
     "defaultMessage": "This shared agreement (called consensus) allows people like you to only accept valid bitcoins, enforcing Bitcoin's rules against even the most powerful miners.In addition to improving Bitcoin's decentralization, Bitcoin Core users get:",
     "description": "shared-agreement"
+  },
+  "donations.address.both": {
+    "defaultMessage": "il1q...123...safd"
+  },
+  "donations.address.btc": {
+    "defaultMessage": "bc1q...123...safd"
+  },
+  "donations.address.btcil": {
+    "defaultMessage": "il1q...123...safd"
   },
   "events.heading": {
     "defaultMessage": "Upcoming Events and Conferences",
@@ -722,6 +738,10 @@
     "defaultMessage": "Vocabulary",
     "description": "mainMenu.vocab.label"
   },
+  "mainMenu.wallets.label": {
+    "defaultMessage": "Wallets",
+    "description": "mainMenu.wallets.label"
+  },
   "mainMenu.white-paper.label": {
     "defaultMessage": "White Paper",
     "description": "mainMenu white paper label"
@@ -869,6 +889,10 @@
   "mainMenuItem.vocab.title": {
     "defaultMessage": "Some Bitcoin words you might hear",
     "description": "vocab.title"
+  },
+  "mainMenuItem.wallets.title": {
+    "defaultMessage": "Choose Your Wallet",
+    "description": "wallets.title"
   },
   "mainMenuItem.white-paper.subtitle": {
     "defaultMessage": "The paper that first introduced Bitcoin",
@@ -1395,10 +1419,6 @@
   "walletchoice.GitHubRepo": {
     "defaultMessage": "GitHub Repo",
     "description": "GitHubRepo"
-  },
-  "walletchoice.releases": {
-    "defaultMessage": "Releases",
-    "description": "releases"
   },
   "walletchoice.web": {
     "defaultMessage": "Website",
