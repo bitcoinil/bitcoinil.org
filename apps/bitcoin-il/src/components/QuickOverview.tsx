@@ -78,10 +78,12 @@ const StyledQuickOverview = styled.div`
 
   .quick-overview {
     padding-top: 300px;
+    background-size: cover;
   }
 
   .quick-overview-dark {
     background: url(${OverviewBG}) top no-repeat;
+    background-size: cover;
   }
 
   .quick-overview-light {
@@ -89,6 +91,7 @@ const StyledQuickOverview = styled.div`
       color: black;
     }
     background: url(${OverviewBGLight}) top no-repeat;
+    background-size: cover;
   }
 
   h1 {
