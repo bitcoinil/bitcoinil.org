@@ -111,6 +111,10 @@ const StyledHeader = styled.div`
         ${phoneDevices} {
           display: none;
         }
+
+        #app.dir-rtl & {
+          flex-direction: row-reverse;
+        }
       }
     }
   }
