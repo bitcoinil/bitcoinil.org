@@ -42,6 +42,7 @@ const Support: React.FC<SupportProps> = () => {
     id: `donations.address.both`,
     defaultMessage: `il1q...123...safd`
   })
+
   const bothQRString = useQRCode(
     `bitcoinil:${bothAddress}?amount=${chosenAmount}`
   )
