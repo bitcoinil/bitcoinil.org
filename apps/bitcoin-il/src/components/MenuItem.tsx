@@ -25,10 +25,6 @@ const StyledMenuItem = styled.div`
     transform: translateY(-2px);
   }
 
-  & > .ant-menu-sub {
-    background-color: red;
-  }
-
   &:hover {
     transition: transform 200ms;
     transform: translateY(-2px);
