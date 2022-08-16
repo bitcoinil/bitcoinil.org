@@ -22,6 +22,7 @@ import WhitePaperBody from '../components/WhitePaperBody'
 import RoutePage from '../layout/RoutePage'
 import { MainMenuItem } from '../utils/interfaces'
 import ChooseWallet from '../components/ChooseWallet'
+import Developers from '../components/Developers'
 
 export const generateMenuItems = () => {
   const menuAsAntdItem: ItemType[] = []
@@ -160,11 +161,11 @@ export const mainMenuItems: MainMenuItem[] = [
             subtitle={
               <FormattedMessage
                 id={`mainMenuItem.devleopers.subtitle`}
-                defaultMessage={`Bitcoin for Developers`}
+                defaultMessage={`Bitcoin Israel is based on the same infrastructure and code as the original Bitcoin Core`}
                 description={`devleopers.subtitle`}
               />
             }
-            body={<h1>Developers Body</h1>}
+            body={<Developers />}
           />
         )
       },
