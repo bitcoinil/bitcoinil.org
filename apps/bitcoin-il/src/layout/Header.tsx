@@ -65,6 +65,8 @@ const StyledHeader = styled.div`
     flex-direction: row-reverse;
   }
 
+  background: var(--component-background);
+
   .header {
     &-left {
       display: flex;
