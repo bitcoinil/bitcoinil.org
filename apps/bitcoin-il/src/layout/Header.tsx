@@ -92,7 +92,7 @@ const StyledHeader = styled.div`
     }
 
     &-middle {
-      width: 35vw;
+      width: 100%;
 
       ${phoneDevices} {
         display: none;

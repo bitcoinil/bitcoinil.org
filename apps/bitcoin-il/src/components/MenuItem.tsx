@@ -14,7 +14,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ label }) => {
 
 export default MenuItem
 
-const StyledMenuItem = styled.div`
+const StyledMenuItem = styled.li`
   ${phoneDevices} {
     height: auto;
     font-size: 18px;
